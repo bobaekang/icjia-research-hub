@@ -2,7 +2,8 @@
     <div>
         <v-toolbar
             id="toolbar"
-            absolute>
+            fixed
+            scroll-off-screen>
             <router-link to="/">
                 <v-toolbar-title>
                     ICJIA DATA PORTAL
