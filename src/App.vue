@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <app-toolbar />
-    <router-view />
-    <app-footer />
-  </v-app>
+    <v-app>
+        <app-toolbar />
+            <router-view />
+        <app-footer />
+    </v-app>
 </template>
 
 <script>
@@ -24,5 +24,10 @@ export default {
 
 h1 {
     font-family: 'Oswald', sans-serif;
+}
+
+h1.view-title {
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 8px;
 }
 </style>

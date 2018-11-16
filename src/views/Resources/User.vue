@@ -1,7 +1,7 @@
 <template>
-    <v-container>
-        <h1>Resources: User</h1>
-    </v-container>
+    <div>
+        <h1 class="view-title">Resources: User</h1>
+    </div>
 </template>
 
 <script>

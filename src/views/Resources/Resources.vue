@@ -1,13 +1,13 @@
 <template>
     <v-container>
         <v-flex sm10 offset-sm1>
-            <h1 class="view-title">About</h1>
+            <router-view />
         </v-flex>
     </v-container>
 </template>
 
 <script>
 export default {
-    name: 'about',
+    
 }
 </script>
