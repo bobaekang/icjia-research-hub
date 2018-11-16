@@ -2,46 +2,39 @@
     <v-container>
         <h1>Welcome to ICJIA Data Portal</h1>
         
-        <br><br>
         <hr>
-        <br><br>
+
+        <app-search />
         
-        <h2>Searchbar for Data</h2>
-        <h3>With tag-specific buttons</h3>
-        
-        <br><br>
         <hr>
-        <br><br>
         
-        <h2>Latest featured Articles</h2>
         <app-carousel-article />
         
-        <br><br>
         <hr>
-        <br><br>
         
-        <h2>App highlights</h2>
+        <app-highlight-apps />
         
-        <br><br>
         <hr>
-        <br><br>
         
-        <h2>Resource links</h2>
-        <ul>
-            <li>User Guide</li>
-            <li>Developer Guide</li>
-        </ul>
+        <app-resource-info />
+        
         <div style="height:500px">
         </div>
     </v-container>
 </template>
 
 <script>
+import AppSearch from '../components/Search'
 import AppCarouselArticle from '../components/CarouselArticle'
+import AppHighlightApps from '../components/HighlightApps'
+import AppResourceInfo from '../components/ResourceInfo'
 
 export default {
     components: {
-        AppCarouselArticle
+        AppSearch,
+        AppCarouselArticle,
+        AppHighlightApps,
+        AppResourceInfo
     }
 }
 </script>
