@@ -1,15 +1,3 @@
-const _getPath = (name, child) => {
-    if (name == 'home') {
-        return '/';
-    } else {
-        return child ? name : `/${name}`;
-    }
-}
-
-const _getCompPath = (name, dirpath) => {
-    return `${dirpath}/${name.charAt(0).toUpperCase() + name.slice(1)}.vue`
-}
-
 // Generate a route object for 'router.js'
 export function makeRoute(name, dirpath = './views', children = null) {  
     const path = _getPath(name, false);
@@ -35,4 +23,16 @@ export function makeRouteChild(name, dirpath = './views') {
         path,
         component: () => import(`${compPath}`)
     };
+}
+
+const _getPath = (name, child) => {
+    if (name == 'home') {
+        return '/';
+    } else {
+        return child ? name : `/${name}`;
+    }
+}
+
+const _getCompPath = (name, dirpath) => {
+    return `${dirpath}/${name.charAt(0).toUpperCase() + name.slice(1)}.vue`
 }

@@ -6,31 +6,20 @@
             :key="i"
             >
             <h2>{{ item.title }}</h2>
-            <h4>{{ item.publishDate }}</h4>
-            <v-container>{{ item.summary }}</v-container>
-            <h4>by {{ item.author }}</h4>
+            <h4>{{ item.date }}</h4>
+            <v-container>{{ item.teaser }}</v-container>
+            <h4>by {{ item.authors.join(', ') }}</h4>
         </v-container>
     </v-container>
 </template>
 
 <script>
+import articleInfo from '@/assets/articleInfo.json';
+
 export default {
     data () {
         return {
-            items: [
-                {
-                    title: 'First article',
-                    publishDate: '2019-01-01',
-                    author: 'author',
-                    summary: 'Hi there'
-                },
-                {
-                    title: 'Second article',
-                    publishDate: '2019-01-01',
-                    author: 'author',
-                    summary: 'Hi there'
-                }
-            ]
+            items: articleInfo
         }
     }
 }
@@ -39,5 +28,14 @@ export default {
 <style scoped>
 .article-snippet {
     border: 1px solid #ccc;
+}
+
+iframe {
+    width: 100%;
+    height: 500px;
+}
+
+iframe > #document {
+    display: none;
 }
 </style>
