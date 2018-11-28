@@ -1,6 +1,15 @@
 <template>
     <div>
-        <h1 class="view-title">Resources: Developer</h1>
+        <div class="view-title">
+            <v-container>
+                <v-flex sm10>
+                    Resources > Developer
+                </v-flex>
+            </v-container>
+        </div>
+        <v-container>
+            body
+        </v-container>
     </div>
 </template>
 

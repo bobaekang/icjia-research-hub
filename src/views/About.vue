@@ -1,9 +1,11 @@
 <template>
-    <v-container>
-        <v-flex sm10 offset-sm1>
-            <h1 class="view-title">About</h1>
-        </v-flex>
-    </v-container>
+    <div class="view-title">
+        <v-container>
+            <v-flex sm10>
+                About
+            </v-flex>
+        </v-container>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
-    <v-footer>
+    <v-footer
+        height="auto"
+        >
         <v-layout
             justify-center
             row

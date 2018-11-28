@@ -1,10 +1,16 @@
 <template>
-    <v-container>
-        <v-flex sm10 offset-sm1>
-            <h1 class="view-title">Research</h1>
-            <app-article-snippet />
-        </v-flex>
-    </v-container>
+    <div>
+        <div class="view-title">
+            <v-container>
+                <v-flex sm10>
+                    Research
+                </v-flex>
+            </v-container>
+        </div>
+        <v-container>
+            <app-article-snippet />        
+        </v-container>
+    </div>
 </template>
 
 <script>

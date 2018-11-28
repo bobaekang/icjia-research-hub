@@ -1,6 +1,17 @@
 <template>
-    <v-container>
-        <h1>Welcome to ICJIA Data Portal</h1>
+    <div>
+        <div class="view-title">
+            <v-container>
+                <div class="text-xs" id="welcome-title">
+                    The Home of the Illinois Criminal Justice Data and Research
+                </div>
+                <p id="welcome-body">
+                    Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal.
+                    Here you can find various criminal justice datasets, research publications
+                    and resources to develop web applications, dashboards and more.
+                </p>
+            </v-container>
+        </div>
         
         <hr>
 
@@ -20,7 +31,7 @@
         
         <div style="height:500px">
         </div>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -38,3 +49,15 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+#welcome-title {
+    font-size: 1.1em;
+}
+
+#welcome-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.6em;
+}
+
+</style>

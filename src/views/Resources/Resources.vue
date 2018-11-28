@@ -1,9 +1,7 @@
 <template>
-    <v-container>
-        <v-flex sm10 offset-sm1>
-            <router-view />
-        </v-flex>
-    </v-container>
+    <div>
+        <router-view />
+    </div>
 </template>
 
 <script>

@@ -1,6 +1,15 @@
 <template>
     <div>
-        <h1 class="view-title">Resources: User</h1>
+        <div class="view-title">
+            <v-container>
+                <v-flex sm10>
+                    Resources > User
+                </v-flex>
+            </v-container>
+        </div>
+        <v-container>
+            body
+        </v-container>
     </div>
 </template>
 
