@@ -27,7 +27,8 @@ function main() {
             'teaser',
             'pubtype',
             'keywords',
-            'pdf_uploads'
+            'pdf_uploads',
+            'date'
         ]
 
     writeArticleInfo(url, headers, dirpath, name, fields);
@@ -45,7 +46,9 @@ async function writeArticleInfo (url, headers, dirpath, name, fields) {
                     return el != null;
                 })
 
-                writeJSON(filtered, name, dirpath);
+                const sorted = filtered.sort((x, y) => compareDate(y, x));
+
+                writeJSON(sorted, name, dirpath);
             })
             .catch(err => {
                 console.log(err);
@@ -54,6 +57,14 @@ async function writeArticleInfo (url, headers, dirpath, name, fields) {
         console.error(e);
     }
 }
+
+function compareDate(x, y) {
+    if (x.date < y.date)
+        return -1;
+    if (x.date > y.date)
+        return 1;
+    return 0;
+} 
 
 async function getArticleInfo (el, fields) {
     try {
