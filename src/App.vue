@@ -27,15 +27,35 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic');
+
+.application  {
+    color: #333;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 16px;
+}
 
 h1 {
     font-family: 'Oswald', sans-serif;
 }
 
+h2, h3 {
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.v-btn {
+    font-family: 'Lato', sans-serif;
+}
+
 .view-title {
-    font-size: 2.5em;
+    font-size: 2em;
     font-family: 'Oswald', sans-serif;
     color: white;
     background-color: #466c8c;
+    padding: 0 5% 0 5%;
 }
 </style>
