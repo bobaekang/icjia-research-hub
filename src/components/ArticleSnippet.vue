@@ -7,6 +7,10 @@
             >
             <h2>{{ item.title }}</h2>
             <h4>{{ item.date }}</h4>
+            <v-img
+                :src="`http://www.icjia.state.il.us/${item.splash}`"
+                max-width="40%"
+                />
             <v-container>{{ item.teaser }}</v-container>
             <h4>by {{ item.authors.join(', ') }}</h4>
         </v-container>
