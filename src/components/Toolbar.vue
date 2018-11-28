@@ -34,14 +34,14 @@
                         <v-list-tile
                             to="/resources/user"
                             ripple>
-                            <span class="body-1">
+                            <span class="slot">
                                 {{'user'.toUpperCase()}}
                             </span>
                         </v-list-tile>
                         <v-list-tile
                             to="/resources/developer"
                             ripple>
-                            <span class="body-1">
+                            <span class="slot">
                                 {{'developer'.toUpperCase()}}
                             </span>
                         </v-list-tile>
@@ -86,5 +86,10 @@ img {
 #toolbar {
     font-family: 'Lato';
     box-shadow: 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.slot {
+    font-family: 'Lato';
+    font-size: 0.8em;
 }
 </style>
