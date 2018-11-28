@@ -28,6 +28,7 @@ function main() {
             'pubtype',
             'keywords',
             'pdf_uploads',
+            'filename',
             'date'
         ]
 
@@ -75,6 +76,7 @@ async function getArticleInfo (el, fields) {
             const res = await axios.get(el.download_url);
             
             let header = getHeader(res.data);
+            header.filename = name.split(regex)[1].slice(1);
             header.date = name.match(regex)[0];
 
             return pick(header, fields);
