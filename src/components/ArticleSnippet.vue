@@ -1,11 +1,18 @@
 <template>
     <v-container>
         <v-layout row wrap>
+            <v-flex xs12 sm8 offset-sm2>
+                <app-search-bar
+                    label="Search for articles (by title, date, authors, etc.)"
+                    :search.sync="search"
+                    />
+            </v-flex>
+
             <v-flex
                 xs12 sm10
                 offset-sm1
                 class="mb-3"
-                v-for="(item, i) in editedItems"
+                v-for="(item, i) in filterItems(editedItems)"
                 :key="i"
                 >
                 <v-card class="article-card">
@@ -80,12 +87,14 @@
 </template>
 
 <script>
+import AppSearchBar from './SearchBar';
 import articleInfo from '@/assets/articleInfo.json';
 
 export default {
     data () {
         return {
             items: articleInfo,
+            search: ''
         }
     },
     computed: {
@@ -114,6 +123,22 @@ export default {
             });
         },
     },
+    methods: {
+        filterItems (items) {
+            const s = this.search.toUpperCase()
+
+            return items.filter((item) => {    
+                return item.title.toUpperCase().match(s) ||
+                    item.date.match(s) ||
+                    item.area.toUpperCase().match(s) ||
+                    item.authors.toUpperCase().match(s) ||
+                    item.pubtype.toUpperCase().match(s);
+            });
+        },
+    },
+    components: {
+        AppSearchBar,
+    }
 }
 </script>
 
