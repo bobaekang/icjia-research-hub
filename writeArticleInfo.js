@@ -21,16 +21,14 @@ function main() {
     const name = 'articleInfo'
     const fields = [
             'title',
-            '_template',
             'splash',
             'authors',
-            'teaser',
             'pubtype',
-            'keywords',
-            'pdf_uploads',
-            'filename',
+            'area',
             'date',
-            'show'
+            'filename',
+            'teaser',
+            'showTeaser',
         ]
 
     writeArticleInfo(url, headers, dirpath, name, fields);
@@ -79,7 +77,7 @@ async function getArticleInfo (el, fields) {
             let header = getHeader(res.data);
             header.filename = name.split(regex)[1].slice(1);
             header.date = name.match(regex)[0];
-            header.show = false;
+            header.showTeaser = false;
 
             return pick(header, fields);
         }
