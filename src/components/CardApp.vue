@@ -1,23 +1,47 @@
 <template>
     <v-container fluid>
-        <v-layout row wrap>
+        <v-flex xs12 sm8 offset-sm2>
+            <app-search-bar
+                label="Search for apps"
+                :search.sync="search"
+                />
+        </v-flex>
+
+        <v-layout
+            justify-center
+            row
+            wrap
+            >
             <v-flex
                 md4
                 sm6
                 xs12
-                v-for="(item,i) in editedItems"
+                v-for="(item,i) in filterItems(editedItems)"
                 :key="i"
                 >
                 
                 <v-card class="ma-3">
                     <v-img
+                        height="200px"
                         :src="item.imgUrl"
-                        height="200px">
+                        lazy-src="https://via.placeholder.com/1/DDDDDD"
+                        >
+                        <v-layout
+                                slot="placeholder"
+                                fill-height
+                                align-center
+                                justify-center
+                                ma-0
+                                >
+                                <v-progress-circular
+                                    indeterminate color="grey lighten-3"
+                                    />
+                            </v-layout>
                     </v-img>
 
                     <v-card-title primary-title>
                         <div>
-                            <div class="headline">{{ item.title }}</div>
+                            <h2>{{ item.title }}</h2>
                             <span class="grey--text">{{ item.subtitle }}</span>
                         </div>
                     </v-card-title>
@@ -43,12 +67,14 @@
 </template>
 
 <script>
+import AppSearchBar from './SearchBar';
 import appInfo from '@/assets/appInfo.json';
 
 export default {
     data () {
         return {
-            items: appInfo
+            items: appInfo,
+            search: ''
         }
     },
     computed: {
@@ -57,6 +83,18 @@ export default {
                 return item;
             });
         }
+    },
+    methods: {
+        filterItems (items) {
+            const s = this.search.toUpperCase()
+
+            return items.filter((item) => {    
+                return item.title.toUpperCase().match(s);
+            });
+        },
+    },
+    components: {
+        AppSearchBar,
     }
 }
 </script>
