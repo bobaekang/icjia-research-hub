@@ -3,7 +3,7 @@
         <div class="view-title">
             <v-container>
                 <v-flex sm10>
-                    Resources > Developer
+                    Resources for developers
                 </v-flex>
             </v-container>
         </div>

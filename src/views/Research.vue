@@ -3,7 +3,7 @@
         <div class="view-title">
             <v-container>
                 <v-flex sm10>
-                    Research
+                    Research publication
                 </v-flex>
             </v-container>
         </div>
