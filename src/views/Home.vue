@@ -24,7 +24,6 @@
         <app-resource-info />
             
         <div style="height:500px"></div>
-        </div>
     </div>
 </template>
 
