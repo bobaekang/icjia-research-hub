@@ -1,12 +1,7 @@
 <template>
     <div>
-        <div class="view-title">
-            <v-container>
-                <v-flex sm10>
-                    Resources
-                </v-flex>
-            </v-container>
-        </div>
+        <app-view-title :title="title"></app-view-title>
+        
         <v-container grid-list-sm>
             <v-layout row wrap>
                 <v-flex
@@ -39,7 +34,17 @@
 </template>
 
 <script>
+import AppViewTitle from '../components/ViewTitle'
+
 export default {
-    
+    name: 'resources',
+    data () {
+        return {
+            title: "Resources"
+        }
+    },
+    components: {
+        AppViewTitle
+    }
 }
 </script>

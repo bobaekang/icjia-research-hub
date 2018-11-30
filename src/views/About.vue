@@ -1,12 +1,6 @@
 <template>
     <div>        
-        <div class="view-title">
-            <v-container>
-                <v-flex sm10>
-                    About
-                </v-flex>
-            </v-container>
-        </div>
+        <app-view-title :title="title"></app-view-title>
 
         <v-container grid-list-sm>
             <v-layout row wrap>
@@ -65,7 +59,7 @@
                     </p>
                     <p>
                         For more information, please visit
-                        <a href="https://data.illinois.gov/">Illinois Open Data Portal.<v-icon>open_in_new</v-icon></a>
+                        <a href="https://data.illinois.gov/">Illinois Open Data Portal<v-icon>open_in_new</v-icon></a>.
                     </p>
                 </v-flex>
 
@@ -108,8 +102,18 @@
 </template>
 
 <script>
+import AppViewTitle from '../components/ViewTitle'
+
 export default {
     name: 'about',
+    data () {
+        return {
+            title: "About"
+        }
+    },
+    components: {
+        AppViewTitle
+    }
 }
 </script>
 

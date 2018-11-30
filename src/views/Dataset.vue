@@ -1,12 +1,7 @@
 <template>
     <div>
-        <div class="view-title">
-            <v-container>
-                <v-flex sm10>
-                    Dataset
-                </v-flex>
-            </v-container>
-        </div>
+        <app-view-title :title="title"></app-view-title>
+        
         <v-container>
             body
         </v-container>
@@ -14,7 +9,17 @@
 </template>
 
 <script>
+import AppViewTitle from '../components/ViewTitle'
+
 export default {
     name: 'dataset',
+    data () {
+        return {
+            title: "Dataset"
+        }
+    },
+    components: {
+        AppViewTitle
+    }
 }
 </script>

@@ -1,31 +1,26 @@
 <template>
     <div>
-        <div class="view-title">
-            <v-container>
-                <v-flex sm10>
-                    Applications
-                </v-flex>
-            </v-container>
-        </div>
+        <app-view-title :title="title"></app-view-title>
+
         <v-container>
             <app-card-app />      
         </v-container> 
     </div>
-
-    <!-- <v-container>
-        <v-flex sm10 offset-sm1>
-            <h1 class="view-title">Applications</h1>
-            <app-card-app />
-        </v-flex>
-    </v-container> -->
 </template>
 
 <script>
+import AppViewTitle from '../components/ViewTitle'
 import AppCardApp from '../components/CardApp'
 
 export default {
     name: 'apps',
+    data () {
+        return {
+            title: 'Applications'
+        }
+    },
     components: {
+        AppViewTitle,
         AppCardApp
     }
 }
