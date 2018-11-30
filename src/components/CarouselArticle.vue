@@ -1,6 +1,9 @@
 <template>
-    <v-container>
-        <h2>{{ title }}</h2>
+    <div>
+        <v-container style="padding-bottom:0">
+            <h2>{{ title }}</h2>
+        </v-container>
+
         <v-carousel
             id="carousel"
             >
@@ -25,7 +28,7 @@
                 </v-carousel-item>
             </a>
         </v-carousel>
-    </v-container>
+    </div>
 </template>
 
 <script>
