@@ -2,34 +2,28 @@
     <div>
         <div class="view-title">
             <v-container>
-                <div class="text-xs" id="welcome-title">
-                    The Home of the Illinois Criminal Justice Data and Research
+                <div id="home-title">
+                    {{ title }}
                 </div>
-                <p id="welcome-body">
-                    Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal.
-                    Here you can find various criminal justice datasets, research publications
-                    and resources to develop web applications, dashboards and more.
+                <p id="home-subtitle">
+                    {{ subtitle }}
                 </p>
             </v-container>
         </div>
-        
-        <hr>
 
-        <app-search />
-        
-        <hr>
-        
+        <div style="background-color:#ddd;">
+            <app-search />
+        </div>
+
         <app-carousel-article />
         
-        <hr>
-        
-        <app-highlight-apps />
-        
-        <hr>
-        
+        <div style="background-color:#ddd;">
+            <app-highlight-apps />
+        </div>
+            
         <app-resource-info />
-        
-        <div style="height:500px">
+            
+        <div style="height:500px"></div>
         </div>
     </div>
 </template>
@@ -41,6 +35,12 @@ import AppHighlightApps from '../components/HighlightApps'
 import AppResourceInfo from '../components/ResourceInfo'
 
 export default {
+    data () {
+        return {
+            title: 'The Home of the Illinois Criminal Justice Data and Research',
+            subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.'
+        }
+    },
     components: {
         AppSearch,
         AppCarouselArticle,
@@ -51,13 +51,12 @@ export default {
 </script>
 
 <style scoped>
-#welcome-title {
+#home-title {
     font-size: 1.1em;
 }
 
-#welcome-body {
+#home-subtitle {
     font-family: 'Lato', sans-serif;
     font-size: 0.6em;
 }
-
 </style>
