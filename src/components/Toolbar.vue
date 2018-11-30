@@ -2,52 +2,35 @@
     <div>
         <v-toolbar
             id="toolbar"
-            :height=hpixel
+            :height="hpixel"
             fixed
             scroll-off-screen
             >
-            <a href="http://www.icjia.state.il.us" target="_blank">
+            <a :href="logo.href" target="_blank">
                 <img
-                    src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png"
-                    alt="ICJIA logo"
-                    :height=logoHpixel
+                    :src="logo.url"
+                    :height="logoHpixel"
+                    alt="logo"
                     >
             </a>
 
             <router-link to="/">
                 <v-toolbar-title>
-                    ICJIA DATA PORTAL
+                    {{ titleUpper }}
                 </v-toolbar-title>
             </router-link>
         
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
-                <v-btn to='/dataset' flat>dataset</v-btn>
-                <v-btn to="/research" flat>research</v-btn>
-                <v-btn to="/apps" flat>apps</v-btn>
-                <v-menu offset-y>
-                    <v-btn slot="activator" flat>
-                        resources <v-icon>arrow_drop_down</v-icon>
-                    </v-btn>
-                    <v-list>
-                        <v-list-tile
-                            to="/resources/user"
-                            ripple>
-                            <span class="slot">
-                                {{'user'.toUpperCase()}}
-                            </span>
-                        </v-list-tile>
-                        <v-list-tile
-                            to="/resources/developer"
-                            ripple>
-                            <span class="slot">
-                                {{'developer'.toUpperCase()}}
-                            </span>
-                        </v-list-tile>
-                    </v-list>
-                </v-menu>
-                <v-btn to="/about" flat>about</v-btn>
+                <v-btn
+                    v-for="view in views"
+                    :key="view"
+                    :to="`/${view}`"
+                    flat
+                    >
+                    {{ view }}
+                </v-btn>   
             </v-toolbar-items>
         </v-toolbar>
 
@@ -59,10 +42,25 @@
 export default {
     data () {
         return {
-            height: 75
+            height: 75,
+            title: 'ICJIA data portal',
+            views: [
+                'dataset',
+                'research',
+                'apps',
+                'resources',
+                'about'
+            ],
+            logo: {
+                url: 'http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png',
+                href: 'http://www.icjia.state.il.us'
+            }
         }
     },
     computed: {
+        titleUpper () {
+            return this.title.toUpperCase()
+        },
         hpixel () {
             return `${this.height}px`
         },

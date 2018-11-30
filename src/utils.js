@@ -15,15 +15,15 @@ export function makeRoute(name, dirpath = './views', children = null) {
     return route;
 }
 
-export function makeRouteChild(name, dirpath = './views') {
-    const path = _getPath(name, true);
-    const compPath = _getCompPath(name, dirpath);
+// export function makeRouteChild(name, dirpath = './views') {
+//     const path = _getPath(name, true);
+//     const compPath = _getCompPath(name, dirpath);
     
-    return {
-        path,
-        component: () => import(`${compPath}`)
-    };
-}
+//     return {
+//         path,
+//         component: () => import(`${compPath}`)
+//     };
+// }
 
 const _getPath = (name, child) => {
     if (name == 'home') {
