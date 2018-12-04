@@ -2,26 +2,38 @@
     <div>
         <div class="view-title">
             <v-container>
-                <div id="home-title">
-                    {{ title }}
-                </div>
-                <p id="home-subtitle">
-                    {{ subtitle }}
-                </p>
+                <v-flex
+                    xs12
+                    xl8
+                    offset-xl2
+                    >
+                    <div id="home-title">
+                        {{ title }}
+                    </div>
+                    <p id="home-subtitle">
+                        {{ subtitle }}
+                    </p>
+                </v-flex>
             </v-container>
         </div>
 
-        <div style="background-color:#ddd;">
-            <app-search />
-        </div>
+        <div
+            v-for="i in 4"
+            :key="i"
+            :class="{ 'grey-background':i % 2 == 1 }"
+            >
+            <app-search v-if="i==1"/>
 
-        <app-carousel-article />
-        
-        <div style="background-color:#ddd;">
-            <app-highlight-apps />
+            <app-carousel-article v-if="i==2"/>
+
+            <v-container v-if="i==3" >
+                <app-highlight-apps/>
+            </v-container>
+
+            <v-container v-if="i==4">
+                <app-resource-info />
+            </v-container>
         </div>
-            
-        <app-resource-info />
             
         <div style="height:500px"></div>
     </div>
@@ -57,5 +69,9 @@ export default {
 #home-subtitle {
     font-family: 'Lato', sans-serif;
     font-size: 0.6em;
+}
+
+.grey-background {
+    background-color: #ddd;
 }
 </style>

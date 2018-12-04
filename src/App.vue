@@ -56,6 +56,5 @@ a {
     font-family: 'Oswald', sans-serif;
     color: white;
     background-color: #466c8c;
-    padding: 0 5% 0 5%;
 }
 </style>

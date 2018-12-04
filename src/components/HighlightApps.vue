@@ -1,6 +1,12 @@
 <template>
     <v-container>
-        <h2>{{ title }}</h2>
+        <v-flex
+            xs12
+            xl8
+            offset-xl2
+            >
+            <h2>{{ title }}</h2>
+        </v-flex>
     </v-container>
 </template>
 

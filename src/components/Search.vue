@@ -15,7 +15,8 @@
             
             <v-flex
                 xs12
-                sm9
+                md9
+                xl6
                 >
                 <app-search-bar
                     label="Search"

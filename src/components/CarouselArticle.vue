@@ -1,7 +1,19 @@
 <template>
     <div>
-        <v-container style="padding-bottom:0">
-            <h2>{{ title }}</h2>
+        <v-container
+            class="pb-0"
+            >
+            <v-container
+                class="py-0"
+                >
+                <v-flex
+                    xs12
+                    xl8
+                    offset-xl2
+                    >
+                    <h2>{{ title }}</h2>
+                </v-flex>
+            </v-container>
         </v-container>
 
         <v-carousel
@@ -19,11 +31,20 @@
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
                     <v-container>
-                        <h1
-                            class="text-xs-center"
-                            style="color:white; margin:20% 10% 0 10%">
-                            {{ item.title }}
-                        </h1>
+                        <v-flex
+                            justify-center
+                            align-center
+                            xs12
+                            xl8
+                            offset-xl2
+                            >
+                            <h1
+                                class="text-xs-center"
+                                style="color:white; margin:15% 10% 0 10%"
+                                >
+                                {{ item.title }}
+                            </h1>
+                        </v-flex>
                     </v-container>
                 </v-carousel-item>
             </a>
