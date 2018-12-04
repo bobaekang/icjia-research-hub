@@ -1,7 +1,13 @@
 <template>
     <v-container>
         <v-layout row wrap>
-            <v-flex xs12 sm8 offset-sm2>
+            <v-flex
+                xs12
+                sm8
+                lg6
+                offset-sm2
+                offset-lg3
+                >
                 <app-search-bar
                     label="Search for articles (by title, date, authors, etc.)"
                     :search.sync="search"
@@ -9,8 +15,11 @@
             </v-flex>
 
             <v-flex
-                xs12 sm10
+                xs12
+                sm10
+                lg8
                 offset-sm1
+                offset-lg2
                 class="mb-3"
                 v-for="(item, i) in filterItems(editedItems)"
                 :key="i"

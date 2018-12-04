@@ -1,6 +1,12 @@
 <template>
     <v-container fluid>
-        <v-flex xs12 sm8 offset-sm2>
+        <v-flex
+            xs12
+            sm8
+            lg6
+            offset-sm2
+            offset-lg3
+            >
             <app-search-bar
                 label="Search for apps"
                 :search.sync="search"
@@ -13,6 +19,7 @@
             wrap
             >
             <v-flex
+                lg3
                 md4
                 sm6
                 xs12
