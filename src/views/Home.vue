@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="view-title">
-            <v-container>
+            <v-container class="pb-1">
                 <v-flex
                     xs12
                     xl8
@@ -12,6 +12,11 @@
                     </div>
                     <p id="home-subtitle">
                         {{ subtitle }}
+                    </p>
+                    <p class="normaltext text-xs-right">
+                        <v-btn to="about" flat color="#ddd">
+                                {{ about }}
+                        </v-btn>
                     </p>
                 </v-flex>
             </v-container>
@@ -35,7 +40,7 @@
             </v-container>
         </div>
             
-        <div style="height:500px"></div>
+        <div style="height:100px"></div>
     </div>
 </template>
 
@@ -49,7 +54,8 @@ export default {
     data () {
         return {
             title: 'The Home of the Illinois Criminal Justice Data and Research',
-            subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.'
+            subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.',
+            about: 'About this Data Portal'.toUpperCase()
         }
     },
     components: {
@@ -72,6 +78,6 @@ export default {
 }
 
 .grey-background {
-    background-color: #ddd;
+    background-color: #eee;
 }
 </style>
