@@ -1,17 +1,25 @@
 <template>
     <div>
-        <v-container
-            class="pb-0"
-            >
+        <v-container>
             <v-container
-                class="py-0"
+                class="pb-0"
                 >
                 <v-flex
                     xs12
                     xl8
                     offset-xl2
                     >
-                    <h2>{{ title }}</h2>
+                    <h2 style="border-bottom: 1px #999 solid;">
+                        {{ titleUpper }}
+                        <span
+                            class="normaltext"
+                            >
+                            |
+                            <router-link :to="path">
+                                {{ bodyUpper }}
+                            </router-link>
+                        </span>
+                    </h2>
                 </v-flex>
             </v-container>
         </v-container>
@@ -59,9 +67,20 @@ export default {
     data () {
         return {
             title: 'Latest articles',
+            body: 'see more',
+            path: 'research',
             items: articleInfo.slice(0, 5)
         }
+    },
+    computed: {
+        titleUpper () {
+            return this.title.toUpperCase();
+        },
+        bodyUpper () {
+            return this.body.toUpperCase();
+        }
     }
+
 }
 </script>
 
