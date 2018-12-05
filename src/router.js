@@ -13,7 +13,10 @@ export default new Router({
         'apps',
         'resources',
         'about'
-    ].map(el => utils.makeRoute(el))
+    ].map(el => utils.makeRoute(el)),
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 };
+    }
 })
 
 
