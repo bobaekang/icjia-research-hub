@@ -5,11 +5,41 @@
             xl8
             offset-xl2
             >
-            <h2>{{ title }}</h2>
-            <ul>
-                <li>User Guide</li>
-                <li>Developer Guide</li>
-            </ul>
+            <h2 style="border-bottom: 1px #999 solid;">
+                {{ titleUpper }}
+                <span
+                    class="normaltext"
+                    >
+                    |
+                    <router-link :to="path">
+                        {{ bodyUpper }}
+                    </router-link>
+                </span>
+            </h2>
+        
+            <v-layout
+                row
+                wrap
+                >
+                <v-flex
+                    xs12
+                    sm4
+                    v-for="(item,i) in items"
+                    :key="i"
+                    >
+                    <v-container class="pb-0">
+                        <h3>{{ item.title.toUpperCase() }}</h3>
+                        <p class="resource-item">{{ item.body }}</p>
+                    </v-container>
+                    
+                    <v-btn
+                        :to="item.url"
+                        flat
+                        >
+                        open
+                    </v-btn>
+                </v-flex>
+            </v-layout>
         </v-flex>
     </v-container>
 </template>
@@ -18,8 +48,41 @@
 export default {
     data () {
         return {
-            title: 'Resource info'
+            title: 'resources',
+            body: 'see more',
+            path: 'resources',
+            items: [
+                {
+                    title: 'User Guide',
+                    body: 'New to the Data Portal? Read to find out more about navigating the Data Portal like a pro.',
+                    url: '#'
+                },
+                {
+                    title: 'API Documentation',
+                    body: 'Learn how to use the Data Portal API to obtain data, analyze them, and develop awesome applications.',
+                    url: '#'
+                },
+                {
+                    title: 'Contributing Guidelines',
+                    body: 'Need help! Find out how to make contributions to the Data Portal and have your work recognized.',
+                    url: '#'
+                }
+            ]
+        }
+    },
+    computed: {
+        titleUpper () {
+            return this.title.toUpperCase();
+        },
+        bodyUpper () {
+            return this.body.toUpperCase();
         }
     }
 }
 </script>
+
+<style scoped>
+.resource-item {
+    font-size: 1.2em;
+}
+</style>
