@@ -19,7 +19,7 @@
                 xl6
                 >
                 <app-search-bar
-                    label="Search"
+                    label="Search this Data Portal"
                     :search.sync="search"
                     />
             </v-flex>
