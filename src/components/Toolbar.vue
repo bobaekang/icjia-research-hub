@@ -22,7 +22,7 @@
         
             <v-spacer></v-spacer>
 
-            <v-toolbar-items>
+            <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn
                     v-for="view in views"
                     :key="view"
@@ -32,6 +32,30 @@
                     {{ view }}
                 </v-btn>   
             </v-toolbar-items>
+
+            <v-menu
+                offset-y
+                class="hidden-md-and-up"
+                >
+                <v-btn
+                    slot="activator"
+                    flat
+                    >
+                    <v-icon>menu</v-icon>
+                </v-btn>
+                
+                <v-list>
+                    <v-list-tile
+                        v-for="(view, i) in views"
+                        :key="i"
+                        :to="`/${view}`"
+                        >
+                        <v-list-tile-title class="slot">
+                            {{ view }}
+                        </v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
         </v-toolbar>
 
         <div :style="{ height: hpixel }"></div>
@@ -89,5 +113,7 @@ img {
 .slot {
     font-family: 'Lato';
     font-size: 0.8em;
+    text-transform: uppercase;
+    text-align: center;
 }
 </style>
