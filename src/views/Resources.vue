@@ -8,21 +8,21 @@
                     xs10
                     offset-xs1
                     >
-                    <h2>User Guide</h2>
+                    <h2 class="section-title">User Guide</h2>
                 </v-flex>
 
                 <v-flex
                     xs10
                     offset-xs1
                     >
-                    <h2>API Documentation</h2>
+                    <h2 class="section-title">API Documentation</h2>
                 </v-flex>
 
                 <v-flex
                     xs10
                     offset-xs1
                     >
-                    <h2>Contributing Guidelines</h2>
+                    <h2 class="section-title">Contributing Guidelines</h2>
 
                     <h3>Applications</h3>
                                        

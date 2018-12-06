@@ -62,4 +62,9 @@ a {
     color: white;
     background-color: #466c8c;
 }
+
+.section-title {
+    border-bottom: 1px #999 solid;
+    text-transform: uppercase; 
+}
 </style>

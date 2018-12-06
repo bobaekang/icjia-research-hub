@@ -9,7 +9,7 @@
                     offset-xs1
                     class="about-item"
                     >
-                    <h2>This Data Portal</h2>
+                    <h2 class="section-title">This Data Portal</h2>
 
                     <div class="spacer"></div>
                     
@@ -41,7 +41,7 @@
                     offset-xs1
                     class="about-item"
                     >
-                    <h2>Illinois Open Data Portal</h2>
+                    <h2 class="section-title">Illinois Open Data Portal</h2>
                     
                     <p></p>
                     
@@ -68,7 +68,7 @@
                     offset-xs1
                     class="about-item about-item-last"
                     >
-                    <h2>Illinois Criminal Justice Information Authority</h2>
+                    <h2 class="section-title">Illinois Criminal Justice Information Authority</h2>
                     
                     <p></p>
                     

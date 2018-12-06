@@ -5,14 +5,14 @@
             xl8
             offset-xl2
             >
-            <h2 style="border-bottom: 1px #999 solid;">
-                {{ titleUpper }}
+            <h2 class="section-title">
+                {{ title }}
                 <span
                     class="normaltext"
                     >
                     |
                     <router-link :to="path">
-                        {{ bodyUpper }}
+                        {{ body }}
                     </router-link>
                 </span>
             </h2>
@@ -68,14 +68,6 @@ export default {
                     url: '#'
                 }
             ]
-        }
-    },
-    computed: {
-        titleUpper () {
-            return this.title.toUpperCase();
-        },
-        bodyUpper () {
-            return this.body.toUpperCase();
         }
     }
 }
