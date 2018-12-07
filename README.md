@@ -1,4 +1,4 @@
-# a
+# ICJIA Data Portal prototype
 
 ## Project setup
 ```
