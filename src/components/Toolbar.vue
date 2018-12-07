@@ -6,7 +6,11 @@
             fixed
             scroll-off-screen
             >
-            <a :href="logo.href" target="_blank">
+            <a
+                class="hidden-xs-only"
+                :href="logo.href"
+                target="_blank"
+                >
                 <img
                     :src="logo.url"
                     :height="logoHpixel"
