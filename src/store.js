@@ -3,13 +3,15 @@ import Vuex from 'vuex'
 
 import articleInfo from '@/assets/articleInfo.json';
 import appInfo from '@/assets/appInfo.json';
+import datasetInfo from '@/assets/datasetInfo.json';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
         articleInfo,
-        appInfo
+        appInfo,
+        datasetInfo
     },
     mutations: {
 
@@ -23,6 +25,9 @@ export default new Vuex.Store({
         },
         apps: state => {
             return state.appInfo;
+        },
+        datasets: state => {
+            return state.datasetInfo;
         },
         articlesHome: state => {
             return state.articleInfo.slice(0, 5);

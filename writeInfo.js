@@ -34,13 +34,14 @@ function main() {
     ]
     const fieldsDataset = [
         'title',
+        'date',
         'agencyLink',
         'agencyName',
         'juvenileAdult',
         'initialCategory',
         'keywords',
         'timePeriodDesc',
-        'summary'
+        'summary',
     ]
 
     writeInfo(urlArticle, headers, dirpath, nameArticle, fieldsArticle);

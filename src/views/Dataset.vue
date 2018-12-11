@@ -3,13 +3,14 @@
         <app-view-title :title="title"></app-view-title>
         
         <v-container>
-            body
-        </v-container>
+            <app-card-datasets />      
+        </v-container> 
     </div>
 </template>
 
 <script>
 import AppViewTitle from '../components/ViewTitle'
+import AppCardDatasets from '../components/CardDatasets'
 
 export default {
     name: 'dataset',
@@ -19,7 +20,8 @@ export default {
         }
     },
     components: {
-        AppViewTitle
+        AppViewTitle,
+        AppCardDatasets
     }
 }
 </script>
