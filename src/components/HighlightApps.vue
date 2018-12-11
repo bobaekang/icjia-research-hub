@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import appInfo from '@/assets/appInfo.json';
+import { mapGetters } from 'vuex';
 
 export default {
     data () {
@@ -73,8 +73,12 @@ export default {
             title: 'app highlights',
             body: 'see more',
             path: 'apps',
-            items: appInfo.slice(0, 3),
         }
+    },
+    computed: {
+        ...mapGetters({
+            items: 'appsHome'
+        })
     }
 }
 </script>

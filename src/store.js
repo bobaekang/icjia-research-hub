@@ -1,16 +1,34 @@
-// import Vue from 'vue'
-// import Vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-// Vue.use(Vuex)
+import articleInfo from '@/assets/articleInfo.json';
+import appInfo from '@/assets/appInfo.json';
 
-// export default new Vuex.Store({
-//   state: {
+Vue.use(Vuex)
 
-//   },
-//   mutations: {
+export default new Vuex.Store({
+    state: {
+        articleInfo,
+        appInfo
+    },
+    mutations: {
 
-//   },
-//   actions: {
+    },
+    actions: {
 
-//   }
-// })
+    },
+    getters: {
+        articles: state => {
+            return state.articleInfo;
+        },
+        apps: state => {
+            return state.appInfo;
+        },
+        articlesHome: state => {
+            return state.articleInfo.slice(0, 5);
+        },
+        appsHome: state => {
+            return state.appInfo.slice(0, 3);
+        }
+    }
+})

@@ -75,16 +75,18 @@
 
 <script>
 import AppSearchBar from './SearchBar';
-import appInfo from '@/assets/appInfo.json';
+import { mapGetters } from 'vuex';
 
 export default {
     data () {
         return {
-            items: appInfo,
             search: ''
         }
     },
     computed: {
+        ...mapGetters({
+            items: 'apps'
+        }),
         editedItems () {
             return this.items.map(item => {
                 return item;

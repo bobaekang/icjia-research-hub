@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import articleInfo from '@/assets/articleInfo.json';
+import { mapGetters } from 'vuex';
 
 export default {
     data () {
@@ -69,8 +69,12 @@ export default {
             title: 'Latest articles',
             body: 'see more',
             path: 'research',
-            items: articleInfo.slice(0, 5)
         }
+    },
+    computed: {
+        ...mapGetters({
+            items: 'articlesHome'
+        })
     }
 }
 </script>

@@ -97,16 +97,18 @@
 
 <script>
 import AppSearchBar from './SearchBar';
-import articleInfo from '@/assets/articleInfo.json';
+import { mapGetters } from 'vuex';
 
 export default {
     data () {
         return {
-            items: articleInfo,
             search: ''
         }
     },
     computed: {
+        ...mapGetters({
+            items: 'articles'
+        }),
         editedItems () {
             const joinIfArray = (x, name = false) => {
                 if (Array.isArray(x)) {
