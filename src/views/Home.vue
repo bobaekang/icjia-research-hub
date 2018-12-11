@@ -32,11 +32,11 @@
             <app-carousel-article v-if="i==2"/>
 
             <v-container v-if="i==3" >
-                <app-highlight-apps/>
+                <app-card-apps-highlight />
             </v-container>
 
             <v-container v-if="i==4">
-                <app-resource-info />
+                <app-info-resources />
             </v-container>
         </div>
             
@@ -46,9 +46,9 @@
 
 <script>
 import AppSearch from '../components/Search'
-import AppCarouselArticle from '../components/CarouselArticle'
-import AppHighlightApps from '../components/HighlightApps'
-import AppResourceInfo from '../components/ResourceInfo'
+import AppCarouselArticles from '../components/CarouselArticles'
+import AppCardAppsHighlight from '../components/CardAppsHighlight'
+import AppInfoResources from '../components/InfoResources'
 
 export default {
     data () {
@@ -60,9 +60,9 @@ export default {
     },
     components: {
         AppSearch,
-        AppCarouselArticle,
-        AppHighlightApps,
-        AppResourceInfo
+        AppCarouselArticles,
+        AppCardAppsHighlight,
+        AppInfoResources
     }
 }
 </script>

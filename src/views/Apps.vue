@@ -3,14 +3,14 @@
         <app-view-title :title="title"></app-view-title>
 
         <v-container>
-            <app-card-app />      
+            <app-card-apps />      
         </v-container> 
     </div>
 </template>
 
 <script>
 import AppViewTitle from '../components/ViewTitle'
-import AppCardApp from '../components/CardApp'
+import AppCardApps from '../components/CardApps'
 
 export default {
     name: 'apps',
@@ -21,7 +21,7 @@ export default {
     },
     components: {
         AppViewTitle,
-        AppCardApp
+        AppCardApps
     }
 }
 </script>

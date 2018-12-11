@@ -3,14 +3,14 @@
         <app-view-title :title="title"></app-view-title>
         
         <v-container>
-            <app-article-snippet />        
+            <app-card-articles />        
         </v-container>
     </div>
 </template>
 
 <script>
 import AppViewTitle from '../components/ViewTitle'
-import AppArticleSnippet from '../components/ArticleSnippet.vue'
+import AppCardArticles from '../components/CardArticles.vue'
 
 export default {
     name: 'research',
@@ -21,7 +21,7 @@ export default {
     },
     components: {
         AppViewTitle,
-        AppArticleSnippet
+        AppCardArticles
     }
 }
 </script>
