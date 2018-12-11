@@ -57,7 +57,9 @@
                     <div>
                         <v-layout row wrap>
                             <v-flex
-                                xs9>
+                                xs12
+                                sm9
+                                >
                                 <v-container class="small sans-serif py-2">
                                     <span class="bold pr-2">Keywords</span>
                                     <span
@@ -77,9 +79,15 @@
                                 </v-container>
                             </v-flex>
                             
-                            <v-divider vertical />
+                            <v-divider
+                                vertical
+                                class="hidden-sm-and-down"
+                                />
 
-                            <v-flex xs2 class="small sans-serif">
+                            <v-flex
+                                sm2
+                                class="small sans-serif hidden-sm-and-down"
+                                >
                                 <v-container
                                     class="py-2"
                                     >
@@ -93,6 +101,31 @@
                                     </div>
                                     <div>
                                         <p class="ma-0 bold">Agency</p>
+                                        <a :href="item.agencyLink">
+                                            {{ item.agencyName }}
+                                        </a>
+                                    </div>
+                                </v-container>
+                            </v-flex>
+
+                            <v-flex
+                                xs12
+                                class="small sans-serif hidden-md-and-up"
+                                >
+                                <v-divider />
+                                <v-container
+                                    class="py-2"
+                                    >
+                                    <div class="pb-2">
+                                        <span class="ma-0 bold">Updated</span>
+                                        {{ item.date }}
+                                    </div>
+                                    <div class="pb-2">
+                                        <span class="ma-0 bold">Time Period</span>
+                                        {{ item.timePeriodDesc }}
+                                    </div>
+                                    <div>
+                                        <span class="ma-0 bold">Agency</span>
                                         <a :href="item.agencyLink">
                                             {{ item.agencyName }}
                                         </a>
