@@ -8,38 +8,51 @@ const axios = require('axios');
 const yaml = require('js-yaml');
 const fs = require('fs');
 
-
 // call main
 main();
 
 
 // define functions
 function main() {
-    const url = 'https://api.github.com/repos/ICJIA/icjia-public-website/contents/_content/60-articles'
+    const url = 'https://api.github.com/repos/ICJIA/icjia-public-website/contents/_content/'
+    const urlArticle = url + '60-articles'
+    const urlDataset = url + '88-datasets'
     const headers = { 'User-Agent': 'request' }
     const dirpath = './src/assets/'
-    const name = 'articleInfo'
-    const fields = [
-            'title',
-            'splash',
-            'authors',
-            'pubtype',
-            'area',
-            'date',
-            'filename',
-            'teaser',
-            'showTeaser',
-        ]
+    const nameArticle = 'articleInfo'
+    const nameDataset = 'datasetInfo'
+    const fieldsArticle = [
+        'title',
+        'splash',
+        'authors',
+        'pubtype',
+        'area',
+        'date',
+        'filename',
+        'teaser',
+        'showTeaser',
+    ]
+    const fieldsDataset = [
+        'title',
+        'agencyLink',
+        'agencyName',
+        'juvenileAdult',
+        'initialCategory',
+        'keywords',
+        'timePeriodDesc',
+        'summary'
+    ]
 
-    writeArticleInfo(url, headers, dirpath, name, fields);
+    writeInfo(urlArticle, headers, dirpath, nameArticle, fieldsArticle);
+    writeInfo(urlDataset, headers, dirpath, nameDataset, fieldsDataset);
 }
 
-async function writeArticleInfo (url, headers, dirpath, name, fields) {
+async function writeInfo (url, headers, dirpath, name, fields) {
     try {
         const res = await axios.get(url, headers);
         
         Promise.all(res.data.map(async (el) => {
-                return await getArticleInfo(el, fields);
+                return await getInfo(el, fields);
             }))
             .then(infoArr => {
                 const filtered = infoArr.filter((el) => {
@@ -66,7 +79,7 @@ function compareDate(x, y) {
     return 0;
 } 
 
-async function getArticleInfo (el, fields) {
+async function getInfo (el, fields) {
     try {
         const regex = /^\d{4}-\d{2}-\d{2}/;
         const name = el.name.split('.html')[0];
