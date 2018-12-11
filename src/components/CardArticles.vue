@@ -24,7 +24,7 @@
                 v-for="(item, i) in filterItems(editedItems)"
                 :key="i"
                 >
-                <v-card class="article-card">
+                <v-card>
                     <v-layout row>
                         <v-img
                             class="hidden-sm-and-down"

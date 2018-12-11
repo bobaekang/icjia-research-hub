@@ -29,7 +29,7 @@
             >
             <app-search v-if="i==1"/>
 
-            <app-carousel-article v-if="i==2"/>
+            <app-carousel-articles v-if="i==2"/>
 
             <v-container v-if="i==3" >
                 <app-card-apps-highlight />
