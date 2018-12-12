@@ -14,10 +14,10 @@
         </v-flex>
 
         <v-flex xs12>
-            <div
-                class="text-xs-center sans-serif pb-2">
-                {{ filterItems(editedItems).length }} apps found
-            </div>
+            <app-count-items
+                :count="filterItems(editedItems).length"
+                :item="item"
+                />
         </v-flex>
 
         <v-layout
@@ -81,13 +81,15 @@
 </template>
 
 <script>
+import AppCountItems from './CountItems';
 import AppSearchBar from './SearchBar';
 import { mapGetters } from 'vuex';
 
 export default {
     data () {
         return {
-            search: ''
+            search: '',
+            item: 'app'
         }
     },
     computed: {
@@ -110,13 +112,8 @@ export default {
         },
     },
     components: {
+        AppCountItems,
         AppSearchBar,
     }
 }
 </script>
-
-<style scoped>
-.sans-serif {
-    font-family: 'Lato', sans-serif;
-}
-</style>

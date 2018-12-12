@@ -15,10 +15,10 @@
             </v-flex>
 
             <v-flex xs12>
-                <div
-                    class="text-xs-center sans-serif pb-2">
-                    {{ filterItems(editedItems).length }} articles found
-                </div>
+                <app-count-items
+                    :count="filterItems(editedItems).length"
+                    :item="item"
+                    />
             </v-flex>
 
             <v-flex
@@ -113,13 +113,15 @@
 
 <script>
 import AppChipCard from './ChipCard';
+import AppCountItems from './CountItems'
 import AppSearchBar from './SearchBar';
 import { mapGetters } from 'vuex';
 
 export default {
     data () {
         return {
-            search: ''
+            search: '',
+            item: 'article'
         }
     },
     computed: {
@@ -166,6 +168,7 @@ export default {
     },
     components: {
         AppChipCard,
+        AppCountItems,
         AppSearchBar,
     }
 }
