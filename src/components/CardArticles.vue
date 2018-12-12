@@ -14,6 +14,13 @@
                     />
             </v-flex>
 
+            <v-flex xs12>
+                <div
+                    class="text-xs-center sans-serif pb-2">
+                    {{ filterItems(editedItems).length }} articles found
+                </div>
+            </v-flex>
+
             <v-flex
                 xs12
                 sm10

@@ -13,6 +13,13 @@
                 />
         </v-flex>
 
+        <v-flex xs12>
+            <div
+                class="text-xs-center sans-serif pb-2">
+                {{ filterItems(editedItems).length }} apps found
+            </div>
+        </v-flex>
+
         <v-layout
             justify-center
             row
@@ -107,3 +114,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.sans-serif {
+    font-family: 'Lato', sans-serif;
+}
+</style>
