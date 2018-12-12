@@ -3,25 +3,89 @@
         <app-view-title :title="title"></app-view-title>
 
         <v-container>
-            <app-card-apps />      
+            <v-container fluid>
+                <v-flex
+                    xs12
+                    sm8
+                    lg6
+                    offset-sm2
+                    offset-lg3
+                    >
+                    <app-search-bar
+                        label="Search for apps"
+                        :search.sync="search"
+                        />
+                </v-flex>
+
+                <v-flex xs12>
+                    <app-count-items
+                        :count="filterItems(editedItems).length"
+                        :item="item"
+                        />
+                </v-flex>
+
+                <v-layout
+                    justify-center
+                    row
+                    wrap
+                    >
+                    <v-flex
+                        lg3
+                        md4
+                        sm6
+                        xs12
+                        v-for="(item,i) in filterItems(editedItems)"
+                        :key="i"
+                        >
+                        <app-card-apps :item="item" :simple="isSimpleCard" />
+                    </v-flex>
+                </v-layout>
+            </v-container>
         </v-container> 
     </div>
 </template>
 
 <script>
-import AppViewTitle from '../components/ViewTitle'
+import { mapGetters } from 'vuex';
 import AppCardApps from '../components/CardApps'
+import AppCountItems from '../components/CountItems';
+import AppSearchBar from '../components/SearchBar';
+import AppViewTitle from '../components/ViewTitle'
 
 export default {
     name: 'apps',
     data () {
         return {
-            title: 'Applications'
+            title: 'Applications',
+            search: '',
+            item: 'app',
+            isSimpleCard: false,
         }
     },
+    computed: {
+        ...mapGetters({
+            items: 'apps'
+        }),
+        editedItems () {
+            return this.items.map(item => {
+                return item;
+            });
+        }
+    },
+    methods: {
+        filterItems (items) {
+            const s = this.search.toUpperCase()
+
+            return items.filter((item) => {    
+                return item.title.toUpperCase().match(s);
+            });
+        },
+    },
     components: {
+        AppCardApps,
+        AppCountItems,
+        AppSearchBar,
         AppViewTitle,
-        AppCardApps
     }
 }
 </script>

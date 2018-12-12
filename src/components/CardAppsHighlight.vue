@@ -21,34 +21,7 @@
                 v-for="(item,i) in items"
                 :key="i"
                 >
-                <v-card class="ma-3">
-                    <v-img
-                        height="200px"
-                        :src="item.imgUrl"
-                        lazy-src="https://via.placeholder.com/1/DDDDDD"
-                        >
-                        <v-layout
-                                slot="placeholder"
-                                fill-height
-                                align-center
-                                justify-center
-                                ma-0
-                                >
-                                <v-progress-circular
-                                    indeterminate color="grey lighten-3"
-                                    />
-                        </v-layout>
-                    </v-img>
-
-                    <v-card-title primary-title>
-                        <div>
-                            <h2>{{ item.title }}</h2>
-                            <span class="grey--text">{{ item.subtitle }}</span>
-                        </div>
-                    </v-card-title>
-
-                    <v-btn :href=item.url flat>Launch</v-btn>
-                </v-card>
+                <app-card-apps :item="item" :simple="isSimpleCard" />
             </v-flex>
         </v-layout>
     </v-container>
@@ -56,13 +29,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppSectionTitleHome from '../components/SectionTitleHome';
+import AppCardApps from './CardApps'
+import AppSectionTitleHome from './SectionTitleHome';
 
 export default {
     data () {
         return {
             title: 'app highlights',
             path: 'apps',
+            isSimpleCard: true
         }
     },
     computed: {
@@ -71,7 +46,8 @@ export default {
         })
     },
     components: {
-        AppSectionTitleHome
+        AppCardApps,
+        AppSectionTitleHome,
     }
 }
 </script>
