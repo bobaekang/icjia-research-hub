@@ -49,11 +49,6 @@ a {
 
 .v-btn {
     font-family: 'Lato', sans-serif;
-}
-
-.normaltext {
-    font-family: 'Gentium Book Basic', serif;
-    font-size: 16px;
 }  
 
 .view-title {

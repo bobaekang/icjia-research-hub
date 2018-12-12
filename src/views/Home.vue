@@ -13,9 +13,9 @@
                     <p id="home-subtitle">
                         {{ subtitle }}
                     </p>
-                    <p class="normaltext text-xs-right">
+                    <p class="text-xs-right">
                         <v-btn to="about" flat color="#ddd">
-                                {{ about }}
+                            {{ about }}
                         </v-btn>
                     </p>
                 </v-flex>
@@ -55,7 +55,7 @@ export default {
         return {
             title: 'The Home of the Illinois Criminal Justice Data and Research',
             subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.',
-            about: 'About this Data Portal'.toUpperCase()
+            about: 'About this Data Portal'
         }
     },
     components: {

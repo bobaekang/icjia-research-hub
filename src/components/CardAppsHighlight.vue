@@ -5,17 +5,7 @@
             xl8
             offset-xl2
             >
-            <h2 class="section-title">
-                {{ title }}
-                <span
-                    class="normaltext">
-                    |
-                    <router-link
-                        :to="path">
-                        {{ body }}
-                    </router-link>
-                </span>
-            </h2>
+            <app-section-title-home :title="title" :path="path" />
         </v-flex>
 
         <v-layout
@@ -66,12 +56,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import AppSectionTitleHome from '../components/SectionTitleHome';
 
 export default {
     data () {
         return {
             title: 'app highlights',
-            body: 'see more',
             path: 'apps',
         }
     },
@@ -79,6 +69,9 @@ export default {
         ...mapGetters({
             items: 'appsHome'
         })
+    },
+    components: {
+        AppSectionTitleHome
     }
 }
 </script>

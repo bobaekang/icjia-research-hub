@@ -5,17 +5,7 @@
             xl8
             offset-xl2
             >
-            <h2 class="section-title">
-                {{ title }}
-                <span
-                    class="normaltext"
-                    >
-                    |
-                    <router-link :to="path">
-                        {{ body }}
-                    </router-link>
-                </span>
-            </h2>
+            <app-section-title-home :title="title" :path="path" />
         
             <v-layout
                 row
@@ -45,11 +35,12 @@
 </template>
 
 <script>
+import AppSectionTitleHome from '../components/SectionTitleHome';
+
 export default {
     data () {
         return {
             title: 'resources',
-            body: 'see more',
             path: 'resources',
             items: [
                 {
@@ -69,6 +60,9 @@ export default {
                 }
             ]
         }
+    },
+    components: {
+        AppSectionTitleHome
     }
 }
 </script>
