@@ -49,18 +49,27 @@
                             class="article-body"
                             >
                             <div>
-                                <h3 style="padding-bottom: 10px;">
-                                    {{ item.title }}
-                                </h3>
-                                <h5 style="padding-bottom: 10px;">
-                                    {{ item.date }} |
-                                    {{ item.pubtype }} |
-                                    {{ item.area }}
-                                </h5>
-                                <h5>
-                                    By
-                                    {{ item.authors }}
-                                </h5>
+                                <v-container class="py-2">
+                                    <v-layout row wrap>
+                                        <h3>{{ item.title }}</h3>
+
+                                        <app-chip-card :name="item.pubtype" />
+                                        <app-chip-card :name="item.area" />
+                                    </v-layout>
+                                </v-container>
+                                
+                                <v-divider />
+                                
+                                <v-container class="small sans-serif py-2">
+                                    <div class="pb-2">
+                                        <span class="ma-0 bold">Updated</span>
+                                        {{ item.date }}
+                                    </div>
+                                    <div class="pb-2">
+                                        <span class="ma-0 bold">Authors</span>
+                                        {{ item.authors }}
+                                    </div>
+                                </v-container>
                             </div>
 
                             <v-card-actions>
@@ -96,6 +105,7 @@
 </template>
 
 <script>
+import AppChipCard from './ChipCard';
 import AppSearchBar from './SearchBar';
 import { mapGetters } from 'vuex';
 
@@ -148,6 +158,7 @@ export default {
         },
     },
     components: {
+        AppChipCard,
         AppSearchBar,
     }
 }
@@ -155,7 +166,18 @@ export default {
 
 <style scoped>
 .article-body {
-    padding: 1em 0.5em 0 1.2em;
     width: 100px;
+}
+
+.sans-serif {
+    font-family: 'Lato', sans-serif;
+}
+
+.small {
+    font-size: 0.8em
+}
+
+.bold {
+    font-weight: bold;
 }
 </style>

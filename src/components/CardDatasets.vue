@@ -34,22 +34,9 @@
                 <v-card>
                     <v-card-title primary-title>
                         <h2 class="pr-2">{{ item.title }}</h2>
-                        <span class="sans-serif">
-                            <v-chip
-                                disabled
-                                small
-                                text-color="#333"
-                                >
-                                {{ item.initialCategory }}
-                            </v-chip>
-                            <v-chip
-                                disabled
-                                small
-                                text-color="#333"
-                                >
-                                {{ item.juvenileAdult }}
-                            </v-chip>
-                        </span>
+                        
+                        <app-chip-card :name="item.initialCategory" />
+                        <app-chip-card :name="item.juvenileAdult" />
                     </v-card-title>
 
                     <v-divider />
@@ -141,6 +128,7 @@
 </template>
 
 <script>
+import AppChipCard from './ChipCard';
 import AppSearchBar from './SearchBar';
 import { mapGetters } from 'vuex';
 
@@ -170,6 +158,7 @@ export default {
         },
     },
     components: {
+        AppChipCard,
         AppSearchBar,
     }
 }
