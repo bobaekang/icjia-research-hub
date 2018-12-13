@@ -16,6 +16,8 @@
                             label="Search for datasets"
                             :search.sync="search"
                             />
+                        
+                        <app-search-filter :items="filters" />
                     </v-flex>
 
                     <v-flex xs12>
@@ -48,6 +50,7 @@ import { mapGetters } from 'vuex';
 import AppCardDatasets from '../components/CardDatasets';
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
+import AppSearchFilter from '../components/SearchFilter';
 import AppViewTitle from '../components/ViewTitle';
 
 export default {
@@ -62,6 +65,7 @@ export default {
     computed: {
         ...mapGetters({
             items: 'datasets',
+            filters: 'datasetFilters',
         })
     },
     methods: {
@@ -77,6 +81,7 @@ export default {
         AppCardDatasets,
         AppCountItems,
         AppSearchBar,
+        AppSearchFilter,
         AppViewTitle,
     },
 }

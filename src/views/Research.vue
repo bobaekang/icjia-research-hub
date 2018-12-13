@@ -16,6 +16,8 @@
                             label="Search for articles (by title, date, authors, etc.)"
                             :search.sync="search"
                             />
+
+                        <app-search-filter :items="filters" />
                     </v-flex>
 
                     <v-flex xs12>
@@ -48,6 +50,7 @@ import { mapGetters } from 'vuex';
 import AppCardArticles from '../components/CardArticles.vue';
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
+import AppSearchFilter from '../components/SearchFilter';
 import AppViewTitle from '../components/ViewTitle';
 
 export default {
@@ -62,6 +65,7 @@ export default {
     computed: {
         ...mapGetters({
             items: 'articles',
+            filters: 'articleFilters',
         }),
     },
     methods: {
@@ -81,6 +85,7 @@ export default {
         AppCardArticles,
         AppCountItems,
         AppSearchBar,
+        AppSearchFilter,
         AppViewTitle,
     },
 }

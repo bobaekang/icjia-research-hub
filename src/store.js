@@ -5,6 +5,8 @@ import articleInfo from '@/assets/articleInfo.json';
 import appInfo from '@/assets/appInfo.json';
 import datasetInfo from '@/assets/datasetInfo.json';
 
+import { pick, reduceObjArr, unwrapObj } from './utils';
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -34,6 +36,24 @@ export default new Vuex.Store({
         },
         appsHome: state => {
             return state.appInfo.slice(0, 3);
-        }
+        },
+        articleFilters: state => {
+            const filters = [
+                'pubtype',
+                'area',
+            ].sort();
+
+            const filtersObjArr = state.articleInfo.map(el => pick(el, filters));
+            return(unwrapObj(reduceObjArr(filters, filtersObjArr)));
+        },
+        datasetFilters: state => {
+            const filters = [
+                'agencyName',
+                'juvenileAdult',
+                'initialCategory'
+            ].sort();
+            const filtersObjArr = state.datasetInfo.map(el => pick(el, filters));
+            return(unwrapObj(reduceObjArr(filters, filtersObjArr)));
+        },
     }
 })
