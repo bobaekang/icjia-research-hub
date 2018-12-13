@@ -1,10 +1,10 @@
 <template>
     <v-card>
         <v-card-title primary-title>
-            <h2 class="pr-2">{{ item.title }}</h2>
+            <h2 class="pr-2">{{ dataset.title }}</h2>
             
-            <app-chip-card :name="item.initialCategory" />
-            <app-chip-card :name="item.juvenileAdult" />
+            <app-chip-card :name="dataset.initialCategory.toUpperCase()" />
+            <app-chip-card :name="dataset.juvenileAdult.toUpperCase()" />
         </v-card-title>
 
         <v-divider />
@@ -18,19 +18,19 @@
                     <v-container class="small sans-serif py-2">
                         <span class="bold pr-2">Keywords</span>
                         <span
-                            v-if="item.keywords"
+                            v-if="dataset.keywords"
                             >
                             <span
-                                v-for="(keyword, i) in item.keywords"
+                                v-for="(keyword, i) in dataset.keywords"
                                 :key="i">
-                                {{ item.keywords }}
+                                {{ dataset.keywords }}
                             </span>
                         </span>
                         <span class="italic">No keywords</span>
                     </v-container>
 
                     <v-container>
-                        {{ item.summary }}
+                        {{ dataset.summary }}
                     </v-container>
                 </v-flex>
                 
@@ -48,16 +48,16 @@
                         >
                         <div class="pb-2">
                             <p class="ma-0 bold">Updated</p>
-                            {{ item.date }}
+                            {{ dataset.date }}
                         </div>
                         <div class="pb-2">
                             <p class="ma-0 bold">Time Period</p>
-                            {{ item.timePeriodDesc }}
+                            {{ dataset.timePeriodDesc }}
                         </div>
                         <div>
                             <p class="ma-0 bold">Agency</p>
-                            <a :href="item.agencyLink">
-                                {{ item.agencyName }}
+                            <a :href="dataset.agencyLink">
+                                {{ dataset.agencyName }}
                             </a>
                         </div>
                     </v-container>
@@ -73,16 +73,16 @@
                         >
                         <div class="pb-2">
                             <span class="ma-0 bold">Updated</span>
-                            {{ item.date }}
+                            {{ dataset.date }}
                         </div>
                         <div class="pb-2">
                             <span class="ma-0 bold">Time Period</span>
-                            {{ item.timePeriodDesc }}
+                            {{ dataset.timePeriodDesc }}
                         </div>
                         <div>
                             <span class="ma-0 bold">Agency</span>
-                            <a :href="item.agencyLink">
-                                {{ item.agencyName }}
+                            <a :href="dataset.agencyLink">
+                                {{ dataset.agencyName }}
                             </a>
                         </div>
                     </v-container>
@@ -98,6 +98,11 @@ import AppChipCard from './ChipCard';
 export default {
     props: {
         item: Object,
+    },
+    computed: {
+        dataset () {
+            return this.item;
+        }
     },
     components: {
         AppChipCard,

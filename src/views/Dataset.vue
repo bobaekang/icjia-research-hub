@@ -20,7 +20,7 @@
 
                     <v-flex xs12>
                         <app-count-items
-                            :count="filterItems(editedItems).length"
+                            :count="filterItems(items).length"
                             :item="item"
                             />
                     </v-flex>
@@ -32,7 +32,7 @@
                         offset-sm1
                         offset-lg2
                         class="mb-3"
-                        v-for="(item, i) in filterItems(editedItems)"
+                        v-for="(item, i) in filterItems(items)"
                         :key="i"
                         >
                         <app-card-datasets :item="item" />
@@ -45,10 +45,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppCardDatasets from '../components/CardDatasets'
+import AppCardDatasets from '../components/CardDatasets';
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
-import AppViewTitle from '../components/ViewTitle'
+import AppViewTitle from '../components/ViewTitle';
 
 export default {
     name: 'dataset',
@@ -61,13 +61,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            items: 'datasets'
-        }),
-        editedItems () {
-            return this.items.map(item => {
-                return item;
-            });
-        }
+            items: 'datasets',
+        })
     },
     methods: {
         filterItems (items) {
@@ -83,6 +78,6 @@ export default {
         AppCountItems,
         AppSearchBar,
         AppViewTitle,
-    }
+    },
 }
 </script>

@@ -2,7 +2,7 @@
     <v-card class="ma-3">
         <v-img
             height="200px"
-            :src="item.imgUrl"
+            :src="app.imgUrl"
             lazy-src="https://via.placeholder.com/1/DDDDDD"
             >
             <v-layout
@@ -20,14 +20,14 @@
 
         <v-card-title primary-title>
             <div>
-                <h2>{{ item.title }}</h2>
-                <span class="grey--text">{{ item.subtitle }}</span>
+                <h2>{{ app.title }}</h2>
+                <span class="grey--text">{{ app.subtitle }}</span>
             </div>
         </v-card-title>
 
         <v-btn
             v-if="simple"
-            :href=item.url
+            :href="app.url"
             flat
             >
             Launch
@@ -36,7 +36,7 @@
         <template v-else>
             <v-card-actions>
                 <v-btn
-                    :href=item.url
+                    :href="app.url"
                     flat
                     >
                     Launch
@@ -46,15 +46,15 @@
                 
                 <v-btn
                     icon
-                    @click="item.showDesc = !item.showDesc"
+                    @click="app.showDesc = !app.showDesc"
                     >
-                    <v-icon>{{ item.showDesc ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                    <v-icon>{{ app.showDesc ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                 </v-btn>
             </v-card-actions>
 
             <v-slide-y-transition>
-                <v-card-text v-if="item.showDesc">
-                    {{ item.desc }}
+                <v-card-text v-if="app.showDesc">
+                    {{ app.desc }}
                 </v-card-text>
             </v-slide-y-transition>
         </template>
@@ -67,5 +67,10 @@ export default {
         item: Object,
         simple: Boolean,
     },
+    computed: {
+        app () {
+            return this.item;
+        }
+    }
 }
 </script>

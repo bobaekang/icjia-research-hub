@@ -19,7 +19,7 @@
 
                 <v-flex xs12>
                     <app-count-items
-                        :count="filterItems(editedItems).length"
+                        :count="filterItems(items).length"
                         :item="item"
                         />
                 </v-flex>
@@ -34,7 +34,7 @@
                         md4
                         sm6
                         xs12
-                        v-for="(item,i) in filterItems(editedItems)"
+                        v-for="(item,i) in filterItems(items)"
                         :key="i"
                         >
                         <app-card-apps :item="item" :simple="isSimpleCard" />
@@ -65,12 +65,7 @@ export default {
     computed: {
         ...mapGetters({
             items: 'apps'
-        }),
-        editedItems () {
-            return this.items.map(item => {
-                return item;
-            });
-        }
+        })
     },
     methods: {
         filterItems (items) {

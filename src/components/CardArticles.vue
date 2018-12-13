@@ -3,7 +3,7 @@
         <v-layout row>
             <v-img
                 class="hidden-sm-and-down"
-                :src="item.imgUrl"
+                :src="article.imgUrl"
                 lazy-src="https://via.placeholder.com/1/DDDDDD"
                 >
                 <v-layout
@@ -26,10 +26,14 @@
                 <div>
                     <v-container class="py-2">
                         <v-layout row wrap>
-                            <h3>{{ item.title }}</h3>
+                            <h3>{{ article.title }}</h3>
 
-                            <app-chip-card :name="item.pubtype" />
-                            <app-chip-card :name="item.area" />
+                            <span v-for="(p, i) of article.pubtype" :key="i">                            
+                                <app-chip-card :name="p.toUpperCase()" />
+                            </span>
+                            <span v-for="(a, i) of article.area" :key="i">                            
+                                <app-chip-card :name="a.toUpperCase()" />
+                            </span>
                         </v-layout>
                     </v-container>
                     
@@ -38,11 +42,11 @@
                     <v-container class="small sans-serif py-2">
                         <div class="pb-2">
                             <span class="ma-0 bold">Updated</span>
-                            {{ item.date }}
+                            {{ article.date }}
                         </div>
                         <div class="pb-2">
                             <span class="ma-0 bold">Authors</span>
-                            {{ item.authors }}
+                            {{ article.allAuthors }}
                         </div>
                     </v-container>
                 </div>
@@ -50,15 +54,15 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                        v-if="item.teaser"
-                        @click="item.showTeaser = !item.showTeaser"
+                        v-if="article.teaser"
+                        @click="article.showTeaser = !article.showTeaser"
                         flat
                         >
                         summary
-                        <v-icon>{{ item.showTeaser ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                        <v-icon>{{ article.showTeaser ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                     </v-btn>
                     <v-btn
-                        :href="item.url"
+                        :href="article.url"
                         target="_blank"
                         flat>
                         full
@@ -67,8 +71,8 @@
                 </v-card-actions>
 
                 <v-slide-y-transition>
-                    <v-card-text v-if="item.showTeaser">
-                        {{ item.teaser }}
+                    <v-card-text v-if="article.showTeaser">
+                        {{ article.teaser }}
                     </v-card-text>
                 </v-slide-y-transition>
             </v-layout>
@@ -82,6 +86,29 @@ import AppChipCard from './ChipCard';
 export default {
     props: {
         item: Object,
+    },
+    computed: {
+        article () {
+            const joinIfArray = (x, name = false) => {
+                if (Array.isArray(x)) {
+                    if (name && x.length > 1) {
+                        let i = x.length - 1
+                        return x.slice(0, i).join(', ') + ' and ' + x[i];
+                    } else {
+                        return x.join(', ')
+                    }
+                } else {
+                    return x
+                }
+            }
+            let article = this.item;
+
+            article.allAuthors = joinIfArray(article.authors, true);
+            article.url = `http://www.icjia.state.il.us/articles/${article.filename}`;
+            article.imgUrl = `http://www.icjia.state.il.us/${article.splash}`;
+
+            return article;
+        }
     },
     components: {
         AppChipCard,
