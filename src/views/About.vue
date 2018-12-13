@@ -6,7 +6,9 @@
             <v-layout row wrap>
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     class="about-item"
                     >
                     <h2 class="section-title">This Data Portal</h2>
@@ -38,7 +40,9 @@
 
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     class="about-item"
                     >
                     <h2 class="section-title">Illinois Open Data Portal</h2>
@@ -65,7 +69,9 @@
 
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     class="about-item about-item-last"
                     >
                     <h2 class="section-title">Illinois Criminal Justice Information Authority</h2>

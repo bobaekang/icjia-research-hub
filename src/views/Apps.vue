@@ -3,7 +3,7 @@
         <app-view-title :title="title"></app-view-title>
 
         <v-container>
-            <v-container fluid>
+            <v-layout row wrap>
                 <v-flex
                     xs12
                     sm8
@@ -23,25 +23,25 @@
                         :item="item"
                         />
                 </v-flex>
+            </v-layout>
 
-                <v-layout
-                    justify-center
-                    row
-                    wrap
+            <v-layout
+                justify-center
+                row
+                wrap
+                >
+                <v-flex
+                    lg3
+                    md4
+                    sm6
+                    xs12
+                    v-for="(item,i) in filterItems(items)"
+                    :key="i"
                     >
-                    <v-flex
-                        lg3
-                        md4
-                        sm6
-                        xs12
-                        v-for="(item,i) in filterItems(items)"
-                        :key="i"
-                        >
-                        <app-card-apps :item="item" :simple="isSimpleCard" />
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-container> 
+                    <app-card-apps :item="item" :simple="isSimpleCard" />
+                </v-flex>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 

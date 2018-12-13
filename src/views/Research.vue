@@ -3,44 +3,42 @@
         <app-view-title :title="title"></app-view-title>
         
         <v-container>
-            <v-container>
-                <v-layout row wrap>
-                    <v-flex
-                        xs12
-                        sm8
-                        lg6
-                        offset-sm2
-                        offset-lg3
-                        >
-                        <app-search-bar
-                            label="Search for articles (by title, date, authors, etc.)"
-                            :search.sync="search"
-                            />
+            <v-layout row wrap>
+                <v-flex
+                    xs12
+                    sm8
+                    lg6
+                    offset-sm2
+                    offset-lg3
+                    >
+                    <app-search-bar
+                        label="Search for articles (by title, date, authors, etc.)"
+                        :search.sync="search"
+                        />
 
-                        <app-search-filter :items="filters" />
-                    </v-flex>
+                    <app-search-filter :items="filters" />
+                </v-flex>
 
-                    <v-flex xs12>
-                        <app-count-items
-                            :count="filterItems(items).length"
-                            :item="item"
-                            />
-                    </v-flex>
+                <v-flex xs12>
+                    <app-count-items
+                        :count="filterItems(items).length"
+                        :item="item"
+                        />
+                </v-flex>
 
-                    <v-flex
-                        xs12
-                        sm10
-                        lg8
-                        offset-sm1
-                        offset-lg2
-                        class="mb-3"
-                        v-for="(item, i) in filterItems(items)"
-                        :key="i"
-                        >
-                        <app-card-articles :item="item"/>
-                    </v-flex>
-                </v-layout>
-            </v-container>
+                <v-flex
+                    xs12
+                    sm10
+                    xl8
+                    offset-sm1
+                    offset-xl2
+                    class="mb-3"
+                    v-for="(item, i) in filterItems(items)"
+                    :key="i"
+                    >
+                    <app-card-articles :item="item"/>
+                </v-flex>
+            </v-layout>
         </v-container>
     </div>
 </template>

@@ -6,21 +6,27 @@
             <v-layout row wrap>
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     >
                     <h2 class="section-title">User Guide</h2>
                 </v-flex>
 
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     >
                     <h2 class="section-title">API Documentation</h2>
                 </v-flex>
 
                 <v-flex
                     xs10
+                    xl8
                     offset-xs1
+                    offset-xl2
                     >
                     <h2 class="section-title">Contributing Guidelines</h2>
 
