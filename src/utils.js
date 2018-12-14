@@ -1,3 +1,22 @@
+// Return filtered array of items using a filter object
+export function applyFilterBox(items, filters, fObj) {
+    const fObjKeys = Object.keys(fObj);
+    
+    let keys = [];
+    for (let key of filters.map(key => key.title)) {
+        for (let objKey of fObjKeys) {
+            if (key.toUpperCase() === objKey) keys.push(key);
+        }
+    }
+
+    let itemsToShow = [];
+    for (let item of items) {
+        if (_isItemToShow(item, keys, fObj)) itemsToShow.push(item);
+    }
+    
+    return itemsToShow;
+}
+
 // Return select properties of an object only
 export function pick(obj, keys) {
     return keys
@@ -56,6 +75,28 @@ export function makeRoute(name, dirpath = './views', children = null) {
 //         component: () => import(`${compPath}`)
 //     };
 // }
+
+const _isItemToShow = function(item, keys, fObj) {
+    let test = keys.every(key => _hasKeyMatch(item, key, fObj));
+    return test;
+}
+
+const _hasKeyMatch = function(item, key, fObj) {
+    const fVals = fObj[key.toUpperCase()];
+    const vals = item[key];
+
+    let test = false;
+    for (let fVal of fVals) {
+        if (Array.isArray(vals)) {
+            test = vals.some(val => fVal === val.toUpperCase());
+            if (test) break;
+        } else {
+            test = fVal === vals.toUpperCase();
+            if (test) break;
+        }
+    }
+    return test;
+}
 
 const _flatten = function(arr, result = []) {
     return result.concat.apply([], arr);

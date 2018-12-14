@@ -48,6 +48,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { applyFilterBox } from '../utils';
 import AppCardDatasets from '../components/CardDatasets';
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
@@ -71,51 +72,13 @@ export default {
         })
     },
     methods: {
-        hasKeyMatch(item, key, fObj) {
-            const fVals = fObj[key.toUpperCase()];
-            const vals = item[key];
-
-            let test = false;
-            for (let fVal of fVals) {
-                console.log(fVal);
-                if (Array.isArray(vals)) {
-                    test = vals.some(val => fVal === val.toUpperCase());
-                    if (test) break;
-                } else {
-                    test = fVal === vals.toUpperCase();
-                    if (test) break;
-                }
-            }
-            return test;
-        },
-        isOutItem(item, keys, fObj) {
-            let test = keys.every(key => this.hasKeyMatch(item, key, fObj));
-            return test;
-        },
-        getOutItems(items, fObj) {
-            const fObjKeys = Object.keys(fObj);
-            
-            let keys = [];
-            for (let key of this.filters.map(key => key.title)) {
-                for (let objKey of fObjKeys) {
-                    if (key.toUpperCase() === objKey) keys.push(key);
-                }
-            }
-
-            let outItems = [];
-            for (let item of items) {
-                if (this.isOutItem(item, keys, fObj)) outItems.push(item);
-            }
-            
-            return outItems;
-        },
         filterItems (items) {
             const s = this.search.toUpperCase();
-            const outItems = Object.keys(this.filterObj).length !== 0 ?
-                this.getOutItems(items, this.filterObj) :
+            const itemsToShow = Object.keys(this.filterObj).length !== 0 ?
+                applyFilterBox(items, this.filters, this.filterObj) :
                 items;
-            
-            return outItems.filter((item) => {
+
+            return itemsToShow.filter((item) => {
                 return item.title.toUpperCase().match(s);
             });
         }
