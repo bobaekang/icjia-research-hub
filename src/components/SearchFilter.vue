@@ -8,7 +8,7 @@
         <v-slide-y-transition>
             <div
                 v-show="show"
-                class="mx-2 pt-2 greyborder"
+                class="mx-2 py-2 greyborder"
                 >
                 <v-layout
                     row
@@ -18,7 +18,7 @@
                     <v-btn
                         outline
                         color="primary"
-                        @click="applyFilter"
+                        @click="applyFilter($event)"
                         >
                         apply
                     </v-btn>
@@ -26,7 +26,7 @@
                     <v-btn
                         outline
                         color="error"
-                        @click="clearFilter"
+                        @click="clearFilter($event)"
                         >
                         clear
                     </v-btn>
@@ -70,12 +70,40 @@ export default {
         }
     },
     methods: {
-        applyFilter() {
+        applyFilter (e) {
+            const filterbox = e.target.parentElement.parentElement.parentElement;
+            const filterNodeList = filterbox.childNodes[1].childNodes;
+            
+            let filterObj = {};
+
+            for (let i = 0; i < filterNodeList.length; i++) {
+                const node = filterNodeList[i];
+                const slots = node.getElementsByClassName('v-select__slot');
+                
+                for (let j = 0; j < slots.length; j++) {
+                    const contents = slots[j].getElementsByClassName('v-chip__content');
+                    
+                    if (contents.length > 0) {
+                        const filterName = slots[j].getElementsByClassName('v-text-field__prefix')[0].innerText;
+                        let filters = [];
+                        
+                        for (let g = 0; g < contents.length; g++) {
+                            let filter = contents[g].innerText.split('\n')[0];
+                            filters.push(filter);
+                        }
+                        
+                        filterObj[filterName] = filters;
+                    }
+                }
+            }
+            
+            this.$emit('updateFilter', filterObj);
             this.show = false;
         },
-        clearFilter () {
-            this.show = false;
+        clearFilter (e) {
             this.$refs.filterInput.map(el => el.removeAll());
+            this.$emit('updateFilter', {});
+            this.show = false;
         }
     },
     components: {

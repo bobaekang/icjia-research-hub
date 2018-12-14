@@ -12,11 +12,14 @@
                     offset-lg3
                     >
                     <app-search-bar
-                        label="Search for articles (by title, date, authors, etc.)"
+                        label="Search for articles (by title, date, author)"
                         :search.sync="search"
                         />
 
-                    <app-search-filter :items="filters" />
+                    <app-search-filter
+                        :items="filters"
+                        @updateFilter="filterObj = $event"
+                        />
                 </v-flex>
 
                 <v-flex xs12>
@@ -58,6 +61,7 @@ export default {
             title: 'Research publication',
             search: '',
             item: 'article',
+            filterObj: {},
         }
     },
     computed: {
@@ -67,15 +71,54 @@ export default {
         }),
     },
     methods: {
-        filterItems (items) {
-            const s = this.search.toUpperCase()
+        hasKeyMatch(item, key, fObj) {
+            const fVals = fObj[key.toUpperCase()];
+            const vals = item[key];
 
-            return items.filter((item) => {    
+            let test = false;
+            for (let fVal of fVals) {
+                console.log(fVal);
+                if (Array.isArray(vals)) {
+                    test = vals.some(val => fVal === val.toUpperCase());
+                    if (test) break;
+                } else {
+                    test = fVal === vals.toUpperCase();
+                    if (test) break;
+                }
+            }
+            return test;
+        },
+        isOutItem(item, keys, fObj) {
+            let test = keys.every(key => this.hasKeyMatch(item, key, fObj));
+            return test;
+        },
+        getOutItems(items, fObj) {
+            const fObjKeys = Object.keys(fObj);
+            
+            let keys = [];
+            for (let key of this.filters.map(key => key.title)) {
+                for (let objKey of fObjKeys) {
+                    if (key.toUpperCase() === objKey) keys.push(key);
+                }
+            }
+
+            let outItems = [];
+            for (let item of items) {
+                if (this.isOutItem(item, keys, fObj)) outItems.push(item);
+            }
+            
+            return outItems;
+        },
+        filterItems (items) {
+            const s = this.search.toUpperCase();
+            const outItems = Object.keys(this.filterObj).length !== 0 ?
+                this.getOutItems(items, this.filterObj) :
+                items;
+
+            return outItems.filter((item) => {    
                 return item.title.toUpperCase().match(s) ||
                     item.date.match(s) ||
-                    item.area.toUpperCase().match(s) ||
-                    item.authors.toUpperCase().match(s) ||
-                    item.pubtype.toUpperCase().match(s);
+                    item.authors.join('').toUpperCase().match(s);
             });
         },
     },
