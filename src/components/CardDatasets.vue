@@ -17,16 +17,18 @@
                     >
                     <v-container class="small sans-serif py-2">
                         <span class="bold pr-2">Keywords</span>
-                        <span
-                            v-if="dataset.keywords"
-                            >
+
+                        <span v-if="dataset.keywords">
                             <span
+                                class="pr-2"
                                 v-for="(keyword, i) in dataset.keywords"
-                                :key="i">
-                                {{ dataset.keywords }}
+                                :key="i"
+                                >
+                                {{ keyword.toUpperCase() }}
                             </span>
                         </span>
-                        <span class="italic">No keywords</span>
+                        
+                        <span v-else class="italic">No keywords</span>
                     </v-container>
 
                     <v-container>
