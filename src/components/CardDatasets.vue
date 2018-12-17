@@ -13,7 +13,6 @@
             <v-layout row wrap>
                 <v-flex
                     xs12
-                    sm9
                     >
                     <v-container class="small sans-serif py-2">
                         <span class="bold pr-2">Keywords</span>
@@ -31,62 +30,67 @@
                         <span v-else class="italic">No keywords</span>
                     </v-container>
 
-                    <v-container>
-                        {{ dataset.summary }}
-                    </v-container>
-                </v-flex>
-                
-                <v-divider
-                    vertical
-                    class="hidden-sm-and-down"
-                    />
-
-                <v-flex
-                    sm2
-                    class="small sans-serif hidden-sm-and-down"
-                    >
                     <v-container
-                        class="py-2"
+                        class="py-2 small sans-serif hidden-sm-and-down"
+                        >
+                        <v-layout row wrap>
+                            <v-flex sm2>
+                                <div class="pb-2">
+                                    <p class="ma-0 bold">Updated</p>
+                                    {{ dataset.date }}
+                                </div>
+                            </v-flex>
+                            <v-flex sm2>
+                                <div class="pb-2">
+                                    <p class="ma-0 bold">Time Period</p>
+                                    {{ dataset.timePeriodDesc }}
+                                </div>
+                            </v-flex>
+                            <v-flex sm8>
+                                <div>
+                                    <p class="ma-0 bold">Agency</p>
+                                    <a :href="dataset.agencyLink">
+                                        {{ dataset.agencyName }}
+                                    </a>
+                                </div>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+
+                    <v-container
+                        class="pt-0 small sans-serif hidden-md-and-up"
                         >
                         <div class="pb-2">
-                            <p class="ma-0 bold">Updated</p>
+                            <span class="pr-2 ma-0 bold">Updated</span>
                             {{ dataset.date }}
                         </div>
                         <div class="pb-2">
-                            <p class="ma-0 bold">Time Period</p>
+                            <span class="pr-2 ma-0 bold">Time Period</span>
                             {{ dataset.timePeriodDesc }}
                         </div>
                         <div>
-                            <p class="ma-0 bold">Agency</p>
+                            <span class="pr-2 ma-0 bold">Agency</span>
                             <a :href="dataset.agencyLink">
                                 {{ dataset.agencyName }}
                             </a>
                         </div>
                     </v-container>
-                </v-flex>
 
-                <v-flex
-                    xs12
-                    class="small sans-serif hidden-md-and-up"
-                    >
-                    <v-divider />
                     <v-container
-                        class="py-2"
+                        class="pa-0 text-xs-right"
                         >
-                        <div class="pb-2">
-                            <span class="ma-0 bold">Updated</span>
-                            {{ dataset.date }}
-                        </div>
-                        <div class="pb-2">
-                            <span class="ma-0 bold">Time Period</span>
-                            {{ dataset.timePeriodDesc }}
-                        </div>
-                        <div>
-                            <span class="ma-0 bold">Agency</span>
-                            <a :href="dataset.agencyLink">
-                                {{ dataset.agencyName }}
-                            </a>
-                        </div>
+                        <v-btn flat>
+                            Download
+                            <v-icon>file_download</v-icon>
+                        </v-btn>
+                        
+                        <v-btn
+                            flat
+                            :to="`/dataset/${dataset.filename}`"
+                            >
+                            More
+                            <v-icon>more_horiz</v-icon>
+                        </v-btn>
                     </v-container>
                 </v-flex>
             </v-layout>

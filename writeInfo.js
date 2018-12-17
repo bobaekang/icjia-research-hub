@@ -41,7 +41,7 @@ function main() {
         'initialCategory',
         'keywords',
         'timePeriodDesc',
-        'summary',
+        'filename',
     ]
 
     writeInfo(urlArticle, headers, dirpath, nameArticle, fieldsArticle);
