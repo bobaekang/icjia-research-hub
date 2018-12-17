@@ -55,6 +55,7 @@ export function makeRoute(name, children = null, dirpath = './views') {
     const compPath = _getCompPath(name, dirpath);
     
     let route = {
+        name,
         path,
         component: () => import(`${compPath}`)
     }
@@ -67,12 +68,16 @@ export function makeRoute(name, children = null, dirpath = './views') {
 }
 
 // Generate a child route object for 'router.js'
-export function makeRouteChild(name, compname, dirpath = './views') {
-    const path = _getPath(name, true);
+export function makeRouteChild(name, compname, path = null, dirpath = './views') {
+    if (path === null) {
+        path = _getPath(name, true);
+    }
     const compPath = _getCompPath(compname, dirpath);
     
     return {
+        name,
         path,
+        props: true,
         component: () => import(`${compPath}`)
     };
 }

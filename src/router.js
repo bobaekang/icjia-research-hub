@@ -10,8 +10,8 @@ export default new Router({
     routes: [
         makeRoute('home'),
         makeRoute('dataset', [
-            makeRouteChild('', 'DatasetSearch'),
-            makeRouteChild(':name', 'DatasetDetail')
+            makeRouteChild('datasetSearch', 'DatasetSearch', ''),
+            makeRouteChild('datasetView', 'DatasetDetail', ':name')
         ]),
         makeRoute('research'),
         makeRoute('apps'),
