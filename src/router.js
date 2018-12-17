@@ -6,7 +6,7 @@ import { makeRoute, makeRouteChild } from './utils';
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [
         makeRoute('home'),
         makeRoute('dataset', [
