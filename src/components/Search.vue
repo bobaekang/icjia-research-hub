@@ -18,10 +18,15 @@
                 md9
                 xl6
                 >
-                <app-search-bar
-                    label="Search this Data Portal"
-                    :search.sync="search"
-                    />
+                <v-form @submit.prevent="onSubmit">
+                    <v-text-field
+                        @keyup.enter="submit"
+                        v-model="search"
+                        label="Search this Data Portal"
+                        append-outer-icon="search"
+                        solo
+                        />
+                </v-form>
             </v-flex>
         </v-layout>
     </v-container>
@@ -34,12 +39,22 @@ export default {
     data () {
         return {
             title: 'get started and explore this data portal',
-            search: ''
+            search: '',
         }
     },
     computed: {
         titleUpper () {
             return this.title.toUpperCase();
+        },
+    },
+    methods: {
+        onSubmit () {
+            this.$router.push({
+                name: 'datasetSearch',
+                params: {
+                    search: this.search
+                }
+            });
         }
     },
     components: {

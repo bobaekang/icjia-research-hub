@@ -13,7 +13,7 @@ export default {
     name: 'dataset',
     data () {
         return {
-            title: "Dataset",
+            title: 'Dataset',
         }
     },
     components: {

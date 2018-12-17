@@ -51,9 +51,11 @@ import AppSearchBar from '../components/SearchBar';
 import AppSearchFilter from '../components/SearchFilter';
 
 export default {
+    props: {
+        search: String,
+    },
     data () {
         return {
-            search: '',
             item: 'dataset',
             filterObj: {},
         }
