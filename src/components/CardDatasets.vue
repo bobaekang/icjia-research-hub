@@ -1,7 +1,11 @@
 <template>
     <v-card>
         <v-card-title primary-title>
-            <h2 class="pr-2">{{ dataset.title }}</h2>
+            <h2 class="pr-2">
+                <router-link :to="`/dataset/${dataset.filename}`">
+                  {{ dataset.title }}
+                </router-link>
+            </h2>
             
             <app-chip-card :name="dataset.initialCategory.toUpperCase()" />
             <app-chip-card :name="dataset.juvenileAdult.toUpperCase()" />
@@ -40,13 +44,7 @@
                                     {{ dataset.date }}
                                 </div>
                             </v-flex>
-                            <v-flex sm2>
-                                <div class="pb-2">
-                                    <p class="ma-0 bold">Time Period</p>
-                                    {{ dataset.timePeriodDesc }}
-                                </div>
-                            </v-flex>
-                            <v-flex sm8>
+                            <v-flex sm10>
                                 <div>
                                     <p class="ma-0 bold">Agency</p>
                                     <a :href="dataset.agencyLink">
@@ -61,15 +59,11 @@
                         class="pt-0 small sans-serif hidden-md-and-up"
                         >
                         <div class="pb-2">
-                            <span class="pr-2 ma-0 bold">Updated</span>
+                            <span class="pr-2 bold">Updated</span>
                             {{ dataset.date }}
                         </div>
-                        <div class="pb-2">
-                            <span class="pr-2 ma-0 bold">Time Period</span>
-                            {{ dataset.timePeriodDesc }}
-                        </div>
                         <div>
-                            <span class="pr-2 ma-0 bold">Agency</span>
+                            <span class="pr-2 bold">Agency</span>
                             <a :href="dataset.agencyLink">
                                 {{ dataset.agencyName }}
                             </a>
@@ -79,7 +73,10 @@
                     <v-container
                         class="pa-0 text-xs-right"
                         >
-                        <v-btn flat>
+                        <v-btn
+                            flat
+                            class="mr-0"
+                            >
                             Download
                             <v-icon>file_download</v-icon>
                         </v-btn>

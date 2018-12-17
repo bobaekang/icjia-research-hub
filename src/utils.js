@@ -50,7 +50,7 @@ export function reduceObjArr(props, arr) {
 }
 
 // Generate a route object for 'router.js'
-export function makeRoute(name, dirpath = './views', children = null) {  
+export function makeRoute(name, children = null, dirpath = './views') {  
     const path = _getPath(name, false);
     const compPath = _getCompPath(name, dirpath);
     
@@ -66,15 +66,16 @@ export function makeRoute(name, dirpath = './views', children = null) {
     return route;
 }
 
-// export function makeRouteChild(name, dirpath = './views') {
-//     const path = _getPath(name, true);
-//     const compPath = _getCompPath(name, dirpath);
+// Generate a child route object for 'router.js'
+export function makeRouteChild(name, compname, dirpath = './views') {
+    const path = _getPath(name, true);
+    const compPath = _getCompPath(compname, dirpath);
     
-//     return {
-//         path,
-//         component: () => import(`${compPath}`)
-//     };
-// }
+    return {
+        path,
+        component: () => import(`${compPath}`)
+    };
+}
 
 const _isItemToShow = function(item, keys, fObj) {
     let test = keys.every(key => _hasKeyMatch(item, key, fObj));
