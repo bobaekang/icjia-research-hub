@@ -58,12 +58,4 @@ export default {
     padding-top: 0;
     margin-top: 0;
 }
-
-.sans-serif {
-    font-family: 'Lato', sans-serif;
-}
-
-.small {
-    font-size: 0.8em
-}
 </style>

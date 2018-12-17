@@ -62,4 +62,20 @@ a {
     border-bottom: 1px #999 solid;
     text-transform: uppercase; 
 }
+
+.sans-serif {
+    font-family: 'Lato', sans-serif;
+}
+
+.small {
+    font-size: 0.8em
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
 </style>

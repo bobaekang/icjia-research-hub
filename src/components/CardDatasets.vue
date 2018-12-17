@@ -112,25 +112,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.sans-serif {
-    font-family: 'Lato', sans-serif;
-}
-
-.small {
-    font-size: 0.8em
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-</style>
