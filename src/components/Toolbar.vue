@@ -62,7 +62,7 @@
             </v-menu>
         </v-toolbar>
 
-        <div :style="{ height: hpixel }"></div>
+        <div :style="{ height: hpixel, backgroundColor:'#466c8c' }"></div>
     </div>
 </template>
 
