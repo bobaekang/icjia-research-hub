@@ -78,4 +78,8 @@ a {
 .italic {
     font-style: italic;
 }
+
+.v-messages {
+    display: none;
+}
 </style>
