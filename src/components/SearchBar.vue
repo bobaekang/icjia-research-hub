@@ -1,8 +1,10 @@
 <template>
     <v-text-field
-        @keyup="onChange($event)"
+        @keyup="onKeyup($event)"
+        @click:clear="onClear($event)"
         :value="searchInput"
         :label="searchLabel"
+        clearable=true
         append-outer-icon="search"
         solo
         />
@@ -12,7 +14,7 @@
 export default {
     props: {
         label: String,
-        search: String
+        search: String,
     },
     data () {
         return {
@@ -21,15 +23,12 @@ export default {
         }
     },
     methods: {
-        onChange (e) {
+        onKeyup (e) {
             this.$emit('update:search', e.target.value);
+        },
+        onClear () {
+            this.$emit('update:search', '');
         }
     }
 }
 </script>
-
-<style scoped>
-.v-text-field .v-text-field-enclosed .v-text-filed__details {
-    display: none;
-}
-</style>
