@@ -2,7 +2,7 @@
     <div>
         <app-view-title :title="title" />
 
-        <router-view />
+        <router-view search=''/>
     </div>
 </template>
 

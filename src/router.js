@@ -13,8 +13,12 @@ export default new Router({
             makeRouteChild('datasetSearch', 'DatasetSearch', ''),
             makeRouteChild('datasetView', 'DatasetDetail', ':name')
         ]),
-        makeRoute('research'),
-        makeRoute('apps'),
+        makeRoute('research', [
+            makeRouteChild('researchSearch', 'ResearchSearch', ''),
+        ]),
+        makeRoute('apps', [
+            makeRouteChild('appsSearch', 'AppsSearch', ''),
+        ]),
         makeRoute('resources'),
         makeRoute('about'),
     ],

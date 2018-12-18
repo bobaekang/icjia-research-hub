@@ -55,7 +55,7 @@ export function makeRoute(name, children = null, dirpath = './views') {
     const compPath = _getCompPath(name, dirpath);
     
     let route = {
-        name,
+        // name,
         path,
         component: () => import(`${compPath}`)
     }

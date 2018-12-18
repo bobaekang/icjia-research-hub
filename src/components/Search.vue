@@ -10,7 +10,7 @@
                 class="text-xs-center"
                 >
                 <h3>{{ titleUpper }}</h3>
-                <v-icon x-large>arrow_drop_down</v-icon>
+                <v-icon>fa fa-caret-down</v-icon>
             </v-flex>
             
             <v-flex
@@ -22,43 +22,67 @@
                     <v-text-field
                         @keyup.enter="submit"
                         v-model="search"
-                        label="Search this Data Portal"
+                        :label="`Search ${showLabel} in Data Portal`"
                         append-outer-icon="search"
                         solo
                         />
                 </v-form>
+
+                <v-radio-group
+                    v-model="typeSelect"
+                    class="py-0 my-0 sans-serif"
+                    style="justify-content: center;"
+                    row
+                    >
+                    <v-flex
+                        v-for="(type, i) in types"
+                        :key="i"
+                        >                    
+                        <v-radio :label="type.toUpperCase()" :value="type" />
+                    </v-flex>
+                </v-radio-group>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
-import AppSearchBar from './SearchBar';
-
 export default {
     data () {
         return {
-            title: 'get started and explore this data portal',
+            title: 'get started & explore this data portal',
             search: '',
+            types: [
+                'dataset',
+                'research',
+                'apps'
+            ],
+            typeSelect: 'dataset'
         }
     },
     computed: {
         titleUpper () {
             return this.title.toUpperCase();
         },
+        showLabel() {
+            let label;
+            if (this.typeSelect === 'dataset') label = 'datasets';
+            else if (this.typeSelect === 'research') label = 'research publications';
+            else if (this.typeSelect === 'apps') label = 'applications';
+
+            return label;
+        }
     },
     methods: {
         onSubmit () {
+            const nameSelect = `${this.typeSelect}Search`;
             this.$router.push({
-                name: 'datasetSearch',
+                name: nameSelect,
                 params: {
                     search: this.search
                 }
             });
         }
     },
-    components: {
-        AppSearchBar
-    }
 }
 </script>
