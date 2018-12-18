@@ -11,15 +11,20 @@
                 lg6
                 >
                 <app-search-bar
+                    ref="searchBar"
                     label="Search for apps"
                     :search.sync="search"
                     />
-            </v-flex>
 
-            <v-flex xs12>
                 <app-count-items
                     :count="filterItems(items).length"
                     :item="item"
+                    />
+
+                <app-search-suggestion
+                    :showSuggestion="filterItems(items).length === 0"
+                    :suggestions="suggestions"
+                    @useSuggestion="useSuggestion($event)"
                     />
             </v-flex>
 
@@ -55,6 +60,7 @@ import { mapGetters } from 'vuex';
 import AppCardApps from '../components/CardApps'
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
+import AppSearchSuggestion from '../components/SearchSuggestion';
 
 export default {
     props: {
@@ -63,14 +69,14 @@ export default {
     data () {
         return {
             title: 'Applications',
-            search: '',
             item: 'app',
             isSimpleCard: false,
         }
     },
     computed: {
         ...mapGetters({
-            items: 'apps'
+            items: 'apps',
+            suggestions: 'appSuggestions'
         })
     },
     methods: {
@@ -81,11 +87,16 @@ export default {
                 return item.title.toUpperCase().match(s);
             });
         },
+        useSuggestion (suggestion) {
+            this.search = suggestion;
+            this.$refs.searchBar.searchInput = suggestion;
+        },
     },
     components: {
         AppCardApps,
         AppCountItems,
         AppSearchBar,
+        AppSearchSuggestion,
     }
 }
 </script>

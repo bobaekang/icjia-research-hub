@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="text-xs-center pb-2"
-        style="font-family: 'Lato', sans-serif;"
-        >
+    <div class="text-xs-center pb-2 sans-serif">
         {{ count }} {{ item }}s found
     </div>
 </template>

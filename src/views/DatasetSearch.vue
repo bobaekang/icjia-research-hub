@@ -11,6 +11,7 @@
                 lg6
                 >
                 <app-search-bar
+                    ref="searchBar"
                     label="Search for datasets"
                     :search.sync="search"
                     />
@@ -19,12 +20,16 @@
                     :items="filters"
                     @updateFilter="filterObj = $event"
                     />
-            </v-flex>
 
-            <v-flex xs12>
                 <app-count-items
                     :count="filterItems(items).length"
                     :item="item"
+                    />
+                
+                <app-search-suggestion
+                    :showSuggestion="filterItems(items).length === 0"
+                    :suggestions="suggestions"
+                    @useSuggestion="useSuggestion($event)"
                     />
             </v-flex>
 
@@ -49,6 +54,7 @@ import AppCardDatasets from '../components/CardDatasets';
 import AppCountItems from '../components/CountItems';
 import AppSearchBar from '../components/SearchBar';
 import AppSearchFilter from '../components/SearchFilter';
+import AppSearchSuggestion from '../components/SearchSuggestion';
 
 export default {
     props: {
@@ -57,6 +63,7 @@ export default {
     data () {
         return {
             item: 'dataset',
+            suggestion: '',
             filterObj: {},
         }
     },
@@ -64,6 +71,7 @@ export default {
         ...mapGetters({
             items: 'datasets',
             filters: 'datasetFilters',
+            suggestions: 'datasetSuggestions'
         })
     },
     watch: {
@@ -79,13 +87,18 @@ export default {
             return itemsToShow.filter((item) => {
                 return item.title.toUpperCase().match(s);
             });
-        }
+        },
+        useSuggestion (suggestion) {
+            this.search = suggestion;
+            this.$refs.searchBar.searchInput = suggestion;
+        },
     },
     components: {
         AppCardDatasets,
         AppCountItems,
         AppSearchBar,
         AppSearchFilter,
+        AppSearchSuggestion,
     },
 }
 </script>
