@@ -23,6 +23,7 @@
                         @keyup.enter="submit"
                         v-model="search"
                         :label="`Search ${showLabel} in Data Portal`"
+                        clearable=true
                         append-outer-icon="search"
                         solo
                         />
@@ -38,7 +39,10 @@
                         v-for="(type, i) in types"
                         :key="i"
                         >                    
-                        <v-radio :label="type.toUpperCase()" :value="type" />
+                        <v-radio
+                            :label="type.toUpperCase()"
+                            :value="type"
+                            />
                     </v-flex>
                 </v-radio-group>
             </v-flex>
@@ -75,6 +79,10 @@ export default {
     },
     methods: {
         onSubmit () {
+            if (this.search === null) {
+                this.search = '';
+            }
+
             const nameSelect = `${this.typeSelect}Search`;
             this.$router.push({
                 name: nameSelect,
@@ -82,7 +90,7 @@ export default {
                     search: this.search
                 }
             });
-        }
+        },
     },
 }
 </script>
