@@ -1,23 +1,32 @@
 <template>
     <v-container>
-        <v-flex
-            xs12
-            xl8
-            offset-xl2
-            >
-            <app-section-title-home :title="title" :path="path" />
-        </v-flex>
-
         <v-layout
-            justify-center
             row
             wrap
+            justify-center
             >
             <v-flex
-                lg3
-                md4
-                sm6
                 xs12
+                sm10
+                xl8
+                >
+                <app-section-title-home
+                    :title="title"
+                    :path="path"
+                    />
+            </v-flex>
+        </v-layout>
+
+        <v-layout
+            row
+            wrap
+            justify-center
+            >
+            <v-flex
+                xs12
+                sm6
+                md4
+                lg3
                 v-for="(item,i) in items"
                 :key="i"
                 >

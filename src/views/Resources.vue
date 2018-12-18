@@ -1,32 +1,33 @@
 <template>
     <div>
-        <app-view-title :title="title"></app-view-title>
+        <app-view-title :title="title" />
         
-        <v-container grid-list-sm>
-            <v-layout row wrap>
+        <v-container>
+            <v-layout
+                row
+                wrap
+                justify-center
+                >
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
                     >
                     <h2 class="section-title">User Guide</h2>
                 </v-flex>
 
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
                     >
                     <h2 class="section-title">API Documentation</h2>
                 </v-flex>
 
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
                     >
                     <h2 class="section-title">Contributing Guidelines</h2>
 

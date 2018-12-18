@@ -1,36 +1,45 @@
 <template>
     <v-container>
-        <v-flex
-            xs12
-            xl8
-            offset-xl2
+        <v-layout
+            justify-center
             >
-            <app-section-title-home :title="title" :path="path" />
-        
-            <v-layout
-                row
-                wrap
+            <v-flex
+                xs12
+                sm10
+                xl8
                 >
-                <v-flex
-                    xs12
-                    sm4
-                    v-for="(item,i) in items"
-                    :key="i"
+                <app-section-title-home
+                    :title="title"
+                    :path="path"
+                    />
+            
+                <v-layout
+                    row
+                    wrap
                     >
-                    <v-container class="pb-0">
-                        <h3>{{ item.title.toUpperCase() }}</h3>
-                        <p class="resource-item">{{ item.body }}</p>
-                    </v-container>
-                    
-                    <v-btn
-                        :to="item.url"
-                        flat
+                    <v-flex
+                        xs12
+                        sm4
+                        v-for="(item,i) in items"
+                        :key="i"
                         >
-                        open
-                    </v-btn>
-                </v-flex>
-            </v-layout>
-        </v-flex>
+                        <v-container class="pb-0">
+                            <h3>{{ item.title.toUpperCase() }}</h3>
+                            <p class="resource-item">{{ item.body }}</p>
+                        </v-container>
+                        
+                        <v-btn
+                            :to="item.url"
+                            flat
+                            >
+                            open
+                        </v-btn>
+
+                        <v-divider class="hidden-sm-and-up" />
+                    </v-flex>
+                </v-layout>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
@@ -46,17 +55,17 @@ export default {
                 {
                     title: 'User Guide',
                     body: 'New to the Data Portal? Read to find out more about navigating the Data Portal like a pro.',
-                    url: '#'
+                    url: ''
                 },
                 {
                     title: 'API Documentation',
                     body: 'Learn how to use the Data Portal API to obtain data, analyze them, and develop awesome applications.',
-                    url: '#'
+                    url: ''
                 },
                 {
                     title: 'Contributing Guidelines',
                     body: 'Need help! Find out how to make contributions to the Data Portal and have your work recognized.',
-                    url: '#'
+                    url: ''
                 }
             ]
         }

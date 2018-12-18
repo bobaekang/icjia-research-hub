@@ -1,14 +1,17 @@
 <template>
     <div>        
-        <app-view-title :title="title"></app-view-title>
+        <app-view-title :title="title" />
 
-        <v-container grid-list-sm>
-            <v-layout row wrap>
+        <v-container>
+            <v-layout
+                row
+                wrap
+                justify-center
+                >
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
                     class="about-item"
                     >
                     <h2 class="section-title">This Data Portal</h2>
@@ -39,10 +42,9 @@
                 </v-flex>
 
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
                     class="about-item"
                     >
                     <h2 class="section-title">Illinois Open Data Portal</h2>
@@ -68,11 +70,10 @@
                 </v-flex>
 
                 <v-flex
-                    xs10
+                    xs12
+                    sm10
                     xl8
-                    offset-xs1
-                    offset-xl2
-                    class="about-item about-item-last"
+                    class="about-item"
                     >
                     <h2 class="section-title">Illinois Criminal Justice Information Authority</h2>
                     
@@ -129,11 +130,6 @@ export default {
 }
 
 .about-item {
-    margin-bottom: 28px;
-    border-bottom: 1px solid #ccc;
-}
-
-.about-item-last {
-    border-bottom: 0;
+    margin-bottom: 32px;
 }
 </style>

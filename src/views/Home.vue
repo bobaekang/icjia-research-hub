@@ -2,25 +2,28 @@
     <div>
         <div class="view-title">
             <v-container class="pb-1">
-                <v-flex
-                    xs12
-                    xl8
-                    offset-xl2
-                    >
-                    <div id="home-title">
-                        {{ title }}
-                    </div>
-                    <p id="home-subtitle">
-                        {{ subtitle }}
-                    </p>
-                    <p class="text-xs-right">
-                        <v-btn to="about" flat color="#ddd">
-                            {{ about }}
-                        </v-btn>
-                    </p>
-                </v-flex>
+                <v-layout justify-center>
+                    <v-flex
+                        xs12
+                        sm10
+                        xl8
+                        >
+                        <div id="home-title">
+                            {{ title }}
+                        </div>
+                        <p id="home-subtitle">
+                            {{ subtitle }}
+                        </p>
+                        <p class="text-xs-right">
+                            <v-btn to="about" flat color="#ddd">
+                                {{ about }}
+                            </v-btn>
+                        </p>
+                    </v-flex>
+                </v-layout>
             </v-container>
         </div>
+
 
         <div
             v-for="i in 4"
@@ -31,13 +34,9 @@
 
             <app-carousel-articles v-if="i==2"/>
 
-            <v-container v-if="i==3" >
-                <app-card-apps-highlight />
-            </v-container>
+            <app-card-apps-highlight v-if="i==3" />
 
-            <v-container v-if="i==4">
-                <app-info-resources />
-            </v-container>
+            <app-info-resources v-if="i==4" />
         </div>
             
         <div style="height:100px"></div>

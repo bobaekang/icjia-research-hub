@@ -1,11 +1,17 @@
 <template>
     <div class="view-title">
-            <v-container>
-                <v-flex sm10>
+        <v-container>
+            <v-layout justify-center>
+                <v-flex
+                    xs12
+                    sm10
+                    xl8
+                    >
                     {{ title }}
                 </v-flex>
-            </v-container>
-        </div>
+            </v-layout>
+        </v-container>
+    </div>
 </template>
 
 <script>

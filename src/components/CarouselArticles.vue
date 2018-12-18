@@ -1,17 +1,18 @@
 <template>
     <div>
-        <v-container>
-            <v-container
-                class="pb-0"
-                >
+        <v-container class="pb-3">
+            <v-layout justify-center>
                 <v-flex
                     xs12
+                    sm10
                     xl8
-                    offset-xl2
                     >
-                    <app-section-title-home :title="title" :path="path" />
+                    <app-section-title-home
+                        :title="title"
+                        :path="path"
+                        />
                 </v-flex>
-            </v-container>
+            </v-layout>
         </v-container>
 
         <v-carousel
@@ -28,13 +29,10 @@
                     :src="`http://www.icjia.state.il.us/${item.splash}`"
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
-                    <v-container>
+                    <v-layout justify-center>
                         <v-flex
-                            justify-center
-                            align-center
-                            xs12
-                            xl8
-                            offset-xl2
+                            xs10
+                            sm8
                             >
                             <h1
                                 class="text-xs-center"
@@ -43,7 +41,7 @@
                                 {{ item.title }}
                             </h1>
                         </v-flex>
-                    </v-container>
+                    </v-layout>
                 </v-carousel-item>
             </a>
         </v-carousel>

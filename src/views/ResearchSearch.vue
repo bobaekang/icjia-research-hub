@@ -1,12 +1,14 @@
 <template>
     <v-container>
-        <v-layout row wrap>
+        <v-layout
+            row
+            wrap
+            justify-center
+            >
             <v-flex
                 xs12
                 sm8
                 lg6
-                offset-sm2
-                offset-lg3
                 >
                 <app-search-bar
                     label="Search for articles (by title, date, author)"
@@ -30,8 +32,6 @@
                 xs12
                 sm10
                 xl8
-                offset-sm1
-                offset-xl2
                 class="mb-3"
                 v-for="(item, i) in filterItems(items)"
                 :key="i"

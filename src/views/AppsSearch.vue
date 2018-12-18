@@ -1,12 +1,14 @@
 <template>
     <v-container>
-        <v-layout row wrap>
+        <v-layout
+            row
+            wrap
+            justify-center
+            >
             <v-flex
                 xs12
                 sm8
                 lg6
-                offset-sm2
-                offset-lg3
                 >
                 <app-search-bar
                     label="Search for apps"
@@ -20,24 +22,31 @@
                     :item="item"
                     />
             </v-flex>
-        </v-layout>
 
-        <v-layout
-            justify-center
-            row
-            wrap
-            >
             <v-flex
-                lg3
-                md4
-                sm6
                 xs12
-                v-for="(item,i) in filterItems(items)"
-                :key="i"
+                sm10
+                xl8
                 >
-                <app-card-apps :item="item" :simple="isSimpleCard" />
+                <v-layout
+                    row
+                    wrap
+                    justify-center
+                    >        
+                    <v-flex
+                        xs12
+                        sm6
+                        lg4
+                        v-for="(item,i) in filterItems(items)"
+                        :key="i"
+                        >
+                        <app-card-apps :item="item" :simple="isSimpleCard" />
+                    </v-flex>
+                </v-layout>
+
             </v-flex>
         </v-layout>
+
     </v-container>
 </template>
 
