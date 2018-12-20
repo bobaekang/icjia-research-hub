@@ -99,5 +99,8 @@ export default {
         AppSearchFilter,
         AppSearchSuggestion,
     },
+    created () {
+        this.$store.dispatch('createArticleFilters');
+    },
 }
 </script>

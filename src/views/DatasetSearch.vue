@@ -74,9 +74,6 @@ export default {
             suggestions: 'datasetSuggestions'
         })
     },
-    watch: {
-        
-    },
     methods: {
         filterItems (items) {
             const s = this.search.toUpperCase();
@@ -99,6 +96,9 @@ export default {
         AppSearchBar,
         AppSearchFilter,
         AppSearchSuggestion,
+    },
+    created () {
+        this.$store.dispatch('createDatasetFilters');
     },
 }
 </script>
