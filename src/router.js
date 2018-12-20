@@ -21,7 +21,6 @@ export default new Router({
         ]),
         makeRoute('resources'),
         makeRoute('about'),
-        makeRoute('strapi')
     ],
     scrollBehavior (to, from, savedPosition) {
         return { x: 0, y: 0 };

@@ -67,6 +67,9 @@ export default {
             filterObj: {},
         }
     },
+    created () {
+        this.$store.dispatch('createDatasetFilters');
+    },
     computed: {
         ...mapGetters({
             items: 'datasets',

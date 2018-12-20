@@ -67,6 +67,9 @@ export default {
             filterObj: {},
         }
     },
+    created () {
+        this.$store.dispatch('createArticleFilters');
+    },
     computed: {
         ...mapGetters({
             items: 'articles',
