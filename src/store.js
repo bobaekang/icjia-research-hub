@@ -14,6 +14,21 @@ export default new Vuex.Store({
         appInfo,
         articleInfo,
         datasetInfo,
+
+        appSuggestions: [
+            'app',
+            'dashboard',
+        ],
+        articleSuggestions: [
+            'arrest',
+            'drug',
+            'prison',
+        ],
+        datasetSuggestions: [
+            'felony',
+            'juvenile',
+            'UCR',
+        ],
     },
     mutations: {
 
@@ -22,21 +37,13 @@ export default new Vuex.Store({
 
     },
     getters: {
-        apps: state => {
-            return state.appInfo;
-        },
-        articles: state => {
-            return state.articleInfo;
-        },
-        datasets: state => {
-            return state.datasetInfo;
-        },
-        appsHome: state => {
-            return state.appInfo.slice(0, 3);
-        },
-        articlesHome: state => {
-            return state.articleInfo.slice(0, 5);
-        },
+        apps: state =>  state.appInfo,
+        articles: state => state.articleInfo,
+        datasets: state => state.datasetInfo,
+        
+        appsHome: state => state.appInfo.slice(0, 3),
+        articlesHome: state => state.articleInfo.slice(0, 5),
+        
         articleFilters: state => {
             const filters = [
                 'pubtype',
@@ -55,29 +62,9 @@ export default new Vuex.Store({
             const filtersObjArr = state.datasetInfo.map(el => pick(el, filters));
             return(unwrapObj(reduceObjArr(filters, filtersObjArr)));
         },
-        appSuggestions: () => {
-            const suggestions = [
-                'app',
-                'dashboard',
-            ]
-            return(suggestions);
-        },
-        articleSuggestions: () => {
-            const suggestions = [
-                'arrest',
-                'drug',
-                'prison',
-            ]
-            return(suggestions);
-        },
-        datasetSuggestions: () => {
-            const suggestions = [
-                'felony',
-                'juvenile',
-                'UCR',
-
-            ]
-            return(suggestions);
-        },
+        
+        appSuggestions: state => state.appSuggestions,
+        articleSuggestions: state => state.articleSuggestions,
+        datasetSuggestions: state => state.datasetSuggestions,
     }
 })
