@@ -21,12 +21,12 @@
             <a
                 v-for="(item,i) in items"
                 :key="i"
-                :href="`http://www.icjia.state.il.us/articles/${item.filename}`"
+                :href="item.url"
                 target="_blank"
                 style="text-decoration: none"
                 >
                 <v-carousel-item
-                    :src="`http://www.icjia.state.il.us/${item.splash}`"
+                    :src="item.image.url"
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
                     <v-layout justify-center>

@@ -47,15 +47,25 @@
                 </div>
 
                 <div class="py-1">
-                    <span class="pr-2 bold">Agency</span>
-                    <a :href="dataset.agencyLink">
-                        {{ dataset.agencyName }}
-                    </a>
+                    <span class="pr-2 bold">Sources</span>
+                    <span
+                        v-for="(source, i) in dataset.sources"
+                        :key="i"
+                        >
+                        <a :href="source.url">
+                            {{ source.name }}
+                        </a>
+                    </span>
                 </div>
 
                 <div class="py-1">
-                    <span class="pr-2 bold">Category</span>
-                    {{ dataset.initialCategory }}
+                    <span class="pr-2 bold">Categories</span>
+                    <span
+                        v-for="(category, i) in dataset.categories"
+                        :key="i"
+                        >
+                        {{ category }}
+                    </span>
                 </div>
 
                 <div class="py-1">
@@ -76,12 +86,12 @@
 
                 <div class="py-1">
                     <span class="pr-2 bold">Time Period</span>
-                    {{ dataset.timePeriodDesc }}
+                    {{ dataset.timePeriod }}
                 </div>
 
                 <div class="py-1">
                     <span class="pr-2 bold">Age group</span>
-                    {{ dataset.juvenileAdult }}
+                    {{ dataset.ageGroup }}
                 </div>
             </div>
         </v-container>
@@ -95,6 +105,7 @@ export default {
     },
     computed: {
         dataset () {
+            console.log(this.item);
             return this.item;
         }
     },

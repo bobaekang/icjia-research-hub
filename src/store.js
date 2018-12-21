@@ -37,7 +37,7 @@ export default new Vuex.Store({
             state.appInfo = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
-                    el.showDesc = false;
+                    el.showDesciption = false;
                     return el;
                 }).
                 sort((a, b) => {
@@ -50,7 +50,7 @@ export default new Vuex.Store({
             state.articleInfo = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
-                    el.showTeaser = false;
+                    el.showSummary = false;
                     return el;
                 }).
                 sort((a, b) => {
@@ -74,17 +74,16 @@ export default new Vuex.Store({
         
         createArticleFilters (state) {
             const filters = [
-                'pubtype',
-                'area',
+                'type',
+                'categories',
             ].sort();
             const filtersObjArr = state.articleInfo.map(el => pick(el, filters));           
             state.articleFilters = unwrapObj(reduceObjArr(filters, filtersObjArr));
         },
         createDatasetFilters (state) {
             const filters = [
-                'agencyName',
-                'juvenileAdult',
-                'initialCategory'
+                'ageGroup',
+                'categories'
             ].sort();
             const filtersObjArr = state.datasetInfo.map(el => pick(el, filters));
             state.datasetFilters = unwrapObj(reduceObjArr(filters, filtersObjArr));

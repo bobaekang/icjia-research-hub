@@ -3,7 +3,7 @@
         <v-layout row>
             <v-img
                 class="hidden-sm-and-down"
-                :src="article.imgUrl"
+                :src="article.image.url"
                 lazy-src="https://via.placeholder.com/1/DDDDDD"
                 >
                 <v-layout
@@ -28,11 +28,11 @@
                         <v-layout row wrap>
                             <h3>{{ article.title }}</h3>
 
-                            <span v-for="(p, i) of article.pubtype" :key="i">                            
-                                <app-chip-card :name="p.toUpperCase()" />
+                            <span v-for="(t, i) of article.type" :key="i">                            
+                                <app-chip-card :name="t.toUpperCase()" />
                             </span>
-                            <span v-for="(a, i) of article.area" :key="i">                            
-                                <app-chip-card :name="a.toUpperCase()" />
+                            <span v-for="(c, i) of article.categories" :key="i">                            
+                                <app-chip-card :name="c.toUpperCase()" />
                             </span>
                         </v-layout>
                     </v-container>
@@ -54,12 +54,12 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                        v-if="article.teaser"
-                        @click="article.showTeaser = !article.showTeaser"
+                        v-if="article.summary"
+                        @click="article.showSummary = !article.showSummary"
                         flat
                         >
                         summary
-                        <v-icon>{{ article.showTeaser ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                        <v-icon>{{ article.showSummary ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                     </v-btn>
                     <v-btn
                         :href="article.url"
@@ -71,8 +71,8 @@
                 </v-card-actions>
 
                 <v-slide-y-transition>
-                    <v-card-text v-if="article.showTeaser">
-                        {{ article.teaser }}
+                    <v-card-text v-if="article.showSummary">
+                        {{ article.summary }}
                     </v-card-text>
                 </v-slide-y-transition>
             </v-layout>
@@ -102,10 +102,7 @@ export default {
                 }
             }
             let article = this.item;
-
             article.allAuthors = joinIfArray(article.authors, true);
-            article.url = `http://www.icjia.state.il.us/articles/${article.filename}`;
-            article.imgUrl = `http://www.icjia.state.il.us/${article.splash}`;
 
             return article;
         }

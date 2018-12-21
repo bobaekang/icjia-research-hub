@@ -25,9 +25,9 @@ export default {
         })
     },
     methods: {
-        view (filename) {
+        view (id) {
             return this.items.filter(item => {
-                return item.filename === filename;
+                return item._id === id;
             });
         }
     },

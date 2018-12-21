@@ -2,13 +2,19 @@
     <v-card>
         <v-card-title primary-title>
             <h2 class="pr-2">
-                <router-link :to="`/dataset/${dataset.filename}`">
+                <router-link :to="`/dataset/${dataset._id}`">
                   {{ dataset.title }}
                 </router-link>
             </h2>
             
-            <app-chip-card :name="dataset.initialCategory.toUpperCase()" />
-            <app-chip-card :name="dataset.juvenileAdult.toUpperCase()" />
+            <span
+                v-if="dataset.categories"
+                v-for="(category, i) in dataset.categories"
+                :key="i"
+                >
+                <app-chip-card :name="category.toUpperCase()" />
+            </span>
+            <app-chip-card :name="dataset.ageGroup.toUpperCase()" />
         </v-card-title>
 
         <v-divider />
@@ -21,7 +27,7 @@
                     <v-container class="small sans-serif py-2">
                         <span class="bold pr-2">Keywords</span>
 
-                        <span v-if="dataset.keywords">
+                        <span v-if="dataset.keywords && Array.isArray(dataset.keywords)">
                             <span
                                 class="pr-2"
                                 v-for="(keyword, i) in dataset.keywords"
@@ -46,10 +52,15 @@
                             </v-flex>
                             <v-flex sm10>
                                 <div>
-                                    <p class="ma-0 bold">Agency</p>
-                                    <a :href="dataset.agencyLink">
-                                        {{ dataset.agencyName }}
-                                    </a>
+                                    <p class="ma-0 bold">Sources</p>
+                                    <span
+                                        v-for="(source, i) in dataset.sources"
+                                        :key="i"
+                                        >
+                                        <a :href="source.url">
+                                            {{ source.name }}
+                                        </a>
+                                    </span>
                                 </div>
                             </v-flex>
                         </v-layout>
@@ -63,10 +74,15 @@
                             {{ dataset.date }}
                         </div>
                         <div>
-                            <span class="pr-2 bold">Agency</span>
-                            <a :href="dataset.agencyLink">
-                                {{ dataset.agencyName }}
-                            </a>
+                            <span class="pr-2 bold">Sources</span>
+                            <span
+                                v-for="(source, i) in dataset.sources"
+                                :key="i"
+                                >
+                                <a :href="source.url">
+                                    {{ source.name }}
+                                </a>
+                            </span>
                         </div>
                     </v-container>
 
@@ -83,7 +99,7 @@
                         
                         <v-btn
                             flat
-                            :to="`/dataset/${dataset.filename}`"
+                            :to="`/dataset/${dataset._id}`"
                             >
                             More
                             <v-icon>more_horiz</v-icon>
