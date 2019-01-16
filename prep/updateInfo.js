@@ -69,7 +69,7 @@ function updateAppInfo(info) {
         [ "crimes" ],
         [ "law enforcement" ],
     ];
-    const keywords = [
+    const tags = [
         [ "program" ],
         [ "victimization" ],
         [ "juvenile" ],
@@ -91,7 +91,7 @@ function updateAppInfo(info) {
         };
         el.authors = authors[i];
         el.categories = categories[i];
-        el.keywords = keywords[i];
+        el.tags = tags[i];
         el.summary = el.subtitle;
         el.description = el.desc;
         el.relatedArticles = relatedArticles;
@@ -118,12 +118,14 @@ function updateArticleInfo(info) {
 
     return info.map((el, i) => {
 
+        el.slug = titleToSlug(el.title);
         el.image = {
             url: home_url + el.splash,
             alt: ""
         };
         el.type = el.pubtype;
         el.categories = el.area;
+        el.tags = el.keywords
         el.summary = el.teaser;
         el.url = home_url + '/articles/' + el.filename;
         el.relatedApps = relatedApps;
@@ -132,6 +134,7 @@ function updateArticleInfo(info) {
         delete el.splash;
         delete el.pubtype;
         delete el.area;
+        delete el.keywords
         delete el.teaser;
         delete el.showTeaser;
         delete el.filename;
@@ -160,6 +163,7 @@ function updateDatasetInfo(info) {
         let categories = [];
         categories.push(el.initialCategory);
         
+        el.slug = titleToSlug(el.title)
         el.sources = [
             {
                 name: el.agencyName,
@@ -167,7 +171,7 @@ function updateDatasetInfo(info) {
             }
         ];
         el.categories = categories;
-        el.keywords = el.keywords;
+        el.tags = []
         el.unit = units;
         el.timePeriod = el.timePeriodDesc;
         el.ageGroup = el.juvenileAdult;
@@ -185,4 +189,11 @@ function updateDatasetInfo(info) {
 
         return el;
     })
+}
+
+function titleToSlug(str) {
+    return str
+        .replace(/[^\w\s]/gi, '')
+        .replace(/\s/gi, '-')
+        .toLowerCase();
 }
