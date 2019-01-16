@@ -7,13 +7,14 @@
                 </router-link>
             </h2>
             
-            <span
-                v-if="dataset.categories"
-                v-for="(category, i) in dataset.categories"
-                :key="i"
-                >
-                <app-chip-card :name="category.toUpperCase()" />
-            </span>
+            <div v-if="dataset.categories">
+                <span                
+                    v-for="(category, i) in dataset.categories"
+                    :key="i"
+                    >
+                    <app-chip-card :name="category.toUpperCase()" />
+                </span>
+            </div>
             <app-chip-card :name="dataset.ageGroup.toUpperCase()" />
         </v-card-title>
 
@@ -25,19 +26,19 @@
                     xs12
                     >
                     <v-container class="small sans-serif py-2">
-                        <span class="bold pr-2">Keywords</span>
+                        <span class="bold pr-2">Tags</span>
 
-                        <span v-if="dataset.keywords && Array.isArray(dataset.keywords)">
+                        <span v-if="dataset.tags && Array.isArray(dataset.tags)">
                             <span
                                 class="pr-2"
-                                v-for="(keyword, i) in dataset.keywords"
+                                v-for="(keyword, i) in dataset.tags"
                                 :key="i"
                                 >
                                 {{ keyword.toUpperCase() }}
                             </span>
                         </span>
                         
-                        <span v-else class="italic">No keywords</span>
+                        <span v-else class="italic">No tags</span>
                     </v-container>
 
                     <v-container

@@ -69,19 +69,19 @@
                 </div>
 
                 <div class="py-1">
-                    <span class="bold pr-2">Keywords</span>
+                    <span class="bold pr-2">Tags</span>
 
-                    <span v-if="dataset.keywords">
+                    <span v-if="dataset.tags">
                         <span
                             class="pr-2"
-                            v-for="(keyword, i) in dataset.keywords"
+                            v-for="(keyword, i) in dataset.tags"
                             :key="i"
                             >
                             {{ keyword.toUpperCase() }}
                         </span>
                     </span>
                     
-                    <span v-else class="italic">No keywords</span>
+                    <span v-else class="italic">No tags</span>
                 </div>
 
                 <div class="py-1">
