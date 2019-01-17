@@ -25,9 +25,9 @@ export default {
         })
     },
     methods: {
-        view (id) {
+        view (slug) {
             return this.items.filter(item => {
-                return item._id === id;
+                return item.slug === slug;
             });
         }
     },

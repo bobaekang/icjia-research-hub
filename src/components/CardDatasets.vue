@@ -2,7 +2,7 @@
     <v-card>
         <v-card-title primary-title>
             <h2 class="pr-2">
-                <router-link :to="`/dataset/${dataset._id}`">
+                <router-link :to="`/dataset/${dataset.slug}`">
                   {{ dataset.title }}
                 </router-link>
             </h2>
@@ -100,7 +100,7 @@
                         
                         <v-btn
                             flat
-                            :to="`/dataset/${dataset._id}`"
+                            :to="`/dataset/${dataset.slug}`"
                             >
                             More
                             <v-icon>more_horiz</v-icon>
