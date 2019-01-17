@@ -26,7 +26,11 @@
                 <div>
                     <v-container class="py-2">
                         <v-layout row wrap>
-                            <h3>{{ article.title }}</h3>
+                            <h3>
+                                <router-link :to="`/research/${article.slug}`">
+                                    {{ article.title }}
+                                </router-link>
+                            </h3>
 
                             <span v-for="(t, i) of article.type" :key="i">                            
                                 <app-chip-card :name="t.toUpperCase()" />
