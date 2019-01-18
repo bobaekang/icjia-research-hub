@@ -2,13 +2,20 @@
     <v-card>
         <v-card-title primary-title>
             <h2 class="pr-2">
-                <router-link :to="`/dataset/${dataset.filename}`">
+                <router-link :to="`/dataset/${dataset.slug}`">
                   {{ dataset.title }}
                 </router-link>
             </h2>
             
-            <app-chip-card :name="dataset.initialCategory.toUpperCase()" />
-            <app-chip-card :name="dataset.juvenileAdult.toUpperCase()" />
+            <div v-if="dataset.categories">
+                <span                
+                    v-for="(category, i) in dataset.categories"
+                    :key="i"
+                    >
+                    <simple-chip :name="category.toUpperCase()" />
+                </span>
+            </div>
+            <simple-chip :name="dataset.ageGroup.toUpperCase()" />
         </v-card-title>
 
         <v-divider />
@@ -19,19 +26,19 @@
                     xs12
                     >
                     <v-container class="small sans-serif py-2">
-                        <span class="bold pr-2">Keywords</span>
+                        <span class="bold pr-2">Tags</span>
 
-                        <span v-if="dataset.keywords">
+                        <span v-if="dataset.tags && Array.isArray(dataset.tags)">
                             <span
                                 class="pr-2"
-                                v-for="(keyword, i) in dataset.keywords"
+                                v-for="(keyword, i) in dataset.tags"
                                 :key="i"
                                 >
                                 {{ keyword.toUpperCase() }}
                             </span>
                         </span>
                         
-                        <span v-else class="italic">No keywords</span>
+                        <span v-else class="italic">No tags</span>
                     </v-container>
 
                     <v-container
@@ -46,10 +53,15 @@
                             </v-flex>
                             <v-flex sm10>
                                 <div>
-                                    <p class="ma-0 bold">Agency</p>
-                                    <a :href="dataset.agencyLink">
-                                        {{ dataset.agencyName }}
-                                    </a>
+                                    <p class="ma-0 bold">Sources</p>
+                                    <span
+                                        v-for="(source, i) in dataset.sources"
+                                        :key="i"
+                                        >
+                                        <a :href="source.url">
+                                            {{ source.name }}
+                                        </a>
+                                    </span>
                                 </div>
                             </v-flex>
                         </v-layout>
@@ -63,10 +75,15 @@
                             {{ dataset.date }}
                         </div>
                         <div>
-                            <span class="pr-2 bold">Agency</span>
-                            <a :href="dataset.agencyLink">
-                                {{ dataset.agencyName }}
-                            </a>
+                            <span class="pr-2 bold">Sources</span>
+                            <span
+                                v-for="(source, i) in dataset.sources"
+                                :key="i"
+                                >
+                                <a :href="source.url">
+                                    {{ source.name }}
+                                </a>
+                            </span>
                         </div>
                     </v-container>
 
@@ -83,7 +100,7 @@
                         
                         <v-btn
                             flat
-                            :to="`/dataset/${dataset.filename}`"
+                            :to="`/dataset/${dataset.slug}`"
                             >
                             More
                             <v-icon>more_horiz</v-icon>
@@ -96,9 +113,12 @@
 </template>
 
 <script>
-import AppChipCard from './ChipCard';
+import SimpleChip from './SimpleChip';
 
 export default {
+    components: {
+        SimpleChip,
+    },
     props: {
         item: Object,
     },
@@ -107,8 +127,5 @@ export default {
             return this.item;
         }
     },
-    components: {
-        AppChipCard,
-    }
 }
 </script>

@@ -10,18 +10,18 @@
                 sm8
                 lg6
                 >
-                <app-search-bar
+                <search-bar
                     ref="searchBar"
                     label="Search for apps"
                     :search.sync="search"
                     />
 
-                <app-count-items
+                <the-item-counter
                     :count="filterItems(items).length"
                     :item="item"
                     />
 
-                <app-search-suggestion
+                <search-suggestion
                     :showSuggestion="filterItems(items).length === 0"
                     :suggestions="suggestions"
                     @useSuggestion="useSuggestion($event)"
@@ -45,7 +45,7 @@
                         v-for="(item,i) in filterItems(items)"
                         :key="i"
                         >
-                        <app-card-apps :item="item" :simple="isSimpleCard" />
+                        <apps-item :item="item" :simple="isSimpleCard" />
                     </v-flex>
                 </v-layout>
 
@@ -57,12 +57,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppCardApps from '../components/CardApps'
-import AppCountItems from '../components/CountItems';
-import AppSearchBar from '../components/SearchBar';
-import AppSearchSuggestion from '../components/SearchSuggestion';
+import AppsItem from '../components/AppsItem'
+import TheItemCounter from '../components/TheItemCounter';
+import SearchBar from '../components/SearchBar';
+import SearchSuggestion from '../components/SearchSuggestion';
 
 export default {
+    components: {
+        AppsItem,
+        SearchBar,
+        SearchSuggestion,
+        TheItemCounter,
+    },
     props: {
         search: String,
     },
@@ -92,11 +98,5 @@ export default {
             this.$refs.searchBar.searchInput = suggestion;
         },
     },
-    components: {
-        AppCardApps,
-        AppCountItems,
-        AppSearchBar,
-        AppSearchSuggestion,
-    }
 }
 </script>

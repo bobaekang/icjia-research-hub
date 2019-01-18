@@ -1,5 +1,5 @@
 /***
-* Get articles info from github.com/ICJIA/icjia-public-website/
+* Get data from github.com/ICJIA/icjia-public-website/
 * and write the select info in JSON.
 */
 
@@ -11,14 +11,13 @@ const fs = require('fs');
 // call main
 main();
 
-
 // define functions
 function main() {
     const url = 'https://api.github.com/repos/ICJIA/icjia-public-website/contents/_content/'
     const urlArticle = url + '60-articles'
     const urlDataset = url + '88-datasets'
     const headers = { 'User-Agent': 'request' }
-    const dirpath = './src/assets/'
+    const dirpath = '../src/assets/'
     const nameArticle = 'articleInfo'
     const nameDataset = 'datasetInfo'
     const fieldsArticle = [

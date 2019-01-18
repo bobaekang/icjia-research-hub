@@ -8,7 +8,7 @@
                 sm10
                 xl8
                 >
-                <app-section-title-home
+                <section-title
                     :title="title"
                     :path="path"
                     />
@@ -44,9 +44,12 @@
 </template>
 
 <script>
-import AppSectionTitleHome from '../components/SectionTitleHome';
+import SectionTitle from '../components/SectionTitle';
 
 export default {
+    components: {
+        SectionTitle
+    },
     data () {
         return {
             title: 'resources',
@@ -70,9 +73,6 @@ export default {
             ]
         }
     },
-    components: {
-        AppSectionTitleHome
-    }
 }
 </script>
 

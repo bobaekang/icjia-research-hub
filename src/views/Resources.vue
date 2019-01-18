@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-view-title :title="title" />
+        <the-view-title :title="title" />
         
         <v-container>
             <v-layout
@@ -41,17 +41,17 @@
 </template>
 
 <script>
-import AppViewTitle from '../components/ViewTitle'
+import TheViewTitle from '../components/TheViewTitle'
 
 export default {
     name: 'resources',
+    components: {
+        TheViewTitle
+    },
     data () {
         return {
             title: "Resources"
         }
     },
-    components: {
-        AppViewTitle
-    }
 }
 </script>

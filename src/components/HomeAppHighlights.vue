@@ -10,7 +10,7 @@
                 sm10
                 xl8
                 >
-                <app-section-title-home
+                <section-title
                     :title="title"
                     :path="path"
                     />
@@ -30,7 +30,7 @@
                 v-for="(item,i) in items"
                 :key="i"
                 >
-                <app-card-apps :item="item" :simple="isSimpleCard" />
+                <apps-item :item="item" :simple="isSimpleCard" />
             </v-flex>
         </v-layout>
     </v-container>
@@ -38,10 +38,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppCardApps from './CardApps'
-import AppSectionTitleHome from './SectionTitleHome';
+import AppsItem from './AppsItem'
+import SectionTitle from './SectionTitle';
 
 export default {
+    components: {
+        AppsItem,
+        SectionTitle,
+    },
     data () {
         return {
             title: 'app highlights',
@@ -54,9 +58,5 @@ export default {
             items: 'appsHome'
         })
     },
-    components: {
-        AppCardApps,
-        AppSectionTitleHome,
-    }
 }
 </script>

@@ -43,7 +43,7 @@
                         v-for="(item, i) in items"
                         :key="i"
                         >
-                        <app-autocomplete
+                        <search-autocomplete
                             class="py-2 px-3"
                             ref="filterInput"
                             :label="item.title.toUpperCase()"
@@ -57,9 +57,12 @@
 </template>
 
 <script>
-import AppAutocomplete from './Autocomplete';
+import SearchAutocomplete from './SearchAutocomplete';
 
 export default {
+    components: {
+        SearchAutocomplete,
+    },
     props: {
         items: Object
     },
@@ -106,9 +109,6 @@ export default {
             this.show = false;
         }
     },
-    components: {
-        AppAutocomplete,
-    }
 }
 </script>
 

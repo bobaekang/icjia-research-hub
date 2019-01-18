@@ -2,7 +2,7 @@
     <v-card class="ma-3">
         <v-img
             height="200px"
-            :src="app.imgUrl"
+            :src="app.image.url"
             lazy-src="https://via.placeholder.com/1/DDDDDD"
             >
             <v-layout
@@ -21,7 +21,7 @@
         <v-card-title primary-title>
             <div>
                 <h2>{{ app.title }}</h2>
-                <span class="grey--text">{{ app.subtitle }}</span>
+                <span class="grey--text">{{ app.summary }}</span>
             </div>
         </v-card-title>
 
@@ -46,15 +46,15 @@
                 
                 <v-btn
                     icon
-                    @click="app.showDesc = !app.showDesc"
+                    @click="app.showDescription = !app.showDescription"
                     >
-                    <v-icon>{{ app.showDesc ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                    <v-icon>{{ app.showDescription ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                 </v-btn>
             </v-card-actions>
 
             <v-slide-y-transition>
-                <v-card-text v-if="app.showDesc">
-                    {{ app.desc }}
+                <v-card-text v-if="app.showDescription">
+                    {{ app.description }}
                 </v-card-text>
             </v-slide-y-transition>
         </template>

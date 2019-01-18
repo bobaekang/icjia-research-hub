@@ -1,25 +1,28 @@
 <template>
     <v-app>
-        <app-toolbar />
+        <the-toolbar />
 
         <router-view />
 
-        <app-button-back-to-top />
+        <the-button-back-to-top />
          
-        <app-footer />
+        <the-footer />
     </v-app>
 </template>
 
 <script>
-import AppToolbar from './components/Toolbar'
-import AppButtonBackToTop from './components/ButtonBackToTop'
-import AppFooter from './components/Footer' 
+import TheToolbar from './components/TheToolbar'
+import TheButtonBackToTop from './components/TheButtonBackToTop'
+import TheFooter from './components/TheFooter' 
 
 export default {
     components: {
-        AppToolbar,
-        AppButtonBackToTop,
-        AppFooter
+        TheToolbar,
+        TheButtonBackToTop,
+        TheFooter
+    },
+    created () {
+        this.$store.dispatch('fetchData');
     }
 }
 </script>

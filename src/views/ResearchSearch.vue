@@ -10,23 +10,23 @@
                 sm8
                 lg6
                 >
-                <app-search-bar
+                <search-bar
                     ref="searchBar"
                     label="Search for articles (by title, date, author)"
                     :search.sync="search"
                     />
 
-                <app-search-filter
+                <search-filter
                     :items="filters"
                     @updateFilter="filterObj = $event"
                     />
 
-                <app-count-items
+                <the-item-counter
                     :count="filterItems(items).length"
                     :item="item"
                     />
 
-                <app-search-suggestion
+                <search-suggestion
                     :showSuggestion="filterItems(items).length === 0"
                     :suggestions="suggestions"
                     @useSuggestion="useSuggestion($event)"
@@ -41,7 +41,7 @@
                 v-for="(item, i) in filterItems(items)"
                 :key="i"
                 >
-                <app-card-articles :item="item"/>
+                <research-item :item="item"/>
             </v-flex>
         </v-layout>
     </v-container>
@@ -50,13 +50,20 @@
 <script>
 import { mapGetters } from 'vuex';
 import { applyFilterBox } from '../utils';
-import AppCardArticles from '../components/CardArticles.vue';
-import AppCountItems from '../components/CountItems';
-import AppSearchBar from '../components/SearchBar';
-import AppSearchFilter from '../components/SearchFilter';
-import AppSearchSuggestion from '../components/SearchSuggestion';
+import ResearchItem from '../components/ResearchItem.vue';
+import SearchBar from '../components/SearchBar';
+import SearchFilter from '../components/SearchFilter';
+import SearchSuggestion from '../components/SearchSuggestion';
+import TheItemCounter from '../components/TheItemCounter';
 
 export default {
+    components: {
+        ResearchItem,
+        SearchBar,
+        SearchFilter,
+        SearchSuggestion,
+        TheItemCounter,
+    },
     props: {
         search: String,
     },
@@ -73,6 +80,9 @@ export default {
             filters: 'articleFilters',
             suggestions: 'articleSuggestions'
         }),
+    },
+    created () {
+        this.$store.dispatch('createArticleFilters');
     },
     methods: {
         filterItems (items) {
@@ -91,16 +101,6 @@ export default {
             this.search = suggestion;
             this.$refs.searchBar.searchInput = suggestion;
         },
-    },
-    components: {
-        AppCardArticles,
-        AppCountItems,
-        AppSearchBar,
-        AppSearchFilter,
-        AppSearchSuggestion,
-    },
-    created () {
-        this.$store.dispatch('createArticleFilters');
     },
 }
 </script>

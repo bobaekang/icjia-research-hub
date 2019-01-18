@@ -47,41 +47,51 @@
                 </div>
 
                 <div class="py-1">
-                    <span class="pr-2 bold">Agency</span>
-                    <a :href="dataset.agencyLink">
-                        {{ dataset.agencyName }}
-                    </a>
+                    <span class="pr-2 bold">Sources</span>
+                    <span
+                        v-for="(source, i) in dataset.sources"
+                        :key="i"
+                        >
+                        <a :href="source.url">
+                            {{ source.name }}
+                        </a>
+                    </span>
                 </div>
 
                 <div class="py-1">
-                    <span class="pr-2 bold">Category</span>
-                    {{ dataset.initialCategory }}
+                    <span class="pr-2 bold">Categories</span>
+                    <span
+                        v-for="(category, i) in dataset.categories"
+                        :key="i"
+                        >
+                        {{ category }}
+                    </span>
                 </div>
 
                 <div class="py-1">
-                    <span class="bold pr-2">Keywords</span>
+                    <span class="bold pr-2">Tags</span>
 
-                    <span v-if="dataset.keywords">
+                    <span v-if="dataset.tags">
                         <span
                             class="pr-2"
-                            v-for="(keyword, i) in dataset.keywords"
+                            v-for="(keyword, i) in dataset.tags"
                             :key="i"
                             >
                             {{ keyword.toUpperCase() }}
                         </span>
                     </span>
                     
-                    <span v-else class="italic">No keywords</span>
+                    <span v-else class="italic">No tags</span>
                 </div>
 
                 <div class="py-1">
                     <span class="pr-2 bold">Time Period</span>
-                    {{ dataset.timePeriodDesc }}
+                    {{ dataset.timePeriod }}
                 </div>
 
                 <div class="py-1">
                     <span class="pr-2 bold">Age group</span>
-                    {{ dataset.juvenileAdult }}
+                    {{ dataset.ageGroup }}
                 </div>
             </div>
         </v-container>

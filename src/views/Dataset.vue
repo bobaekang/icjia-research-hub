@@ -1,23 +1,23 @@
 <template>
     <div>
-        <app-view-title :title="title" />
+        <the-view-title :title="title" />
 
         <router-view search="" />
     </div>
 </template>
 
 <script>
-import AppViewTitle from '../components/ViewTitle';
+import TheViewTitle from '../components/TheViewTitle';
 
 export default {
     name: 'dataset',
+    components: {
+        TheViewTitle,
+    },
     data () {
         return {
             title: 'Dataset',
         }
-    },
-    components: {
-        AppViewTitle,
     },
 }
 </script>

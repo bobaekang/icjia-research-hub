@@ -7,7 +7,7 @@
                     sm10
                     xl8
                     >
-                    <app-section-title-home
+                    <section-title
                         :title="title"
                         :path="path"
                         />
@@ -18,15 +18,14 @@
         <v-carousel
             id="carousel"
             >
-            <a
+            <router-link
                 v-for="(item,i) in items"
                 :key="i"
-                :href="`http://www.icjia.state.il.us/articles/${item.filename}`"
-                target="_blank"
+                :to="`/research/${item.slug}`"
                 style="text-decoration: none"
                 >
                 <v-carousel-item
-                    :src="`http://www.icjia.state.il.us/${item.splash}`"
+                    :src="item.image.url"
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
                     <v-layout justify-center>
@@ -43,16 +42,19 @@
                         </v-flex>
                     </v-layout>
                 </v-carousel-item>
-            </a>
+            </router-link>
         </v-carousel>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import AppSectionTitleHome from '../components/SectionTitleHome';
+import SectionTitle from '../components/SectionTitle';
 
 export default {
+    components: {
+        SectionTitle
+    },
     data () {
         return {
             title: 'Latest articles',
@@ -64,9 +66,6 @@ export default {
             items: 'articlesHome'
         })
     },
-    components: {
-        AppSectionTitleHome
-    }
 }
 </script>
 
