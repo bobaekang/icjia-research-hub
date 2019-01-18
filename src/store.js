@@ -37,7 +37,7 @@ export default new Vuex.Store({
             state.appInfo = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
-                    el.showDesciption = false;
+                    el.showDescription = false;
                     return el;
                 }).
                 sort((a, b) => {

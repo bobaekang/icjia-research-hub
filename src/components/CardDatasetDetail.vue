@@ -105,7 +105,6 @@ export default {
     },
     computed: {
         dataset () {
-            console.log(this.item);
             return this.item;
         }
     },
