@@ -65,12 +65,12 @@
                         summary
                         <v-icon>{{ article.showSummary ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                     </v-btn>
+                    
                     <v-btn
-                        :href="article.url"
-                        target="_blank"
+                        :to="`/research/${article.slug}`"
                         flat>
-                        full
-                        <v-icon>open_in_new</v-icon>
+                        read
+                        <v-icon>visibility</v-icon>
                     </v-btn>
                 </v-card-actions>
 
