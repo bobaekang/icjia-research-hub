@@ -14,6 +14,9 @@ import { mapGetters } from 'vuex';
 import ResearchItemView from '../components/ResearchItemView';
 
 export default {
+    components: {
+        ResearchItemView,
+    },
     computed: {
         ...mapGetters({
             items: 'articles',
@@ -25,9 +28,6 @@ export default {
                 return item.slug === slug;
             });
         }
-    },
-    components: {
-        ResearchItemView,
     },
 }
 </script>

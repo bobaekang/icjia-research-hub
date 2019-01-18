@@ -47,6 +47,9 @@
 import SectionTitle from '../components/SectionTitle';
 
 export default {
+    components: {
+        SectionTitle
+    },
     data () {
         return {
             title: 'resources',
@@ -70,9 +73,6 @@ export default {
             ]
         }
     },
-    components: {
-        SectionTitle
-    }
 }
 </script>
 

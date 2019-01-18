@@ -50,6 +50,12 @@ import HomeAppHighlights from '../components/HomeAppHighlights'
 import HomeResources from '../components/HomeResources'
 
 export default {
+    components: {
+        HomeAppHighlights,
+        HomeLatestArticles,
+        HomeResources,
+        HomeSearch,
+    },
     data () {
         return {
             title: 'The Home of the Illinois Criminal Justice Data and Research',
@@ -57,12 +63,6 @@ export default {
             about: 'About this Data Portal'
         }
     },
-    components: {
-        HomeAppHighlights,
-        HomeLatestArticles,
-        HomeResources,
-        HomeSearch,
-    }
 }
 </script>
 

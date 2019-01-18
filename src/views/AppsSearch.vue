@@ -63,6 +63,12 @@ import SearchBar from '../components/SearchBar';
 import SearchSuggestion from '../components/SearchSuggestion';
 
 export default {
+    components: {
+        AppsItem,
+        SearchBar,
+        SearchSuggestion,
+        TheItemCounter,
+    },
     props: {
         search: String,
     },
@@ -92,11 +98,5 @@ export default {
             this.$refs.searchBar.searchInput = suggestion;
         },
     },
-    components: {
-        AppsItem,
-        SearchBar,
-        SearchSuggestion,
-        TheItemCounter,
-    }
 }
 </script>

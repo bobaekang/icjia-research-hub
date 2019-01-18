@@ -60,6 +60,9 @@
 import SearchAutocomplete from './SearchAutocomplete';
 
 export default {
+    components: {
+        SearchAutocomplete,
+    },
     props: {
         items: Object
     },
@@ -106,9 +109,6 @@ export default {
             this.show = false;
         }
     },
-    components: {
-        SearchAutocomplete,
-    }
 }
 </script>
 

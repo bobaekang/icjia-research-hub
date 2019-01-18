@@ -116,6 +116,9 @@
 import SimpleChip from './SimpleChip';
 
 export default {
+    components: {
+        SimpleChip,
+    },
     props: {
         item: Object,
     },
@@ -124,8 +127,5 @@ export default {
             return this.item;
         }
     },
-    components: {
-        SimpleChip,
-    }
 }
 </script>

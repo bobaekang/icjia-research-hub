@@ -57,6 +57,13 @@ import SearchSuggestion from '../components/SearchSuggestion';
 import TheItemCounter from '../components/TheItemCounter';
 
 export default {
+    components: {
+        ResearchItem,
+        SearchBar,
+        SearchFilter,
+        SearchSuggestion,
+        TheItemCounter,
+    },
     props: {
         search: String,
     },
@@ -67,15 +74,15 @@ export default {
             filterObj: {},
         }
     },
-    created () {
-        this.$store.dispatch('createArticleFilters');
-    },
     computed: {
         ...mapGetters({
             items: 'articles',
             filters: 'articleFilters',
             suggestions: 'articleSuggestions'
         }),
+    },
+    created () {
+        this.$store.dispatch('createArticleFilters');
     },
     methods: {
         filterItems (items) {
@@ -94,13 +101,6 @@ export default {
             this.search = suggestion;
             this.$refs.searchBar.searchInput = suggestion;
         },
-    },
-    components: {
-        ResearchItem,
-        SearchBar,
-        SearchFilter,
-        SearchSuggestion,
-        TheItemCounter,
     },
 }
 </script>

@@ -11,13 +11,13 @@ import TheViewTitle from '../components/TheViewTitle';
 
 export default {
     name: 'research',
+    components: {
+        TheViewTitle,
+    },
     data () {
         return {
             title: 'Research publication',
         }
-    },
-    components: {
-        TheViewTitle,
     },
 }
 </script>

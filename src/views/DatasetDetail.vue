@@ -19,6 +19,9 @@ import { mapGetters } from 'vuex';
 import DatasetItemDetail from '../components/DatasetItemDetail';
 
 export default {
+    components: {
+        DatasetItemDetail,
+    },
     computed: {
         ...mapGetters({
             items: 'datasets',
@@ -30,9 +33,6 @@ export default {
                 return item.slug === slug;
             });
         }
-    },
-    components: {
-        DatasetItemDetail,
     },
 }
 </script>

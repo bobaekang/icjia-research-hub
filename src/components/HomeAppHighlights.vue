@@ -42,6 +42,10 @@ import AppsItem from './AppsItem'
 import SectionTitle from './SectionTitle';
 
 export default {
+    components: {
+        AppsItem,
+        SectionTitle,
+    },
     data () {
         return {
             title: 'app highlights',
@@ -54,9 +58,5 @@ export default {
             items: 'appsHome'
         })
     },
-    components: {
-        AppsItem,
-        SectionTitle,
-    }
 }
 </script>

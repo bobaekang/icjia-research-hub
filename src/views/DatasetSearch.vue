@@ -57,6 +57,13 @@ import SearchSuggestion from '../components/SearchSuggestion';
 import TheItemCounter from '../components/TheItemCounter';
 
 export default {
+    components: {
+        DatasetItem,
+        SearchBar,
+        SearchFilter,
+        SearchSuggestion,
+        TheItemCounter,
+    },
     props: {
         search: String,
     },
@@ -67,9 +74,6 @@ export default {
             filterObj: {},
         }
     },
-    created () {
-        this.$store.dispatch('createDatasetFilters');
-    },
     computed: {
         ...mapGetters({
             items: 'datasets',
@@ -77,8 +81,8 @@ export default {
             suggestions: 'datasetSuggestions'
         })
     },
-    watch: {
-        
+    created () {
+        this.$store.dispatch('createDatasetFilters');
     },
     methods: {
         filterItems (items) {
@@ -95,13 +99,6 @@ export default {
             this.search = suggestion;
             this.$refs.searchBar.searchInput = suggestion;
         },
-    },
-    components: {
-        DatasetItem,
-        SearchBar,
-        SearchFilter,
-        SearchSuggestion,
-        TheItemCounter,
     },
 }
 </script>

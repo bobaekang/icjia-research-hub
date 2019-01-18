@@ -53,6 +53,9 @@ import { mapGetters } from 'vuex';
 import SectionTitle from '../components/SectionTitle';
 
 export default {
+    components: {
+        SectionTitle
+    },
     data () {
         return {
             title: 'Latest articles',
@@ -64,9 +67,6 @@ export default {
             items: 'articlesHome'
         })
     },
-    components: {
-        SectionTitle
-    }
 }
 </script>
 

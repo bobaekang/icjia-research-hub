@@ -45,13 +45,13 @@ import TheViewTitle from '../components/TheViewTitle'
 
 export default {
     name: 'resources',
+    components: {
+        TheViewTitle
+    },
     data () {
         return {
             title: "Resources"
         }
     },
-    components: {
-        TheViewTitle
-    }
 }
 </script>
