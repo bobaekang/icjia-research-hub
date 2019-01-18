@@ -4,14 +4,14 @@
             v-for="(item, i) in view($route.params.name)"
             :key="i"
             >
-            <app-view-research-article :item="item"/>
+            <research-item-view :item="item"/>
         </v-flex>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import AppViewResearchArticle from '../components/ViewResearchArticle';
+import ResearchItemView from '../components/ResearchItemView';
 
 export default {
     computed: {
@@ -27,7 +27,7 @@ export default {
         }
     },
     components: {
-        AppViewResearchArticle,
+        ResearchItemView,
     },
 }
 </script>

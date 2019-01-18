@@ -30,13 +30,13 @@
             :key="i"
             :class="{ 'grey-background':i % 2 == 1 }"
             >
-            <app-search v-if="i==1"/>
+            <home-search v-if="i==1"/>
 
-            <app-carousel-articles v-if="i==2"/>
+            <home-latest-articles v-if="i==2"/>
 
-            <app-card-apps-highlight v-if="i==3" />
+            <home-app-highlights v-if="i==3" />
 
-            <app-info-resources v-if="i==4" />
+            <home-resources v-if="i==4" />
         </div>
             
         <div style="height:100px"></div>
@@ -44,10 +44,10 @@
 </template>
 
 <script>
-import AppSearch from '../components/Search'
-import AppCarouselArticles from '../components/CarouselArticles'
-import AppCardAppsHighlight from '../components/CardAppsHighlight'
-import AppInfoResources from '../components/InfoResources'
+import HomeSearch from '../components/HomeSearch'
+import HomeLatestArticles from '../components/HomeLatestArticles'
+import HomeAppHighlights from '../components/HomeAppHighlights'
+import HomeResources from '../components/HomeResources'
 
 export default {
     data () {
@@ -58,10 +58,10 @@ export default {
         }
     },
     components: {
-        AppSearch,
-        AppCarouselArticles,
-        AppCardAppsHighlight,
-        AppInfoResources
+        HomeAppHighlights,
+        HomeLatestArticles,
+        HomeResources,
+        HomeSearch,
     }
 }
 </script>

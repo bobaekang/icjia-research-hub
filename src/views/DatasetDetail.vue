@@ -8,7 +8,7 @@
                 v-for="(item, i) in view($route.params.name)"
                 :key="i"
                 >
-                <app-card-dataset-detail :item="item"/>
+                <dataset-item-detail :item="item"/>
             </v-flex>
         </v-layout>
     </v-container>
@@ -16,7 +16,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppCardDatasetDetail from '../components/CardDatasetDetail';
+import DatasetItemDetail from '../components/DatasetItemDetail';
 
 export default {
     computed: {
@@ -32,7 +32,7 @@ export default {
         }
     },
     components: {
-        AppCardDatasetDetail,
+        DatasetItemDetail,
     },
 }
 </script>

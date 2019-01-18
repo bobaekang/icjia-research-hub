@@ -33,10 +33,10 @@
                             </h3>
 
                             <span v-for="(t, i) of article.type" :key="i">                            
-                                <app-chip-card :name="t.toUpperCase()" />
+                                <simple-chip :name="t.toUpperCase()" />
                             </span>
                             <span v-for="(c, i) of article.categories" :key="i">                            
-                                <app-chip-card :name="c.toUpperCase()" />
+                                <simple-chip :name="c.toUpperCase()" />
                             </span>
                         </v-layout>
                     </v-container>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import AppChipCard from './ChipCard';
+import SimpleChip from './SimpleChip';
 
 export default {
     props: {
@@ -112,7 +112,7 @@ export default {
         }
     },
     components: {
-        AppChipCard,
+        SimpleChip,
     }
 }
 </script>

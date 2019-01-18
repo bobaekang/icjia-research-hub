@@ -7,7 +7,7 @@
                     sm10
                     xl8
                     >
-                    <app-section-title-home
+                    <section-title
                         :title="title"
                         :path="path"
                         />
@@ -50,7 +50,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppSectionTitleHome from '../components/SectionTitleHome';
+import SectionTitle from '../components/SectionTitle';
 
 export default {
     data () {
@@ -65,7 +65,7 @@ export default {
         })
     },
     components: {
-        AppSectionTitleHome
+        SectionTitle
     }
 }
 </script>

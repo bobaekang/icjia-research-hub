@@ -12,10 +12,10 @@
                     v-for="(category, i) in dataset.categories"
                     :key="i"
                     >
-                    <app-chip-card :name="category.toUpperCase()" />
+                    <simple-chip :name="category.toUpperCase()" />
                 </span>
             </div>
-            <app-chip-card :name="dataset.ageGroup.toUpperCase()" />
+            <simple-chip :name="dataset.ageGroup.toUpperCase()" />
         </v-card-title>
 
         <v-divider />
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import AppChipCard from './ChipCard';
+import SimpleChip from './SimpleChip';
 
 export default {
     props: {
@@ -125,7 +125,7 @@ export default {
         }
     },
     components: {
-        AppChipCard,
+        SimpleChip,
     }
 }
 </script>
