@@ -18,11 +18,10 @@
         <v-carousel
             id="carousel"
             >
-            <a
+            <router-link
                 v-for="(item,i) in items"
                 :key="i"
-                :href="item.url"
-                target="_blank"
+                :to="`/research/${item.slug}`"
                 style="text-decoration: none"
                 >
                 <v-carousel-item
@@ -43,7 +42,7 @@
                         </v-flex>
                     </v-layout>
                 </v-carousel-item>
-            </a>
+            </router-link>
         </v-carousel>
     </div>
 </template>
