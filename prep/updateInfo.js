@@ -16,7 +16,7 @@ function main() {
     const articleInfo = require('../src/assets/articleInfo.json');
     const datasetInfo = require('../src/assets/datasetInfo.json');
     
-    const dirpath = './src/assets/';
+    const dirpath = '../src/assets/';
 
     writeInfoUpdated(appInfo, dirpath, data = "app");
     writeInfoUpdated(articleInfo, dirpath, data = "article");
