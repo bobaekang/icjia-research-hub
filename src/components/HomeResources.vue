@@ -57,17 +57,17 @@ export default {
             items: [
                 {
                     title: 'User Guide',
-                    body: 'New to the Data Portal? Read to find out more about navigating the Data Portal like a pro.',
+                    body: 'New to the Research Hub? Read to find out more about navigating the Research Hub like a pro.',
                     url: ''
                 },
                 {
                     title: 'API Documentation',
-                    body: 'Learn how to use the Data Portal API to obtain data, analyze them, and develop awesome applications.',
+                    body: 'Learn how to use the Research Hub API to obtain data, analyze them, and develop awesome applications.',
                     url: ''
                 },
                 {
                     title: 'Contributing Guidelines',
-                    body: 'Need help! Find out how to make contributions to the Data Portal and have your work recognized.',
+                    body: 'Need help! Find out how to make contributions to the Research Hub and have your work recognized.',
                     url: ''
                 }
             ]

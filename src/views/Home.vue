@@ -59,8 +59,8 @@ export default {
     data () {
         return {
             title: 'The Home of the Illinois Criminal Justice Data and Research',
-            subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Data Portal. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.',
-            about: 'About this Data Portal'
+            subtitle: 'Welcome to the Illinois Crinimal Justice Information Authority (ICJIA) Research Hub. Here you can find various criminal justice datasets, research publications and resources to develop web applications, dashboards and more.',
+            about: 'About this Research Hub'
         }
     },
 }

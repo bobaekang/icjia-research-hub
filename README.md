@@ -1,4 +1,4 @@
-# ICJIA Data Portal prototype
+# ICJIA Research Hub prototype
 
 ## Project setup
 ```

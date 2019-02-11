@@ -14,19 +14,19 @@
                     xl8
                     class="about-item"
                     >
-                    <h2 class="section-title">This Data Portal</h2>
+                    <h2 class="section-title">This Research Hub</h2>
 
                     <div class="spacer"></div>
                     
                     <h3>Open data, open research, open government</h3>
-                    <p>Explain the goals and purposes of the Data Portal here.</p>
+                    <p>Explain the goals and purposes of the Research Hub here.</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit voluptas laboriosam ab recusandae excepturi eaque dolor id ex reiciendis possimus itaque labore natus quibusdam mollitia perspiciatis facere, dolores quam! Explicabo, magni. Doloremque, corporis ab saepe culpa aliquid dolorem debitis nam!</p>
                     
                     <div class="spacer"></div>
 
                     <h3>Open source technology</h3>
                     <p>
-                        The Data Portal is powered by popular open source projects, such as
+                        The Research Hub is powered by popular open source projects, such as
                         <a href="https://vuejs.org/">Vue.js<v-icon>open_in_new</v-icon></a> and
                         <a href="https://vuetifyjs.com/">Vuetify<v-icon>open_in_new</v-icon></a>,
                         and developed publicly on

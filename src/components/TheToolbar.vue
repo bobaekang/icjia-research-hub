@@ -71,7 +71,7 @@ export default {
     data () {
         return {
             height: 75,
-            title: 'ICJIA data portal',
+            title: 'ICJIA Research Hub',
             views: [
                 'dataset',
                 'research',

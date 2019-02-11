@@ -22,7 +22,7 @@
                     <v-text-field
                         @keyup.enter="submit"
                         v-model="search"
-                        :label="`Search ${showLabel} in Data Portal`"
+                        :label="`Search ${showLabel} in Research Hub`"
                         clearable=true
                         append-outer-icon="search"
                         solo
@@ -54,7 +54,7 @@
 export default {
     data () {
         return {
-            title: 'get started & explore this data portal',
+            title: 'Get started & explore this Research Hub',
             search: '',
             types: [
                 'dataset',
