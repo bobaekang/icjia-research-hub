@@ -3,7 +3,7 @@
         <v-layout row>
             <v-img
                 class="hidden-sm-and-down"
-                :src="article.image.url"
+                :src="`${base_url}/${article.splash.url}`"
                 lazy-src="https://via.placeholder.com/1/DDDDDD"
                 >
                 <v-layout
@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import SimpleChip from './SimpleChip';
 
 export default {
@@ -95,6 +96,9 @@ export default {
         item: Object,
     },
     computed: {
+        ...mapGetters({
+            base_url: 'api_url'
+        }),
         article () {
             const joinIfArray = (x, name = false) => {
                 if (Array.isArray(x)) {

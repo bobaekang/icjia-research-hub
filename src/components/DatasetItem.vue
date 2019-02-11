@@ -31,10 +31,10 @@
                         <span v-if="dataset.tags && Array.isArray(dataset.tags)">
                             <span
                                 class="pr-2"
-                                v-for="(keyword, i) in dataset.tags"
+                                v-for="(tag, i) in dataset.tags"
                                 :key="i"
                                 >
-                                {{ keyword.toUpperCase() }}
+                                {{ tag.toUpperCase() }}
                             </span>
                         </span>
                         
@@ -90,14 +90,8 @@
                     <v-container
                         class="pa-0 text-xs-right"
                         >
-                        <v-btn
-                            flat
-                            class="mr-0"
-                            >
-                            Download
-                            <v-icon>file_download</v-icon>
-                        </v-btn>
-                        
+                        <simple-download-button :data="dataset.data" />
+
                         <v-btn
                             flat
                             :to="`/dataset/${dataset.slug}`"
@@ -114,10 +108,12 @@
 
 <script>
 import SimpleChip from './SimpleChip';
+import SimpleDownloadButton from './SimpleDownloadButton';
 
 export default {
     components: {
         SimpleChip,
+        SimpleDownloadButton,
     },
     props: {
         item: Object,

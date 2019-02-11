@@ -25,7 +25,7 @@
                 style="text-decoration: none"
                 >
                 <v-carousel-item
-                    :src="item.image.url"
+                    :src="`${base_url}/${item.splash.url}`"
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
                     <v-layout justify-center>
@@ -63,7 +63,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            items: 'articlesHome'
+            items: 'articlesHome',
+            base_url: 'api_url'
         })
     },
 }

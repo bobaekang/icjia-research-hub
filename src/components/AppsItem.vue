@@ -2,7 +2,7 @@
     <v-card class="ma-3">
         <v-img
             height="200px"
-            :src="app.image.url"
+            :src="app.imageUrl"
             lazy-src="https://via.placeholder.com/1/DDDDDD"
             >
             <v-layout

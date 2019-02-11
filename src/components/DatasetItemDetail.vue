@@ -16,15 +16,7 @@
 
             <v-spacer />
 
-            <v-btn flat class="mr-0">
-                Download
-                <v-icon>file_download</v-icon>
-            </v-btn>
-
-            <v-btn flat class="mr-0">
-                API
-                <v-icon>code</v-icon>
-            </v-btn>
+            <simple-download-button :data="dataset.data" />
 
             <v-btn
                 flat
@@ -99,7 +91,12 @@
 </template>
 
 <script>
+import SimpleDownloadButton from './SimpleDownloadButton';
+
 export default {
+    components: {
+        SimpleDownloadButton,
+    },
     props: {
         item: Object,
     },

@@ -6,10 +6,10 @@ import { pick, reduceObjArr, unwrapObj } from './utils';
 
 Vue.use(Vuex)
 
-const API_URL = 'http://localhost:1337'
-
 export default new Vuex.Store({
     state: {
+        api_url: 'http://localhost:1337',
+
         appInfo: [],
         appSuggestions: [
             'app',
@@ -91,10 +91,10 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        async fetchData ({ commit }) {
-            commit('fetchApps', await axios.get(`${API_URL}/apps`));
-            commit('fetchArticles', await axios.get(`${API_URL}/articles`));
-            commit('fetchDatasets', await axios.get(`${API_URL}/datasets`));
+        async fetchData ({ commit, state }) {
+            commit('fetchApps', await axios.get(`${state.api_url}/apps`));
+            commit('fetchArticles', await axios.get(`${state.api_url}/articles`));
+            commit('fetchDatasets', await axios.get(`${state.api_url}/datasets`));
         },
         
         createArticleFilters ({ commit }) {
@@ -105,6 +105,8 @@ export default new Vuex.Store({
         },
     },
     getters: {
+        api_url: state => state.api_url,
+        
         apps: state =>  state.appInfo,
         appsHome: state => state.appInfo.slice(0, 3),
         appSuggestions: state => state.appSuggestions,

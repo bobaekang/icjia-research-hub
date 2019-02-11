@@ -2,7 +2,7 @@
     <div>
         <v-img
             height="500px"
-            :src="article.image.url"
+            :src="`${base_url}/${article.splash.url}`"
             >
         </v-img>
 
@@ -80,6 +80,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 const md = require('markdown-it')({
         html: true,
         linkify: true,
@@ -92,25 +94,28 @@ export default {
         item: Object,
     },
     computed: {
+        ...mapGetters({
+            base_url: 'api_url'
+        }),
         article () {
             return this.item;
         },
         compliedBody () {
-            let test = "# Heading (#)\n"
-            test += "Some contents[^1]\n"
-            test += "## Sub-heading (##)\n"
-            test += "Some contents[^2]\n"
-            test += "### Sub-sub-heading (###)\n"
-            test += "Some contents\n"
-            test += "#### Sub-sub-sub-heading (####)\n"
-            test += "Some contents\n"
-            test += "##### Sub-sub-sub-sub-heading (#####)\n"
-            test += "Some contents\n"
-            test += "[^1]: First footnote\n"
-            test += "[^2]: Second footnote\n"
+            // let test = "# Heading (#)\n"
+            // test += "Some contents[^1]\n"
+            // test += "## Sub-heading (##)\n"
+            // test += "Some contents[^2]\n"
+            // test += "### Sub-sub-heading (###)\n"
+            // test += "Some contents\n"
+            // test += "#### Sub-sub-sub-heading (####)\n"
+            // test += "Some contents\n"
+            // test += "##### Sub-sub-sub-sub-heading (#####)\n"
+            // test += "Some contents\n"
+            // test += "[^1]: First footnote\n"
+            // test += "[^2]: Second footnote\n"
             
-            return md.render(test);
-            // return md.render(this.item.body);
+            // return md.render(test);
+            return md.render(this.item.markdown);
         }
     },
 }
