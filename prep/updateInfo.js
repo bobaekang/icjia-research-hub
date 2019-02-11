@@ -1,199 +1,131 @@
 /***
-* Update data originally fetched from github.com/ICJIA/icjia-public-website/
-* by changing and adding fields to each file
-* and write the result in JSON.
+* Update/modify data in strapi server
 */
 
 // load libraries
-const fs = require('fs');
+const axios = require('axios');
+
 
 // call main
 main();
 
+
 // define functions
 function main() {
-    const appInfo = require('../src/assets/appInfo.json');
-    const articleInfo = require('../src/assets/articleInfo.json');
-    const datasetInfo = require('../src/assets/datasetInfo.json');
-    
-    const dirpath = '../src/assets/';
+    const baseUrl = 'http://localhost:1337';
+    const appFields = [
+        '',
+    ];
+    const articleFields = [
+        '',
+    ];
+    const authorFields = [
+        '',
+    ];
+    const datasetFields = [
+        '',
+    ];
 
-    writeInfoUpdated(appInfo, dirpath, data = "app");
-    writeInfoUpdated(articleInfo, dirpath, data = "article");
-    writeInfoUpdated(datasetInfo, dirpath, data = "dataset");
+    const appInfoEdited = require('../src/assets/appInfoEdited.json');
+    const articleInfoEdited = require('../src/assets/articleInfoEdited.json');
+    const authorInfoEdited = require('../src/assets/authorInfoEdited.json');
+    const datasetInfoEdited = require('../src/assets/datasetInfoEdited.json');
+
+    // deleteAll(appInfoEdited, baseUrl, 'app');
+    // deleteAll(articleInfoEdited, baseUrl, 'article');
+    // deleteAll(authorInfoEdited, baseUrl, 'author');
+    // deleteAll(datasetInfoEdited, baseUrl, 'dataset');
+
+    // updateAll(appInfoEdited, baseUrl, 'app');
+    // updateAll(articleInfoEdited, baseUrl, 'article');
+    // updateAll(authorInfoEdited, baseUrl, 'author');
+    // updateAll(datasetInfoEdited, baseUrl, 'dataset');
+
+    // updateSelect(appInfoEdited, appFields, baseUrl, 'app');
+    // updateSelect(articleInfoEdited, articleFields, baseUrl, 'article');
+    // updateSelect(authorInfoEdited, authorFields, baseUrl, 'author');
+    // updateSelect(datasetInfoEdited, datasetFields, baseUrl, 'dataset');
+
+    // clearSelect(appInfoEdited, appFields, baseUrl, 'app');
+    // clearSelect(articleInfoEdited, articleFields, baseUrl, 'article');
+    // clearSelect(authorInfoEdited, authorFields, baseUrl, 'author');
+    // clearSelect(datasetInfoEdited, datasetFields, baseUrl, 'dataset');
 }
 
-function writeInfoUpdated(info, dirpath, data) {
-    let updatedInfo;
-    const name = data + 'InfoUpdated';
+function deleteAll(items, baseUrl, type) {
+    const collectionUrl = `${baseUrl}/${type}s`
     
-    if (data === "app") updatedInfo = updateAppInfo(info);
-    else if (data === "article") updatedInfo = updateArticleInfo(info);
-    else if (data === "dataset") updatedInfo = updateDatasetInfo(info);
-
-    writeJSON(updatedInfo, name, dirpath);
+    items
+        .forEach(async el => {
+            const id = await getRefId(el, collectionUrl);
+            const url = `${collectionUrl}/:${id}`;
+            
+            axios({
+                method: 'delete',
+                url: url
+            }).then(
+                console.log(`Deleted: ${url}`)
+            )
+        })
 }
 
-function writeJSON (obj, name, dirpath) {
-    try {
-        const path = dirpath + name + '.json'
-        
-        fs.writeFile(path, JSON.stringify(obj), (error) => {
-            if (error) throw error;
-            console.log('Complete json: ' + name);
+function updateAll(items, baseUrl, type) {
+    const collectionUrl = `${baseUrl}/${type}s`
+
+    items
+        .forEach(async el => {
+            const id = await getRefId(el, collectionUrl);            
+            makePutRequest(el, `${collectionUrl}/:${id}`);
+        })
+}
+
+function updateSelect(items, fields, baseUrl, type) {
+    const collectionUrl = `${baseUrl}/${type}s`
+    
+    items
+        .forEach(async el => {
+            const id = await getRefId(el, collectionUrl);
+            makePutRequest(pick(el, fields), `${collectionUrl}/:${id}`);
+        })
+}
+
+function clearSelect(items, fields, baseUrl, type) {
+    const collectionUrl = `${baseUrl}/${type}s`
+
+    items
+        .forEach(async el => {
+            const id = await getRefId(el, collectionUrl);
+            makePutRequest(pick(el, fields), `${collectionUrl}/:${id}`);
+        })
+}
+
+/**
+ * Get the ID of a select item.
+ * @param {*} el An item of a select content type
+ * @param {*} collectionUrl URL to send GET request for a select content type
+ */
+async function getRefId(el, collectionUrl) {
+    const ref = await axios
+        .get(collectionUrl, {
+            params: { slug: el.slug }
         });
-    } catch (e) {
-        console.log(e);
-    }
+
+    return ref.data[0].id;
 }
 
-function updateAppInfo(info) {
-    const dates = [
-        "2018-12-01",
-        "2018-03-06",
-        "2018-06-11",
-        "2018-09-16",
-        "2018-12-21",
-    ];
-    const authors = [
-        [ { name: "Dennis Ritchie", url: "" } ],
-        [ { name: "Tim Berners-Lee", url: "" } ],
-        [ { name: "Linus Torvalds", url: "" } ],
-        [ { name: "Brendan Eich", url: "" } ],
-        [ { name: "Ryan Dahl", url: "" } ],
-    ];
-    const categories = [
-        [ "corrections" ],
-        [ "victims" ],
-        [ "courts" ],
-        [ "crimes" ],
-        [ "law enforcement" ],
-    ];
-    const tags = [
-        [ "program" ],
-        [ "victimization" ],
-        [ "juvenile" ],
-        [ "dashboard", "violent crime" ],
-        [ "drugs", "police" ],
-    ];
-    const relatedArticles = [
-        { title: "Article Title", url: "" },
-    ];
-    const relatedDatasets = [
-        { title: "Dataset Title", url: "" },
-    ];
-    
-    return info.map((el, i) => {
-        el.date = dates[i];
-        el.image = {
-            url: el.imgUrl,
-            alt: ""
-        };
-        el.authors = authors[i];
-        el.categories = categories[i];
-        el.tags = tags[i];
-        el.summary = el.subtitle;
-        el.description = el.desc;
-        el.relatedArticles = relatedArticles;
-        el.relatedDatasets = relatedDatasets;
-
-        delete el.subtitle;
-        delete el.desc;
-        delete el.imgUrl;
-        delete el.showDesc;
-
-        return el;
-    })
+function pick(obj, keys) {
+    return keys
+        .map(k => k in obj ? {[k]: obj[k]} : {})
+        .reduce((res, o) => Object.assign(res, o), {});
 }
 
-function updateArticleInfo(info) {
-    const home_url = 'http://icjia.state.il.us';
-    const relatedApps = [
-        { title: "App Title Here", url: "" },
-    ];
-    const relatedDatasets = [
-        { title: "Dataset Title Here", url: "" },
-    ];
-
-
-    return info.map((el, i) => {
-
-        el.slug = titleToSlug(el.title);
-        el.image = {
-            url: home_url + el.splash,
-            alt: ""
-        };
-        el.type = el.pubtype;
-        el.categories = el.area;
-        el.tags = el.keywords
-        el.summary = el.teaser;
-        el.url = home_url + '/articles/' + el.filename;
-        el.relatedApps = relatedApps;
-        el.relatedDatasets = relatedDatasets;
-
-        delete el.splash;
-        delete el.pubtype;
-        delete el.area;
-        delete el.keywords
-        delete el.teaser;
-        delete el.showTeaser;
-        delete el.filename;
-        
-        return el;
-    })
-}
-
-function updateDatasetInfo(info) {
-    const units = "state, county, inidividual, etc.";
-    const variables = [
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
-    ];
-    const descriptions = "Dataset description here";
-    const data = "";
-    const relatedApps = [
-        { title: "App Title Here", url: "" },
-    ];
-    const relatedArticles = [
-        { title: "Article Title Here", url: "" },
-    ];
-    
-    return info.map((el, i) => {
-        let categories = [];
-        categories.push(el.initialCategory);
-        
-        el.slug = titleToSlug(el.title)
-        el.sources = [
-            {
-                name: el.agencyName,
-                url: el.agencyLink
-            }
-        ];
-        el.categories = categories;
-        el.tags = []
-        el.unit = units;
-        el.timePeriod = el.timePeriodDesc;
-        el.ageGroup = el.juvenileAdult;
-        el.variables = variables;
-        el.description = descriptions;
-        el.data = data;
-        el.relatedApps = relatedApps;
-        el.relatedArticles = relatedArticles;
-
-        delete el.agencyName;
-        delete el.agencyLink;
-        delete el.initialCategory;
-        delete el.timePeriodDesc;
-        delete el.juvenileAdult;
-
-        return el;
-    })
-}
-
-function titleToSlug(str) {
-    return str
-        .replace(/[^\w\s]/gi, '')
-        .replace(/\s/gi, '-')
-        .toLowerCase();
+function makePutRequest(data, url) {
+    axios({
+        method: 'put',
+        url: url,
+        data: data,
+        config: {heaers: {'Content-type': 'application/json'}}
+    }).then(
+        console.log(`Updated: ${url}`)
+    )
 }

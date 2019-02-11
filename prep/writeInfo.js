@@ -3,23 +3,31 @@
 * and write the select info in JSON.
 */
 
+
 // load libraries
 const axios = require('axios');
 const yaml = require('js-yaml');
 const fs = require('fs');
 
+
 // call main
 main();
+
 
 // define functions
 function main() {
     const url = 'https://api.github.com/repos/ICJIA/icjia-public-website/contents/_content/'
     const urlArticle = url + '60-articles'
+    const urlAuthor = url + '75-biographies'
     const urlDataset = url + '88-datasets'
+    
     const headers = { 'User-Agent': 'request' }
-    const dirpath = '../src/assets/'
+    const dirpath = './src/assets/'
+    
     const nameArticle = 'articleInfo'
+    const nameAuthor = 'authorInfo'
     const nameDataset = 'datasetInfo'
+    
     const fieldsArticle = [
         'title',
         'splash',
@@ -30,6 +38,11 @@ function main() {
         'filename',
         'teaser',
         'showTeaser',
+        'pdf_uploads'
+    ]
+    const fieldsAuthor = [
+        'title',
+        'description'
     ]
     const fieldsDataset = [
         'title',
@@ -41,18 +54,28 @@ function main() {
         'keywords',
         'timePeriodDesc',
         'filename',
+        'datasetfilename'
     ]
 
     writeInfo(urlArticle, headers, dirpath, nameArticle, fieldsArticle);
+    writeInfo(urlAuthor, headers, dirpath, nameAuthor, fieldsAuthor);
     writeInfo(urlDataset, headers, dirpath, nameDataset, fieldsDataset);
 }
 
+/**
+ * Write information of a select content type for select fields
+ * @param {*} url Source URL for the content type
+ * @param {*} headers Request headers 
+ * @param {*} dirpath Directory path for the file to write
+ * @param {*} name Name of the file to write
+ * @param {*} fields Fields to write
+ */
 async function writeInfo (url, headers, dirpath, name, fields) {
     try {
         const res = await axios.get(url, headers);
         
         Promise.all(res.data.map(async (el) => {
-                return await getInfo(el, fields);
+                return await getInfo(el, name, fields);
             }))
             .then(infoArr => {
                 const filtered = infoArr.filter((el) => {
@@ -79,33 +102,52 @@ function compareDate(x, y) {
     return 0;
 } 
 
-async function getInfo (el, fields) {
+/**
+ * Get item information for select fields from the source 
+ * @param {*} el 
+ * @param {*} name 
+ * @param {*} fields 
+ */
+async function getInfo (el, name, fields) {
     try {
         const regex = /^\d{4}-\d{2}-\d{2}/;
-        const name = el.name.split('.html')[0];
+        const filename = el.name.split('.html')[0];
         
-        if (name.match(regex)) {
+        if (filename.match(regex)) {
             const res = await axios.get(el.download_url);
             
-            let header = getHeader(res.data);
-            header.filename = name.split(regex)[1].slice(1);
-            header.date = name.match(regex)[0];
-            header.showTeaser = false;
+            let data = parseHeader(res.data);
+            data.filename = filename.split(regex)[1].slice(1);
+            data.date = filename.match(regex)[0];
+            data.showTeaser = false;
+            
+            if (name === 'authorInfo') {
+                data.description = parseBody(res.data);
+            }
 
-            return pick(header, fields);
+            return pick(data, fields);
         }
     } catch (e) {
         console.log(e);
     }   
 }
 
-function getHeader (data) {
+function parseHeader (data) {
     try {
-        const header = data.toString().split('---\n')[1].replace(//gu, "");
+        const header = data.toString().split('---\n')[1].replace(//gu, '');
         return yaml.safeLoad(header, 'utf8');
     } catch (e) {
         console.log(e);
     }
+}
+
+function parseBody (data) {
+    try {
+        const tags = /(&nbsp;|<([^>]+)>)/ig
+        return data.toString().split('---\n')[2].replace(tags, '').replace('\n', '');
+    } catch (e) {
+        console.log(e);
+    }  
 }
 
 function pick(obj, keys) {
