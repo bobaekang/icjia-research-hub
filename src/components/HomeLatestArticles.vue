@@ -21,7 +21,7 @@
             <router-link
                 v-for="(item,i) in items"
                 :key="i"
-                :to="`/research/${item.slug}`"
+                :to="`/article/${item.slug}`"
                 style="text-decoration: none"
                 >
                 <v-carousel-item
@@ -58,7 +58,7 @@ export default {
     data () {
         return {
             title: 'Latest articles',
-            path: 'research',
+            path: 'article',
         }
     },
     computed: {

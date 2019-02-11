@@ -40,7 +40,7 @@
                         <v-btn
                             flat
                             exact
-                            to="/research"
+                            to="/article"
                             >
                             Back
                         </v-btn>

@@ -27,7 +27,7 @@
                     <v-container class="py-2">
                         <v-layout row wrap>
                             <h3>
-                                <router-link :to="`/research/${article.slug}`">
+                                <router-link :to="`/article/${article.slug}`">
                                     {{ article.title }}
                                 </router-link>
                             </h3>
@@ -67,7 +67,7 @@
                     </v-btn>
                     
                     <v-btn
-                        :to="`/research/${article.slug}`"
+                        :to="`/article/${article.slug}`"
                         flat>
                         read
                         <v-icon>visibility</v-icon>

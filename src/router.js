@@ -13,9 +13,9 @@ export default new Router({
             makeRouteChild('datasetSearch', 'DatasetSearch', ''),
             makeRouteChild('datasetView', 'DatasetDetail', ':name')
         ]),
-        makeRoute('research', [
-            makeRouteChild('researchSearch', 'ResearchSearch', ''),
-            makeRouteChild('researchView', 'ResearchArticle', ':name')
+        makeRoute('article', [
+            makeRouteChild('ArticleSearch', 'ArticleSearch', ''),
+            makeRouteChild('ArticleView', 'ArticleView', ':name')
         ]),
         makeRoute('apps', [
             makeRouteChild('appsSearch', 'AppsSearch', ''),

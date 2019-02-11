@@ -58,7 +58,7 @@ export default {
             search: '',
             types: [
                 'dataset',
-                'research',
+                'article',
                 'apps'
             ],
             typeSelect: 'dataset'
@@ -71,7 +71,7 @@ export default {
         showLabel() {
             let label;
             if (this.typeSelect === 'dataset') label = 'datasets';
-            else if (this.typeSelect === 'research') label = 'research publications';
+            else if (this.typeSelect === 'article') label = 'articles';
             else if (this.typeSelect === 'apps') label = 'applications';
 
             return label;

@@ -41,7 +41,7 @@
                 v-for="(item, i) in filterItems(items)"
                 :key="i"
                 >
-                <research-item :item="item"/>
+                <article-item :item="item"/>
             </v-flex>
         </v-layout>
     </v-container>
@@ -50,7 +50,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { applyFilterBox } from '../utils';
-import ResearchItem from '../components/ResearchItem.vue';
+import ArticleItem from '../components/ArticleItem.vue';
 import SearchBar from '../components/SearchBar';
 import SearchFilter from '../components/SearchFilter';
 import SearchSuggestion from '../components/SearchSuggestion';
@@ -58,7 +58,7 @@ import TheItemCounter from '../components/TheItemCounter';
 
 export default {
     components: {
-        ResearchItem,
+        ArticleItem,
         SearchBar,
         SearchFilter,
         SearchSuggestion,

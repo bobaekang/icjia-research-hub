@@ -4,7 +4,7 @@
             v-for="(item, i) in view($route.params.name)"
             :key="i"
             >
-            <research-item-view :item="item"/>
+            <article-item-view :item="item"/>
 
             <the-progess-bar />
         </v-flex>
@@ -13,12 +13,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import ResearchItemView from '../components/ResearchItemView';
+import ArticleItemView from '../components/ArticleItemView';
 import TheProgessBar from '../components/TheProgressBar';
 
 export default {
     components: {
-        ResearchItemView,
+        ArticleItemView,
         TheProgessBar,
     },
     computed: {
