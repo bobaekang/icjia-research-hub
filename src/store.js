@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         api_url: 'http://localhost:1337',
+        docs_url: '#',
 
         appInfo: [],
         appSuggestions: [
@@ -106,6 +107,7 @@ export default new Vuex.Store({
     },
     getters: {
         api_url: state => state.api_url,
+        docs_url: state => state.docs_url,
         
         apps: state =>  state.appInfo,
         appsHome: state => state.appInfo.slice(0, 3),

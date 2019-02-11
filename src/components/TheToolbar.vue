@@ -6,8 +6,41 @@
             fixed
             scroll-off-screen
             >
+            <v-menu
+                offset-y
+                class="hidden-md-and-up"
+                >
+                <v-btn
+                    slot="activator"
+                    flat
+                    >
+                    <v-icon>menu</v-icon>
+                </v-btn>
+                
+                <v-list>
+                    <v-list-tile
+                        v-for="(view, i) in views"
+                        :key="i"
+                        :to="`/${view}`"
+                        >
+                        <v-list-tile-title class="slot">
+                            {{ view }}
+                        </v-list-tile-title>
+                    </v-list-tile>
+                    
+                    <v-list-tile
+                        :href="docs_url"
+                        >
+                        <v-list-tile-title class="slot">
+                            documentation
+                        </v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+
+
             <a
-                class="hidden-xs-only"
+                class="hidden-sm-and-down"
                 :href="logo.href"
                 target="_blank"
                 >
@@ -34,32 +67,20 @@
                     flat
                     >
                     {{ view }}
-                </v-btn>   
-            </v-toolbar-items>
+                </v-btn>
 
-            <v-menu
-                offset-y
-                class="hidden-md-and-up"
-                >
                 <v-btn
-                    slot="activator"
+                    :href="docs_url"
+                    target="_blank"
                     flat
                     >
-                    <v-icon>menu</v-icon>
+                    documentation
                 </v-btn>
-                
-                <v-list>
-                    <v-list-tile
-                        v-for="(view, i) in views"
-                        :key="i"
-                        :to="`/${view}`"
-                        >
-                        <v-list-tile-title class="slot">
-                            {{ view }}
-                        </v-list-tile-title>
-                    </v-list-tile>
-                </v-list>
-            </v-menu>
+
+
+            </v-toolbar-items>
+
+            
         </v-toolbar>
 
         <div :style="{ height: hpixel, backgroundColor:'#466c8c' }"></div>
@@ -67,17 +88,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     data () {
         return {
             height: 75,
             title: 'ICJIA Research Hub',
             views: [
-                'dataset',
-                'article',
+                'about',
                 'apps',
-                'resources',
-                'about'
+                'article',
+                'dataset',
             ],
             logo: {
                 url: 'http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png',
@@ -86,6 +108,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters({
+            docs_url: 'docs_url'
+        }),
         titleUpper () {
             return this.title.toUpperCase()
         },

@@ -10,7 +10,7 @@
                 >
                 <section-title
                     :title="title"
-                    :path="path"
+                    :path="docs_url"
                     />
             
                 <v-layout
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import SectionTitle from '../components/SectionTitle';
 
 export default {
@@ -52,8 +53,7 @@ export default {
     },
     data () {
         return {
-            title: 'resources',
-            path: 'resources',
+            title: 'documentation',
             items: [
                 {
                     title: 'User Guide',
@@ -73,11 +73,16 @@ export default {
             ]
         }
     },
+    computed: {
+        ...mapGetters({
+            docs_url: 'docs_url',
+        }),
+    },
 }
 </script>
 
 <style scoped>
-.resource-item {
+.docs-item {
     font-size: 1.2em;
 }
 </style>

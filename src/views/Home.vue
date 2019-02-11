@@ -36,7 +36,7 @@
 
             <home-app-highlights v-if="i==3" />
 
-            <home-resources v-if="i==4" />
+            <home-documentation v-if="i==4" />
         </div>
             
         <div style="height:100px"></div>
@@ -44,16 +44,16 @@
 </template>
 
 <script>
-import HomeSearch from '../components/HomeSearch'
-import HomeLatestArticles from '../components/HomeLatestArticles'
 import HomeAppHighlights from '../components/HomeAppHighlights'
-import HomeResources from '../components/HomeResources'
+import HomeDocumentation from '../components/HomeDocumentation'
+import HomeLatestArticles from '../components/HomeLatestArticles'
+import HomeSearch from '../components/HomeSearch'
 
 export default {
     components: {
         HomeAppHighlights,
+        HomeDocumentation,
         HomeLatestArticles,
-        HomeResources,
         HomeSearch,
     },
     data () {
