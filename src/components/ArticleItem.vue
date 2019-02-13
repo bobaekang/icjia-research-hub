@@ -100,20 +100,20 @@ export default {
             base_url: 'api_url'
         }),
         article () {
-            const joinIfArray = (x, name = false) => {
-                if (Array.isArray(x)) {
-                    if (name && x.length > 1) {
-                        let i = x.length - 1
-                        return x.slice(0, i).join(', ') + ' and ' + x[i];
-                    } else {
-                        return x.join(', ')
-                    }
-                } else {
-                    return x
-                }
-            }
+            // const joinIfArray = (x, name = false) => {
+            //     if (Array.isArray(x)) {
+            //         if (name && x.length > 1) {
+            //             let i = x.length - 1
+            //             return x.slice(0, i).join(', ') + ' and ' + x[i];
+            //         } else {
+            //             return x.join(', ')
+            //         }
+            //     } else {
+            //         return x
+            //     }
+            // }
             let article = this.item;
-            article.allAuthors = joinIfArray(article.authors, true);
+            // article.allAuthors = joinIfArray(article.authors, true);
 
             return article;
         }

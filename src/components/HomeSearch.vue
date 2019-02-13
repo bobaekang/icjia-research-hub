@@ -57,9 +57,9 @@ export default {
             title: 'Get started & explore this Research Hub',
             search: '',
             types: [
-                'dataset',
+                'app',
                 'article',
-                'apps'
+                'dataset',
             ],
             typeSelect: 'dataset'
         }
@@ -70,9 +70,9 @@ export default {
         },
         showLabel() {
             let label;
-            if (this.typeSelect === 'dataset') label = 'datasets';
+            if (this.typeSelect === 'app') label = 'applications';
             else if (this.typeSelect === 'article') label = 'articles';
-            else if (this.typeSelect === 'apps') label = 'applications';
+            else if (this.typeSelect === 'dataset') label = 'datasets';
 
             return label;
         }

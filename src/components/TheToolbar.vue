@@ -97,7 +97,7 @@ export default {
             title: 'ICJIA Research Hub',
             views: [
                 'about',
-                'apps',
+                'app',
                 'article',
                 'dataset',
             ],

@@ -45,7 +45,7 @@
                         v-for="(item,i) in filterItems(items)"
                         :key="i"
                         >
-                        <apps-item :item="item" :simple="isSimpleCard" />
+                        <app-item :item="item" :simple="isSimpleCard" />
                     </v-flex>
                 </v-layout>
 
@@ -57,14 +57,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppsItem from '../components/AppsItem'
+import AppItem from '../components/AppItem'
 import TheItemCounter from '../components/TheItemCounter';
 import SearchBar from '../components/SearchBar';
 import SearchSuggestion from '../components/SearchSuggestion';
 
 export default {
     components: {
-        AppsItem,
+        AppItem,
         SearchBar,
         SearchSuggestion,
         TheItemCounter,

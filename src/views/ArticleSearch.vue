@@ -12,7 +12,7 @@
                 >
                 <search-bar
                     ref="searchBar"
-                    label="Search for articles (by title, date, author)"
+                    label="Search for articles (by title, date)"
                     :search.sync="search"
                     />
 
@@ -93,8 +93,8 @@ export default {
 
             return itemsToShow.filter((item) => {    
                 return item.title.toUpperCase().match(s) ||
-                    item.date.match(s) ||
-                    item.authors.join('').toUpperCase().match(s);
+                    item.date.match(s)
+                    // item.authors.join('').toUpperCase().match(s);
             });
         },
         useSuggestion (suggestion) {

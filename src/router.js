@@ -17,8 +17,8 @@ export default new Router({
             makeRouteChild('ArticleSearch', 'ArticleSearch', ''),
             makeRouteChild('ArticleView', 'ArticleView', ':name')
         ]),
-        makeRoute('apps', [
-            makeRouteChild('appsSearch', 'AppsSearch', ''),
+        makeRoute('app', [
+            makeRouteChild('appSearch', 'AppSearch', ''),
         ]),
         makeRoute('resources'),
         makeRoute('about'),

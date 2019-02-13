@@ -30,7 +30,7 @@
                 v-for="(item,i) in items"
                 :key="i"
                 >
-                <apps-item :item="item" :simple="isSimpleCard" />
+                <app-item :item="item" :simple="isSimpleCard" />
             </v-flex>
         </v-layout>
     </v-container>
@@ -38,18 +38,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AppsItem from './AppsItem'
+import AppItem from './AppItem'
 import SectionTitle from './SectionTitle';
 
 export default {
     components: {
-        AppsItem,
+        AppItem,
         SectionTitle,
     },
     data () {
         return {
             title: 'app highlights',
-            path: 'apps',
+            path: 'app',
             isSimpleCard: true
         }
     },
