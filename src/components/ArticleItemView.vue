@@ -23,15 +23,17 @@
                         >
                         <div class="article-header">
                             <span
-                                v-for="(type, i) in article.type"
-                                :key="i"
+                                v-for="type in article.type"
+                                :key="type"
                                 >
                                 {{ type }}
                             </span>
+                            
                             &nbsp;|&nbsp;
+                            
                             <span
-                                v-for="(category, i) in article.categories"
-                                :key="i"
+                                v-for="category in article.categories"
+                                :key="category"
                                 >
                                 {{ category }}
                             </span>
@@ -53,13 +55,29 @@
                     </div>
 
                     <div>
-                        <span class="article-authors">
-                            {{ article.allAuthors }}
+                        <span
+                            v-for="(author, i) in article.authors"
+                            :key="i"
+                            class="article-authors"
+                            >
+                            <span v-if="isBeforeLastAuthor(article.authors.length, i)">
+                                and&nbsp;
+                            </span>
+                            
+                            <router-link :to="`/author/${author.slug}`">
+                                {{ author.title }}
+                            </router-link>
+                            
+                            <span v-if="i + 1 < article.authors.length">
+                                ,&nbsp;
+                            </span>
                         </span>
+                        
                         &nbsp;|&nbsp;
+                        
                         <span class="article-date">
                             {{ article.date }}
-                            </span>
+                        </span>
                     </div>
 
                     <v-divider />
@@ -118,6 +136,11 @@ export default {
             return md.render(this.item.markdown);
         }
     },
+    methods: {
+        isBeforeLastAuthor (length, i) {
+            return length > 1 && length === i + 1;
+        }
+    }
 }
 </script>
 

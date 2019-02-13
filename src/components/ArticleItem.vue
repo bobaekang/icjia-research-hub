@@ -32,11 +32,11 @@
                                 </router-link>
                             </h3>
 
-                            <span v-for="(t, i) of article.type" :key="i">                            
-                                <simple-chip :name="t.toUpperCase()" />
+                            <span v-for="type of article.type" :key="type">                            
+                                <simple-chip :name="type.toUpperCase()" />
                             </span>
-                            <span v-for="(c, i) of article.categories" :key="i">                            
-                                <simple-chip :name="c.toUpperCase()" />
+                            <span v-for="category of article.categories" :key="category">                            
+                                <simple-chip :name="category.toUpperCase()" />
                             </span>
                         </v-layout>
                     </v-container>
@@ -50,7 +50,23 @@
                         </div>
                         <div class="pb-2">
                             <span class="ma-0 bold">Authors</span>
-                            {{ article.allAuthors }}
+                            <span
+                                v-for="(author, i) in article.authors"
+                                :key="i"
+                                class="article-authors"
+                                >
+                                <span v-if="isBeforeLastAuthor(article.authors.length, i)">
+                                    and&nbsp;
+                                </span>
+                                
+                                <router-link :to="`/author/${author.slug}`">
+                                    {{ author.title }}
+                                </router-link>
+                                
+                                <span v-if="i + 1 < article.authors.length">
+                                    ,&nbsp;
+                                </span>
+                            </span>
                         </div>
                     </v-container>
                 </div>
@@ -100,29 +116,23 @@ export default {
             base_url: 'api_url'
         }),
         article () {
-            // const joinIfArray = (x, name = false) => {
-            //     if (Array.isArray(x)) {
-            //         if (name && x.length > 1) {
-            //             let i = x.length - 1
-            //             return x.slice(0, i).join(', ') + ' and ' + x[i];
-            //         } else {
-            //             return x.join(', ')
-            //         }
-            //     } else {
-            //         return x
-            //     }
-            // }
-            let article = this.item;
-            // article.allAuthors = joinIfArray(article.authors, true);
-
-            return article;
-        }
+            return this.item;
+        },
     },
+    methods: {
+        isBeforeLastAuthor (length, i) {
+            return length > 1 && length === i + 1;
+        }
+    }
 }
 </script>
 
 <style scoped>
 .article-body {
     width: 100px;
+}
+
+.article-authors {
+    text-transform: uppercase;
 }
 </style>

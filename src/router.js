@@ -9,19 +9,22 @@ export default new Router({
     // mode: 'history',
     routes: [
         makeRoute('home'),
+        makeRoute('about'),
+        makeRoute('app', [
+            makeRouteChild('appSearch', 'AppSearch', ''),
+        ]),
+        makeRoute('article', [
+            makeRouteChild('articleSearch', 'ArticleSearch', ''),
+            makeRouteChild('articleView', 'ArticleView', ':name')
+        ]),
+        makeRoute('author', [
+            makeRouteChild('authorList', 'AuthorList', ''),
+            makeRouteChild('authorView', 'AuthorView', ':name')
+        ]),
         makeRoute('dataset', [
             makeRouteChild('datasetSearch', 'DatasetSearch', ''),
             makeRouteChild('datasetView', 'DatasetDetail', ':name')
         ]),
-        makeRoute('article', [
-            makeRouteChild('ArticleSearch', 'ArticleSearch', ''),
-            makeRouteChild('ArticleView', 'ArticleView', ':name')
-        ]),
-        makeRoute('app', [
-            makeRouteChild('appSearch', 'AppSearch', ''),
-        ]),
-        makeRoute('resources'),
-        makeRoute('about'),
     ],
     scrollBehavior (to, from, savedPosition) {
         return { x: 0, y: 0 };

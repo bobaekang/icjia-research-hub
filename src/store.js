@@ -25,6 +25,8 @@ export default new Vuex.Store({
             'prison',
         ],
         
+        authorInfo: [],
+
         datasetInfo: [],
         datasetFilters: [],
         datasetSuggestions: [
@@ -40,8 +42,8 @@ export default new Vuex.Store({
                     el.date = el.date.slice(0, 10);
                     el.showDescription = false;
                     return el;
-                }).
-                sort((a, b) => {
+                })
+                .sort((a, b) => {
                     if (a.date < b.date) return 1;
                     if (a.date > b.date) return -1;
                     return 0;
@@ -53,10 +55,18 @@ export default new Vuex.Store({
                     el.date = el.date.slice(0, 10);
                     el.showSummary = false;
                     return el;
-                }).
-                sort((a, b) => {
+                })
+                .sort((a, b) => {
                     if (a.date < b.date) return 1;
                     if (a.date > b.date) return -1;
+                    return 0;
+                });
+        },
+        fetchAuthors (state, payload) {
+            state.authorInfo = payload.data
+                .sort((a, b) => {
+                    if (a.title > b.title) return 1;
+                    if (a.title < b.title) return -1;
                     return 0;
                 });
         },
@@ -65,8 +75,8 @@ export default new Vuex.Store({
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
                     return el;
-                }).
-                sort((a, b) => {
+                })
+                .sort((a, b) => {
                     if (a.date < b.date) return 1;
                     if (a.date > b.date) return -1;
                     return 0;
@@ -88,13 +98,13 @@ export default new Vuex.Store({
             ].sort();
             const filtersObjArr = state.datasetInfo.map(el => pick(el, filters));
             state.datasetFilters = unwrapObj(reduceObjArr(filters, filtersObjArr));
-            
         },
     },
     actions: {
         async fetchData ({ commit, state }) {
             commit('fetchApps', await axios.get(`${state.api_url}/apps`));
             commit('fetchArticles', await axios.get(`${state.api_url}/articles`));
+            commit('fetchAuthors', await axios.get(`${state.api_url}/authors`));
             commit('fetchDatasets', await axios.get(`${state.api_url}/datasets`));
         },
         
@@ -117,6 +127,8 @@ export default new Vuex.Store({
         articlesHome: state => state.articleInfo.slice(0, 5),
         articleFilters: state => state.articleFilters,
         articleSuggestions: state => state.articleSuggestions,
+
+        authors: state =>  state.authorInfo,
         
         datasets: state => state.datasetInfo,
         datasetFilters: state => state.datasetFilters,
