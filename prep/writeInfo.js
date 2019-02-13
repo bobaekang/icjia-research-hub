@@ -63,12 +63,12 @@ function main() {
 }
 
 /**
- * Write information of a select content type for select fields
- * @param {*} url Source URL for the content type
- * @param {*} headers Request headers 
- * @param {*} dirpath Directory path for the file to write
- * @param {*} name Name of the file to write
- * @param {*} fields Fields to write
+ * Write information of a select content type for select fields.
+ * @param {string} url Source URL for the content type
+ * @param {string} headers Request headers 
+ * @param {string} dirpath Directory path for the file to write
+ * @param {string} name Name of the file to write
+ * @param {string} fields Fields to write
  */
 async function writeInfo (url, headers, dirpath, name, fields) {
     try {
@@ -94,6 +94,11 @@ async function writeInfo (url, headers, dirpath, name, fields) {
     }
 }
 
+/**
+ * Compare two objects by date property.
+ * @param {Object} x 
+ * @param {Object} y 
+ */
 function compareDate(x, y) {
     if (x.date < y.date)
         return -1;
@@ -103,10 +108,10 @@ function compareDate(x, y) {
 } 
 
 /**
- * Get item information for select fields from the source 
- * @param {*} el 
- * @param {*} name 
- * @param {*} fields 
+ * Get item information for select fields from the source.
+ * @param {Object} el 
+ * @param {string} name 
+ * @param {string[]} fields 
  */
 async function getInfo (el, name, fields) {
     try {
@@ -132,6 +137,10 @@ async function getInfo (el, name, fields) {
     }   
 }
 
+/**
+ * Parse data header.
+ * @param {Object} data 
+ */
 function parseHeader (data) {
     try {
         const header = data.toString().split('---\n')[1].replace(//gu, '');
@@ -141,6 +150,10 @@ function parseHeader (data) {
     }
 }
 
+/**
+ * Parse data body.
+ * @param {Object} data 
+ */
 function parseBody (data) {
     try {
         const tags = /(&nbsp;|<([^>]+)>)/ig
@@ -150,12 +163,24 @@ function parseBody (data) {
     }  
 }
 
+
+/**
+ * Pick only select fields of an object. 
+ * @param {Object} obj 
+ * @param {string[]} keys 
+ */
 function pick(obj, keys) {
     return keys
         .map(k => k in obj ? {[k]: obj[k]} : {})
         .reduce((res, o) => Object.assign(res, o), {});
 }
 
+/**
+ * Writing an object into a JSON file.
+ * @param {Object} obj 
+ * @param {string} name 
+ * @param {string} dirpath 
+ */
 function writeJSON (obj, name, dirpath) {
     try {
         const path = dirpath + name + '.json'

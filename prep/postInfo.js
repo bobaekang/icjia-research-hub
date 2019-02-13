@@ -34,9 +34,9 @@ function main() {
 
 /**
  * Post items for a select collection.
- * @param {*} items Items for a select collection 
- * @param {*} baseUrl CMS server URL (Strapi)
- * @param {*} type Content type
+ * @param {Object[]} items Items for a select collection 
+ * @param {string} baseUrl CMS server URL (Strapi)
+ * @param {string} type Content type
  */
 function postAll (items, baseUrl, type) {
     items
@@ -54,8 +54,8 @@ function postAll (items, baseUrl, type) {
 
 /**
  * Post item image files from URLs for apps.
- * @param {*} items App items 
- * @param {*} baseUrl CMS server URL (Strapi)
+ * @param {Object[]} items App items 
+ * @param {string} baseUrl CMS server URL (Strapi)
  */
 // function postAppImage (items, baseUrl) {
 //     const uploadUrl = `${baseUrl}/upload`
@@ -72,8 +72,8 @@ function postAll (items, baseUrl, type) {
 
 /**
  * Post splash image files from URLs for articles.
- * @param {*} items Article items 
- * @param {*} baseUrl CMS server URL (Strapi)
+ * @param {Object[]} items Article items 
+ * @param {string} baseUrl CMS server URL (Strapi)
  */
 function postArticleSplash (items, baseUrl) {
     const uploadUrl = `${baseUrl}/upload`
@@ -90,8 +90,8 @@ function postArticleSplash (items, baseUrl) {
 
 /**
  * Post PDF attachment files from URLs for articles.
- * @param {*} items Article items
- * @param {*} baseUrl CMS server URL (Strapi)
+ * @param {Object[]} items Article items
+ * @param {string} baseUrl CMS server URL (Strapi)
  */
 function postArticlePDF(items, baseUrl) {
     const uploadUrl = `${baseUrl}/upload`
@@ -118,8 +118,8 @@ function postArticlePDF(items, baseUrl) {
 
 /**
  * Post data files from URLs for datasets.
- * @param {*} items Dataset items
- * @param {*} baseUrl CMS server URL (Strapi)
+ * @param {Object[]} items Dataset items
+ * @param {string} baseUrl CMS server URL (Strapi)
  */
 function postDatasetData(items, baseUrl) {
     const uploadUrl = `${baseUrl}/upload`
@@ -137,8 +137,8 @@ function postDatasetData(items, baseUrl) {
 
 /**
  * Get the ID of a select item.
- * @param {*} el An item of a select content type
- * @param {*} collectionUrl URL to send GET request for a select content type
+ * @param {Object} el An item of a select content type
+ * @param {string} collectionUrl URL to send GET request for a select content type
  */
 async function getRefId(el, collectionUrl) {
     const ref = await axios
@@ -151,11 +151,11 @@ async function getRefId(el, collectionUrl) {
 
 /**
  * Upload form data with file for the given content type and field.
- * @param {*} uploadUrl API URL for file upload
- * @param {*} fileUrl File URL
- * @param {*} refId Item reference ID
- * @param {*} type Item content type 
- * @param {*} field Field name for the file
+ * @param {string} uploadUrl API URL for file upload
+ * @param {string} fileUrl File URL
+ * @param {string} refId Item reference ID
+ * @param {string} type Item content type 
+ * @param {string} field Field name for the file
  */
 async function submitFormData(uploadUrl, fileUrl, refId, type, field) {
     const form = new FormData();

@@ -25,16 +25,16 @@ function main() {
 
     const dirpath = './src/assets/';
 
-    writeInfoEdited(appInfo, dirpath, data = 'app');
-    writeInfoEdited(articleInfo, dirpath, data = 'article');
-    writeInfoEdited(authorInfoFiltered, dirpath, data = 'author');
-    writeInfoEdited(datasetInfo, dirpath, data = 'dataset');
+    // writeInfoEdited(appInfo, dirpath, 'app');
+    // writeInfoEdited(articleInfo, dirpath, 'article');
+    writeInfoEdited(authorInfoFiltered, dirpath, 'author');
+    // writeInfoEdited(datasetInfo, dirpath, 'dataset');
 }
 
 /**
  * Filter authors to keep names appear in articles only
- * @param {*} articleInfo 
- * @param {*} authorInfo 
+ * @param {Object[]} articleInfo 
+ * @param {Object[]} authorInfo 
  */
 function filterAuthorInfo(articleInfo, authorInfo) {
     const authors = [];
@@ -49,13 +49,16 @@ function filterAuthorInfo(articleInfo, authorInfo) {
         .filter(el => {
             return authorsArr.includes(el.title);
         })
+        .filter(el => {
+            return Boolean(el.description) || el.title === 'Susan Witkin';
+        });
 }
 
 /**
  * Update info of a specfieid content type and write the result to disk
- * @param {*} info Info to write
- * @param {*} dirpath Directory path for the file to write
- * @param {*} type Content type
+ * @param {Object[]} info Info to write
+ * @param {string} dirpath Directory path for the file to write
+ * @param {string} type Content type
  */
 async function writeInfoEdited(info, dirpath, type) {
     let editedInfo;
@@ -71,9 +74,9 @@ async function writeInfoEdited(info, dirpath, type) {
 
 /**
  * Write an object to JSON file
- * @param {*} obj Object to write
- * @param {*} name Name for the file to write
- * @param {*} dirpath Directory path for the file to write
+ * @param {Object} obj Object to write
+ * @param {string} name Name for the file to write
+ * @param {string} dirpath Directory path for the file to write
  */
 function writeJSON(obj, name, dirpath) {
     try {
@@ -88,6 +91,10 @@ function writeJSON(obj, name, dirpath) {
     }
 }
 
+/**
+ * Edit app info
+ * @param {Object[]} info 
+ */
 function editAppInfo(info) {
     const dates = [
         "2018-12-01",
@@ -138,6 +145,10 @@ function editAppInfo(info) {
         })
 }
 
+/**
+ * Edit article info
+ * @param {Object[]} info 
+ */
 async function editArticleInfo(info) {
     const temp = info
         .map(el => {
@@ -177,6 +188,10 @@ async function editArticleInfo(info) {
     return await addMarkdown(temp);
 }
 
+/**
+ * Edit author info
+ * @param {Object[]} info 
+ */
 function editAuthorInfo(info) {
     return info
         .map(el => {
@@ -186,6 +201,10 @@ function editAuthorInfo(info) {
         })
 }
 
+/**
+ * Edit dataset info
+ * @param {Object[]} info 
+ */
 function editDatasetInfo(info) {
     const units = "state, county, inidividual, etc.";
     const variables = [
@@ -226,13 +245,21 @@ function editDatasetInfo(info) {
         })
 }
 
-function titleToSlug(str) {
-    return str
+/**
+ * Generate slug from title 
+ * @param {string} title 
+ */
+function titleToSlug(title) {
+    return title
         .replace(/[^\w\s]/gi, '')
         .replace(/\s/gi, '-')
         .toLowerCase();
 }
 
+/**
+ * Add markdown property to elements in an array
+ * @param {Object[]} arr 
+ */
 async function addMarkdown(arr) {
     const { JSDOM } = jsdom;
     const turndownService = new TurndownService({
@@ -265,6 +292,11 @@ async function addMarkdown(arr) {
     return arr
 }
 
+
+/**
+ * Edit markdown
+ * @param {string} md 
+ */
 function editMarkdown(md) {
     md = fixFootnote(md);
     md = removeKeywords(md);
@@ -273,6 +305,11 @@ function editMarkdown(md) {
     return md.trim();
 }
 
+
+/**
+ * Fix footnote in markdown
+ * @param {string} md 
+ */
 function fixFootnote(md) {
     const regex1 = /\[\\\[(\d+)\\\]\]\(#fn(\d+)\)/g;
     const regex2 = /(\d+)\.\s\s([A-Z])/g;
@@ -291,10 +328,18 @@ function fixFootnote(md) {
         .replace(regex3, '');
 }
 
+/**
+ * Remove keywords from markdown
+ * @param {string} md 
+ */
 function removeKeywords(md) {
     return md.replace(/##### Keywords:.*/g, '');
 }
 
+/**
+ * Add markdown syntax for adding figures
+ * @param {string} md 
+ */
 function addFigures(md) {
     const regex = /#### FIGURE|figure|Figure (\d+)\s+#### .+/g;
     const replacer = (match, p1) => {

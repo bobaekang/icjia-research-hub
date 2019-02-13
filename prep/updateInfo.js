@@ -52,6 +52,12 @@ function main() {
     // clearSelect(datasetInfoEdited, datasetFields, baseUrl, 'dataset');
 }
 
+/**
+ * Make a DELETE HTTP request for all items of a select content type.
+ * @param {Object[]} items 
+ * @param {string} baseUrl 
+ * @param {string} type 
+ */
 function deleteAll(items, baseUrl, type) {
     const collectionUrl = `${baseUrl}/${type}s`
     
@@ -69,6 +75,12 @@ function deleteAll(items, baseUrl, type) {
         })
 }
 
+/**
+ * Make a PUT HTTP request with new values for all fields.
+ * @param {Object[]} items 
+ * @param {string} baseUrl 
+ * @param {string} type 
+ */
 function updateAll(items, baseUrl, type) {
     const collectionUrl = `${baseUrl}/${type}s`
 
@@ -79,6 +91,13 @@ function updateAll(items, baseUrl, type) {
         })
 }
 
+/**
+ * Make a PUT HTTP request with new values for select fields.
+ * @param {Object[]} items 
+ * @param {string[]} fields 
+ * @param {string} baseUrl 
+ * @param {string} type 
+ */
 function updateSelect(items, fields, baseUrl, type) {
     const collectionUrl = `${baseUrl}/${type}s`
     
@@ -89,6 +108,13 @@ function updateSelect(items, fields, baseUrl, type) {
         })
 }
 
+/**
+ * Make a PUT HTTP request with empty values for select fields.
+ * @param {Object[]} items 
+ * @param {string[]} fields 
+ * @param {string} baseUrl 
+ * @param {string} type 
+ */
 function clearSelect(items, fields, baseUrl, type) {
     const collectionUrl = `${baseUrl}/${type}s`
 
@@ -101,8 +127,8 @@ function clearSelect(items, fields, baseUrl, type) {
 
 /**
  * Get the ID of a select item.
- * @param {*} el An item of a select content type
- * @param {*} collectionUrl URL to send GET request for a select content type
+ * @param {Object} el An item of a select content type
+ * @param {string} collectionUrl URL to send GET request for a select content type
  */
 async function getRefId(el, collectionUrl) {
     const ref = await axios
@@ -113,12 +139,22 @@ async function getRefId(el, collectionUrl) {
     return ref.data[0].id;
 }
 
+/**
+ * Pick only select fields of an object. 
+ * @param {Object} obj 
+ * @param {string[]} keys 
+ */
 function pick(obj, keys) {
     return keys
         .map(k => k in obj ? {[k]: obj[k]} : {})
         .reduce((res, o) => Object.assign(res, o), {});
 }
 
+/**
+ * Make a PUT HTTP request.
+ * @param {Object} data 
+ * @param {string} url 
+ */
 function makePutRequest(data, url) {
     axios({
         method: 'put',
