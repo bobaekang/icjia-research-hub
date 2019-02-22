@@ -27,7 +27,7 @@ function main() {
 
     // writeInfoEdited(appInfo, dirpath, 'app');
     // writeInfoEdited(articleInfo, dirpath, 'article');
-    writeInfoEdited(authorInfoFiltered, dirpath, 'author');
+    // writeInfoEdited(authorInfoFiltered, dirpath, 'author');
     // writeInfoEdited(datasetInfo, dirpath, 'dataset');
 }
 
@@ -44,14 +44,20 @@ function filterAuthorInfo(articleInfo, authorInfo) {
         })
 
     const authorsArr = [...new Set(authors)];
-
-    return authorInfo
+    const filteredAuthorInfo = authorInfo
         .filter(el => {
             return authorsArr.includes(el.title);
         })
         .filter(el => {
             return Boolean(el.description) || el.title === 'Susan Witkin';
-        });
+        })
+    
+    filteredAuthorInfo.push(...[
+        { title: 'Keeley Kolis' , description: ''},
+        { title: 'Sex Offenses and Sex Offender Registration Task Force' , description: ''},
+    ]);
+
+    return filteredAuthorInfo
 }
 
 /**
@@ -103,12 +109,12 @@ function editAppInfo(info) {
         "2018-09-16",
         "2018-12-21",
     ];
-    const authors = [
-        [{ name: "Dennis Ritchie", url: "" }],
-        [{ name: "Tim Berners-Lee", url: "" }],
-        [{ name: "Linus Torvalds", url: "" }],
-        [{ name: "Brendan Eich", url: "" }],
-        [{ name: "Ryan Dahl", url: "" }],
+    const contributors = [
+        [{ title: "Dennis Ritchie", url: "" }],
+        [{ title: "Tim Berners-Lee", url: "" }],
+        [{ title: "Linus Torvalds", url: "" }],
+        [{ title: "Brendan Eich", url: "" }],
+        [{ title: "Ryan Dahl", url: "" }],
     ];
     const categories = [
         ["corrections"],
@@ -127,10 +133,11 @@ function editAppInfo(info) {
 
     return info
         .map((el, i) => {
+            el.slug = titleToSlug(el.title);
             el.publish = false;
             el.date = dates[i];
-            el.imageUrl = el.imgUrl;
-            el.authors = authors[i];
+            el.image = el.imgUrl;
+            el.contributors = contributors[i];
             el.categories = categories[i];
             el.tags = tags[i];
             el.summary = el.subtitle;
@@ -159,20 +166,32 @@ async function editArticleInfo(info) {
             el.categories = el.area;
             el.tags = el.keywords
             el.summary = el.teaser;
-            el.authorNames = el.authors;
+            el.authorNames = el.authors
+                .map(el => {
+                    if (el === 'Jaclyn Houston-Kolnik') {
+                        return 'Jaclyn Houston Kolnik';
+                    } else if (el === 'Elizabeth Salisbury-Afshar') {
+                        return 'Elizabeth Salisbury Afshar';
+                    } else if (el === 'Sara Gonzales') {
+                        return 'Sara Gonzalez';
+                    } else if (el === 'Vernon S. Smith') {
+                        return 'Vernon Smith';
+                    } else {
+                        return el;
+                    }
+                })
 
             // add pdf url if exists
             if (el.hasOwnProperty('pdf_uploads')) {
                 el.pdf_uploads.forEach(upload => {
                     if (upload.hasOwnProperty('reportType') && upload.reportType === 'Presentation') {
-                        el.pdfPresentationUrl = upload.pdf;
+                        el.slidespdfUrl = upload.pdf;
                     } else {
-                        el.pdfReportUrl = upload.pdf;
+                        el.reportpdfUrl = upload.pdf;
                     }
                 })
                 delete el.pdf_uploads;
             }
-
             
             delete el.splash;
             delete el.pubtype;
@@ -208,9 +227,9 @@ function editAuthorInfo(info) {
 function editDatasetInfo(info) {
     const units = "state, county, inidividual, etc.";
     const variables = [
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
-        { nameFull: "", nameAbbr: "", type: "", definition: "", values: "" },
+        { title: "", type: "", definition: "", values: "" },
+        { title: "", type: "", definition: "", values: "" },
+        { title: "", type: "", definition: "", values: "" },
     ];
     const descriptions = "Dataset description here";
 
@@ -223,15 +242,15 @@ function editDatasetInfo(info) {
             el.slug = titleToSlug(el.title)
             el.sources = [
                 {
-                    name: el.agencyName,
+                    title: el.agencyName,
                     url: el.agencyLink
                 }
             ];
             el.categories = categories;
             el.tags = []
             el.unit = units;
-            el.timePeriod = el.timePeriodDesc;
-            el.ageGroup = el.juvenileAdult;
+            el.timeperiod = el.timePeriodDesc;
+            el.agegroup = el.juvenileAdult;
             el.variables = variables;
             el.description = descriptions;
 
@@ -300,7 +319,6 @@ async function addMarkdown(arr) {
 function editMarkdown(md) {
     md = fixFootnote(md);
     md = removeKeywords(md);
-    md = addFigures(md);
 
     return md.trim();
 }
@@ -334,17 +352,4 @@ function fixFootnote(md) {
  */
 function removeKeywords(md) {
     return md.replace(/##### Keywords:.*/g, '');
-}
-
-/**
- * Add markdown syntax for adding figures
- * @param {string} md 
- */
-function addFigures(md) {
-    const regex = /#### FIGURE|figure|Figure (\d+)\s+#### .+/g;
-    const replacer = (match, p1) => {
-        return `${match}\n![Figure ${p1}](figure_${p1})`;
-    }
-    
-    return md.replace(regex, replacer);
 }

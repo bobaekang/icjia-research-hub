@@ -17,7 +17,7 @@ function main() {
     const baseUrl = 'http://localhost:1337';
 
     const appInfoEdited = require('../src/assets/appInfoEdited.json');
-    const articleInfoEdited = require('../src/assets/articleInfoEdited0.json');
+    const articleInfoEdited = require('../src/assets/articleInfoEdited.json');
     const authorInfoEdited = require('../src/assets/authorInfoEdited.json');
     const datasetInfoEdited = require('../src/assets/datasetInfoEdited.json');
     
@@ -26,8 +26,8 @@ function main() {
     postAll(authorInfoEdited, baseUrl, 'author')
     postAll(datasetInfoEdited, baseUrl, 'dataset');
 
-    // postAppImage(appInfoEdited, baseUrl);
-    postArticleSplash(articleInfoEdited, baseUrl);
+    putArticleSplash(articleInfoEdited, baseUrl);
+    putArticleAuthors(articleInfoEdited, baseUrl);
     postArticlePDF(articleInfoEdited, baseUrl);
     postDatasetData(datasetInfoEdited, baseUrl);
 }
@@ -53,38 +53,63 @@ function postAll (items, baseUrl, type) {
 }
 
 /**
- * Post item image files from URLs for apps.
- * @param {Object[]} items App items 
- * @param {string} baseUrl CMS server URL (Strapi)
- */
-// function postAppImage (items, baseUrl) {
-//     const uploadUrl = `${baseUrl}/upload`
-//     const collectionUrl = `${baseUrl}/apps`
-
-//     items
-//         .forEach(async (el) => {
-//             const refId = await getRefId(el, collectionUrl);
-//             const fileUrl = `http://icjia.state.il.us/${el.image.url}`;
-
-//             submitFormData(uploadUrl, fileUrl, refId, 'app', 'image');
-//         });
-// }
-
-/**
- * Post splash image files from URLs for articles.
+ * Put splash image files from URLs for articles.
  * @param {Object[]} items Article items 
  * @param {string} baseUrl CMS server URL (Strapi)
  */
-function postArticleSplash (items, baseUrl) {
-    const uploadUrl = `${baseUrl}/upload`
-    const collectionUrl = `${baseUrl}/articles`
+function putArticleSplash (items, baseUrl) {
+    const articlesUrl = `${baseUrl}/articles`
     
     items
-        .forEach(async (el) => {
-            const refId = await getRefId(el, collectionUrl);
-            const fileUrl = `http://icjia.state.il.us/${el.splashUrl}`;
+        .forEach(async el => {
+            axios({
+                method: 'put',
+                url: `${articlesUrl}/${await getRefId(articlesUrl, { slug: el.slug })}`,
+                data: {
+                    splash:  await getBase64(`http://icjia.state.il.us/${el.splashUrl}`)
+                }
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    console.log(`Success: ${el.splashUrl} for "${el.title}"`)
+                } else {
+                    console.log(`Failure: ${el.splashUrl} for "${el.title}"`)
+                }
+            })
+            .catch((err) => {
+                console.log(`Failure: ${el.splashUrl} for "${el.title}"`);
+            })
+        });
+}
 
-            submitFormData(uploadUrl, fileUrl, refId, 'article', 'splash');
+/**
+ * Put authors (relations) for articles.
+ * @param {Object[]} items Article items 
+ * @param {string} baseUrl CMS server URL (Strapi)
+ */
+function putArticleAuthors (items, baseUrl) {
+    const articlesUrl = `${baseUrl}/articles`;
+    const authorsUrl = `${baseUrl}/authors`
+    
+    items
+        .forEach(async el => {
+            axios({
+                method: 'put',
+                url: `${articlesUrl}/${await getRefId(articlesUrl, { slug: el.slug })}`,
+                data: {
+                    authors: await getAuthorsId(el.authorNames, authorsUrl)
+                }
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    console.log(`Success: authors for "${el.title}"`)
+                } else {
+                    console.log(`Failure: authors for "${el.title}"`)
+                }
+            })
+            .catch((err) => {
+                console.log(`Failure: authors for "${el.title}"`);
+            })
         });
 }
 
@@ -95,24 +120,24 @@ function postArticleSplash (items, baseUrl) {
  */
 function postArticlePDF(items, baseUrl) {
     const uploadUrl = `${baseUrl}/upload`
-    const collectionUrl = `${baseUrl}/articles`
+    const articlesUrl = `${baseUrl}/articles`
     
     items
-        .filter(el => el.hasOwnProperty('pdfReportUrl'))
+        .filter(el => el.hasOwnProperty('reportpdfUrl'))
         .forEach(async (el) => {
-            const refId = await getRefId(el, collectionUrl);
-            const fileUrl = `http://icjia.state.il.us/${el.pdfReportUrl}`;
+            const refId = await getRefId(articlesUrl, { slug: el.slug });
+            const fileUrl = `http://icjia.state.il.us/${el.reportpdfUrl}`;
 
-            submitFormData(uploadUrl, fileUrl, refId, 'article', 'pdfReport');
+            submitFormData(uploadUrl, fileUrl, refId, 'article', 'reportpdf');
         });
     
     items
-        .filter(el => el.hasOwnProperty('pdfPresentationUrl'))
+        .filter(el => el.hasOwnProperty('slidespdfUrl'))
         .forEach(async (el) => {
-            const refId = await getRefId(el, collectionUrl);
-            const fileUrl = `http://icjia.state.il.us/${el.pdfPresentationUrl}`;
+            const refId = await getRefId(articlesUrl, { slug: el.slug });
+            const fileUrl = `http://icjia.state.il.us/${el.slidespdfUrl}`;
 
-            submitFormData(uploadUrl, fileUrl, refId, 'article', 'pdfPresentation');
+            submitFormData(uploadUrl, fileUrl, refId, 'article', 'slidespdf');
         })
 }
 
@@ -123,30 +148,37 @@ function postArticlePDF(items, baseUrl) {
  */
 function postDatasetData(items, baseUrl) {
     const uploadUrl = `${baseUrl}/upload`
-    const collectionUrl = `${baseUrl}/datasets`
+    const datasetsUrl = `${baseUrl}/datasets`
     
     items
         .filter(el => el.hasOwnProperty('datasetfilename'))
         .forEach(async (el) => {
-            const refId = await getRefId(el, collectionUrl);
+            const refId = await getRefId(datasetsUrl, { slug: el.slug });
             const fileUrl = `http://icjia.state.il.us/${el.datasetfilename}`;
             
-            submitFormData(uploadUrl, fileUrl, refId, 'dataset', 'data');
+            submitFormData(uploadUrl, fileUrl, refId, 'dataset', 'datafile');
         });
 }
 
 /**
  * Get the ID of a select item.
- * @param {Object} el An item of a select content type
  * @param {string} collectionUrl URL to send GET request for a select content type
+ * @param {Object} params Parameters
  */
-async function getRefId(el, collectionUrl) {
-    const ref = await axios
+async function getRefId(collectionUrl, params) {
+    const res = await axios
         .get(collectionUrl, {
-            params: { slug: el.slug }
-        });
+            params: params
+        })
+        .catch(err => {
+            console.log('Failure: fetching refId for ', params);
+        })
 
-    return ref.data[0].id;
+    try {
+        return res.data[0].id;
+    } catch {
+        console.log('Failure: fetching refId for ', params);
+    }
 }
 
 /**
@@ -166,11 +198,44 @@ async function submitFormData(uploadUrl, fileUrl, refId, type, field) {
 
     form.submit(uploadUrl, (err, res) => {
         if (err) {
-            throw err;
+            console.log('Failure: ', fileUrl);
         } else if (res.statusCode == 200) {
             console.log('Sucess: ', fileUrl);    
         } else {
-            console.log(res.statusCode);
+            console.log('Failure: ', fileUrl);
         }
     })
+}
+
+/**
+ * Return the base64 representation of an image at the given URL
+ * @param {*} url Image URL 
+ */
+async function getBase64(url) {
+    const res = await axios.get(url, { responseType: "arraybuffer" });
+    const contentType = res.headers["content-type"];
+    const unit8Arr = new Uint8Array(res.data);
+
+    let string = ''
+    for (i of unit8Arr) {
+        string += String.fromCharCode(i);
+    }
+
+    return `data:${contentType};base64,${
+        Buffer.from(string, "binary").toString("base64")
+    }`;
+}
+
+/**
+ * Return an array of RefIds for the given authors
+ * @param {*} authorNames Array of author names
+ * @param {*} authorsUrl URL to send GET request for authors content type
+ */
+async function getAuthorsId(authorNames, authorsUrl) {
+    return Promise.all(
+        authorNames
+            .map(async el => {
+                return await getRefId(authorsUrl, { title: el });
+            }) 
+    );
 }
