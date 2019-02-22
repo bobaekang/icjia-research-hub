@@ -3,7 +3,7 @@
         <v-layout row>
             <v-img
                 class="hidden-sm-and-down"
-                :src="`${base_url}/${article.splash.url}`"
+                :src="article.splash"
                 lazy-src="https://via.placeholder.com/1/DDDDDD"
                 >
                 <v-layout
@@ -56,14 +56,14 @@
                                 class="article-authors"
                                 >
                                 <span v-if="isBeforeLastAuthor(article.authors.length, i)">
-                                    and&nbsp;
+                                    &nbsp;and&nbsp;
                                 </span>
                                 
                                 <router-link :to="`/author/${author.slug}`">
                                     {{ author.title }}
                                 </router-link>
                                 
-                                <span v-if="i + 1 < article.authors.length">
+                                <span v-if="i + 2 < article.authors.length">
                                     ,&nbsp;
                                 </span>
                             </span>

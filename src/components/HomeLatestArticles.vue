@@ -25,7 +25,7 @@
                 style="text-decoration: none"
                 >
                 <v-carousel-item
-                    :src="`${base_url}/${item.splash.url}`"
+                    :src="item.splash"
                     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
                     >
                     <v-layout justify-center>

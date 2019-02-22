@@ -15,7 +15,7 @@
                     <simple-chip :name="category.toUpperCase()" />
                 </span>
             </div>
-            <simple-chip :name="dataset.ageGroup.toUpperCase()" />
+            <simple-chip :name="dataset.agegroup.toUpperCase()" />
         </v-card-title>
 
         <v-divider />
@@ -59,7 +59,7 @@
                                         :key="i"
                                         >
                                         <a :href="source.url">
-                                            {{ source.name }}
+                                            {{ source.title }}
                                         </a>
                                     </span>
                                 </div>
@@ -81,7 +81,7 @@
                                 :key="i"
                                 >
                                 <a :href="source.url">
-                                    {{ source.name }}
+                                    {{ source.title }}
                                 </a>
                             </span>
                         </div>
@@ -90,7 +90,7 @@
                     <v-container
                         class="pa-0 text-xs-right"
                         >
-                        <simple-download-button :data="dataset.data" />
+                        <simple-download-button :data="dataset.datafile" />
 
                         <v-btn
                             flat

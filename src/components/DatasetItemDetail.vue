@@ -45,7 +45,7 @@
                         :key="i"
                         >
                         <a :href="source.url">
-                            {{ source.name }}
+                            {{ source.title }}
                         </a>
                     </span>
                 </div>
@@ -78,12 +78,12 @@
 
                 <div class="py-1">
                     <span class="pr-2 bold">Time Period</span>
-                    {{ dataset.timePeriod }}
+                    {{ dataset.timeperiod }}
                 </div>
 
                 <div class="py-1">
                     <span class="pr-2 bold">Age group</span>
-                    {{ dataset.ageGroup }}
+                    {{ dataset.agegroup }}
                 </div>
             </div>
         </v-container>
