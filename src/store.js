@@ -11,13 +11,13 @@ export default new Vuex.Store({
         api_url: 'http://localhost:1337',
         docs_url: '#',
 
-        appInfo: [],
+        apps: [],
         appSuggestions: [
             'app',
             'dashboard',
         ],
         
-        articleInfo: [],
+        articles: [],
         articleFilters: [],
         articleSuggestions: [
             'arrest',
@@ -25,9 +25,9 @@ export default new Vuex.Store({
             'prison',
         ],
         
-        authorInfo: [],
+        authors: [],
 
-        datasetInfo: [],
+        datasets: [],
         datasetFilters: [],
         datasetSuggestions: [
             'felony',
@@ -37,7 +37,7 @@ export default new Vuex.Store({
     },
     mutations: {
         fetchApps (state, payload) {
-            state.appInfo = payload.data
+            state.apps = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
                     el.showDescription = false;
@@ -50,7 +50,7 @@ export default new Vuex.Store({
                 });
         },
         fetchArticles (state, payload) {
-            state.articleInfo = payload.data
+            state.articles = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
                     el.showSummary = false;
@@ -63,7 +63,7 @@ export default new Vuex.Store({
                 });
         },
         fetchAuthors (state, payload) {
-            state.authorInfo = payload.data
+            state.authors = payload.data
                 .sort((a, b) => {
                     if (a.title > b.title) return 1;
                     if (a.title < b.title) return -1;
@@ -71,7 +71,7 @@ export default new Vuex.Store({
                 });
         },
         fetchDatasets (state, payload) {
-            state.datasetInfo = payload.data
+            state.datasets = payload.data
                 .map((el) => {
                     el.date = el.date.slice(0, 10);
                     return el;
@@ -88,7 +88,7 @@ export default new Vuex.Store({
                 'type',
                 'categories',
             ].sort();
-            const filtersObjArr = state.articleInfo.map(el => pick(el, filters));           
+            const filtersObjArr = state.articles.map(el => pick(el, filters));           
             state.articleFilters = unwrapObj(reduceObjArr(filters, filtersObjArr));
         },
         createDatasetFilters (state) {
@@ -96,7 +96,7 @@ export default new Vuex.Store({
                 'ageGroup',
                 'categories'
             ].sort();
-            const filtersObjArr = state.datasetInfo.map(el => pick(el, filters));
+            const filtersObjArr = state.datasets.map(el => pick(el, filters));
             state.datasetFilters = unwrapObj(reduceObjArr(filters, filtersObjArr));
         },
     },
@@ -119,18 +119,18 @@ export default new Vuex.Store({
         api_url: state => state.api_url,
         docs_url: state => state.docs_url,
         
-        apps: state =>  state.appInfo,
-        appsHome: state => state.appInfo.slice(0, 3),
+        apps: state =>  state.apps,
+        appsHome: state => state.apps.slice(0, 3),
         appSuggestions: state => state.appSuggestions,
         
-        articles: state => state.articleInfo,
-        articlesHome: state => state.articleInfo.slice(0, 5),
+        articles: state => state.articles,
+        articlesHome: state => state.articles.slice(0, 5),
         articleFilters: state => state.articleFilters,
         articleSuggestions: state => state.articleSuggestions,
 
-        authors: state =>  state.authorInfo,
+        authors: state =>  state.authors,
         
-        datasets: state => state.datasetInfo,
+        datasets: state => state.datasets,
         datasetFilters: state => state.datasetFilters,
         datasetSuggestions: state => state.datasetSuggestions,
     }
