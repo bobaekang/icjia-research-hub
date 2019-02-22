@@ -6,7 +6,7 @@
                     class="small pl-2"
                     style="color: #666"
                     >
-                    Dataset
+                    Datasets
                 </span>
                 
                 <v-icon>chevron_right</v-icon>
@@ -21,7 +21,7 @@
             <v-btn
                 flat
                 exact
-                to="/dataset"
+                to="/datasets"
                 >
                 Back
             </v-btn>

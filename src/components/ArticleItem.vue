@@ -27,7 +27,7 @@
                     <v-container class="py-2">
                         <v-layout row wrap>
                             <h3>
-                                <router-link :to="`/article/${article.slug}`">
+                                <router-link :to="`/articles/${article.slug}`">
                                     {{ article.title }}
                                 </router-link>
                             </h3>
@@ -59,7 +59,7 @@
                                     &nbsp;and&nbsp;
                                 </span>
                                 
-                                <router-link :to="`/author/${author.slug}`">
+                                <router-link :to="`/authors/${author.slug}`">
                                     {{ author.title }}
                                 </router-link>
                                 
@@ -83,7 +83,7 @@
                     </v-btn>
                     
                     <v-btn
-                        :to="`/article/${article.slug}`"
+                        :to="`/articles/${article.slug}`"
                         flat>
                         read
                         <v-icon>visibility</v-icon>

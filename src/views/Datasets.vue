@@ -10,7 +10,7 @@
 import TheViewTitle from '../components/TheViewTitle';
 
 export default {
-    name: 'dataset',
+    name: 'datasets',
     components: {
         TheViewTitle,
     },

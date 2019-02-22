@@ -97,9 +97,9 @@ export default {
             title: 'ICJIA Research Hub',
             views: [
                 'about',
-                'app',
-                'article',
-                'dataset',
+                'apps',
+                'articles',
+                'datasets',
             ],
             logo: {
                 url: 'http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png',

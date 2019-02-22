@@ -18,7 +18,7 @@
                         >
                         <v-list-tile
                             :key="i"
-                            :to="`/author/${item.slug}`"
+                            :to="`/authors/${item.slug}`"
                             >
                             <v-list-tile-content class="text-xs-center">
                                 <v-list-tile-title v-text="item.title"></v-list-tile-title>                            

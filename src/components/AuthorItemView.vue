@@ -6,7 +6,7 @@
                     class="small pl-2"
                     style="color: #666"
                     >
-                    Author
+                    Authors
                 </span>
                 
                 <v-icon>chevron_right</v-icon>

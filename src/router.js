@@ -10,18 +10,18 @@ export default new Router({
     routes: [
         makeRoute('home'),
         makeRoute('about'),
-        makeRoute('app', [
+        makeRoute('apps', [
             makeRouteChild('appSearch', 'AppSearch', ''),
         ]),
-        makeRoute('article', [
+        makeRoute('articles', [
             makeRouteChild('articleSearch', 'ArticleSearch', ''),
             makeRouteChild('articleView', 'ArticleView', ':name')
         ]),
-        makeRoute('author', [
+        makeRoute('authors', [
             makeRouteChild('authorList', 'AuthorList', ''),
             makeRouteChild('authorView', 'AuthorView', ':name')
         ]),
-        makeRoute('dataset', [
+        makeRoute('datasets', [
             makeRouteChild('datasetSearch', 'DatasetSearch', ''),
             makeRouteChild('datasetView', 'DatasetDetail', ':name')
         ]),
