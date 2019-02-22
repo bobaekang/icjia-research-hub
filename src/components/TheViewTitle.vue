@@ -1,6 +1,6 @@
 <template>
     <div class="view-title">
-        <v-container>
+        <v-container py-3>
             <v-layout justify-center>
                 <v-flex
                     xs12
