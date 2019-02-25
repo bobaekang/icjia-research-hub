@@ -1,29 +1,29 @@
 <template>
-    <v-app>
-        <the-toolbar />
+  <v-app>
+    <the-toolbar />
 
-        <router-view />
+    <router-view />
 
-        <the-button-back-to-top />
-         
-        <the-footer />
-    </v-app>
+    <the-button-back-to-top />
+
+    <the-footer />
+  </v-app>
 </template>
 
 <script>
 import TheToolbar from './components/TheToolbar'
 import TheButtonBackToTop from './components/TheButtonBackToTop'
-import TheFooter from './components/TheFooter' 
+import TheFooter from './components/TheFooter'
 
 export default {
-    components: {
-        TheToolbar,
-        TheButtonBackToTop,
-        TheFooter
-    },
-    created () {
-        this.$store.dispatch('fetchData');
-    }
+  components: {
+    TheToolbar,
+    TheButtonBackToTop,
+    TheFooter
+  },
+  created() {
+    this.$store.dispatch('fetchData')
+  }
 }
 </script>
 
@@ -32,57 +32,58 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic');
 
-.application  {
-    color: #333;
-    font-family: 'Gentium Book Basic', serif;
-    font-size: 16px;
+.application {
+  color: #333;
+  font-family: 'Gentium Book Basic', serif;
+  font-size: 16px;
 }
 
 h1 {
-    font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
-h2, h3 {
-    font-family: 'Lato', sans-serif;
+h2,
+h3 {
+  font-family: 'Lato', sans-serif;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .v-btn {
-    font-family: 'Lato', sans-serif;
-}  
+  font-family: 'Lato', sans-serif;
+}
 
 .view-title {
-    font-size: 2em;
-    font-family: 'Oswald', sans-serif;
-    color: white;
-    background-color: #466c8c;
+  font-size: 2em;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  background-color: #466c8c;
 }
 
 .section-title {
-    border-bottom: 1px #999 solid;
-    text-transform: uppercase; 
+  border-bottom: 1px #999 solid;
+  text-transform: uppercase;
 }
 
 .sans-serif {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .small {
-    font-size: 0.8em
+  font-size: 0.8em;
 }
 
 .bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .italic {
-    font-style: italic;
+  font-style: italic;
 }
 
 .v-messages {
-    display: none;
+  display: none;
 }
 </style>
