@@ -11,8 +11,8 @@
 
       <DatasetDownloadButton
         v-if="dataset.hasOwnProperty('datacsv') && dataset.datacsv !== ''"
-        :data="dataset.datacsv.data"
-        :name="dataset.datacsv.name"
+        :data="dataset.datacsv"
+        :name="dataset.datafilename"
         type="csv"
       />
 

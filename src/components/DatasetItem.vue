@@ -1,11 +1,11 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <h2 class="pr-2">
+      <h3 class="pr-2">
         <router-link :to="`/datasets/${dataset.slug}`">
           {{ dataset.title }}
         </router-link>
-      </h2>
+      </h3>
 
       <div v-if="dataset.categories">
         <span v-for="(category, i) in dataset.categories" :key="i">

@@ -21,9 +21,9 @@
           <v-container class="py-2">
             <v-layout row wrap>
               <h3>
-                <router-link :to="`/articles/${article.slug}`">{{
-                  article.title
-                }}</router-link>
+                <router-link :to="`/articles/${article.slug}`">
+                  {{ article.title }}
+                </router-link>
               </h3>
 
               <span v-for="type of article.type" :key="type">
@@ -81,9 +81,9 @@
             </v-icon>
           </v-btn>
 
-          <v-btn :to="`/articles/${article.slug}`" flat
-            >read
-            <v-icon>visibility</v-icon>
+          <v-btn :to="`/articles/${article.slug}`" flat>
+            more
+            <v-icon>more_horiz</v-icon>
           </v-btn>
         </v-card-actions>
 
