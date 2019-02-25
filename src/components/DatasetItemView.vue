@@ -9,7 +9,19 @@
 
       <v-spacer />
 
-      <SimpleDownloadButton :data="dataset.data" />
+      <DatasetDownloadButton
+        v-if="dataset.hasOwnProperty('datacsv') && dataset.datacsv !== ''"
+        :data="dataset.datacsv.data"
+        :name="dataset.datacsv.name"
+        type="csv"
+      />
+
+      <DatasetDownloadButton
+        v-else
+        :data="dataset.datafile.url"
+        :name="dataset.datafile.name"
+        type="file"
+      />
 
       <v-btn flat exact to="/datasets">Back</v-btn>
     </v-card-title>
@@ -66,11 +78,11 @@
 </template>
 
 <script>
-import SimpleDownloadButton from '@/components/SimpleDownloadButton'
+import DatasetDownloadButton from '@/components/DatasetDownloadButton'
 
 export default {
   components: {
-    SimpleDownloadButton
+    DatasetDownloadButton
   },
   props: {
     item: Object

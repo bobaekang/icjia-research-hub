@@ -65,10 +65,8 @@
           </v-container>
 
           <v-container class="pa-0 text-xs-right">
-            <SimpleDownloadButton :data="dataset.datafile" />
-
-            <v-btn flat :to="`/datasets/${dataset.slug}`"
-              >More
+            <v-btn flat :to="`/datasets/${dataset.slug}`">
+              More
               <v-icon>more_horiz</v-icon>
             </v-btn>
           </v-container>
@@ -80,12 +78,10 @@
 
 <script>
 import SimpleChip from '@/components/SimpleChip'
-import SimpleDownloadButton from '@/components/SimpleDownloadButton'
 
 export default {
   components: {
-    SimpleChip,
-    SimpleDownloadButton
+    SimpleChip
   },
   props: {
     item: Object

@@ -21,7 +21,7 @@ export default new Router({
     ]),
     makeRoute('datasets', [
       makeRouteChild('datasetSearch', 'DatasetSearch', ''),
-      makeRouteChild('datasetView', 'DatasetDetail', ':name')
+      makeRouteChild('datasetView', 'DatasetView', ':name')
     ])
   ],
   scrollBehavior() {

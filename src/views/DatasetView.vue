@@ -8,7 +8,7 @@
         v-for="(item, i) in view($route.params.name)"
         :key="i"
       >
-        <DatasetItemDetail :item="item" />
+        <DatasetItemView :item="item" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -16,11 +16,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import DatasetItemDetail from '@/components/DatasetItemDetail'
+import DatasetItemView from '@/components/DatasetItemView'
 
 export default {
   components: {
-    DatasetItemDetail
+    DatasetItemView
   },
   computed: {
     ...mapGetters({
