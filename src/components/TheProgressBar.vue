@@ -1,9 +1,9 @@
 <template>
-        <v-progress-linear
-            v-model="progress"
-            class="screen-bottom"
-            height="3"
-            />
+    <v-progress-linear
+        v-model="progress"
+        class="screen-top"
+        height="3"
+        />
 </template>
 
 <script>
@@ -32,10 +32,10 @@
 </script>
 
 <style scoped>
-.screen-bottom {
+.screen-top {
     position: fixed;
     left:0;
-    bottom:0;
+    top:0;
     margin:0;
 }
 </style>

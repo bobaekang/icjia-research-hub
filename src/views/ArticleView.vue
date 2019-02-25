@@ -1,12 +1,13 @@
 <template>
     <div>
+        <the-progess-bar />
+        
         <v-flex
             v-for="(item, i) in view($route.params.name)"
             :key="i"
             >
             <article-item-view :item="item"/>
 
-            <the-progess-bar />
         </v-flex>
     </div>
 </template>
