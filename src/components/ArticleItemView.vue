@@ -270,10 +270,6 @@ export default {
    padding: 24px 12px;
 }
 
-.article-body >>> .article-figure h6 {
-
-}
-
 .article-body >>> .article-table {
     margin-left:auto; 
     margin-right:auto;
@@ -321,6 +317,7 @@ export default {
 .article-body >>> blockquote ol,
 .article-body >>> blockquote ul {
     font-size: 18px;
+    text-indent: 0;
 }
 
 .article-body >>> blockquote>:first-child {
