@@ -99,7 +99,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SimpleChip from './SimpleChip'
+import SimpleChip from '@/components/SimpleChip'
 
 export default {
   components: {

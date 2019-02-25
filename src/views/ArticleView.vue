@@ -10,8 +10,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ArticleItemView from '../components/ArticleItemView'
-import TheProgessBar from '../components/TheProgressBar'
+import ArticleItemView from '@/components/ArticleItemView'
+import TheProgessBar from '@/components/TheProgressBar'
 
 export default {
   components: {

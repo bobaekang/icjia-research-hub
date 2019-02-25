@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import TheViewTitle from '../components/TheViewTitle'
+import TheViewTitle from '@/components/TheViewTitle'
 
 export default {
   name: 'about',

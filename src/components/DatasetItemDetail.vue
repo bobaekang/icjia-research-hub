@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import SimpleDownloadButton from './SimpleDownloadButton'
+import SimpleDownloadButton from '@/components/SimpleDownloadButton'
 
 export default {
   components: {

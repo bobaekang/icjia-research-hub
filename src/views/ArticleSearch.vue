@@ -35,12 +35,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { applyFilterBox } from '../utils'
-import ArticleItem from '../components/ArticleItem'
-import SearchBar from '../components/SearchBar'
-import SearchFilter from '../components/SearchFilter'
-import SearchSuggestion from '../components/SearchSuggestion'
-import TheItemCounter from '../components/TheItemCounter'
+import { applyFilterBox } from '@/utils'
+import ArticleItem from '@/components/ArticleItem'
+import SearchBar from '@/components/SearchBar'
+import SearchFilter from '@/components/SearchFilter'
+import SearchSuggestion from '@/components/SearchSuggestion'
+import TheItemCounter from '@/components/TheItemCounter'
 
 export default {
   components: {

@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import SimpleChip from './SimpleChip'
-import SimpleDownloadButton from './SimpleDownloadButton'
+import SimpleChip from '@/components/SimpleChip'
+import SimpleDownloadButton from '@/components/SimpleDownloadButton'
 
 export default {
   components: {

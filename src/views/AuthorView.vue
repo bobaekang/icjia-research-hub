@@ -16,7 +16,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AuthorItemView from '../components/AuthorItemView'
+import AuthorItemView from '@/components/AuthorItemView'
 
 export default {
   components: {

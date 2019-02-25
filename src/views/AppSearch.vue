@@ -30,10 +30,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AppItem from '../components/AppItem'
-import TheItemCounter from '../components/TheItemCounter'
-import SearchBar from '../components/SearchBar'
-import SearchSuggestion from '../components/SearchSuggestion'
+import AppItem from '@/components/AppItem'
+import TheItemCounter from '@/components/TheItemCounter'
+import SearchBar from '@/components/SearchBar'
+import SearchSuggestion from '@/components/SearchSuggestion'
 
 export default {
   components: {

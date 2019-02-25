@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import HomeAppHighlights from '../components/HomeAppHighlights'
-import HomeDocumentation from '../components/HomeDocumentation'
-import HomeLatestArticles from '../components/HomeLatestArticles'
-import HomeSearch from '../components/HomeSearch'
+import HomeAppHighlights from '@/components/HomeAppHighlights'
+import HomeDocumentation from '@/components/HomeDocumentation'
+import HomeLatestArticles from '@/components/HomeLatestArticles'
+import HomeSearch from '@/components/HomeSearch'
 
 export default {
   components: {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import SearchAutocomplete from './SearchAutocomplete'
+import SearchAutocomplete from '@/components/SearchAutocomplete'
 
 export default {
   components: {

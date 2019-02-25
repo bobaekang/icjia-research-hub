@@ -38,7 +38,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ArticleItem from './ArticleItem'
+import ArticleItem from '@/components/ArticleItem'
 
 export default {
   components: {

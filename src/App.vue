@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import TheToolbar from './components/TheToolbar'
-import TheButtonBackToTop from './components/TheButtonBackToTop'
-import TheFooter from './components/TheFooter'
+import TheToolbar from '@/components/TheToolbar'
+import TheButtonBackToTop from '@/components/TheButtonBackToTop'
+import TheFooter from '@/components/TheFooter'
 
 export default {
   components: {

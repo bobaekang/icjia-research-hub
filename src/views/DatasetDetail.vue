@@ -16,7 +16,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import DatasetItemDetail from '../components/DatasetItemDetail'
+import DatasetItemDetail from '@/components/DatasetItemDetail'
 
 export default {
   components: {
