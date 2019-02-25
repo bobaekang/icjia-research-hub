@@ -1,6 +1,6 @@
 <template>
     <div>
-        <the-view-title :title="title" />
+        <TheViewTitle :title="title" />
         
         <router-view search="" />
     </div>

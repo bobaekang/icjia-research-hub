@@ -8,7 +8,7 @@
                 v-for="(item, i) in view($route.params.name)"
                 :key="i"
                 >
-                <author-item-view :item="item"/>
+                <AuthorItemView :item="item"/>
             </v-flex>
         </v-layout>
     </v-container>

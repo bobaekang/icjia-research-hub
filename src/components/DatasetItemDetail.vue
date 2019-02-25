@@ -16,7 +16,7 @@
 
             <v-spacer />
 
-            <simple-download-button :data="dataset.data" />
+            <SimpleDownloadButton :data="dataset.data" />
 
             <v-btn
                 flat

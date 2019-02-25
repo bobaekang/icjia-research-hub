@@ -10,18 +10,18 @@
                 sm8
                 lg6
                 >
-                <search-bar
+                <SearchBar
                     ref="searchBar"
                     label="Search for apps"
                     :search.sync="search"
                     />
 
-                <the-item-counter
+                <TheItemCounter
                     :count="filterItems(items).length"
                     :item="item"
                     />
 
-                <search-suggestion
+                <SearchSuggestion
                     :showSuggestion="filterItems(items).length === 0"
                     :suggestions="suggestions"
                     @useSuggestion="useSuggestion($event)"
@@ -45,7 +45,7 @@
                         v-for="(item,i) in filterItems(items)"
                         :key="i"
                         >
-                        <app-item :item="item" :simple="isSimpleCard" />
+                        <AppItem :item="item" :simple="isSimpleCard" />
                     </v-flex>
                 </v-layout>
 

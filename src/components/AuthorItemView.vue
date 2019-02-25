@@ -40,7 +40,7 @@
                         :key="article.id"
                         class="mb-3"
                         >
-                        <article-item :item="getArticle(article.id)"/>
+                        <ArticleItem :item="getArticle(article.id)"/>
                     </v-flex>
                 </div>
             </template>

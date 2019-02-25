@@ -90,7 +90,7 @@
                     <v-container
                         class="pa-0 text-xs-right"
                         >
-                        <simple-download-button :data="dataset.datafile" />
+                        <SimpleDownloadButton :data="dataset.datafile" />
 
                         <v-btn
                             flat

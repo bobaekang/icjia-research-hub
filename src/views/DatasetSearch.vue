@@ -10,23 +10,23 @@
                 sm8
                 lg6
                 >
-                <search-bar
+                <SearchBar
                     ref="searchBar"
                     label="Search for datasets"
                     :search.sync="search"
                     />
                 
-                <search-filter
+                <SearchFilter
                     :items="filters"
                     @updateFilter="filterObj = $event"
                     />
 
-                <the-item-counter
+                <TheItemCounter
                     :count="filterItems(items).length"
                     :item="item"
                     />
                 
-                <search-suggestion
+                <SearchSuggestion
                     :showSuggestion="filterItems(items).length === 0"
                     :suggestions="suggestions"
                     @useSuggestion="useSuggestion($event)"
@@ -41,7 +41,7 @@
                 v-for="(item, i) in filterItems(items)"
                 :key="i"
                 >
-                <dataset-item :item="item" />
+                <DatasetItem :item="item" />
             </v-flex>
         </v-layout>
     </v-container>

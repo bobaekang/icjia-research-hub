@@ -30,13 +30,13 @@
             :key="i"
             :class="{ 'grey-background':i % 2 == 1 }"
             >
-            <home-search v-if="i==1"/>
+            <HomeSearch v-if="i==1"/>
 
-            <home-latest-articles v-if="i==2"/>
+            <HomeLatestArticles v-if="i==2"/>
 
-            <home-app-highlights v-if="i==3" />
+            <HomeAppHighlights v-if="i==3" />
 
-            <home-documentation v-if="i==4" />
+            <HomeDocumentation v-if="i==4" />
         </div>
             
         <div style="height:100px"></div>

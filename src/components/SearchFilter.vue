@@ -43,7 +43,7 @@
                         v-for="(item, i) in items"
                         :key="i"
                         >
-                        <search-autocomplete
+                        <SearchAutocomplete
                             class="py-2 px-3"
                             ref="filterInput"
                             :label="item.title.toUpperCase()"

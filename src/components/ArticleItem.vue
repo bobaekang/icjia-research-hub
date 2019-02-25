@@ -33,10 +33,10 @@
                             </h3>
 
                             <span v-for="type of article.type" :key="type">                            
-                                <simple-chip :name="type.toUpperCase()" />
+                                <SimpleChip :name="type.toUpperCase()" />
                             </span>
                             <span v-for="category of article.categories" :key="category">                            
-                                <simple-chip :name="category.toUpperCase()" />
+                                <SimpleChip :name="category.toUpperCase()" />
                             </span>
                         </v-layout>
                     </v-container>

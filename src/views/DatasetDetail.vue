@@ -8,7 +8,7 @@
                 v-for="(item, i) in view($route.params.name)"
                 :key="i"
                 >
-                <dataset-item-detail :item="item"/>
+                <DatasetItemDetail :item="item"/>
             </v-flex>
         </v-layout>
     </v-container>

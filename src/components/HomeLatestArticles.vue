@@ -7,7 +7,7 @@
                     sm10
                     xl8
                     >
-                    <section-title
+                    <SectionTitle
                         :title="title"
                         :path="path"
                         />

@@ -10,7 +10,7 @@
                 sm10
                 xl8
                 >
-                <section-title
+                <SectionTitle
                     :title="title"
                     :path="path"
                     />
@@ -30,7 +30,7 @@
                 v-for="(item,i) in items"
                 :key="i"
                 >
-                <app-item :item="item" :simple="isSimpleCard" />
+                <AppItem :item="item" :simple="isSimpleCard" />
             </v-flex>
         </v-layout>
     </v-container>
