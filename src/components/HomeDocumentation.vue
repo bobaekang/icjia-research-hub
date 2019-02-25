@@ -2,7 +2,7 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 xl8>
-        <SectionTitle :title="title" :path="docs_url" />
+        <HomeSectionTitle :title="title" :path="docs_url" />
 
         <v-layout row wrap>
           <v-flex xs12 sm4 v-for="(item, i) in items" :key="i">
@@ -23,11 +23,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SectionTitle from '../components/SectionTitle'
+import HomeSectionTitle from '@/components/HomeSectionTitle'
 
 export default {
   components: {
-    SectionTitle
+    HomeSectionTitle
   },
   data() {
     return {

@@ -3,7 +3,7 @@
     <v-container class="pb-3">
       <v-layout justify-center>
         <v-flex xs12 sm10 xl8>
-          <SectionTitle :title="title" :path="path" />
+          <HomeSectionTitle :title="title" :path="path" />
         </v-flex>
       </v-layout>
     </v-container>
@@ -37,11 +37,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SectionTitle from '../components/SectionTitle'
+import HomeSectionTitle from '@/components/HomeSectionTitle'
 
 export default {
   components: {
-    SectionTitle
+    HomeSectionTitle
   },
   data() {
     return {

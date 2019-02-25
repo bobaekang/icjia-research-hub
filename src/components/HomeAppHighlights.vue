@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap justify-center>
       <v-flex xs12 sm10 xl8>
-        <SectionTitle :title="title" :path="path" />
+        <HomeSectionTitle :title="title" :path="path" />
       </v-flex>
     </v-layout>
 
@@ -16,13 +16,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AppItem from './AppItem'
-import SectionTitle from './SectionTitle'
+import AppItem from '@/components/AppItem'
+import HomeSectionTitle from '@/components/HomeSectionTitle'
 
 export default {
   components: {
     AppItem,
-    SectionTitle
+    HomeSectionTitle
   },
   data() {
     return {
