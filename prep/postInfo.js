@@ -16,10 +16,10 @@ main();
 function main() {
     const baseUrl = 'http://localhost:1337';
 
-    const appInfoEdited = require('../src/assets/appInfoEdited.json');
-    const articleInfoEdited = require('../src/assets/articleInfoEdited.json');
-    const authorInfoEdited = require('../src/assets/authorInfoEdited.json');
-    const datasetInfoEdited = require('../src/assets/datasetInfoEdited.json');
+    const appInfoEdited = require('files/appInfoEdited.json');
+    const articleInfoEdited = require('files/articleInfoEdited.json');
+    const authorInfoEdited = require('files/authorInfoEdited.json');
+    const datasetInfoEdited = require('files/datasetInfoEdited.json');
     
     postAll(appInfoEdited, baseUrl, 'app');
     postAll(articleInfoEdited, baseUrl, 'article');

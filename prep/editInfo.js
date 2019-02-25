@@ -16,14 +16,14 @@ main();
 
 // define functions
 function main() {
-    const appInfo = require('../src/assets/appInfo.json');
-    const articleInfo = require('../src/assets/articleInfo.json');
-    const authorInfo = require('../src/assets/authorInfo.json');
-    const datasetInfo = require('../src/assets/datasetInfo.json');
+    const appInfo = require('files/appInfo.json');
+    const articleInfo = require('files/articleInfo.json');
+    const authorInfo = require('files/authorInfo.json');
+    const datasetInfo = require('files/datasetInfo.json');
 
     const authorInfoFiltered = filterAuthorInfo(articleInfo, authorInfo);
 
-    const dirpath = './src/assets/';
+    const dirpath = './prep/fiels/';
 
     // writeInfoEdited(appInfo, dirpath, 'app');
     // writeInfoEdited(articleInfo, dirpath, 'article');
