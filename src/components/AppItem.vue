@@ -12,42 +12,28 @@
 
     <v-card-title primary-title>
       <div>
-        <h2>{{ app.title }}</h2>
-        <span class="grey--text">{{ app.summary }}</span>
+        <h3>
+          <router-link :to="`/apps/${app.slug}`">
+            {{ app.title }}
+          </router-link>
+        </h3>
       </div>
     </v-card-title>
 
-    <v-btn v-if="simple" :href="app.url" flat>Launch</v-btn>
-
-    <template v-else>
-      <v-card-actions>
-        <v-btn :href="app.url" flat>Launch</v-btn>
-
-        <v-spacer />
-
-        <v-btn icon @click="app.showDescription = !app.showDescription">
-          <v-icon>
-            {{
-              app.showDescription ? 'keyboard_arrow_down' : 'keyboard_arrow_up'
-            }}
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
-
-      <v-slide-y-transition>
-        <v-card-text v-if="app.showDescription">{{
-          app.description
-        }}</v-card-text>
-      </v-slide-y-transition>
-    </template>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn :to="`/apps/${app.slug}`" flat>
+        more
+        <v-icon>more_horiz</v-icon>
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 export default {
   props: {
-    item: Object,
-    simple: Boolean
+    item: Object
   },
   computed: {
     app() {

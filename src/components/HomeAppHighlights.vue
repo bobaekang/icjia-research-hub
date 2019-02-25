@@ -8,7 +8,7 @@
 
     <v-layout row wrap justify-center>
       <v-flex xs12 sm6 md4 lg3 v-for="(item, i) in items" :key="i">
-        <AppItem :item="item" :simple="isSimpleCard" />
+        <AppItem :item="item" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       title: 'app highlights',
-      path: 'app',
+      path: 'apps',
       isSimpleCard: true
     }
   },

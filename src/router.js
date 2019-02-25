@@ -10,7 +10,10 @@ export default new Router({
   routes: [
     makeRoute('home'),
     makeRoute('about'),
-    makeRoute('apps', [makeRouteChild('appSearch', 'AppSearch', '')]),
+    makeRoute('apps', [
+      makeRouteChild('appSearch', 'AppSearch', ''),
+      makeRouteChild('appView', 'AppView', ':name')
+    ]),
     makeRoute('articles', [
       makeRouteChild('articleSearch', 'ArticleSearch', ''),
       makeRouteChild('articleView', 'ArticleView', ':name')
