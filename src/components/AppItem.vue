@@ -11,33 +11,60 @@
     </v-img>
 
     <v-card-title primary-title>
-      <div>
-        <h3>
-          <router-link :to="`/apps/${app.slug}`">
-            {{ app.title }}
-          </router-link>
-        </h3>
-      </div>
+      <BaseItemTitleDisplay :to="getAppPath(app.slug)">
+        {{ app.title }}
+      </BaseItemTitleDisplay>
     </v-card-title>
+
+    <v-container py-0 px-3 class="font-lato small">
+      <template v-if="app.contributors">
+        Contributed by
+        <span v-for="(contributor, i) in app.contributors" :key="i">
+          <a :href="contributor.url" target="_blank">
+            {{ contributor.title }}
+          </a>
+        </span>
+      </template>
+
+      <template v-else>
+        Created by ICJIA R&A staff
+      </template>
+    </v-container>
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn :to="`/apps/${app.slug}`" flat>
+
+      <BaseButton :href="app.url" icon="play_arrow">
+        launch
+      </BaseButton>
+
+      <BaseButton :to="getAppPath(app.slug)" icon="more_horiz">
         more
-        <v-icon>more_horiz</v-icon>
-      </v-btn>
+      </BaseButton>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import BaseButton from '@/components/BaseButton'
+import BaseItemTitleDisplay from '@/components/BaseItemTitleDisplay'
+
 export default {
+  components: {
+    BaseButton,
+    BaseItemTitleDisplay
+  },
   props: {
     item: Object
   },
   computed: {
     app() {
       return this.item
+    }
+  },
+  methods: {
+    getAppPath(slug) {
+      return `/apps/${slug}`
     }
   }
 }

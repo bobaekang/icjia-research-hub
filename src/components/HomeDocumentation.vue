@@ -1,9 +1,7 @@
 <template>
-  <v-container>
+  <BaseSection :title="title" :href="docs_url">
     <v-layout justify-center>
-      <v-flex xs12 sm10 xl8>
-        <HomeSectionTitle :title="title" :path="docs_url" />
-
+      <v-flex xs12 sm10 md8>
         <v-layout row wrap>
           <v-flex xs12 sm4 v-for="(item, i) in items" :key="i">
             <v-container class="pb-0">
@@ -18,16 +16,16 @@
         </v-layout>
       </v-flex>
     </v-layout>
-  </v-container>
+  </BaseSection>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import HomeSectionTitle from '@/components/HomeSectionTitle'
+import BaseSection from '@/components/BaseSection'
 
 export default {
   components: {
-    HomeSectionTitle
+    BaseSection
   },
   data() {
     return {

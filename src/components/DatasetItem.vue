@@ -1,94 +1,79 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <h3 class="pr-2">
-        <router-link :to="`/datasets/${dataset.slug}`">
-          {{ dataset.title }}
-        </router-link>
-      </h3>
+      <BaseItemTitleDisplay :to="getDatasetPath(dataset.slug)">
+        {{ dataset.title }}
+      </BaseItemTitleDisplay>
 
       <div v-if="dataset.categories">
-        <span v-for="(category, i) in dataset.categories" :key="i">
-          <SimpleChip :name="category.toUpperCase()" />
-        </span>
+        <BaseItemPropChip v-for="category in dataset.categories" :key="category">
+          {{ category.toUpperCase() }}
+        </BaseItemPropChip>
       </div>
-      <SimpleChip :name="dataset.agegroup.toUpperCase()" />
+      <BaseItemPropChip>{{ dataset.agegroup.toUpperCase() }}</BaseItemPropChip>
     </v-card-title>
 
     <v-divider />
 
-    <div>
-      <v-layout row wrap>
-        <v-flex xs12>
-          <v-container class="small sans-serif py-2">
-            <span class="bold pr-2">Tags</span>
+    <v-container class="py-2">
+      <BaseItemPropDisplay name="Tags">
+        <span v-if="dataset.tags && dataset.tags.length > 0">
+          <span class="pr-2" v-for="(tag, i) in dataset.tags" :key="i">
+            {{ tag.toUpperCase() }}
+          </span>
+        </span>
 
-            <span v-if="dataset.tags && Array.isArray(dataset.tags)">
-              <span class="pr-2" v-for="(tag, i) in dataset.tags" :key="i">
-                {{ tag.toUpperCase() }}
-              </span>
-            </span>
+        <span v-else class="italic">No tags</span>
+      </BaseItemPropDisplay>
 
-            <span v-else class="italic">No tags</span>
-          </v-container>
+      <BaseItemPropDisplay name="Updated">
+        {{ dataset.date }}
+      </BaseItemPropDisplay>
 
-          <v-container class="py-2 small sans-serif hidden-sm-and-down">
-            <v-layout row wrap>
-              <v-flex sm2>
-                <div class="pb-2">
-                  <p class="ma-0 bold">Updated</p>
-                  {{ dataset.date }}
-                </div>
-              </v-flex>
-              <v-flex sm10>
-                <div>
-                  <p class="ma-0 bold">Sources</p>
-                  <span v-for="(source, i) in dataset.sources" :key="i">
-                    <a :href="source.url">{{ source.title }}</a>
-                  </span>
-                </div>
-              </v-flex>
-            </v-layout>
-          </v-container>
+      <BaseItemPropDisplay name="Sources">
+        <span v-for="(source, i) in dataset.sources" :key="i">
+          <a :href="source.url">{{ source.title }}</a>
+        </span>
+      </BaseItemPropDisplay>
+    </v-container>
 
-          <v-container class="pt-0 small sans-serif hidden-md-and-up">
-            <div class="pb-2">
-              <span class="pr-2 bold">Updated</span>
-              {{ dataset.date }}
-            </div>
-            <div>
-              <span class="pr-2 bold">Sources</span>
-              <span v-for="(source, i) in dataset.sources" :key="i">
-                <a :href="source.url">{{ source.title }}</a>
-              </span>
-            </div>
-          </v-container>
-
-          <v-container class="pa-0 text-xs-right">
-            <v-btn flat :to="`/datasets/${dataset.slug}`">
-              More
-              <v-icon>more_horiz</v-icon>
-            </v-btn>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </div>
+    <v-container class="pa-0 text-xs-right">
+      <BaseButton :to="getDatasetPath(dataset.slug)" icon="more_horiz">
+        more
+      </BaseButton>
+    </v-container>
   </v-card>
 </template>
 
 <script>
-import SimpleChip from '@/components/SimpleChip'
+import BaseButton from '@/components/BaseButton'
+import BaseItemPropChip from '@/components/BaseItemPropChip'
+import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
+import BaseItemTitleDisplay from '@/components/BaseItemTitleDisplay'
 
 export default {
   components: {
-    SimpleChip
+    BaseButton,
+    BaseItemPropChip,
+    BaseItemPropDisplay,
+    BaseItemTitleDisplay
   },
   props: {
     item: Object
   },
+  data() {
+    return {
+      path: 'datasets'
+    }
+  },
   computed: {
     dataset() {
       return this.item
+    }
+  },
+  methods: {
+    getDatasetPath(slug) {
+      return `/datasets/${slug}`
     }
   }
 }

@@ -1,34 +1,29 @@
 <template>
-  <v-container>
-    <v-layout row wrap justify-center>
-      <v-flex xs12 sm10 xl8>
-        <HomeSectionTitle :title="title" :path="path" />
-      </v-flex>
-    </v-layout>
-
-    <v-layout row wrap justify-center>
-      <v-flex xs12 sm6 md4 lg3 v-for="(item, i) in items" :key="i">
-        <AppItem :item="item" />
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <BaseSection :title="title" :home="true" :to="to">
+    <v-container pt-0>
+      <v-layout row wrap justify-center>
+        <v-flex xs12 sm6 md4 lg3 v-for="(item, i) in items" :key="i">
+          <AppItem :item="item" />
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </BaseSection>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import AppItem from '@/components/AppItem'
-import HomeSectionTitle from '@/components/HomeSectionTitle'
+import BaseSection from '@/components/BaseSection'
 
 export default {
   components: {
     AppItem,
-    HomeSectionTitle
+    BaseSection
   },
   data() {
     return {
       title: 'app highlights',
-      path: 'apps',
-      isSimpleCard: true
+      to: 'apps'
     }
   },
   computed: {

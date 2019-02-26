@@ -55,19 +55,16 @@ a {
   font-family: 'Lato', sans-serif;
 }
 
-.view-title {
-  font-size: 2em;
-  font-family: 'Oswald', sans-serif;
-  color: white;
-  background-color: #466c8c;
-}
-
 .section-title {
   border-bottom: 1px #999 solid;
   text-transform: uppercase;
 }
 
-.sans-serif {
+.font-oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.font-lato {
   font-family: 'Lato', sans-serif;
 }
 
@@ -81,6 +78,10 @@ a {
 
 .italic {
   font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .v-messages {

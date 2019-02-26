@@ -6,7 +6,7 @@
       <v-layout justify-center row>
         <v-flex xs12 sm10 md8>
           <v-layout align-center justify-space-between row>
-            <div class="article-header">
+            <div class="article-type font-lato">
               <span v-for="type in article.type" :key="type">{{ type }}</span>
               &nbsp;|&nbsp;
               <span v-for="category in article.categories" :key="category">
@@ -14,31 +14,35 @@
               </span>
             </div>
 
-            <v-btn flat exact to="/articles">Back</v-btn>
+            <BaseButton to="/articles">
+              back
+            </BaseButton>
           </v-layout>
 
           <h1 class="article-title">{{ article.title }}</h1>
 
-          <div class="article-summary my-3">{{ article.summary }}</div>
+          <div class="article-summary font-lato my-3">
+            {{ article.summary }}
+          </div>
 
           <div>
             <span
               v-for="(author, i) in article.authors"
               :key="i"
-              class="article-authors"
+              class="uppercase font-oswald"
             >
               <span v-if="isBeforeLastAuthor(article.authors.length, i)">
                 &nbsp;and&nbsp;
               </span>
 
-              <router-link :to="`/author/${author.slug}`">
+              <router-link :to="getAuthorPath(author.slug)">
                 {{ author.title }}
               </router-link>
 
               <span v-if="i + 2 < article.authors.length">,&nbsp;</span>
             </span>
             &nbsp;|&nbsp;
-            <span class="article-date">{{ article.date }}</span>
+            <span class="uppercase font-oswald">{{ article.date }}</span>
           </div>
 
           <v-divider />
@@ -54,6 +58,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BaseButton from '@/components/BaseButton'
 
 const md = require('markdown-it')({
   html: true,
@@ -62,6 +67,9 @@ const md = require('markdown-it')({
 }).use(require('markdown-it-footnote'))
 
 export default {
+  components: {
+    BaseButton
+  },
   props: {
     item: Object
   },
@@ -79,27 +87,17 @@ export default {
   methods: {
     isBeforeLastAuthor(length, i) {
       return length > 1 && length === i + 1
+    },
+    getAuthorPath(slug) {
+      return `/authors/${slug}`
     }
   }
 }
 </script>
 
 <style scoped>
-.article-authors {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-
-.article-date {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-family: 'Oswald', serif;
-  color: #999;
-}
-
-.article-header {
-  font-family: 'Lato', sans-serif;
+.article-type {
+  color: grey;
 }
 
 .article-img {
@@ -114,7 +112,6 @@ export default {
 
 .article-summary {
   color: grey;
-  font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 20px;
 }

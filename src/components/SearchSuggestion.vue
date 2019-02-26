@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-2 text-xs-center sans-serif" v-if="showSuggestion">
+  <div class="pt-2 text-xs-center font-lato" v-if="showSuggestion">
     Need suggestions? Try these:
     <br />
     <span v-for="(suggestion, i) in suggestions" :key="i">

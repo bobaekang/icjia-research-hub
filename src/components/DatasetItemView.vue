@@ -23,7 +23,9 @@
         type="file"
       />
 
-      <v-btn flat exact to="/datasets">Back</v-btn>
+      <BaseButton to="/datasets">
+        back
+      </BaseButton>
     </v-card-title>
 
     <v-divider />
@@ -31,57 +33,56 @@
     <v-container>
       <h3 class="pb-2">About this dataset</h3>
 
-      <div class="small sans-serif">
-        <div class="py-1">
-          <span class="pr-2 bold">Updated</span>
-          {{ dataset.date }}
-        </div>
+      <BaseItemPropDisplay name="Updated">
+        {{ dataset.date }}
+      </BaseItemPropDisplay>
 
-        <div class="py-1">
-          <span class="pr-2 bold">Sources</span>
-          <span v-for="(source, i) in dataset.sources" :key="i">
-            <a :href="source.url">{{ source.title }}</a>
-          </span>
-        </div>
+      <BaseItemPropDisplay name="Sources">
+        <span v-for="(source, i) in dataset.sources" :key="i">
+          <a :href="source.url" target="_blank">
+            {{ source.title }}
+          </a>
+        </span>
+      </BaseItemPropDisplay>
 
-        <div class="py-1">
-          <span class="pr-2 bold">Categories</span>
-          <span v-for="(category, i) in dataset.categories" :key="i">
-            {{ category }}
-          </span>
-        </div>
+      <BaseItemPropDisplay name="Categories">
+        <span v-for="(category, i) in dataset.categories" :key="i">
+          {{ category }}
+        </span>
+      </BaseItemPropDisplay>
 
-        <div class="py-1">
-          <span class="bold pr-2">Tags</span>
+      <BaseItemPropDisplay name="Tags">
+        <span v-if="dataset.tags && dataset.tags.length > 0">
+          <BaseItemPropChip v-for="tag in dataset.tags" :key="tag">
+            {{ tag.toUpperCase() }}
+          </BaseItemPropChip>
+        </span>
 
-          <span v-if="dataset.tags">
-            <span class="pr-2" v-for="(tag, i) in dataset.tags" :key="i">
-              {{ tag.toUpperCase() }}
-            </span>
-          </span>
+        <span v-else class="italic">No tags</span>
+      </BaseItemPropDisplay>
 
-          <span v-else class="italic">No tags</span>
-        </div>
+      <BaseItemPropDisplay name="Time period">
+        {{ dataset.timeperiod }}
+      </BaseItemPropDisplay>
 
-        <div class="py-1">
-          <span class="pr-2 bold">Time Period</span>
-          {{ dataset.timeperiod }}
-        </div>
-
-        <div class="py-1">
-          <span class="pr-2 bold">Age group</span>
-          {{ dataset.agegroup }}
-        </div>
-      </div>
+      <BaseItemPropDisplay name="Age group">
+        {{ dataset.agegroup }}
+      </BaseItemPropDisplay>
     </v-container>
   </v-card>
 </template>
 
 <script>
+import BaseButton from '@/components/BaseButton'
+import BaseItemPropChip from '@/components/BaseItemPropChip'
+import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
 import DatasetDownloadButton from '@/components/DatasetDownloadButton'
 
 export default {
   components: {
+    BaseButton,
+    BaseItemPropChip,
+    BaseItemPropDisplay,
     DatasetDownloadButton
   },
   props: {

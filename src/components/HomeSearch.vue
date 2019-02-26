@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-layout justify-center row wrap>
-      <v-flex xs12 class="text-xs-center">
-        <h3>{{ titleUpper }}</h3>
+      <v-flex xs12 class="text-xs-center uppercase">
+        <h3>{{ title }}</h3>
         <v-icon>fa fa-caret-down</v-icon>
       </v-flex>
 
@@ -11,7 +11,7 @@
           <v-text-field
             @keyup.enter="submit"
             v-model="search"
-            :label="`Search ${showLabel} in Research Hub`"
+            :label="`Search ${typeSelect} in Research Hub`"
             :clearable="true"
             append-outer-icon="search"
             solo
@@ -20,7 +20,7 @@
 
         <v-radio-group
           v-model="typeSelect"
-          class="py-0 my-0 sans-serif"
+          class="py-0 my-0 font-lato"
           style="justify-content: center;"
           row
         >
@@ -39,21 +39,8 @@ export default {
     return {
       title: 'Get started & explore this Research Hub',
       search: '',
-      types: ['app', 'article', 'dataset'],
-      typeSelect: 'dataset'
-    }
-  },
-  computed: {
-    titleUpper() {
-      return this.title.toUpperCase()
-    },
-    showLabel() {
-      let label
-      if (this.typeSelect === 'app') label = 'applications'
-      else if (this.typeSelect === 'article') label = 'articles'
-      else if (this.typeSelect === 'dataset') label = 'datasets'
-
-      return label
+      types: ['apps', 'articles', 'datasets'],
+      typeSelect: 'datasets'
     }
   },
   methods: {

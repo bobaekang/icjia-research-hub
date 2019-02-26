@@ -1,7 +1,5 @@
 <template>
-  <div class="text-xs-center pb-2 sans-serif">
-    {{ count }} {{ item }}s found
-  </div>
+  <div class="text-xs-center pb-2 font-lato">{{ count }} {{ item }}s found</div>
 </template>
 
 <script>

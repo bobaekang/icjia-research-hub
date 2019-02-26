@@ -1,26 +1,16 @@
 <template>
   <div>
-    <div class="view-title">
-      <v-container class="pb-1">
-        <v-layout justify-center>
-          <v-flex xs12 sm10 xl8>
-            <div id="home-title">
-              {{ title }}
-            </div>
+    <BaseViewTitle :home="true">
+      <h1>{{ title }}</h1>
 
-            <p id="home-subtitle">
-              {{ subtitle }}
-            </p>
+      <p class="font-lato large">{{ subtitle }}</p>
 
-            <p class="text-xs-right">
-              <v-btn to="about" flat color="#ddd">
-                {{ about }}
-              </v-btn>
-            </p>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </div>
+      <p class="text-xs-right">
+        <v-btn to="about" flat color="#ddd">
+          {{ about }}
+        </v-btn>
+      </p>
+    </BaseViewTitle>
 
     <div v-for="i in 4" :key="i" :class="{ 'grey-background': i % 2 == 1 }">
       <HomeSearch v-if="i == 1" />
@@ -37,6 +27,7 @@
 </template>
 
 <script>
+import BaseViewTitle from '@/components/BaseViewTitle'
 import HomeAppHighlights from '@/components/HomeAppHighlights'
 import HomeDocumentation from '@/components/HomeDocumentation'
 import HomeLatestArticles from '@/components/HomeLatestArticles'
@@ -44,6 +35,7 @@ import HomeSearch from '@/components/HomeSearch'
 
 export default {
   components: {
+    BaseViewTitle,
     HomeAppHighlights,
     HomeDocumentation,
     HomeLatestArticles,
@@ -61,15 +53,9 @@ export default {
 </script>
 
 <style scoped>
-#home-title {
-  font-size: 1.1em;
+.large {
+  font-size: 1.2em;
 }
-
-#home-subtitle {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.6em;
-}
-
 .grey-background {
   background-color: #eee;
 }

@@ -1,18 +1,20 @@
 <template>
   <div>
-    <TheViewTitle :title="title" />
+    <BaseViewTitle :home="false">
+      <h1>{{ title }}</h1>
+    </BaseViewTitle>
 
     <router-view search="" />
   </div>
 </template>
 
 <script>
-import TheViewTitle from '@/components/TheViewTitle'
+import BaseViewTitle from '@/components/BaseViewTitle'
 
 export default {
   name: 'apps',
   components: {
-    TheViewTitle
+    BaseViewTitle
   },
   data() {
     return {

@@ -20,40 +20,41 @@
         <div>
           <v-container class="py-2">
             <v-layout row wrap>
-              <h3>
-                <router-link :to="`/articles/${article.slug}`">
-                  {{ article.title }}
-                </router-link>
-              </h3>
+              <BaseItemTitleDisplay :to="getArticlePath(article.slug)">
+                {{ article.title }}
+              </BaseItemTitleDisplay>
 
-              <span v-for="type of article.type" :key="type">
-                <SimpleChip :name="type.toUpperCase()" />
-              </span>
-              <span v-for="category of article.categories" :key="category">
-                <SimpleChip :name="category.toUpperCase()" />
-              </span>
+              <BaseItemPropChip v-for="type of article.type" :key="type">
+                {{ type.toUpperCase() }}
+              </BaseItemPropChip>
+
+              <BaseItemPropChip
+                v-for="category of article.categories"
+                :key="category"
+              >
+                {{ category.toUpperCase() }}
+              </BaseItemPropChip>
             </v-layout>
           </v-container>
 
           <v-divider />
 
-          <v-container class="small sans-serif py-2">
-            <div class="pb-2">
-              <span class="ma-0 bold">Updated</span>
+          <v-container class="py-2">
+            <BaseItemPropDisplay name="Updated">
               {{ article.date }}
-            </div>
-            <div class="pb-2">
-              <span class="ma-0 bold">Authors</span>
+            </BaseItemPropDisplay>
+
+            <BaseItemPropDisplay name="Authors">
               <span
                 v-for="(author, i) in article.authors"
-                :key="i"
-                class="article-authors"
+                :key="author"
+                class="uppercase"
               >
                 <span v-if="isBeforeLastAuthor(article.authors.length, i)">
                   &nbsp;and&nbsp;
                 </span>
 
-                <router-link :to="`/authors/${author.slug}`">
+                <router-link :to="getAuthorPath(author.slug)">
                   {{ author.title }}
                 </router-link>
 
@@ -61,7 +62,7 @@
                   ,&nbsp;
                 </span>
               </span>
-            </div>
+            </BaseItemPropDisplay>
           </v-container>
         </div>
 
@@ -81,10 +82,9 @@
             </v-icon>
           </v-btn>
 
-          <v-btn :to="`/articles/${article.slug}`" flat>
+          <BaseButton :to="getArticlePath(article.slug)" icon="more_horiz">
             more
-            <v-icon>more_horiz</v-icon>
-          </v-btn>
+          </BaseButton>
         </v-card-actions>
 
         <v-slide-y-transition>
@@ -99,11 +99,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SimpleChip from '@/components/SimpleChip'
+import BaseButton from '@/components/BaseButton'
+import BaseItemPropChip from '@/components/BaseItemPropChip'
+import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
+import BaseItemTitleDisplay from '@/components/BaseItemTitleDisplay'
 
 export default {
   components: {
-    SimpleChip
+    BaseButton,
+    BaseItemPropChip,
+    BaseItemPropDisplay,
+    BaseItemTitleDisplay
   },
   props: {
     item: Object
@@ -119,6 +125,12 @@ export default {
   methods: {
     isBeforeLastAuthor(length, i) {
       return length > 1 && length === i + 1
+    },
+    getArticlePath(slug) {
+      return `/articles/${slug}`
+    },
+    getAuthorPath(slug) {
+      return `/authors/${slug}`
     }
   }
 }
@@ -127,9 +139,5 @@ export default {
 <style scoped>
 .article-body {
   width: 100px;
-}
-
-.article-authors {
-  text-transform: uppercase;
 }
 </style>

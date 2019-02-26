@@ -5,7 +5,7 @@
     :prefix="label"
     chips
     multiple
-    class="sans-serif small"
+    class="font-lato small"
   >
     <template slot="selection" slot-scope="data">
       <v-chip

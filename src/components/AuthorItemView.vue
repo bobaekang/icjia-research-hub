@@ -54,13 +54,6 @@ export default {
     author() {
       return this.item
     }
-    // articlesSortedByDate() {
-    //   return this.item.articles.sort((a, b) => {
-    //     if (a.date < b.date) return 1
-    //     if (a.date > b.date) return -1
-    //     return 0
-    //   })
-    // }
   },
   methods: {
     sortByDate(articles) {

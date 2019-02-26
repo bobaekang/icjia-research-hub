@@ -1,22 +1,14 @@
 <template>
-  <div>
-    <v-container class="pb-3">
-      <v-layout justify-center>
-        <v-flex xs12 sm10 xl8>
-          <HomeSectionTitle :title="title" :path="path" />
-        </v-flex>
-      </v-layout>
-    </v-container>
-
-    <v-carousel id="carousel">
+  <BaseSection :title="title" :to="to">
+    <v-carousel>
       <router-link
-        v-for="(item, i) in items"
+        v-for="(article, i) in articles"
         :key="i"
-        :to="`/${path}/${item.slug}`"
+        :to="getArticlePath(article.slug)"
         style="text-decoration: none"
       >
         <v-carousel-item
-          :src="item.splash"
+          :src="article.splash"
           gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.33)"
         >
           <v-layout justify-center>
@@ -25,35 +17,40 @@
                 class="text-xs-center"
                 style="color:white; margin:15% 10% 0 10%"
               >
-                {{ item.title }}
+                {{ article.title }}
               </h1>
             </v-flex>
           </v-layout>
         </v-carousel-item>
       </router-link>
     </v-carousel>
-  </div>
+  </BaseSection>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import HomeSectionTitle from '@/components/HomeSectionTitle'
+import BaseSection from '@/components/BaseSection'
 
 export default {
   components: {
-    HomeSectionTitle
+    BaseSection
   },
   data() {
     return {
       title: 'Latest articles',
-      path: 'articles'
+      to: 'articles'
     }
   },
   computed: {
     ...mapGetters({
-      items: 'articlesHome',
+      articles: 'articlesHome',
       base_url: 'api_url'
     })
+  },
+  methods: {
+    getArticlePath(slug) {
+      return `/articles/${slug}`
+    }
   }
 }
 </script>
