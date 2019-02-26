@@ -4,7 +4,7 @@
     @click:clear="onClear($event)"
     :value="searchInput"
     :label="searchLabel"
-    clearable="true"
+    :clearable="true"
     append-outer-icon="search"
     solo
   />

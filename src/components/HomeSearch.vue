@@ -12,7 +12,7 @@
             @keyup.enter="submit"
             v-model="search"
             :label="`Search ${showLabel} in Research Hub`"
-            clearable="true"
+            :clearable="true"
             append-outer-icon="search"
             solo
           />
