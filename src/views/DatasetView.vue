@@ -5,7 +5,7 @@
         xs12
         sm10
         md8
-        v-for="(item, i) in view($route.params.name)"
+        v-for="(item, i) in view($route.params.slug)"
         :key="i"
       >
         <DatasetItemView :item="item" />

@@ -49,44 +49,6 @@ export function reduceObjArr(props, arr) {
   return obj
 }
 
-// Generate a route object for 'router.js'
-export function makeRoute(name, children = null, dirpath = './views') {
-  const path = _getPath(name, false)
-  const compPath = _getCompPath(name, dirpath)
-
-  let route = {
-    // name,
-    path,
-    component: () => import(`${compPath}`)
-  }
-
-  if (children != null) {
-    route.children = children
-  }
-
-  return route
-}
-
-// Generate a child route object for 'router.js'
-export function makeRouteChild(
-  name,
-  compname,
-  path = null,
-  dirpath = './views'
-) {
-  if (path === null) {
-    path = _getPath(name, true)
-  }
-  const compPath = _getCompPath(compname, dirpath)
-
-  return {
-    name,
-    path,
-    props: true,
-    component: () => import(`${compPath}`)
-  }
-}
-
 const _isItemToShow = function(item, keys, fObj) {
   let test = keys.every(key => _hasKeyMatch(item, key, fObj))
   return test
@@ -115,16 +77,4 @@ const _flatten = function(arr, result = []) {
 
 const _toUpperCaseAll = function(arr) {
   return arr.map(el => el.toUpperCase())
-}
-
-const _getPath = (name, child) => {
-  if (name == 'home') {
-    return '/'
-  } else {
-    return child ? name : `/${name}`
-  }
-}
-
-const _getCompPath = (name, dirpath) => {
-  return `${dirpath}/${name.charAt(0).toUpperCase() + name.slice(1)}.vue`
 }

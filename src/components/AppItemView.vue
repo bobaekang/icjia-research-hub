@@ -9,10 +9,13 @@
 
       <v-spacer />
 
-      <v-btn flat exact :to="app.url">
+      <BaseButton :href="app.url" icon="play_arrow">
         Launch
-        <v-icon>play_arrow</v-icon>
-      </v-btn>
+      </BaseButton>
+
+      <BaseButton v-if="app.src" :href="app.src" icon="code">
+        Source code
+      </BaseButton>
 
       <BaseButton to="/apps">
         back

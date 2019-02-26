@@ -1,31 +1,79 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import { makeRoute, makeRouteChild } from './utils'
-
 Vue.use(Router)
 
 export default new Router({
   // mode: 'history',
   routes: [
-    makeRoute('home'),
-    makeRoute('about'),
-    makeRoute('apps', [
-      makeRouteChild('appSearch', 'AppSearch', ''),
-      makeRouteChild('appView', 'AppView', ':name')
-    ]),
-    makeRoute('articles', [
-      makeRouteChild('articleSearch', 'ArticleSearch', ''),
-      makeRouteChild('articleView', 'ArticleView', ':name')
-    ]),
-    makeRoute('authors', [
-      makeRouteChild('authorList', 'AuthorList', ''),
-      makeRouteChild('authorView', 'AuthorView', ':name')
-    ]),
-    makeRoute('datasets', [
-      makeRouteChild('datasetSearch', 'DatasetSearch', ''),
-      makeRouteChild('datasetView', 'DatasetView', ':name')
-    ])
+    {
+      path: '/',
+      component: () => import('@/views/Home.vue')
+    },
+    {
+      path: '/about',
+      component: () => import('@/views/About.vue')
+    },
+    {
+      path: '/apps',
+      component: () => import('@/views/Apps.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/AppSearch.vue')
+        },
+        {
+          path: ':slug',
+          component: () => import('@/views/AppView.vue')
+        }
+      ]
+    },
+    {
+      path: '/articles',
+      component: () => import('@/views/Articles.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/ArticleSearch.vue')
+        },
+        {
+          path: ':slug',
+          component: () => import('@/views/ArticleView.vue')
+        }
+      ]
+    },
+    {
+      path: '/authors',
+      component: () => import('@/views/Authors.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/AuthorList.vue')
+        },
+        {
+          path: ':slug',
+          component: () => import('@/views/AuthorView.vue')
+        }
+      ]
+    },
+    {
+      path: '/datasets',
+      component: () => import('@/views/Datasets.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/DatasetSearch.vue')
+        },
+        {
+          path: ':slug',
+          component: () => import('@/views/DatasetView.vue')
+        }
+      ]
+    },
+    {
+      path: '*',
+      component: () => import('@/views/404.vue')
+    }
   ],
   scrollBehavior() {
     return { x: 0, y: 0 }

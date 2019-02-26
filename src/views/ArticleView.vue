@@ -2,7 +2,7 @@
   <div>
     <TheProgessBar />
 
-    <v-flex v-for="(item, i) in view($route.params.name)" :key="i">
+    <v-flex v-for="(item, i) in view($route.params.slug)" :key="i">
       <ArticleItemView :item="item" />
     </v-flex>
   </div>
