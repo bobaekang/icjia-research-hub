@@ -9,10 +9,10 @@
 
       <div v-if="dataset.categories">
         <span v-for="(category, i) in dataset.categories" :key="i">
-          <simple-chip :name="category.toUpperCase()" />
+          <SimpleChip :name="category.toUpperCase()" />
         </span>
       </div>
-      <simple-chip :name="dataset.agegroup.toUpperCase()" />
+      <SimpleChip :name="dataset.agegroup.toUpperCase()" />
     </v-card-title>
 
     <v-divider />

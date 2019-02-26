@@ -4,8 +4,9 @@
     small
     text-color="#333"
     style="font-family: 'Lato', sans-serif;"
-    >{{ name }}</v-chip
   >
+    {{ name }}
+  </v-chip>
 </template>
 
 <script>

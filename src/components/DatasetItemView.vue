@@ -10,7 +10,7 @@
       <v-spacer />
 
       <DatasetDownloadButton
-        v-if="dataset.hasOwnProperty('datacsv') && dataset.datacsv !== ''"
+        v-if="dataset.datacsv && dataset.datacsv !== ''"
         :data="dataset.datacsv"
         :name="dataset.datafilename"
         type="csv"
@@ -55,8 +55,8 @@
           <span class="bold pr-2">Tags</span>
 
           <span v-if="dataset.tags">
-            <span class="pr-2" v-for="(keyword, i) in dataset.tags" :key="i">
-              {{ keyword.toUpperCase() }}
+            <span class="pr-2" v-for="(tag, i) in dataset.tags" :key="i">
+              {{ tag.toUpperCase() }}
             </span>
           </span>
 
