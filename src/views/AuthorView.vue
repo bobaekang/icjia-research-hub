@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AuthorItemView from '@/components/AuthorItemView'
 
 export default {
@@ -23,9 +23,14 @@ export default {
     AuthorItemView
   },
   computed: {
-    ...mapGetters({
-      items: 'authors'
+    ...mapState('authors', {
+      items: 'data'
     })
+  },
+  mounted() {
+    if (this.$store.state.authors.data.length === 0) {
+      this.$store.dispatch('authors/fetchData')
+    }
   },
   methods: {
     view(slug) {

@@ -23,12 +23,8 @@
 
         <div class="my-3">
           <h3 class="mb-1">Articles by this author</h3>
-          <v-flex
-            v-for="article in sortByDate(author.articles)"
-            :key="article.id"
-            class="mb-3"
-          >
-            <ArticleItem :item="getArticle(article.id)" />
+          <v-flex v-for="article in articles" :key="article.id" class="mb-3">
+            <ArticleItem :item="article" />
           </v-flex>
         </div>
       </template>
@@ -37,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import client from '@/services/client'
 import ArticleItem from '@/components/ArticleItem'
 
 export default {
@@ -47,26 +43,21 @@ export default {
   props: {
     item: Object
   },
+  data() {
+    return {
+      articles: []
+    }
+  },
   computed: {
-    ...mapGetters({
-      items: 'articles'
-    }),
     author() {
       return this.item
     }
   },
-  methods: {
-    sortByDate(articles) {
-      return articles.sort((a, b) => {
-        if (a.date < b.date) return 1
-        if (a.date > b.date) return -1
-        return 0
+  mounted() {
+    for (let a of this.item.articles) {
+      client.getArticleInfo(a._id).then(res => {
+        this.articles.push(res.data.data.article)
       })
-    },
-    getArticle(id) {
-      return this.items.filter(el => {
-        return el.id == id
-      })[0]
     }
   }
 }

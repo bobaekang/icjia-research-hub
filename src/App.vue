@@ -20,9 +20,6 @@ export default {
     TheToolbar,
     TheButtonBackToTop,
     TheFooter
-  },
-  created() {
-    this.$store.dispatch('fetchData')
   }
 }
 </script>

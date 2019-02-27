@@ -42,7 +42,9 @@
               <span v-if="i + 2 < article.authors.length">,&nbsp;</span>
             </span>
             &nbsp;|&nbsp;
-            <span class="uppercase font-oswald">{{ article.date }}</span>
+            <span class="uppercase font-oswald">
+              {{ article.date.slice(0, 10) }}
+            </span>
           </div>
 
           <v-divider />
@@ -57,7 +59,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import BaseButton from '@/components/BaseButton'
 
 const md = require('markdown-it')({
@@ -74,9 +75,6 @@ export default {
     item: Object
   },
   computed: {
-    ...mapGetters({
-      base_url: 'api_url'
-    }),
     article() {
       return this.item
     },

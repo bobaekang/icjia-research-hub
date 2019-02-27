@@ -2,14 +2,12 @@
   <div>
     <TheProgessBar />
 
-    <v-flex v-for="(item, i) in view($route.params.slug)" :key="i">
-      <ArticleItemView :item="item" />
-    </v-flex>
+    <ArticleItemView :item="item" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import client from '@/services/client'
 import ArticleItemView from '@/components/ArticleItemView'
 import TheProgessBar from '@/components/TheProgressBar'
 
@@ -18,17 +16,15 @@ export default {
     ArticleItemView,
     TheProgessBar
   },
-  computed: {
-    ...mapGetters({
-      items: 'articles'
-    })
-  },
-  methods: {
-    view(slug) {
-      return this.items.filter(item => {
-        return item.slug === slug
-      })
+  data() {
+    return {
+      item: {}
     }
+  },
+  mounted() {
+    client.getArticleBySlug(this.$route.params.slug).then(res => {
+      this.item = res.data.data.articles[0]
+    })
   }
 }
 </script>

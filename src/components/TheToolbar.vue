@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -65,8 +65,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      docs_url: 'docs_url'
+    ...mapState('docs', {
+      docs_url: 'url'
     }),
     titleUpper() {
       return this.title.toUpperCase()

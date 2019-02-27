@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-import { pick, reduceObjArr, unwrapObj } from './utils'
+import { pick, reduceObjArr, unwrapObj } from '../services/utils'
 
 Vue.use(Vuex)
 

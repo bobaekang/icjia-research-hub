@@ -27,9 +27,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      items: 'appsHome'
+    ...mapGetters('apps', {
+      items: 'highlights'
     })
+  },
+  created() {
+    if (this.$store.state.apps.data.length === 0) {
+      this.$store.dispatch('apps/fetchData')
+    }
   }
 }
 </script>

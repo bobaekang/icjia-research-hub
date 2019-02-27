@@ -34,7 +34,7 @@
       <h3 class="pb-2">About this dataset</h3>
 
       <BaseItemPropDisplay name="Updated">
-        {{ dataset.date }}
+        {{ dataset.date.slice(0, 10) }}
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Sources">

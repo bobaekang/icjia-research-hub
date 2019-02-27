@@ -1,13 +1,7 @@
 <template>
   <v-container>
     <v-layout justify-center>
-      <v-flex
-        xs12
-        sm10
-        md8
-        v-for="(item, i) in view($route.params.slug)"
-        :key="i"
-      >
+      <v-flex xs12 sm10 md8>
         <DatasetItemView :item="item" />
       </v-flex>
     </v-layout>
@@ -15,24 +9,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import client from '@/services/client'
 import DatasetItemView from '@/components/DatasetItemView'
 
 export default {
   components: {
     DatasetItemView
   },
-  computed: {
-    ...mapGetters({
-      items: 'datasets'
-    })
-  },
-  methods: {
-    view(slug) {
-      return this.items.filter(item => {
-        return item.slug === slug
-      })
+  data() {
+    return {
+      item: {}
     }
+  },
+  mounted() {
+    client.getDatasetBySlug(this.$route.params.slug).then(res => {
+      this.item = res.data.data.datasets[0]
+    })
   }
 }
 </script>

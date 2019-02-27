@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AppItemView from '@/components/AppItemView'
 
 export default {
@@ -23,9 +23,14 @@ export default {
     AppItemView
   },
   computed: {
-    ...mapGetters({
-      items: 'apps'
+    ...mapState('apps', {
+      items: 'data'
     })
+  },
+  mounted() {
+    if (this.$store.state.apps.data.length === 0) {
+      this.$store.dispatch('apps/fetchData')
+    }
   },
   methods: {
     view(slug) {

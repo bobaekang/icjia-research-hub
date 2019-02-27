@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import BaseSection from '@/components/BaseSection'
 
 export default {
@@ -42,10 +42,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      articles: 'articlesHome',
-      base_url: 'api_url'
+    ...mapState('articles', {
+      articles: 'carouselInfo'
     })
+  },
+  created() {
+    if (!this.articles || this.articles.length === 0) {
+      this.$store.dispatch('articles/fetchCarouselInfo')
+    }
   },
   methods: {
     getArticlePath(slug) {

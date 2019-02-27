@@ -10,7 +10,7 @@
 
         <SearchFilter :items="filters" @updateFilter="filterObj = $event" />
 
-        <TheItemCounter :count="filterItems(items).length" :item="item" />
+        <TheItemCounter :count="filterItems(items).length" :contentType="contentType" />
 
         <SearchSuggestion
           :showSuggestion="filterItems(items).length === 0"
@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { applyFilterBox } from '@/utils'
+import { mapState, mapGetters } from 'vuex'
+import { applyFilterBox } from '@/services/utils'
 import ArticleItem from '@/components/ArticleItem'
 import SearchBar from '@/components/SearchBar'
 import SearchFilter from '@/components/SearchFilter'
@@ -56,19 +56,23 @@ export default {
   data() {
     return {
       // search: '',
-      item: 'article',
+      contentType: 'article',
       filterObj: {}
     }
   },
   computed: {
-    ...mapGetters({
-      items: 'articles',
-      filters: 'articleFilters',
-      suggestions: 'articleSuggestions'
+    ...mapState('articles', {
+      items: 'info',
+      suggestions: 'suggestions'
+    }),
+    ...mapGetters('articles', {
+      filters: 'filters'
     })
   },
-  created() {
-    this.$store.dispatch('createArticleFilters')
+  mounted() {
+    if (this.$store.state.articles.info.length === 0) {
+      this.$store.dispatch('articles/fetchInfo')
+    }
   },
   methods: {
     filterItems(items) {
@@ -80,7 +84,6 @@ export default {
 
       return itemsToShow.filter(item => {
         return item.title.toUpperCase().match(s) || item.date.match(s)
-        // item.authors.join('').toUpperCase().match(s);
       })
     },
     useSuggestion(suggestion) {

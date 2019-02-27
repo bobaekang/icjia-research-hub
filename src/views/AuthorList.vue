@@ -20,13 +20,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters({
-      items: 'authors'
+    ...mapState('authors', {
+      items: 'data'
     })
+  },
+  mounted() {
+    if (this.$store.state.authors.data.length === 0) {
+      this.$store.dispatch('authors/fetchData')
+    }
   }
 }
 </script>

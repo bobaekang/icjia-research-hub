@@ -41,7 +41,7 @@
 
           <v-container class="py-2">
             <BaseItemPropDisplay name="Updated">
-              {{ article.date }}
+              {{ article.date.slice(0, 10) }}
             </BaseItemPropDisplay>
 
             <BaseItemPropDisplay name="Authors">
@@ -98,7 +98,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import BaseButton from '@/components/BaseButton'
 import BaseItemPropChip from '@/components/BaseItemPropChip'
 import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
@@ -115,9 +114,6 @@ export default {
     item: Object
   },
   computed: {
-    ...mapGetters({
-      base_url: 'api_url'
-    }),
     article() {
       return this.item
     }

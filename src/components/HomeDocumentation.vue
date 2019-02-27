@@ -1,5 +1,5 @@
 <template>
-  <BaseSection :title="title" :href="docs_url">
+  <BaseSection :title="title" :href="url">
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
         <v-layout row wrap>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import BaseSection from '@/components/BaseSection'
 
 export default {
@@ -53,8 +53,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      docs_url: 'docs_url'
+    ...mapState('docs', {
+      url: 'url'
     })
   }
 }

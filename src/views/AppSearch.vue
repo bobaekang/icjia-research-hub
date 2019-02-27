@@ -8,7 +8,10 @@
           :search.sync="search"
         />
 
-        <TheItemCounter :count="filterItems(items).length" :item="item" />
+        <TheItemCounter
+          :count="filterItems(items).length"
+          :contentType="contenetType"
+        />
 
         <SearchSuggestion
           :showSuggestion="filterItems(items).length === 0"
@@ -29,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AppItem from '@/components/AppItem'
 import TheItemCounter from '@/components/TheItemCounter'
 import SearchBar from '@/components/SearchBar'
@@ -48,15 +51,21 @@ export default {
   data() {
     return {
       title: 'Applications',
-      item: 'app',
+      contenetType: 'app',
       isSimpleCard: false
     }
   },
   computed: {
-    ...mapGetters({
-      items: 'apps',
-      suggestions: 'appSuggestions'
+    ...mapState('apps', {
+      items: 'data',
+      suggestions: 'suggestions'
     })
+  },
+  mounted() {
+    console.log(this.search)
+    if (this.$store.state.apps.data.length === 0) {
+      this.$store.dispatch('apps/fetchData')
+    }
   },
   methods: {
     filterItems(items) {

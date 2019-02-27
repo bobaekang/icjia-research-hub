@@ -6,7 +6,10 @@
       </BaseItemTitleDisplay>
 
       <div v-if="dataset.categories">
-        <BaseItemPropChip v-for="category in dataset.categories" :key="category">
+        <BaseItemPropChip
+          v-for="category in dataset.categories"
+          :key="category"
+        >
           {{ category.toUpperCase() }}
         </BaseItemPropChip>
       </div>
@@ -27,7 +30,7 @@
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Updated">
-        {{ dataset.date }}
+        {{ dataset.date.slice(0, 10) }}
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Sources">

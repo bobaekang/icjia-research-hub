@@ -10,7 +10,10 @@
 
         <SearchFilter :items="filters" @updateFilter="filterObj = $event" />
 
-        <TheItemCounter :count="filterItems(items).length" :item="item" />
+        <TheItemCounter
+          :count="filterItems(items).length"
+          :contentType="contentType"
+        />
 
         <SearchSuggestion
           :showSuggestion="filterItems(items).length === 0"
@@ -34,8 +37,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { applyFilterBox } from '@/utils'
+import { mapState, mapGetters } from 'vuex'
+import { applyFilterBox } from '@/services/utils'
 import DatasetItem from '@/components/DatasetItem'
 import SearchBar from '@/components/SearchBar'
 import SearchFilter from '@/components/SearchFilter'
@@ -55,20 +58,24 @@ export default {
   },
   data() {
     return {
-      item: 'dataset',
+      contentType: 'dataset',
       suggestion: '',
       filterObj: {}
     }
   },
   computed: {
-    ...mapGetters({
-      items: 'datasets',
-      filters: 'datasetFilters',
-      suggestions: 'datasetSuggestions'
+    ...mapState('datasets', {
+      items: 'info',
+      suggestions: 'suggestions'
+    }),
+    ...mapGetters('datasets', {
+      filters: 'filters'
     })
   },
-  created() {
-    this.$store.dispatch('createDatasetFilters')
+  mounted() {
+    if (this.$store.state.datasets.info.length === 0) {
+      this.$store.dispatch('datasets/fetchInfo')
+    }
   },
   methods: {
     filterItems(items) {
