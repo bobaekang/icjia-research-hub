@@ -1,13 +1,21 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
-
-// const token = axios.post('http')
+import api from '@/config/api'
 
 const client = axios.create({
-  baseURL: 'http://localhost:1337',
-  headers: {
-    // Authorization: `Bearer ${token}`
+  baseURL: api.BASE_URL
+})
+
+axios({
+  method: 'post',
+  url: api.AUTH_URL,
+  data: {
+    identifier: api.IDENTIFIER,
+    password: api.PASSWORD
   }
+}).then(res => {
+  const token = res.data.jwt
+  client.defaults.headers.common['Authorization'] = `Bearer ${token}`
 })
 
 client.interceptors.request.use(config => {
