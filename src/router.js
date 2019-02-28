@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NProgress from 'nprogress'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   // mode: 'history',
   routes: [
     {
@@ -20,6 +21,7 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'appSearch',
           component: () => import('@/views/AppSearch.vue')
         },
         {
@@ -34,6 +36,7 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'articleSearch',
           component: () => import('@/views/ArticleSearch.vue')
         },
         {
@@ -62,6 +65,7 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'datasetSearch',
           component: () => import('@/views/DatasetSearch.vue')
         },
         {
@@ -79,3 +83,14 @@ export default new Router({
     return { x: 0, y: 0 }
   }
 })
+
+router.beforeEach((routeTo, routeFrom, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
+
+export default router

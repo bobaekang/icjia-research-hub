@@ -1,4 +1,5 @@
 import axios from 'axios'
+import NProgress from 'nprogress'
 
 // const token = axios.post('http')
 
@@ -7,6 +8,16 @@ const client = axios.create({
   headers: {
     // Authorization: `Bearer ${token}`
   }
+})
+
+client.interceptors.request.use(config => {
+  NProgress.start()
+  return config
+})
+
+client.interceptors.response.use(response => {
+  NProgress.done()
+  return response
 })
 
 export default {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import 'nprogress/nprogress.css'
 
 import App from './App.vue'
 import router from './router'
