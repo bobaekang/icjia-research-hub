@@ -22,7 +22,8 @@ const router = new Router({
         {
           path: '',
           name: 'appSearch',
-          component: () => import('@/views/AppSearch.vue')
+          component: () => import('@/views/AppSearch.vue'),
+          props: true
         },
         {
           path: ':slug',
@@ -37,7 +38,8 @@ const router = new Router({
         {
           path: '',
           name: 'articleSearch',
-          component: () => import('@/views/ArticleSearch.vue')
+          component: () => import('@/views/ArticleSearch.vue'),
+          props: true
         },
         {
           path: ':slug',
@@ -66,7 +68,8 @@ const router = new Router({
         {
           path: '',
           name: 'datasetSearch',
-          component: () => import('@/views/DatasetSearch.vue')
+          component: () => import('@/views/DatasetSearch.vue'),
+          props: true
         },
         {
           path: ':slug',

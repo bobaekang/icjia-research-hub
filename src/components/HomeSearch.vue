@@ -3,7 +3,7 @@
     <v-layout justify-center row wrap>
       <v-flex xs12 class="text-xs-center uppercase">
         <h3>{{ title }}</h3>
-        <v-icon>fa fa-caret-down</v-icon>
+        <v-icon>fa-caret-down</v-icon>
       </v-flex>
 
       <v-flex xs12 md9 xl6>
@@ -40,18 +40,14 @@ export default {
       title: 'Get started & explore this Research Hub',
       search: '',
       types: ['apps', 'articles', 'datasets'],
-      typeSelect: 'datasets'
+      typeSelect: 'articles'
     }
   },
   methods: {
     onSubmit() {
-      if (this.search === null) {
-        this.search = ''
-      }
-
-      const nameSelect = `${this.typeSelect}Search`
+      const nameSelectSearch = `${this.typeSelect.slice(0, -1)}Search`
       this.$router.push({
-        name: nameSelect,
+        name: nameSelectSearch,
         params: {
           search: this.search
         }
