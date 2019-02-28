@@ -10,10 +10,10 @@
 
         <SearchFilter :items="filters" @updateFilter="filterObj = $event" />
 
-        <TheItemCounter :count="filterItems(items).length" :contentType="contentType" />
-
-        <SearchSuggestion
-          :showSuggestion="filterItems(items).length === 0"
+        <SearchInfoExtra
+          :contentType="contentType"
+          :items="items"
+          :filteredItems="filterItems(items)"
           :suggestions="suggestions"
           @useSuggestion="useSuggestion($event)"
         />
@@ -39,16 +39,14 @@ import { applyFilterBox } from '@/services/utils'
 import ArticleItem from '@/components/ArticleItem'
 import SearchBar from '@/components/SearchBar'
 import SearchFilter from '@/components/SearchFilter'
-import SearchSuggestion from '@/components/SearchSuggestion'
-import TheItemCounter from '@/components/TheItemCounter'
+import SearchInfoExtra from '@/components/SearchInfoExtra'
 
 export default {
   components: {
     ArticleItem,
     SearchBar,
     SearchFilter,
-    SearchSuggestion,
-    TheItemCounter
+    SearchInfoExtra
   },
   props: {
     search: String
