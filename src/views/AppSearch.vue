@@ -60,7 +60,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.search)
     if (this.$store.state.apps.data.length === 0) {
       this.$store.dispatch('apps/fetchData')
     }
