@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { sortByDate } from '@/services/utils'
 import client from '@/services/client'
 import ArticleItem from '@/components/ArticleItem'
 
@@ -45,7 +46,8 @@ export default {
   },
   data() {
     return {
-      articles: []
+      articles: [],
+      articleIds: []
     }
   },
   computed: {
@@ -54,9 +56,26 @@ export default {
     }
   },
   mounted() {
-    for (let a of this.item.articles) {
-      client.getArticleInfo(a._id).then(res => {
-        this.articles.push(res.data.data.article)
+    this.articleIds = this.item.articles
+    Promise.all(
+      this.item.articles.map(async el => {
+        const res = await client.getArticleInfo(el._id)
+        return res.data.data.article
+      })
+    ).then(articles => {
+      this.articles = sortByDate(articles)
+    })
+  },
+  beforeUpdate() {
+    if (this.articleIds !== this.item.articles) {
+      this.articleIds = this.item.articles
+      Promise.all(
+        this.item.articles.map(async el => {
+          const res = await client.getArticleInfo(el._id)
+          return res.data.data.article
+        })
+      ).then(articles => {
+        this.articles = sortByDate(articles)
       })
     }
   }

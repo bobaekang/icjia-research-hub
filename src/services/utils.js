@@ -1,3 +1,12 @@
+// Return an array of objects sorted by date (descending)
+export function sortByDate(items) {
+  return items.sort((a, b) => {
+    if (a.date < b.date) return 1
+    if (a.date > b.date) return -1
+    return 0
+  })
+}
+
 // Return filtered array of items using a filter object
 export function applyFilterBox(items, filters, fObj) {
   const fObjKeys = Object.keys(fObj)
