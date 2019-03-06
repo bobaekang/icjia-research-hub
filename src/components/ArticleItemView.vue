@@ -1,8 +1,10 @@
 <template>
   <div>
+    <SocialSharing :url="baseUrl + item.slug" :title="item.title" />
+
     <v-img height="500px" :src="article.splash"></v-img>
 
-    <v-container>
+    <v-container id="article-view">
       <v-layout justify-center row>
         <v-flex xs12 sm10 md8>
           <v-layout align-center justify-space-between row>
@@ -45,6 +47,8 @@
             <span class="uppercase font-oswald">
               {{ article.date.slice(0, 10) }}
             </span>
+            &nbsp;|&nbsp;
+            <v-icon @click="printArticle">print</v-icon>
           </div>
 
           <v-divider />
@@ -60,6 +64,7 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
+import SocialSharing from '@/components/SocialSharing'
 
 const md = require('markdown-it')({
   html: true,
@@ -69,10 +74,16 @@ const md = require('markdown-it')({
 
 export default {
   components: {
-    BaseButton
+    BaseButton,
+    SocialSharing
   },
   props: {
     item: Object
+  },
+  data() {
+    return {
+      baseUrl: 'localhost:8080/'
+    }
   },
   computed: {
     article() {
@@ -88,6 +99,28 @@ export default {
     },
     getAuthorPath(slug) {
       return `/authors/${slug}`
+    },
+    printArticle() {
+      const html = document.getElementById('article-view').innerHTML
+      let style = ''
+
+      document
+        .querySelectorAll('link[rel="stylesheet"], style')
+        .forEach(node => {
+          style += node.outerHTML
+        })
+
+      const specs =
+        'left=0, top=0, width=800, height=900, toolbar=0, scrollbars=0, status=0'
+      const win = window.open('', '', specs)
+
+      win.document.write(
+        `<!DOCTYPE html><html><head>${style}</head><body>${html}</body></html>`
+      )
+      win.document.close()
+      win.focus()
+      win.print()
+      win.close()
     }
   }
 }
