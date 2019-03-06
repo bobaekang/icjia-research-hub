@@ -1,17 +1,19 @@
 <template>
-  <v-btn
-    v-scroll="onScroll"
-    v-show="fab"
-    fab
-    dark
-    fixed
-    bottom
-    right
-    color="#bbb"
-    @click="toTop"
-  >
-    <v-icon>keyboard_arrow_up</v-icon>
-  </v-btn>
+  <transition name="fade">
+    <v-btn
+      v-scroll="onScroll"
+      v-show="fab"
+      fab
+      dark
+      fixed
+      bottom
+      right
+      color="#bbb"
+      @click="toTop"
+    >
+      <v-icon>keyboard_arrow_up</v-icon>
+    </v-btn>
+  </transition>
 </template>
 
 <script>
@@ -33,3 +35,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
