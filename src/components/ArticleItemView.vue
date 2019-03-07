@@ -2,67 +2,90 @@
   <div>
     <SocialSharing :url="baseUrl + item.slug" :title="item.title" />
 
-    <v-img height="500px" :src="article.splash"></v-img>
+    <v-img :height="splashHeight" :src="article.splash"></v-img>
 
-    <v-container id="article-view">
-      <v-layout justify-center row>
-        <v-flex xs12 sm10 md8>
-          <v-layout align-center justify-space-between row>
-            <div class="article-type font-lato">
-              <span v-for="type in article.type" :key="type">{{ type }}</span>
-              &nbsp;|&nbsp;
-              <span v-for="category in article.categories" :key="category">
-                {{ category }}
-              </span>
+    <v-layout row wrap>
+      <v-flex md2 class="hidden-sm-and-down">
+        <ArticleItemViewTOC
+          :headings="headings"
+          :activeHeading="activeHeading"
+          :class="{
+            'toc-sticky': isTOCSticky,
+            'toc-md-only': isMedium,
+            'toc-lg-and-up': !isMedium
+          }"
+          v-scroll="onScrollTOC"
+        />
+      </v-flex>
+
+      <v-flex md10>
+        <!-- <v-container > -->
+        <v-layout justify-center row id="article-view">
+          <v-flex xs12 sm10 pt-4>
+            <v-layout align-center justify-space-between row>
+              <div class="article-type font-lato">
+                <span v-for="type in article.type" :key="type">{{ type }}</span>
+                &nbsp;|&nbsp;
+                <span v-for="category in article.categories" :key="category">
+                  {{ category }}
+                </span>
+              </div>
+
+              <BaseButton to="/articles">
+                back
+              </BaseButton>
+            </v-layout>
+
+            <h1 class="article-title">{{ article.title }}</h1>
+
+            <div class="article-summary font-lato my-3">
+              {{ article.summary }}
             </div>
 
-            <BaseButton to="/articles">
-              back
-            </BaseButton>
-          </v-layout>
+            <div>
+              <span
+                v-for="(author, i) in article.authors"
+                :key="i"
+                class="uppercase font-oswald"
+              >
+                <span v-if="isBeforeLastAuthor(article.authors.length, i)">
+                  &nbsp;and&nbsp;
+                </span>
 
-          <h1 class="article-title">{{ article.title }}</h1>
+                <router-link :to="getAuthorPath(author.slug)">
+                  {{ author.title }}
+                </router-link>
 
-          <div class="article-summary font-lato my-3">
-            {{ article.summary }}
-          </div>
-
-          <div>
-            <span
-              v-for="(author, i) in article.authors"
-              :key="i"
-              class="uppercase font-oswald"
-            >
-              <span v-if="isBeforeLastAuthor(article.authors.length, i)">
-                &nbsp;and&nbsp;
+                <span v-if="i + 2 < article.authors.length">,&nbsp;</span>
               </span>
+              &nbsp;|&nbsp;
+              <span class="uppercase font-oswald">
+                {{ article.date ? article.date.slice(0, 10) : '' }}
+              </span>
+              &nbsp;|&nbsp;
+              <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
+            </div>
 
-              <router-link :to="getAuthorPath(author.slug)">
-                {{ author.title }}
-              </router-link>
+            <v-divider />
 
-              <span v-if="i + 2 < article.authors.length">,&nbsp;</span>
-            </span>
-            &nbsp;|&nbsp;
-            <span class="uppercase font-oswald">
-              {{ article.date.slice(0, 10) }}
-            </span>
-            &nbsp;|&nbsp;
-            <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
-          </div>
+            <div
+              ref="article-body"
+              class="article-body py-3"
+              v-html="articleBody"
+              v-scroll="onScroll"
+            />
 
-          <v-divider />
-
-          <div class="article-body py-3" v-html="compliedBody" />
-
-          <div style="height: 100px"></div>
-        </v-flex>
-      </v-layout>
-    </v-container>
+            <div style="height: 100px"></div>
+          </v-flex>
+        </v-layout>
+        <!-- </v-container> -->
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
 <script>
+import ArticleItemViewTOC from '@/components/ArticleItemViewTOC'
 import BaseButton from '@/components/BaseButton'
 import SocialSharing from '@/components/SocialSharing'
 
@@ -70,10 +93,13 @@ const md = require('markdown-it')({
   html: true,
   linkify: true,
   typographer: true
-}).use(require('markdown-it-footnote'))
+})
+  .use(require('markdown-it-footnote'))
+  .use(require('markdown-it-anchor'), { level: [1, 2] })
 
 export default {
   components: {
+    ArticleItemViewTOC,
     BaseButton,
     SocialSharing
   },
@@ -82,15 +108,30 @@ export default {
   },
   data() {
     return {
-      baseUrl: 'localhost:8080/'
+      activeHeading: 'introduction',
+      articleBody: null,
+      baseUrl: 'localhost:8080/',
+      headings: null,
+      isTOCSticky: false,
+      splashHeight: 500
     }
   },
   computed: {
     article() {
       return this.item
     },
-    compliedBody() {
-      return md.render(this.item.markdown)
+    isMedium() {
+      return this.$vuetify.breakpoint.name === 'md'
+    }
+  },
+  watch: {
+    article() {
+      this.articleBody = md.render(this.item.markdown)
+    },
+    articleBody() {
+      this.$nextTick(() => {
+        this.headings = this.$refs['article-body'].querySelectorAll('h2')
+      })
     }
   },
   methods: {
@@ -99,6 +140,30 @@ export default {
     },
     getAuthorPath(slug) {
       return `/authors/${slug}`
+    },
+    onScroll(e) {
+      if (typeof window === 'undefined') return
+
+      const top = window.pageYOffset || e.target.scrollTop || 0
+
+      if (top === 0) {
+        this.activeHeading = this.headings[0].id
+      } else {
+        this.headings.forEach(heading => {
+          let elHeading = this.$el.querySelector(`#${heading.id}`)
+          let rect = elHeading.getBoundingClientRect()
+          if (rect.top < 91 && this.activeHeading !== heading.id) {
+            this.activeHeading = heading.id
+          }
+        })
+      }
+    },
+    onScrollTOC(e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      const threshold = this.splashHeight + 75 + 75
+
+      this.isTOCSticky = top > threshold
     },
     printArticle() {
       const win = window.open('', '')
@@ -143,11 +208,6 @@ export default {
   color: grey;
   font-weight: 300;
   font-size: 20px;
-}
-
-#print-button:hover {
-  /* font-size: 18px; */
-  color: #1976d2;
 }
 
 /* headers */
@@ -308,6 +368,29 @@ export default {
 
 .article-body >>> blockquote > :last-child {
   margin-bottom: 0;
+}
+
+/* others */
+#print-button:hover {
+  color: #1976d2;
+}
+
+.toc-md-only {
+  padding-top: 90px !important;
+  padding-left: 45px !important;
+  max-width: 150px;
+}
+
+.toc-lg-and-up {
+  padding-top: 90px !important;
+  padding-left: 90px !important;
+  max-width: 300px;
+}
+
+.toc-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 @media screen and (max-width: 600px) {

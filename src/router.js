@@ -82,8 +82,15 @@ const router = new Router({
       component: () => import('@/views/404.vue')
     }
   ],
-  scrollBehavior() {
-    return { x: 0, y: 0 }
+  scrollBehavior(to) {
+    if (to.hash) {
+      return window.scrollTo({
+        top: document.querySelector(to.hash).offsetTop - 90,
+        behavior: 'smooth'
+      })
+    } else {
+      return window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 })
 
