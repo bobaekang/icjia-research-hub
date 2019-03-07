@@ -1,26 +1,6 @@
 <template>
   <div>
     <v-toolbar id="toolbar" :height="hpixel" fixed scroll-off-screen>
-      <v-menu offset-y class="hidden-md-and-up">
-        <v-btn slot="activator" flat>
-          <v-icon>menu</v-icon>
-        </v-btn>
-
-        <v-list>
-          <v-list-tile v-for="(view, i) in views" :key="i" :to="`/${view}`">
-            <v-list-tile-title class="slot">
-              {{ view }}
-            </v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile :href="docs_url">
-            <v-list-tile-title class="slot">
-              documentation
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-
       <a class="hidden-sm-and-down" :href="logo.href" target="_blank">
         <img :src="logo.url" :height="logoHpixel" alt="logo" />
       </a>
@@ -42,9 +22,29 @@
           documentation
         </v-btn>
       </v-toolbar-items>
+
+      <v-btn class="hidden-md-and-up" flat icon @click="drawer = !drawer">
+        <v-icon>menu</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <div :style="{ height: hpixel, backgroundColor: '#466c8c' }"></div>
+
+    <v-navigation-drawer v-model="drawer" temporary right app width="175">
+      <v-list class="slot">
+        <v-list-tile v-for="(view, i) in views" :key="i" :to="`/${view}`">
+          <v-list-tile-title>
+            {{ view }}
+          </v-list-tile-title>
+        </v-list-tile>
+
+        <v-list-tile :href="docs_url">
+          <v-list-tile-title>
+            documentation
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -55,13 +55,14 @@ export default {
   data() {
     return {
       height: 75,
-      title: 'ICJIA Research Hub',
+      title: 'Research Hub',
       views: ['about', 'apps', 'articles', 'datasets'],
       logo: {
         url:
           'http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png',
         href: 'http://www.icjia.state.il.us'
-      }
+      },
+      drawer: null
     }
   },
   computed: {
@@ -101,5 +102,8 @@ img {
   font-size: 0.8em;
   text-transform: uppercase;
   text-align: center;
+}
+
+.v-menu__content {
 }
 </style>
