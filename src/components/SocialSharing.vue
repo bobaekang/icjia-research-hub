@@ -10,7 +10,7 @@
       <v-layout class="fixed-left" align-start column>
         <network
           network="facebook"
-          style="background-color:#305891; padding:0 8px; cursor:pointer; border-bottom:1px solid #fff"
+          style="background-color:#305891; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
           <v-icon small style="color:white;">
             fa-facebook-square
@@ -18,7 +18,7 @@
         </network>
         <network
           network="linkedin"
-          style="background-color:#4498c8; padding:0 8px; cursor:pointer; border-bottom:1px solid #fff"
+          style="background-color:#4498c8; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
           <v-icon small style="color:white;">
             fa-linkedin-square
@@ -26,7 +26,7 @@
         </network>
         <network
           network="twitter"
-          style="background-color:#2ca8d2; padding:0 8px; cursor:pointer; border-bottom:1px solid #fff"
+          style="background-color:#2ca8d2; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
           <v-icon small style="color:white;">
             fa-twitter-square
@@ -61,7 +61,7 @@ export default {
 <style scoped>
 .fixed-left {
   position: fixed;
-  top: 60%;
+  top: 75%;
 }
 
 .fade-enter-active,

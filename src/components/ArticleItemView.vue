@@ -48,7 +48,7 @@
               {{ article.date.slice(0, 10) }}
             </span>
             &nbsp;|&nbsp;
-            <v-icon @click="printArticle">print</v-icon>
+            <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
           </div>
 
           <v-divider />
@@ -101,18 +101,16 @@ export default {
       return `/authors/${slug}`
     },
     printArticle() {
+      const win = window.open('', '')
       const html = document.getElementById('article-view').innerHTML
       let style = ''
 
       document
         .querySelectorAll('link[rel="stylesheet"], style')
         .forEach(node => {
+          console.log(node)
           style += node.outerHTML
         })
-
-      const specs =
-        'left=0, top=0, width=800, height=900, toolbar=0, scrollbars=0, status=0'
-      const win = window.open('', '', specs)
 
       win.document.write(
         `<!DOCTYPE html><html><head>${style}</head><body>${html}</body></html>`
@@ -145,6 +143,11 @@ export default {
   color: grey;
   font-weight: 300;
   font-size: 20px;
+}
+
+#print-button:hover {
+  /* font-size: 18px; */
+  color: #1976d2;
 }
 
 /* headers */
@@ -305,5 +308,11 @@ export default {
 
 .article-body >>> blockquote > :last-child {
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+  #article-view {
+    padding-left: 32px;
+  }
 }
 </style>
