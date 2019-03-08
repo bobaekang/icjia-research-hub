@@ -6,16 +6,31 @@
 
     <v-layout row wrap>
       <v-flex md2 class="hidden-sm-and-down">
-        <ArticleItemViewTOC
-          :headings="headings"
-          :activeHeading="activeHeading"
+        <div
           :class="{
-            'toc-sticky': isTOCSticky,
-            'toc-md-only': isMedium,
-            'toc-lg-and-up': !isMedium
+            'sidebar-sticky': isTOCSticky,
+            'sidebar-md-only': isMedium,
+            'sidebar-lg-and-up': !isMedium
           }"
-          v-scroll="onScrollTOC"
-        />
+        >
+          <ArticleItemViewTOC
+            :headings="headings"
+            :activeHeading="activeHeading"
+            v-scroll="onScrollTOC"
+          />
+
+          <v-divider class="my-3"></v-divider>
+
+          <v-btn v-if="article.reportpdf" block outline class="small">
+            Get PDF
+            <v-icon>get_app</v-icon>
+          </v-btn>
+
+          <v-btn v-if="article.slidespdf" block outline class="small">
+            Get slides
+            <v-icon>get_app</v-icon>
+          </v-btn>
+        </div>
       </v-flex>
 
       <v-flex md10>
@@ -385,22 +400,26 @@ export default {
   color: #1976d2;
 }
 
-.toc-md-only {
+.sidebar-md-only {
   padding-top: 90px !important;
   padding-left: 45px !important;
   max-width: 150px;
 }
 
-.toc-lg-and-up {
+.sidebar-lg-and-up {
   padding-top: 90px !important;
   padding-left: 90px !important;
   max-width: 300px;
 }
 
-.toc-sticky {
+.sidebar-sticky {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.v-btn.v-btn--outline {
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 @media screen and (max-width: 600px) {
