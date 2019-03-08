@@ -19,7 +19,6 @@
       </v-flex>
 
       <v-flex md10>
-        <!-- <v-container > -->
         <v-layout justify-center row id="article-view">
           <v-flex xs12 sm10 pt-4>
             <v-layout align-center justify-space-between row>
@@ -78,7 +77,6 @@
             <div style="height: 100px"></div>
           </v-flex>
         </v-layout>
-        <!-- </v-container> -->
       </v-flex>
     </v-layout>
   </div>
@@ -89,13 +87,25 @@ import ArticleItemViewTOC from '@/components/ArticleItemViewTOC'
 import BaseButton from '@/components/BaseButton'
 import SocialSharing from '@/components/SocialSharing'
 
-const md = require('markdown-it')({
+const mdOpts = {
   html: true,
   linkify: true,
   typographer: true
-})
+}
+
+const mdAnchorOpts = {
+  level: 2,
+  slugify: s =>
+    String(s)
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-zA-Z0-9-_]/g, '')
+}
+
+const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
-  .use(require('markdown-it-anchor'), { level: [1, 2] })
+  .use(require('markdown-it-anchor'), mdAnchorOpts)
 
 export default {
   components: {
