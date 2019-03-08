@@ -34,10 +34,6 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <BaseButton :href="app.url" icon="play_arrow">
-        launch
-      </BaseButton>
-
       <BaseButton :to="getAppPath(app.slug)" icon="more_horiz">
         more
       </BaseButton>
