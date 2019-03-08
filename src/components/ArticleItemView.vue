@@ -138,7 +138,8 @@ export default {
       baseUrl: 'localhost:8080/',
       headings: null,
       isTOCSticky: false,
-      splashHeight: 500
+      splashHeight: 500,
+      viewTitleHeight: 60 + 80
     }
   },
   computed: {
@@ -186,7 +187,7 @@ export default {
     onScrollTOC(e) {
       if (typeof window === 'undefined') return
       const top = window.pageYOffset || e.target.scrollTop || 0
-      const threshold = this.splashHeight + 75 + 75
+      const threshold = this.splashHeight + this.viewTitleHeight
 
       this.isTOCSticky = top > threshold
     },

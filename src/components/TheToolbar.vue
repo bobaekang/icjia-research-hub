@@ -54,7 +54,7 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      height: 75,
+      height: 60,
       title: 'Research Hub',
       views: ['about', 'apps', 'articles', 'datasets'],
       logo: {
@@ -76,7 +76,7 @@ export default {
       return `${this.height}px`
     },
     logoHpixel() {
-      return `${this.height * 0.85}px`
+      return `${this.height * 0.9}px`
     }
   }
 }
@@ -102,8 +102,5 @@ img {
   font-size: 0.8em;
   text-transform: uppercase;
   text-align: center;
-}
-
-.v-menu__content {
 }
 </style>
