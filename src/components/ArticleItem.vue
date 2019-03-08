@@ -70,15 +70,12 @@
           <v-spacer></v-spacer>
           <v-btn
             v-if="article.summary"
-            @click="article.showSummary = !article.showSummary"
+            @click="showSummary = !showSummary"
             flat
-            >summary
+          >
+            summary
             <v-icon>
-              {{
-                article.showSummary
-                  ? 'keyboard_arrow_down'
-                  : 'keyboard_arrow_up'
-              }}
+              {{ showSummary ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
             </v-icon>
           </v-btn>
 
@@ -88,7 +85,7 @@
         </v-card-actions>
 
         <v-slide-y-transition>
-          <v-card-text v-if="article.showSummary">
+          <v-card-text v-if="showSummary">
             {{ article.summary }}
           </v-card-text>
         </v-slide-y-transition>
@@ -112,6 +109,11 @@ export default {
   },
   props: {
     item: Object
+  },
+  data() {
+    return {
+      showSummary: false
+    }
   },
   computed: {
     article() {
