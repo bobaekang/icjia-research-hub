@@ -20,17 +20,45 @@
 
             <h3>Open source technology</h3>
             <p>
-              The Research Hub is powered by popular open source projects, such
-              as
-              <a href="https://vuejs.org/"
-                >Vue.js<v-icon>open_in_new</v-icon></a
-              >
-              and
-              <a href="https://vuetifyjs.com/">
-                Vuetify<v-icon>open_in_new</v-icon>
-              </a>
-              , and developed publicly on
-              <a href="#"> GitHub<v-icon>open_in_new</v-icon> </a>.
+              The Research Hub is developed publicly on
+              <a href="#"> GitHub<v-icon>open_in_new</v-icon> </a>
+              with XXX license.
+            </p>
+            <p>
+              It is also powered by popular open source projects, including:
+              <ul>
+                <li>
+                  <a href="https://vuejs.org/">
+                    Vue.js<v-icon>open_in_new</v-icon>
+                  </a>
+                  and
+                  <a href="https://vuetifyjs.com/">
+                    Vuetify<v-icon>open_in_new</v-icon>
+                  </a>
+                  for user interface;
+                </li>
+                <li>
+                  <a href="https://vuepress.vuejs.org/">
+                    VuePress<v-icon>open_in_new</v-icon>
+                  </a>
+                  for documentation;
+                </li>
+                <li>
+                  <a href="https://strapi.io/">
+                    Strapi<v-icon>open_in_new</v-icon>
+                  </a>
+                  for headless contenet management system;
+                </li>
+                <li>
+                  <a href="https://www.docker.com/">
+                    Docker<v-icon>open_in_new</v-icon>
+                  </a>
+                  for containerization;
+                </li>
+                <li>
+                  and many more.
+                </li>
+              </ul>
             </p>
 
             <h3>Asking for your feedback and contribution</h3>
@@ -45,37 +73,8 @@
       </v-container>
     </BaseSection>
 
-    <BaseSection title="Illinois Open Data Portal">
-      <v-container py-0>
-        <v-layout row wrap justify-center>
-          <v-flex xs12 sm10 xl8>
-            <p>
-              The State of Illinois offers a state-wide open data portal, which
-              lets you find data across state, facts about your state, create
-              maps and graphs, and freely download the data for your own
-              analysis. Many of these datasets are updated daily, and some even
-              more often.
-            </p>
-            <p>
-              On March 10, 2014, the Illinois General Assembly unanimously
-              passed PA 98-0627, a bill introduced by the Governor's Office and
-              intended to increase transparency, accountability and savings in
-              government by establishing a new State Open Operating Standard.
-            </p>
-            <p>
-              For more information, please visit
-              <a href="https://data.illinois.gov/">
-                Illinois Open Data Portal<v-icon>open_in_new</v-icon>
-              </a>
-              .
-            </p>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </BaseSection>
-
     <BaseSection title="Illinois Criminal Justice Information Authority">
-      <v-container pt-0>
+      <v-container py-0>
         <v-layout row wrap justify-center>
           <v-flex xs12 sm10 xl8>
             <p>
@@ -115,6 +114,35 @@
       </v-container>
     </BaseSection>
 
+    <BaseSection title="Illinois Open Data Portal">
+      <v-container py-0>
+        <v-layout row wrap justify-center>
+          <v-flex xs12 sm10 xl8>
+            <p>
+              The State of Illinois offers a state-wide open data portal, which
+              lets you find data across state, facts about your state, create
+              maps and graphs, and freely download the data for your own
+              analysis. Many of these datasets are updated daily, and some even
+              more often.
+            </p>
+            <p>
+              On March 10, 2014, the Illinois General Assembly unanimously
+              passed PA 98-0627, a bill introduced by the Governor's Office and
+              intended to increase transparency, accountability and savings in
+              government by establishing a new State Open Operating Standard.
+            </p>
+            <p>
+              For more information, please visit
+              <a href="https://data.illinois.gov/">
+                Illinois Open Data Portal<v-icon>open_in_new</v-icon>
+              </a>
+              .
+            </p>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </BaseSection>
+
     <div class="spacer"></div>
   </div>
 </template>
@@ -138,10 +166,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 1.1em;
-}
-
 .spacer {
   height: 100px;
 }
