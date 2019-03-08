@@ -10,7 +10,7 @@
               see more
             </router-link>
 
-            <a v-if="href" :href="href" class="font-lato small">
+            <a v-if="href" :href="href" target="_blank" class="font-lato small">
               see more
             </a>
           </v-layout>

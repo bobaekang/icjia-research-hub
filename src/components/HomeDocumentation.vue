@@ -9,7 +9,9 @@
               <p class="resource-item">{{ item.body }}</p>
             </v-container>
 
-            <v-btn :to="item.url" flat>open</v-btn>
+            <v-layout justify-end>
+              <v-btn :href="item.url" target="_blank" flat>open</v-btn>
+            </v-layout>
 
             <v-divider class="hidden-sm-and-up" />
           </v-flex>
@@ -35,19 +37,19 @@ export default {
           title: 'User Guide',
           body:
             'New to the Research Hub? Read to find out more about navigating the Research Hub like a pro.',
-          url: ''
+          url: 'https://'
         },
         {
           title: 'API Documentation',
           body:
             'Learn how to use the Research Hub API to obtain data, analyze them, and develop awesome applications.',
-          url: ''
+          url: 'https://'
         },
         {
           title: 'Contributing Guidelines',
           body:
             'Need help! Find out how to make contributions to the Research Hub and have your work recognized.',
-          url: ''
+          url: 'https://'
         }
       ]
     }
