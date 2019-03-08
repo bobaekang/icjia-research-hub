@@ -40,7 +40,7 @@ import FileSaver from 'file-saver'
 
 export default {
   props: {
-    data: Object,
+    data: [Object, String],
     name: String,
     type: String
   },

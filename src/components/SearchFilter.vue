@@ -2,7 +2,7 @@
   <div class="pb-3">
     <v-btn flat @click="show = !show">
       <v-icon class="pr-1">tune</v-icon>
-      <v-span>{{ text }}</v-span>
+      {{ text }}
     </v-btn>
 
     <v-slide-y-transition>
@@ -40,7 +40,7 @@ export default {
     SearchAutocomplete
   },
   props: {
-    items: Object
+    items: Array
   },
   data() {
     return {

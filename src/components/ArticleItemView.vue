@@ -174,7 +174,7 @@ export default {
 
       if (top === 0) {
         this.activeHeading = this.headings[0].id
-      } else {
+      } else if (this.headings) {
         this.headings.forEach(heading => {
           let elHeading = this.$el.querySelector(`#${heading.id}`)
           let rect = elHeading.getBoundingClientRect()

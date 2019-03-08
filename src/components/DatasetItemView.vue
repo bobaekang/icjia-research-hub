@@ -39,9 +39,15 @@
 
       <BaseItemPropDisplay name="Sources">
         <span v-for="(source, i) in dataset.sources" :key="i">
-          <a :href="source.url" target="_blank">
+          <template v-if="source.hasOwnProperty('url')">
+            <a :href="source.url" target="_blank">
+              {{ source.title }}
+            </a>
+          </template>
+
+          <template v-else>
             {{ source.title }}
-          </a>
+          </template>
         </span>
       </BaseItemPropDisplay>
 

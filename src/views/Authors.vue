@@ -12,7 +12,7 @@
 import BaseViewTitle from '@/components/BaseViewTitle'
 
 export default {
-  name: 'author',
+  name: 'authors',
   components: {
     BaseViewTitle
   },

@@ -2,7 +2,7 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
-        <DatasetItemView :item="item" />
+        <DatasetItemView v-if="item" :item="item" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -18,13 +18,12 @@ export default {
   },
   data() {
     return {
-      item: {}
+      item: null
     }
   },
-  mounted() {
-    client.getDatasetBySlug(this.$route.params.slug).then(res => {
-      this.item = res.data.data.datasets[0]
-    })
+  async created() {
+    const res = await client.getDatasetBySlug(this.$route.params.slug)
+    this.item = res.data.data.datasets[0]
   }
 }
 </script>

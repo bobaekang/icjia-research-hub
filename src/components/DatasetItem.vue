@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <BaseItemTitleDisplay :to="getDatasetPath(dataset.slug)">
+      <BaseItemTitleDisplay :to="datasetPath">
         {{ dataset.title }}
       </BaseItemTitleDisplay>
 
@@ -35,13 +35,21 @@
 
       <BaseItemPropDisplay name="Sources">
         <span v-for="(source, i) in dataset.sources" :key="i">
-          <a :href="source.url">{{ source.title }}</a>
+          <template v-if="source.hasOwnProperty('url')">
+            <a :href="source.url" target="_blank">
+              {{ source.title }}
+            </a>
+          </template>
+
+          <template v-else>
+            {{ source.title }}
+          </template>
         </span>
       </BaseItemPropDisplay>
     </v-container>
 
     <v-container class="pa-0 text-xs-right">
-      <BaseButton :to="getDatasetPath(dataset.slug)" icon="more_horiz">
+      <BaseButton :to="datasetPath" icon="more_horiz">
         more
       </BaseButton>
     </v-container>
@@ -72,11 +80,9 @@ export default {
   computed: {
     dataset() {
       return this.item
-    }
-  },
-  methods: {
-    getDatasetPath(slug) {
-      return `/datasets/${slug}`
+    },
+    datasetPath() {
+      return `/datasets/${this.dataset.slug}`
     }
   }
 }

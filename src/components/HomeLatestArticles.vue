@@ -4,7 +4,7 @@
       <router-link
         v-for="(article, i) in articles"
         :key="i"
-        :to="getArticlePath(article.slug)"
+        :to="`/articles/${article.slug}`"
         style="text-decoration: none"
       >
         <v-carousel-item
@@ -49,11 +49,6 @@ export default {
   created() {
     if (!this.articles || this.articles.length === 0) {
       this.$store.dispatch('articles/fetchCarouselInfo')
-    }
-  },
-  methods: {
-    getArticlePath(slug) {
-      return `/articles/${slug}`
     }
   }
 }
