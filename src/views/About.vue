@@ -26,40 +26,40 @@
             </p>
             <p>
               It is also powered by popular open source projects, including:
-              <ul>
-                <li>
-                  <a href="https://vuejs.org/">
-                    Vue.js<v-icon>open_in_new</v-icon>
-                  </a>
-                  and
-                  <a href="https://vuetifyjs.com/">
-                    Vuetify<v-icon>open_in_new</v-icon>
-                  </a>
-                  for user interface;
-                </li>
-                <li>
-                  <a href="https://vuepress.vuejs.org/">
-                    VuePress<v-icon>open_in_new</v-icon>
-                  </a>
-                  for documentation;
-                </li>
-                <li>
-                  <a href="https://strapi.io/">
-                    Strapi<v-icon>open_in_new</v-icon>
-                  </a>
-                  for headless contenet management system;
-                </li>
-                <li>
-                  <a href="https://www.docker.com/">
-                    Docker<v-icon>open_in_new</v-icon>
-                  </a>
-                  for containerization;
-                </li>
-                <li>
-                  and many more.
-                </li>
-              </ul>
             </p>
+            <ul>
+              <li>
+                <a href="https://vuejs.org/">
+                  Vue.js<v-icon>open_in_new</v-icon>
+                </a>
+                and
+                <a href="https://vuetifyjs.com/">
+                  Vuetify<v-icon>open_in_new</v-icon>
+                </a>
+                for user interface;
+              </li>
+              <li>
+                <a href="https://vuepress.vuejs.org/">
+                  VuePress<v-icon>open_in_new</v-icon>
+                </a>
+                for documentation;
+              </li>
+              <li>
+                <a href="https://strapi.io/">
+                  Strapi<v-icon>open_in_new</v-icon>
+                </a>
+                for headless contenet management system;
+              </li>
+              <li>
+                <a href="https://www.docker.com/">
+                  Docker<v-icon>open_in_new</v-icon>
+                </a>
+                for containerization;
+              </li>
+              <li>
+                and many more.
+              </li>
+            </ul>
 
             <h3>Asking for your feedback and contribution</h3>
             <p>Explain how to provide feedback and contribution.</p>
