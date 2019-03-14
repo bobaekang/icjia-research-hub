@@ -18,6 +18,7 @@
     "markdown-it-anchor": "^5.0.2",
     "markdown-it-footnote": "^3.0.1",
     "nprogress": "^0.2.0",
+    "prerender-spa-plugin": "^3.4.0",
     "turndown": "^5.0.3",
     "turndown-plugin-gfm": "^1.0.2",
     "vue": "^2.6.7",
