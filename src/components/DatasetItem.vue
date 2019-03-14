@@ -30,7 +30,7 @@
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Updated">
-        {{ dataset.date.slice(0, 10) }}
+        {{ dataset.date ? dataset.date.slice(0, 10) : '' }}
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Sources">

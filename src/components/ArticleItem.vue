@@ -24,16 +24,20 @@
                 {{ article.title }}
               </BaseItemTitleDisplay>
 
-              <BaseItemPropChip v-for="type of article.type" :key="type">
-                {{ type.toUpperCase() }}
-              </BaseItemPropChip>
+              <template v-if="article.type">
+                <BaseItemPropChip v-for="type of article.type" :key="type">
+                  {{ type.toUpperCase() }}
+                </BaseItemPropChip>
+              </template>
 
-              <BaseItemPropChip
-                v-for="category of article.categories"
-                :key="category"
-              >
-                {{ category.toUpperCase() }}
-              </BaseItemPropChip>
+              <template v-if="article.categories">
+                <BaseItemPropChip
+                  v-for="category of article.categories"
+                  :key="category"
+                >
+                  {{ category ? category.toUpperCase() : '' }}
+                </BaseItemPropChip>
+              </template>
             </v-layout>
           </v-container>
 
@@ -41,7 +45,7 @@
 
           <v-container class="py-2">
             <BaseItemPropDisplay name="Updated">
-              {{ article.date.slice(0, 10) }}
+              {{ article.date ? article.date.slice(0, 10) : '' }}
             </BaseItemPropDisplay>
 
             <BaseItemPropDisplay name="Authors">
