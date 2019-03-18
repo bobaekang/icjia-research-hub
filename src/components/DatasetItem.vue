@@ -13,7 +13,9 @@
           {{ category.toUpperCase() }}
         </BaseItemPropChip>
       </div>
-      <BaseItemPropChip>{{ dataset.agegroup.toUpperCase() }}</BaseItemPropChip>
+      <BaseItemPropChip>
+        {{ dataset.agegroup ? dataset.agegroup.toUpperCase() : '' }}
+      </BaseItemPropChip>
     </v-card-title>
 
     <v-divider />
