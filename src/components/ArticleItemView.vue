@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SocialSharing :url="baseUrl + item.slug" :title="item.title" />
+    <SocialSharing :url="baseUrl + article.slug" :title="article.title" />
 
     <v-img :height="splashHeight" :src="article.splash"></v-img>
 
@@ -134,9 +134,7 @@ export default {
   data() {
     return {
       activeHeading: 'introduction',
-      articleBody: null,
       baseUrl: 'localhost:8080/',
-      headings: null,
       isTOCSticky: false,
       splashHeight: 500,
       viewTitleHeight: 60 + 80
@@ -148,16 +146,18 @@ export default {
     },
     isMedium() {
       return this.$vuetify.breakpoint.name === 'md'
-    }
-  },
-  watch: {
-    article() {
-      this.articleBody = md.render(this.item.markdown)
     },
     articleBody() {
-      this.$nextTick(() => {
-        this.headings = this.$refs['article-body'].querySelectorAll('h2')
-      })
+      return this.item.markdown ? md.render(this.item.markdown) : ''
+    },
+    headings() {
+      if (this.item.markdown) {
+        const markdown = md.render(this.item.markdown)
+        const doc = new DOMParser().parseFromString(markdown, 'text/html')
+        return doc.querySelectorAll('h2')
+      } else {
+        return null
+      }
     }
   },
   methods: {
