@@ -24,18 +24,9 @@
                 {{ article.title }}
               </BaseItemTitleDisplay>
 
-              <template v-if="article.type">
-                <BaseItemPropChip v-for="type of article.type" :key="type">
-                  {{ type.toUpperCase() }}
-                </BaseItemPropChip>
-              </template>
-
-              <template v-if="article.categories">
-                <BaseItemPropChip
-                  v-for="category of article.categories"
-                  :key="category"
-                >
-                  {{ category ? category.toUpperCase() : '' }}
+              <template v-if="article.tags">
+                <BaseItemPropChip v-for="tag of article.tags" :key="tag">
+                  {{ tag ? tag.toUpperCase() : '' }}
                 </BaseItemPropChip>
               </template>
             </v-layout>
@@ -48,7 +39,7 @@
               {{ article.date ? article.date.slice(0, 10) : '' }}
             </BaseItemPropDisplay>
 
-            <BaseItemPropDisplay name="Authors">
+            <BaseItemPropDisplay v-if="article.authors" name="Authors">
               <span
                 v-for="(author, i) in article.authors"
                 :key="author.title"
@@ -63,6 +54,32 @@
                 </router-link>
 
                 <span v-if="i + 2 < article.authors.length">
+                  ,&nbsp;
+                </span>
+              </span>
+            </BaseItemPropDisplay>
+
+            <BaseItemPropDisplay v-if="article.categories" name="Categories">
+              <span
+                v-for="(category, i) in article.categories"
+                :key="category"
+                class="uppercase"
+              >
+                {{ category }}
+                <span v-if="i + 1 < article.categories.length">
+                  ,&nbsp;
+                </span>
+              </span>
+            </BaseItemPropDisplay>
+
+            <BaseItemPropDisplay v-if="article.type" name="Type">
+              <span
+                v-for="(type, i) in article.type"
+                :key="type"
+                class="uppercase"
+              >
+                {{ type }}
+                <span v-if="i + 2 < article.type.length">
                   ,&nbsp;
                 </span>
               </span>

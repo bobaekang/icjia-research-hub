@@ -37,12 +37,26 @@
         <v-layout justify-center row id="article-view">
           <v-flex xs12 sm10 pt-4>
             <v-layout align-center justify-space-between row>
-              <div class="article-type font-lato">
+              <div class="greycolor font-lato uppercase">
                 <span v-for="type in article.type" :key="type">{{ type }}</span>
+
                 &nbsp;|&nbsp;
-                <span v-for="category in article.categories" :key="category">
+
+                <span
+                  v-for="(category, i) in article.categories"
+                  :key="category"
+                >
                   {{ category }}
+                  <span v-if="i + 1 < article.categories.length">
+                    ,&nbsp;
+                  </span>
                 </span>
+
+                <template v-if="article.tags">
+                  <BaseItemPropChip v-for="tag of article.tags" :key="tag">
+                    {{ tag ? tag.toUpperCase() : '' }}
+                  </BaseItemPropChip>
+                </template>
               </div>
 
               <BaseButton to="/articles">
@@ -52,7 +66,7 @@
 
             <h1 class="article-title">{{ article.title }}</h1>
 
-            <div class="article-summary font-lato my-3">
+            <div class="article-summary greycolor font-lato my-3">
               {{ article.summary }}
             </div>
 
@@ -100,6 +114,7 @@
 <script>
 import ArticleItemViewTOC from '@/components/ArticleItemViewTOC'
 import BaseButton from '@/components/BaseButton'
+import BaseItemPropChip from '@/components/BaseItemPropChip'
 import SocialSharing from '@/components/SocialSharing'
 
 const mdOpts = {
@@ -126,6 +141,7 @@ export default {
   components: {
     ArticleItemViewTOC,
     BaseButton,
+    BaseItemPropChip,
     SocialSharing
   },
   props: {
@@ -231,7 +247,6 @@ export default {
 }
 
 .article-summary {
-  color: grey;
   font-weight: 300;
   font-size: 20px;
 }
