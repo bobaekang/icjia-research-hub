@@ -68,7 +68,7 @@
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Time period">
-        {{ dataset.timeperiod }}
+        {{ formatTimePeriod(dataset.timeperiod) }}
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Age group">
@@ -97,6 +97,11 @@ export default {
   computed: {
     dataset() {
       return this.item
+    }
+  },
+  methods: {
+    formatTimePeriod(timeperiod) {
+      return `${timeperiod.yearmin}-${timeperiod.yearmax}`
     }
   }
 }
