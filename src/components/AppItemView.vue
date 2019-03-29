@@ -4,21 +4,21 @@
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
         <v-icon>chevron_right</v-icon>
-        {{ app.title }}
+        <template>{{ app.title }}</template>
       </h2>
 
       <v-spacer />
 
       <BaseButton :href="app.url" icon="play_arrow">
-        Launch
+        <template>{{ 'Launch' }}</template>
       </BaseButton>
 
       <BaseButton v-if="app.src" :href="app.src" icon="code">
-        Source code
+        <template>{{ 'Source code' }}</template>
       </BaseButton>
 
       <BaseButton to="/apps">
-        back
+        <template>{{ 'back' }}</template>
       </BaseButton>
     </v-card-title>
 
@@ -43,35 +43,40 @@
         <v-container>
           <h3 class="pb-2">About this app</h3>
           <BaseItemPropDisplay name="Updated">
-            {{ app.date }}
+            <template>{{ app.date | formatDate }}</template>
           </BaseItemPropDisplay>
 
           <BaseItemPropDisplay name="Contributors">
-            <span v-for="(contributor, i) in app.contributors" :key="i">
-              <a :href="contributor.url" target="_blank">
-                {{ contributor.title }}
-              </a>
-            </span>
+            <template v-if="app.contributors">
+              <span v-for="(contributor, i) in app.contributors" :key="i">
+                <template v-if="i > 1">{{
+                  app.contributors.length > i + 1 ? ', ' : ' and '
+                }}</template>
+
+                <a :href="contributor.url" target="_blank">
+                  <template>{{ contributor.title }}</template>
+                </a>
+              </span>
+            </template>
+
+            <template v-else>{{ 'ICJIA R&A staff' }}</template>
           </BaseItemPropDisplay>
 
-          <BaseItemPropDisplay name="Categories">
+          <BaseItemPropDisplay v-if="app.categories" name="Categories">
             <span v-for="(category, i) in app.categories" :key="i">
-              {{ category }}
+              <template v-if="i > 0">{{ ', ' }}</template>
+              <template>{{ category | capitalize }}</template>
             </span>
           </BaseItemPropDisplay>
 
-          <BaseItemPropDisplay name="Tags">
-            <span v-if="app.tags">
-              <BaseItemPropChip v-for="tag in app.tags" :key="tag">
-                {{ tag.toUpperCase() }}
-              </BaseItemPropChip>
-            </span>
-
-            <span v-else class="italic">No tags</span>
+          <BaseItemPropDisplay v-if="app.tags" name="Tags">
+            <BaseItemPropChip v-for="tag in app.tags" :key="tag">
+              <template>{{ tag }}</template>
+            </BaseItemPropChip>
           </BaseItemPropDisplay>
 
           <BaseItemPropDisplay name="Description">
-            {{ app.description }}
+            <template>{{ app.description }}</template>
           </BaseItemPropDisplay>
         </v-container>
       </v-flex>
@@ -80,11 +85,13 @@
 </template>
 
 <script>
+import { allContentMixin } from '@/mixins/contentMixin'
 import BaseButton from '@/components/BaseButton'
 import BaseItemPropChip from '@/components/BaseItemPropChip'
 import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
 
 export default {
+  mixins: [allContentMixin],
   components: {
     BaseButton,
     BaseItemPropChip,

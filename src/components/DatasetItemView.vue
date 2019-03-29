@@ -4,7 +4,7 @@
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
         <v-icon>chevron_right</v-icon>
-        {{ dataset.title }}
+        <template>{{ dataset.title }}</template>
       </h2>
 
       <v-spacer />
@@ -23,9 +23,7 @@
         type="file"
       />
 
-      <BaseButton to="/datasets">
-        back
-      </BaseButton>
+      <BaseButton to="/datasets">back</BaseButton>
     </v-card-title>
 
     <v-divider />
@@ -34,57 +32,52 @@
       <h3 class="pb-2">About this dataset</h3>
 
       <BaseItemPropDisplay name="Updated">
-        {{ dataset.date ? dataset.date.slice(0, 10) : '' }}
+        <template>{{ dataset.date | formatDate }}</template>
       </BaseItemPropDisplay>
 
       <BaseItemPropDisplay name="Sources">
         <span v-for="(source, i) in dataset.sources" :key="i">
-          <template v-if="source.hasOwnProperty('url')">
-            <a :href="source.url" target="_blank">
-              {{ source.title }}
-            </a>
-          </template>
-
-          <template v-else>
+          <a v-if="source.url" :href="source.url" target="_blank">
             {{ source.title }}
-          </template>
+          </a>
+
+          <template v-else>{{ source.title }}</template>
         </span>
       </BaseItemPropDisplay>
 
-      <BaseItemPropDisplay name="Categories">
+      <BaseItemPropDisplay v-if="dataset.categories" name="Categories">
         <span v-for="(category, i) in dataset.categories" :key="i">
-          {{ category }}
+          <template v-if="i > 0">{{ ', ' }}</template>
+          <template>{{ category | capitalize }}</template>
         </span>
       </BaseItemPropDisplay>
 
-      <BaseItemPropDisplay name="Tags">
-        <span v-if="dataset.tags && dataset.tags.length > 0">
-          <BaseItemPropChip v-for="tag in dataset.tags" :key="tag">
-            {{ tag.toUpperCase() }}
-          </BaseItemPropChip>
-        </span>
-
-        <span v-else class="italic">No tags</span>
+      <BaseItemPropDisplay v-if="dataset.tags" name="Tags">
+        <BaseItemPropChip v-for="tag in dataset.tags" :key="tag">
+          <template>{{ tag }}</template>
+        </BaseItemPropChip>
       </BaseItemPropDisplay>
 
-      <BaseItemPropDisplay name="Time period">
-        {{ formatTimePeriod(dataset.timeperiod) }}
+      <BaseItemPropDisplay v-if="dataset.timeperiod" name="Time period">
+        <template>{{ dataset.timeperiod | formatTimeperiod }}</template>
       </BaseItemPropDisplay>
 
-      <BaseItemPropDisplay name="Age group">
-        {{ dataset.agegroup }}
+      <BaseItemPropDisplay v-if="dataset.agegroup" name="Age group">
+        <template>{{ dataset.agegroup | capitalize }}</template>
       </BaseItemPropDisplay>
     </v-container>
   </v-card>
 </template>
 
 <script>
+import { allContentMixin, datasetMixin } from '@/mixins/contentMixin'
 import BaseButton from '@/components/BaseButton'
 import BaseItemPropChip from '@/components/BaseItemPropChip'
 import BaseItemPropDisplay from '@/components/BaseItemPropDisplay'
 import DatasetDownloadButton from '@/components/DatasetDownloadButton'
 
 export default {
+  mixins: [allContentMixin, datasetMixin],
   components: {
     BaseButton,
     BaseItemPropChip,
@@ -97,11 +90,6 @@ export default {
   computed: {
     dataset() {
       return this.item
-    }
-  },
-  methods: {
-    formatTimePeriod(timeperiod) {
-      return `${timeperiod.yearmin}-${timeperiod.yearmax}`
     }
   }
 }
