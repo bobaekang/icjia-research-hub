@@ -34,7 +34,7 @@ export default {
     return await client
       .post('/graphql', {
         query: `{
-        apps (sort: "date:desc", where: { publish: false }) {
+        apps (sort: "date:desc", where: { status: "published" }) {
           _id
           title
           slug
@@ -45,10 +45,10 @@ export default {
           contributors
           description
           url
-          articles (sort: "date:desc", where: { publish: false }) {
+          articles (sort: "date:desc", where: { status: "published" }) {
             _id
           }
-          datasets (sort: "date:desc", where: { publish: false }) {
+          datasets (sort: "date:desc", where: { status: "published" }) {
             _id
           }
         }
@@ -69,7 +69,7 @@ export default {
           title
           slug
           description
-          articles (sort: "date:desc", where: { publish: false }) {
+          articles (sort: "date:desc", where: { status: "published" }) {
             _id
           }
         }
@@ -102,7 +102,7 @@ export default {
           slidespdf {
             url
           }
-          apps (sort: "date:desc", where: { publish: false }) {
+          apps (sort: "date:desc", where: { status: "published" }) {
             title
             slug
           }
@@ -110,7 +110,7 @@ export default {
             title
             slug
           }
-          datasets (sort: "date:desc", where: { publish: false }) {
+          datasets (sort: "date:desc", where: { status: "published" }) {
             title
             slug
           }
@@ -149,7 +149,7 @@ export default {
     return await client
       .post('/graphql', {
         query: `{
-        articles (sort: "date:desc", where: { publish: false }) {
+        articles (sort: "date:desc", where: { status: "published" }) {
           title
           slug
           date
@@ -173,7 +173,7 @@ export default {
     return await client
       .post('/graphql', {
         query: `{
-        articles (sort: "date:desc", where: { publish: false }, limit: 5) {
+        articles (sort: "date:desc", where: { status: "published" }, limit: 5) {
           title,
           slug,
           splash
@@ -209,11 +209,11 @@ export default {
             url
           }
           datacsv,
-          apps (sort: "date:desc", where: { publish: false }) {
+          apps (sort: "date:desc", where: { status: "published" }) {
             title
             slug
           }
-          articles (sort: "date:desc", where: { publish: false }) {
+          articles (sort: "date:desc", where: { status: "published" }) {
             title
             slug
           }
@@ -228,7 +228,7 @@ export default {
     return await client
       .post('graphql', {
         query: `{
-        datasets (sort: "date:desc", where: { publish: false }) {
+        datasets (sort: "date:desc", where: { status: "published" }) {
           _id
           title
           slug
