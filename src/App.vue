@@ -77,6 +77,10 @@ a {
   font-style: italic;
 }
 
+.light {
+  font-weight: 300;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
