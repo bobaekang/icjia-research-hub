@@ -11,43 +11,53 @@
     </v-img>
 
     <v-card-title primary-title>
-      <BaseItemTitleDisplay :to="getAppPath(app.slug)">
-        {{ app.title }}
-      </BaseItemTitleDisplay>
+      <v-layout row wrap>
+        <BaseItemTitleDisplay :to="appPath">
+          <template>{{ app.title }}</template>
+        </BaseItemTitleDisplay>
+
+        <div v-if="app.tags">
+          <BaseItemPropChip v-for="tag in app.tags" :key="tag">
+            <template>{{ tag }}</template>
+          </BaseItemPropChip>
+        </div>
+      </v-layout>
     </v-card-title>
 
     <v-container py-0 px-3 class="font-lato small">
       <template v-if="app.contributors">
-        Contributed by
+        <template>{{ 'Contributed by ' }}</template>
         <span v-for="(contributor, i) in app.contributors" :key="i">
+          <template v-if="i > 1">{{
+            app.contributors.length > i + 1 ? ', ' : ' and '
+          }}</template>
+
           <a :href="contributor.url" target="_blank">
-            {{ contributor.title }}
+            <template>{{ contributor.title }}</template>
           </a>
         </span>
       </template>
 
-      <template v-else>
-        Created by ICJIA R&A staff
-      </template>
+      <template v-else>{{ 'Created by ICJIA R&A staff' }}</template>
     </v-container>
 
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <BaseButton :to="getAppPath(app.slug)" icon="more_horiz">
-        more
-      </BaseButton>
+      <BaseButton :to="appPath" icon="more_horiz">more</BaseButton>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import BaseButton from '@/components/BaseButton'
+import BaseItemPropChip from '@/components/BaseItemPropChip'
 import BaseItemTitleDisplay from '@/components/BaseItemTitleDisplay'
 
 export default {
   components: {
     BaseButton,
+    BaseItemPropChip,
     BaseItemTitleDisplay
   },
   props: {
@@ -56,11 +66,9 @@ export default {
   computed: {
     app() {
       return this.item
-    }
-  },
-  methods: {
-    getAppPath(slug) {
-      return `/apps/${slug}`
+    },
+    appPath() {
+      return `/apps/${this.item.slug}`
     }
   }
 }

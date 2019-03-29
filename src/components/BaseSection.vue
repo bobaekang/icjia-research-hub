@@ -7,11 +7,11 @@
             <h2>{{ title }}</h2>
 
             <router-link v-if="to" :to="to" class="font-lato small">
-              see more
+              <template>{{ 'see more' }}</template>
             </router-link>
 
             <a v-if="href" :href="href" target="_blank" class="font-lato small">
-              see more
+              <template>{{ 'see more' }}</template>
             </a>
           </v-layout>
         </v-flex>

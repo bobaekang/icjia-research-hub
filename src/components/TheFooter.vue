@@ -3,13 +3,13 @@
     <v-layout justify-center row wrap>
       <v-flex text-xs-center>
         <span>
-          {{ copy + ' ' + year }}
+          <template>{{ copy + ' ' + year + ' ' }}</template>
           <a :href="agency.url">{{ agency.name }}</a>
         </span>
-        |
+        <template>{{ ' | ' }}</template>
         <span>
           <a :href="github.url">
-            {{ version }}
+            <template>{{ version + ' ' }}</template>
             <v-icon>{{ github.icon }}</v-icon>
           </a>
         </span>

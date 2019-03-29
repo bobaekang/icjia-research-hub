@@ -2,18 +2,18 @@
   <div class="pb-3">
     <v-btn flat @click="show = !show">
       <v-icon class="pr-1">tune</v-icon>
-      {{ text }}
+      <template>{{ text }}</template>
     </v-btn>
 
     <v-slide-y-transition>
       <div v-show="show" class="mx-2 py-2 greyborder">
         <v-layout row wrap justify-center>
           <v-btn outline color="primary" @click="applyFilter($event)">
-            apply
+            <template>{{ 'apply' }}</template>
           </v-btn>
 
           <v-btn outline color="error" @click="clearFilter($event)">
-            clear
+            <template>{{ 'clear' }}</template>
           </v-btn>
         </v-layout>
 

@@ -3,7 +3,7 @@
     <h1>404 - Page not found</h1>
 
     <v-container>
-      Sorry. The page you are looking for does not exist.
+      <p>Sorry. The page you are looking for does not exist.</p>
     </v-container>
 
     <v-btn flat to="/">return to home</v-btn>

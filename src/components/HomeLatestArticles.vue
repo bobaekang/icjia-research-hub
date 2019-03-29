@@ -17,7 +17,7 @@
                 class="text-xs-center"
                 style="color:white; margin:15% 10% 0 10%"
               >
-                {{ article.title }}
+                <template>{{ article.title }}</template>
               </h1>
             </v-flex>
           </v-layout>

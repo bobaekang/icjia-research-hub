@@ -3,9 +3,8 @@
     <v-card-title primary-title>
       <h2>
         <span class="small pl-2" style="color: #666">Authors</span>
-
         <v-icon>chevron_right</v-icon>
-        {{ author.title }}
+        <template>{{ author.title }}</template>
       </h2>
     </v-card-title>
 

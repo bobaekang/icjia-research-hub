@@ -6,9 +6,7 @@
       <p class="font-lato large">{{ subtitle }}</p>
 
       <p class="text-xs-right">
-        <v-btn to="about" flat color="#ddd">
-          {{ about }}
-        </v-btn>
+        <v-btn to="about" flat color="#ddd">{{ about }}</v-btn>
       </p>
     </BaseViewTitle>
 

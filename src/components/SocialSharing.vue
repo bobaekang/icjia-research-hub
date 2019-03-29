@@ -12,25 +12,19 @@
           network="facebook"
           style="background-color:#305891; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
-          <v-icon small style="color:white;">
-            fa-facebook-square
-          </v-icon>
+          <v-icon small style="color:white;">fa-facebook-square</v-icon>
         </network>
         <network
           network="linkedin"
           style="background-color:#4498c8; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
-          <v-icon small style="color:white;">
-            fa-linkedin-square
-          </v-icon>
+          <v-icon small style="color:white;">fa-linkedin-square</v-icon>
         </network>
         <network
           network="twitter"
           style="background-color:#2ca8d2; padding:0 7px; cursor:pointer; border-bottom:1px solid #fff"
         >
-          <v-icon small style="color:white;">
-            fa-twitter-square
-          </v-icon>
+          <v-icon small style="color:white;">fa-twitter-square</v-icon>
         </network>
       </v-layout>
     </social-sharing>

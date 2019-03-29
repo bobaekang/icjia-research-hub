@@ -2,7 +2,7 @@
   <div class="text-xs-center">
     <v-dialog persistent v-model="dialog" width="500">
       <v-btn slot="activator" class="mr-0" flat>
-        Download
+        <template>{{ 'Download' }}</template>
         <v-icon>file_download</v-icon>
       </v-btn>
 
@@ -11,23 +11,17 @@
           <h3>Did you read the metadata?</h3>
         </v-card-title>
 
-        <v-card-text>
-          It is important for you to know the context of the dataset you are
-          about to download. Make sure you have read and understand the
-          metatdata shown in this page before using the dataset.
-        </v-card-text>
+        <v-card-text>{{ msgDialog }} </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat class="mr-0" @click="downloadData">
-            Yes, download
+            <template>{{ 'Yes, download' }}</template>
           </v-btn>
 
-          <v-btn flat class="mr-0" @click="dialog = false">
-            Back
-          </v-btn>
+          <v-btn flat class="mr-0" @click="dialog = false">Back</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -46,7 +40,9 @@ export default {
   },
   data() {
     return {
-      dialog: false
+      dialog: false,
+      msgDialog:
+        'It is important for you to know the context of the dataset you are about to download. Make sure you have read and understand the metatdata shown in this page before using the dataset.'
     }
   },
   computed: {

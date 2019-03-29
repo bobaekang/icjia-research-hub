@@ -13,8 +13,9 @@
         close
         class="chip--select-multi"
         @input="remove(data.item)"
-        >{{ data.item }}</v-chip
       >
+        <template>{{ data.item }}</template>
+      </v-chip>
     </template>
 
     <template slot="item" slot-scope="data">

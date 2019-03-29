@@ -11,7 +11,7 @@
             class="large font-lato toc-item py-2 pl-4"
             :class="{ 'toc-item-active': heading.id === activeHeading }"
           >
-            {{ heading.innerText }}
+            <template>{{ heading.innerText }}</template>
           </div>
         </router-link>
       </template>

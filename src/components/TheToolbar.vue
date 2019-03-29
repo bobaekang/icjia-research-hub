@@ -6,21 +6,17 @@
       </a>
 
       <router-link to="/">
-        <v-toolbar-title>
-          {{ titleUpper }}
-        </v-toolbar-title>
+        <v-toolbar-title>{{ titleUpper }}</v-toolbar-title>
       </router-link>
 
       <v-spacer></v-spacer>
 
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-for="view in views" :key="view" :to="`/${view}`" flat>
-          {{ view }}
+          <template>{{ view }}</template>
         </v-btn>
 
-        <v-btn :href="docs_url" target="_blank" flat>
-          documentation
-        </v-btn>
+        <v-btn :href="docs_url" target="_blank" flat>documentation</v-btn>
       </v-toolbar-items>
 
       <v-btn class="hidden-md-and-up" flat icon @click="drawer = !drawer">
@@ -33,15 +29,11 @@
     <v-navigation-drawer v-model="drawer" temporary right app width="175">
       <v-list class="slot">
         <v-list-tile v-for="(view, i) in views" :key="i" :to="`/${view}`">
-          <v-list-tile-title>
-            {{ view }}
-          </v-list-tile-title>
+          <v-list-tile-title>{{ view }}</v-list-tile-title>
         </v-list-tile>
 
         <v-list-tile :href="docs_url">
-          <v-list-tile-title>
-            documentation
-          </v-list-tile-title>
+          <v-list-tile-title>documentation</v-list-tile-title>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>

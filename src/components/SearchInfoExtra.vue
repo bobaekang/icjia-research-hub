@@ -6,7 +6,7 @@
       <div>{{ filteredItems.length }} {{ contentType }}s found</div>
 
       <div v-if="filteredItems.length === 0">
-        Need suggestions? Try these:
+        <template>{{ 'Need suggestions? Try these:' }}</template>
         <br />
         <span v-for="(suggestion, i) in suggestions" :key="i">
           <v-btn
@@ -15,7 +15,7 @@
             style="text-transform: none;"
             @click="useSuggestion(suggestion)"
           >
-            {{ suggestion }}
+            <template>{{ suggestion }}</template>
           </v-btn>
         </span>
       </div>
