@@ -23,6 +23,10 @@
 
       <BaseItemPropDisplay v-if="dataset.sources" name="Sources">
         <span v-for="(source, i) in dataset.sources" :key="i">
+          <template v-if="i > 0">{{
+            dataset.sources.length > i + 1 ? ', ' : ' and '
+          }}</template>
+
           <a v-if="source.url" :href="source.url" target="_blank">
             <template>{{ source.title }}</template>
           </a>
