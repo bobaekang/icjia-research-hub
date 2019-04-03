@@ -41,10 +41,6 @@
           <template>{{ category | capitalize }}</template>
         </span>
       </BaseItemPropDisplay>
-
-      <BaseItemPropDisplay v-if="dataset.agegroup" name="Age group">
-        <template>{{ dataset.agegroup | capitalize }}</template>
-      </BaseItemPropDisplay>
     </v-container>
 
     <v-container class="pa-0 text-xs-right">
