@@ -125,7 +125,8 @@ export default {
     }
   },
   mounted() {
-    this.$refs.variables.innerHTML = this.array2table(this.dataset.variables)
+    if (this.dataset.variables)
+      this.$refs.variables.innerHTML = this.array2table(this.dataset.variables)
   },
   methods: {
     array2table(array) {
