@@ -13,11 +13,13 @@
                 <v-flex xs12 sm10 xl8>
                   <div v-if="subNum" class="pb-3">
                     <template v-for="sub in subNum">
-                      <h2 :key="sub" class="pb-3 light">
+                      <h2 :key="`subtitle${sub}`" class="pb-3 light">
                         <slot :name="`subtitle${sub}`"></slot>
                       </h2>
 
-                      <p :key="sub"><slot :name="`subbody${sub}`"></slot></p>
+                      <p :key="`subbody${sub}`">
+                        <slot :name="`subbody${sub}`"></slot>
+                      </p>
                     </template>
                   </div>
 
