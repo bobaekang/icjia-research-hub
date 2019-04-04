@@ -4,7 +4,7 @@
       <v-flex xs12 sm8 lg6>
         <SearchBar
           ref="searchBar"
-          label="Search for apps"
+          label="Search for apps (by title, contributors, categories, tags)"
           :search.sync="search"
         />
 
@@ -20,7 +20,7 @@
       <v-flex xs12 sm10 xl8>
         <v-layout row wrap justify-center>
           <v-flex xs12 sm6 lg4 v-for="(item, i) in filterItems(items)" :key="i">
-            <AppItem :item="item" :simple="isSimpleCard" />
+            <AppItem :item="item" />
           </v-flex>
         </v-layout>
       </v-flex>
@@ -45,9 +45,7 @@ export default {
   },
   data() {
     return {
-      title: 'Applications',
-      contentType: 'app',
-      isSimpleCard: false
+      contentType: 'app'
     }
   },
   computed: {
@@ -69,7 +67,22 @@ export default {
       const s = this.search.toUpperCase()
 
       return items.filter(item => {
-        return item.title.toUpperCase().match(s)
+        return (
+          item.title.toUpperCase().match(s) ||
+          item.contributors
+            .map(el => el.title)
+            .join('')
+            .toUpperCase()
+            .match(s) ||
+          item.categories
+            .join('')
+            .toUpperCase()
+            .match(s) ||
+          item.tags
+            .join('')
+            .toUpperCase()
+            .match(s)
+        )
       })
     },
     useSuggestion(suggestion) {
