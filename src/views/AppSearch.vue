@@ -59,7 +59,7 @@ export default {
   },
   mounted() {
     if (this.$store.state.apps.data.length === 0) {
-      this.$store.dispatch('apps/fetchData')
+      this.$store.dispatch('apps/fetchInfo')
     }
   },
   methods: {

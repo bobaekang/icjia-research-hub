@@ -8,7 +8,7 @@ export const state = {
 }
 
 export const mutations = {
-  FETCH_DATA(state, payload) {
+  FETCH_INFO(state, payload) {
     state.data = payload.data.data.apps.map(el => {
       el.date = el.date.slice(0, 10)
       return el
@@ -17,8 +17,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchData({ commit }) {
-    commit('FETCH_DATA', await client.getApps())
+  async fetchInfo({ commit }) {
+    commit('FETCH_INFO', await client.getAppsInfo())
   }
 }
 

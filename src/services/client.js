@@ -30,12 +30,11 @@ client.interceptors.response.use(response => {
 
 export default {
   // apps
-  async getApps() {
+  async getAppBySlug(slug) {
     return await client
       .post('/graphql', {
         query: `{
-        apps (sort: "date:desc", where: { status: "published" }) {
-          _id
+        apps (where: { slug: "${slug}" }) {
           title
           slug
           date
@@ -51,6 +50,25 @@ export default {
           datasets (sort: "date:desc", where: { status: "published" }) {
             _id
           }
+        }
+      }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  async getAppsInfo() {
+    return await client
+      .post('/graphql', {
+        query: `{
+        apps (sort: "date:desc", where: { status: "published" }) {
+          title
+          slug
+          date
+          categories
+          tags
+          image
+          contributors
         }
       }`
       })
