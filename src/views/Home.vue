@@ -3,7 +3,7 @@
     <BaseViewTitle :home="true">
       <h1>{{ title }}</h1>
 
-      <p class="font-lato large">{{ subtitle }}</p>
+      <p class="font-lato large light">{{ subtitle }}</p>
 
       <p class="text-xs-right">
         <v-btn to="about" flat color="#ddd">{{ about }}</v-btn>
