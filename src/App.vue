@@ -37,11 +37,13 @@ export default {
 
 h1 {
   font-family: 'Oswald', sans-serif;
+  font-weight: 400;
 }
 
 h2,
 h3 {
   font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 a {
