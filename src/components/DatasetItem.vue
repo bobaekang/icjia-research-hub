@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="ma-3">
     <v-card-title primary-title>
       <v-layout row wrap>
         <BaseItemTitleDisplay :to="datasetPath">

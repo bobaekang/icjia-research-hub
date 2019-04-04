@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="ma-3">
     <v-layout row>
       <v-img
         class="hidden-sm-and-down"
