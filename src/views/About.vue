@@ -1,7 +1,11 @@
 <template>
   <div>
     <BaseViewTitle :home="false">
-      <h1>{{ title }}</h1>
+      <h3 class="light">
+        <template>{{ 'ICJIA Research Hub' }}</template>
+        <v-icon color="white">chevron_right</v-icon>
+        <template>{{ title }}</template>
+      </h3>
     </BaseViewTitle>
 
     <AboutSection :title="section1.title" :subNum="3">

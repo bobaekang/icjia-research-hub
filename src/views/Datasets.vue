@@ -1,7 +1,11 @@
 <template>
   <div>
     <BaseViewTitle :home="false">
-      <h1>{{ title }}</h1>
+      <h3 class="light">
+        <template>{{ 'ICJIA Research Hub' }}</template>
+        <v-icon color="white">chevron_right</v-icon>
+        <span>{{ title }}</span>
+      </h3>
     </BaseViewTitle>
 
     <router-view search="" />
