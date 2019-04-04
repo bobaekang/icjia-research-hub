@@ -20,7 +20,7 @@
       <v-flex xs12 sm10 xl8>
         <v-layout row wrap justify-center>
           <v-flex xs12 xl6 v-for="(item, i) in filterItems(items)" :key="i">
-            <DatasetItem :item="item" :simple="isSimpleCard" />
+            <DatasetItem :item="item" />
           </v-flex>
         </v-layout>
       </v-flex>
