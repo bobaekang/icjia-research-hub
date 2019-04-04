@@ -5,7 +5,7 @@
         <v-layout row wrap>
           <v-flex xs12 sm4 v-for="(item, i) in items" :key="i">
             <v-container class="pb-0">
-              <h3>{{ item.title.toUpperCase() }}</h3>
+              <h2 class="mb-3 light">{{ item.title }}</h2>
               <p class="resource-item">{{ item.body }}</p>
             </v-container>
 

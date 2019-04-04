@@ -41,7 +41,7 @@
 
       <v-flex>
         <v-container>
-          <h3 class="pb-2">About this app</h3>
+          <h2 class="pb-3 light">About this app</h2>
           <BaseItemPropDisplay name="Updated">
             <template>{{ app.date | formatDate }}</template>
           </BaseItemPropDisplay>

@@ -29,7 +29,7 @@
     <v-divider />
 
     <v-container>
-      <h3 class="pb-2">About this dataset</h3>
+      <h2 class="pb-3 light">About this dataset</h2>
       <v-layout row wrap>
         <v-flex sm12 md6 lg4>
           <BaseItemPropDisplay name="Updated">
@@ -94,7 +94,7 @@
       <v-divider></v-divider>
 
       <v-container class="hidden-sm-and-down">
-        <h3 class="pb-2">Variables</h3>
+        <h2 class="pb-3 light">Variables</h2>
         <div ref="variables" class="variables-table font-lato small pb-2"></div>
       </v-container>
     </template>
