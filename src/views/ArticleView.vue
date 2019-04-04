@@ -2,7 +2,7 @@
   <div>
     <TheProgessBar />
 
-    <ArticleItemView :item="item" />
+    <ArticleItemView v-if="item" :item="item" />
   </div>
 </template>
 
@@ -18,13 +18,12 @@ export default {
   },
   data() {
     return {
-      item: {}
+      item: null
     }
   },
-  mounted() {
-    client.getArticleBySlug(this.$route.params.slug).then(res => {
-      this.item = res.data.data.articles[0]
-    })
+  async created() {
+    const res = await client.getArticleBySlug(this.$route.params.slug)
+    this.item = res.data.data.articles[0]
   }
 }
 </script>
