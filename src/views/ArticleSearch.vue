@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pb-5">
     <v-layout row wrap justify-center>
       <v-flex xs12 sm8 lg6>
         <SearchBar
