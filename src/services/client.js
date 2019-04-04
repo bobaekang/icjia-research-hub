@@ -204,6 +204,30 @@ export default {
   },
 
   // datsets
+  async getDataById(id, csv) {
+    const data = csv
+      ? `
+      datacsv
+      datafilename
+      `
+      : `
+      datafile {
+        name
+        url
+      }`
+
+    return await client
+      .post('graphql', {
+        query: `{
+          dataset (id: "${id}" ) {
+            ${data}
+          }
+        }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   async getDatasetBySlug(slug) {
     return await client
       .post('graphql', {
@@ -222,11 +246,7 @@ export default {
           variables
           description
           notes
-          datafile {
-            name
-            url
-          }
-          datacsv,
+          datafilename
           apps (sort: "date:desc", where: { status: "published" }) {
             title
             slug

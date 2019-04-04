@@ -9,19 +9,7 @@
 
       <v-spacer />
 
-      <DatasetDownloadButton
-        v-if="dataset.datacsv && dataset.datacsv !== ''"
-        :data="dataset.datacsv"
-        :name="dataset.datafilename"
-        type="csv"
-      />
-
-      <DatasetDownloadButton
-        v-else
-        :data="dataset.datafile.url"
-        :name="dataset.datafile.name"
-        type="file"
-      />
+      <DatasetDownloadButton :id="dataset._id" :isDataCsv="isDataCsv" />
 
       <BaseButton to="/datasets">back</BaseButton>
     </v-card-title>
@@ -122,6 +110,9 @@ export default {
   computed: {
     dataset() {
       return this.item
+    },
+    isDataCsv() {
+      return this.item.datafilename && this.item.datafilename !== ''
     }
   },
   mounted() {

@@ -29,14 +29,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import client from '@/services/client'
 import FileSaver from 'file-saver'
 
 export default {
   props: {
-    data: [Object, String],
-    name: String,
-    type: String
+    id: String,
+    isDataCsv: Boolean
   },
   data() {
     return {
@@ -45,19 +44,19 @@ export default {
         'It is important for you to know the context of the dataset you are about to download. Make sure you have read and understand the metatdata shown in this page before using the dataset.'
     }
   },
-  computed: {
-    ...mapGetters({
-      base_url: 'api_url'
-    })
-  },
   methods: {
     async downloadData() {
-      if (this.type === 'csv') {
-        const blob = new Blob([this.data], { type: 'text/csv;charset=utf-8' })
-        FileSaver.saveAs(blob, `${this.name}.csv`)
+      const res = await client.getDataById(this.id, this.isDataCsv)
+      const dataset = res.data.data.dataset
+
+      if (this.isDataCsv) {
+        const blob = new Blob([dataset.datacsv], {
+          type: 'text/csv;charset=utf-8'
+        })
+        FileSaver.saveAs(blob, `${dataset.datafilename}.csv`)
       } else {
-        const url = `${this.base_url}/${this.data}`
-        FileSaver.saveAs(url, this.name)
+        const url = `${this.$store.state.api_url}/${dataset.datafile.url}`
+        FileSaver.saveAs(url, dataset.datafile.name)
       }
 
       this.dialog = false

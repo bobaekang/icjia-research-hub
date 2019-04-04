@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import api from '@/config/api'
+
 import * as apps from '@/store/modules/apps.js'
 import * as articles from '@/store/modules/articles.js'
 import * as authors from '@/store/modules/authors.js'
@@ -16,5 +18,8 @@ export default new Vuex.Store({
     authors,
     datasets,
     docs
+  },
+  state: {
+    api_url: api.BASE_URL
   }
 })
