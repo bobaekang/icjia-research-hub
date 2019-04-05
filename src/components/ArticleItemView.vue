@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <SocialSharing :url="baseUrl + article.slug" :title="article.title" />
 
     <v-img :height="splashHeight" :src="article.splash"></v-img>
@@ -69,7 +69,7 @@
               <template>{{ article.summary }}</template>
             </div>
 
-            <div>
+            <div class="mb-3">
               <span
                 v-for="(author, i) in article.authors"
                 :key="i"
@@ -95,16 +95,38 @@
               <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
             </div>
 
+            <template v-if="article.apps.length || article.datasets.length">
+              <v-divider></v-divider>
+
+              <v-container>
+                <h2 class="mb-3 light">Related</h2>
+
+                <ul class="font-lato">
+                  <li v-for="(app, i) in article.apps" :key="`article${i}`">
+                    <router-link :to="app.slug | path('apps')">
+                      <template>{{ `[APP] ${app.title}` }}</template>
+                    </router-link>
+                  </li>
+                  <li
+                    v-for="(dataset, i) in article.datasets"
+                    :key="`dataset${i}`"
+                  >
+                    <router-link :to="dataset.slug | path('datasets')">
+                      <template>{{ `[DATASET] ${dataset.title}` }}</template>
+                    </router-link>
+                  </li>
+                </ul>
+              </v-container>
+            </template>
+
             <v-divider />
 
             <div
               ref="article-body"
-              class="article-body py-3"
+              class="article-body"
               v-html="articleBody"
               v-scroll="onScroll"
             />
-
-            <div style="height: 100px"></div>
           </v-flex>
         </v-layout>
       </v-flex>

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="mb-5">
     <v-card-title primary-title>
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
@@ -79,6 +79,27 @@
             <template>{{ app.description }}</template>
           </BaseItemPropDisplay>
         </v-container>
+
+        <template v-if="app.articles.length || app.datasets.length">
+          <v-divider></v-divider>
+
+          <v-container>
+            <h2 class="pb-3 light">Related</h2>
+
+            <ul class="font-lato">
+              <li v-for="(article, i) in app.articles" :key="`article${i}`">
+                <router-link :to="article.slug | path('articles')">
+                  <template>{{ `[ARTICLE] ${article.title}` }}</template>
+                </router-link>
+              </li>
+              <li v-for="(dataset, i) in app.datasets" :key="`dataset${i}`">
+                <router-link :to="dataset.slug | path('datasets')">
+                  <template>{{ `[DATASET] ${dataset.title}` }}</template>
+                </router-link>
+              </li>
+            </ul>
+          </v-container>
+        </template>
       </v-flex>
     </v-layout>
   </v-card>
