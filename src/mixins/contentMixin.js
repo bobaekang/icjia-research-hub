@@ -12,14 +12,6 @@ export const allContentMixin = {
   }
 }
 
-export const articleMixin = {
-  filters: {
-    getAuthorPath(slug) {
-      return `/authors/${slug}`
-    }
-  }
-}
-
 export const datasetMixin = {
   filters: {
     formatTimeperiod(timeperiod) {

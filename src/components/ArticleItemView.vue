@@ -79,7 +79,7 @@
                   article.authors.length > i + 1 ? ', ' : ' and '
                 }}</template>
 
-                <router-link :to="author.slug | getAuthorPath">
+                <router-link :to="author.slug | path('authors')">
                   <template>{{ author.title }}</template>
                 </router-link>
               </span>
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { allContentMixin, articleMixin } from '@/mixins/contentMixin'
+import { allContentMixin } from '@/mixins/contentMixin'
 import ArticleItemViewTOC from '@/components/ArticleItemViewTOC'
 import BaseButton from '@/components/BaseButton'
 import BaseItemPropChip from '@/components/BaseItemPropChip'
@@ -162,7 +162,7 @@ const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-anchor'), mdAnchorOpts)
 
 export default {
-  mixins: [allContentMixin, articleMixin],
+  mixins: [allContentMixin],
   components: {
     ArticleItemViewTOC,
     BaseButton,

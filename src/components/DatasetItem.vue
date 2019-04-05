@@ -2,7 +2,7 @@
   <v-card class="ma-3">
     <v-card-title primary-title>
       <v-layout row wrap>
-        <BaseItemTitleDisplay :to="datasetPath">
+        <BaseItemTitleDisplay :to="dataset.slug | path('datasets')">
           <template>{{ dataset.title }}</template>
         </BaseItemTitleDisplay>
 
@@ -44,7 +44,9 @@
     </v-container>
 
     <v-container class="pa-0 text-xs-right">
-      <BaseButton :to="datasetPath" icon="more_horiz">more</BaseButton>
+      <BaseButton :to="dataset.slug | path('datasets')" icon="more_horiz">
+        <template>{{ 'more' }}</template>
+      </BaseButton>
     </v-container>
   </v-card>
 </template>
@@ -67,17 +69,9 @@ export default {
   props: {
     item: Object
   },
-  data() {
-    return {
-      path: 'datasets'
-    }
-  },
   computed: {
     dataset() {
       return this.item
-    },
-    datasetPath() {
-      return `/datasets/${this.dataset.slug}`
     }
   }
 }

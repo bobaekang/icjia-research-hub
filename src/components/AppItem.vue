@@ -12,7 +12,7 @@
 
     <v-card-title primary-title>
       <v-layout row wrap>
-        <BaseItemTitleDisplay :to="appPath">
+        <BaseItemTitleDisplay :to="app.slug | path('apps')">
           <template>{{ app.title }}</template>
         </BaseItemTitleDisplay>
 
@@ -52,7 +52,9 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <BaseButton :to="appPath" icon="more_horiz">more</BaseButton>
+      <BaseButton :to="app.slug | path('apps')" icon="more_horiz">
+        <template>{{ 'more' }}</template>
+      </BaseButton>
     </v-card-actions>
   </v-card>
 </template>
@@ -78,9 +80,6 @@ export default {
   computed: {
     app() {
       return this.item
-    },
-    appPath() {
-      return `/apps/${this.item.slug}`
     }
   }
 }
