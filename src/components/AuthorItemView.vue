@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="mb-5">
     <v-card-title primary-title>
       <h2>
         <span class="small pl-2" style="color: #666">Authors</span>
@@ -12,7 +12,7 @@
 
     <v-container>
       <div class="mb-3">
-        <h3>About this author</h3>
+        <h2 class="mb-3 light">About this author</h2>
         <p v-if="author.description">{{ author.description }}</p>
         <p v-else class="italic">(No description.)</p>
       </div>
@@ -21,7 +21,7 @@
         <v-divider></v-divider>
 
         <div class="my-3">
-          <h3 class="mb-1">Articles by this author</h3>
+          <h2 class="mb-3 light">Articles by this author</h2>
           <v-flex v-for="article in articles" :key="article.id" class="mb-3">
             <ArticleItem :item="article" />
           </v-flex>
