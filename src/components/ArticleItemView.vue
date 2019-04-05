@@ -351,9 +351,9 @@ a {
   padding-inline-start: 40px;
 }
 
-.article-body >>> p {
+/* .article-body >>> p {
   text-indent: 1.5em;
-}
+} */
 
 .article-body >>> hr {
   background: transparent;
