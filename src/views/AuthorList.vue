@@ -1,17 +1,17 @@
 <template>
-  <v-container>
+  <v-container mb-5>
     <v-layout row wrap justify-center>
       <v-flex xs12 sm8 lg4>
-        <v-list subheader>
-          <v-subheader>ICJIA Research Hub Article authors</v-subheader>
+        <v-list subheader class="pa-0">
+          <v-subheader class="font-lato">{{ listHeader }}</v-subheader>
 
           <template v-for="(item, i) in items">
-            <v-list-tile :key="i" :to="`/authors/${item.slug}`">
-              <v-list-tile-content class="text-xs-center">
+            <v-divider :key="`divider${i}`"></v-divider>
+            <v-list-tile :key="`author${i}`" :to="`/authors/${item.slug}`">
+              <v-list-tile-content class="text-xs-center font-lato">
                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
-            <v-divider :key="i"></v-divider>
           </template>
         </v-list>
       </v-flex>
@@ -23,6 +23,11 @@
 import { mapState } from 'vuex'
 
 export default {
+  data() {
+    return {
+      listHeader: 'ICJIA Research Hub Article authors'
+    }
+  },
   computed: {
     ...mapState('authors', {
       items: 'data'
