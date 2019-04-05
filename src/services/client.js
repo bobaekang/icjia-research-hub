@@ -45,10 +45,12 @@ export default {
           description
           url
           articles (sort: "date:desc", where: { status: "published" }) {
-            _id
+            title
+            slug
           }
           datasets (sort: "date:desc", where: { status: "published" }) {
-            _id
+            title
+            slug
           }
         }
       }`
