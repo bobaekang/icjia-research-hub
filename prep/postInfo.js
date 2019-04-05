@@ -3,6 +3,7 @@
  */
 
 // load libraries
+const fs = require('fs')
 const axios = require('axios')
 const FormData = require('form-data')
 const request = require('request')
@@ -11,23 +12,33 @@ const request = require('request')
 main()
 
 // define functions
-function main() {
+async function main() {
   const baseUrl = 'http://localhost:1337'
 
-  const appInfoEdited = require('files/appInfoEdited.json')
-  const articleInfoEdited = require('files/articleInfoEdited.json')
-  const authorInfoEdited = require('files/authorInfoEdited.json')
-  const datasetInfoEdited = require('files/datasetInfoEdited.json')
+  const dirpath = './prep/files'
 
-  postAll(appInfoEdited, baseUrl, 'app')
-  postAll(articleInfoEdited, baseUrl, 'article')
-  postAll(authorInfoEdited, baseUrl, 'author')
-  postAll(datasetInfoEdited, baseUrl, 'dataset')
+  const appInfoEdited = readJSONSync(`${dirpath}/appInfoEdited.json`)
+  const articleInfoEdited = readJSONSync(`${dirpath}/articleInfoEdited1.json`)
+  const authorInfoEdited = readJSONSync(`${dirpath}/authorInfoEdited.json`)
+  const datasetInfoEdited = readJSONSync(`${dirpath}/datasetInfoEdited0.json`)
 
-  putArticleSplash(articleInfoEdited, baseUrl)
-  putArticleAuthors(articleInfoEdited, baseUrl)
-  postArticlePDF(articleInfoEdited, baseUrl)
-  postDatasetData(datasetInfoEdited, baseUrl)
+  // await postAll(appInfoEdited, baseUrl, 'app')
+  // await postAll(articleInfoEdited, baseUrl, 'article')
+  // await postAll(authorInfoEdited, baseUrl, 'author')
+  // await postAll(datasetInfoEdited, baseUrl, 'dataset')
+
+  // await putArticleSplash(articleInfoEdited, baseUrl)
+  // await putArticleAuthors(articleInfoEdited, baseUrl)
+  // await postArticlePDF(articleInfoEdited, baseUrl)
+  await postDatasetData(datasetInfoEdited, baseUrl)
+}
+
+/**
+ * Read and parse JSON file
+ * @param {string} path
+ */
+function readJSONSync(path) {
+  return JSON.parse(fs.readFileSync(path, 'utf8'))
 }
 
 /**

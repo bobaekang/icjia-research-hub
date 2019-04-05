@@ -20,7 +20,7 @@ function main() {
   const urlDataset = url + '88-datasets'
 
   const headers = { 'User-Agent': 'request' }
-  const dirpath = './src/assets/'
+  const dirpath = './prep/files/'
 
   const nameArticle = 'articleInfo'
   const nameAuthor = 'authorInfo'

@@ -15,19 +15,27 @@ main()
 
 // define functions
 function main() {
-  const appInfo = require('files/appInfo.json')
-  const articleInfo = require('files/articleInfo.json')
-  const authorInfo = require('files/authorInfo.json')
-  const datasetInfo = require('files/datasetInfo.json')
+  const dirpath = './prep/files/'
+
+  const appInfo = readJSONSync(`${dirpath}appInfo.json`)
+  const articleInfo = readJSONSync(`${dirpath}articleInfo.json`)
+  const authorInfo = readJSONSync(`${dirpath}authorInfo.json`)
+  const datasetInfo = readJSONSync(`${dirpath}datasetInfo.json`)
 
   const authorInfoFiltered = filterAuthorInfo(articleInfo, authorInfo)
 
-  const dirpath = './prep/fiels/'
-
-  // writeInfoEdited(appInfo, dirpath, 'app');
-  // writeInfoEdited(articleInfo, dirpath, 'article');
+  // writeInfoEdited(appInfo, dirpath, 'app')
+  writeInfoEdited(articleInfo, dirpath, 'article')
   // writeInfoEdited(authorInfoFiltered, dirpath, 'author');
-  // writeInfoEdited(datasetInfo, dirpath, 'dataset');
+  writeInfoEdited(datasetInfo, dirpath, 'dataset')
+}
+
+/**
+ * Read and parse JSON file
+ * @param {string} path
+ */
+function readJSONSync(path) {
+  return JSON.parse(fs.readFileSync(path, 'utf8'))
 }
 
 /**
@@ -70,15 +78,27 @@ function filterAuthorInfo(articleInfo, authorInfo) {
  * @param {string} type Content type
  */
 async function writeInfoEdited(info, dirpath, type) {
-  let editedInfo
+  let edited
   const name = type + 'InfoEdited'
 
-  if (type === 'app') editedInfo = editAppInfo(info)
-  else if (type === 'article') editedInfo = await editArticleInfo(info)
-  else if (type === 'author') editedInfo = editAuthorInfo(info)
-  else if (type === 'dataset') editedInfo = editDatasetInfo(info)
+  if (type === 'app') edited = sortByDate(editAppInfo(info))
+  else if (type === 'article') edited = sortByDate(await editArticleInfo(info))
+  else if (type === 'author') edited = editAuthorInfo(info)
+  else if (type === 'dataset') edited = sortByDate(editDatasetInfo(info))
 
-  writeJSON(editedInfo, name, dirpath)
+  writeJSON(edited, name, dirpath)
+}
+
+/**
+ * Sort array of objects by date value
+ * @param {Object[]} arr
+ */
+function sortByDate(arr) {
+  return arr.sort((a, b) => {
+    if (a.date < b.date) return -1
+    if (a.date > b.date) return 1
+    return 0
+  })
 }
 
 /**
@@ -136,7 +156,7 @@ function editAppInfo(info) {
 
   return info.map((el, i) => {
     el.slug = titleToSlug(el.title)
-    el.publish = false
+    el.status = 'submitted'
     el.date = dates[i]
     el.image = el.imgUrl
     el.contributors = contributors[i]
@@ -160,7 +180,7 @@ function editAppInfo(info) {
  */
 async function editArticleInfo(info) {
   const temp = info.map(el => {
-    el.publish = false
+    el.status = 'submitted'
     el.slug = titleToSlug(el.title)
     el.splashUrl = el.splash
     el.type = el.pubtype
@@ -239,7 +259,7 @@ function editDatasetInfo(info) {
     const categories = []
     categories.push(el.initialCategory)
 
-    el.publish = false
+    el.status = 'submitted'
     el.slug = titleToSlug(el.title)
     el.sources = [
       {
