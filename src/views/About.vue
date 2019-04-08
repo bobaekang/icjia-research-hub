@@ -27,6 +27,7 @@
       <template v-slot:subbody3>
         <p v-html="section1.sub3.p1"></p>
         <p v-html="section1.sub3.p2"></p>
+        <p v-html="section1.sub3.p3"></p>
       </template>
     </AboutSection>
 
@@ -74,7 +75,7 @@ export default {
       return {
         title: 'ICJIA Research Hub',
         p1:
-          "This project was supported by Grant #18-DJ-BX-XXXX, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs' Bureau of Justice Assistance.",
+          "This project was supported by State Justice Statistics (SJS) Program Grant #2018-BJ-CX-XXXX, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs' Bureau of Justice Statistics.",
         sub1: {
           title: 'Open data, open research, open government',
           p1:
@@ -85,7 +86,7 @@ export default {
             ) +
             " serves as Illinois' Statistical Analysis Center (SAC) and provides analysis of criminal justice data or informing statewide policy and practice.",
           p2:
-            "As of its launching, <em>ICJIA Research Hub</em> marks the latest iterations of the Illinois SAC's ongoing effort to bring criminal justice data and research to the public. <em>ICJIA Research Hub</em> more fully embraces the spirit of the Federal Government's " +
+            "As of its launching, <em>ICJIA Research Hub</em> marks the latest iteration of the Illinois SAC's ongoing effort to bring criminal justice data and research to the public. <em>ICJIA Research Hub</em> more fully embraces the spirit of the Federal Government's " +
             this.hyperlink(
               'https://project-open-data.cio.gov/policy-memo/',
               'Open Data Policy'
@@ -125,7 +126,14 @@ export default {
           p2:
             'If you are a developer, please consider contributing to the project on ' +
             this.hyperlink(this.hrefGithub, 'GitHub') +
-            '. You can also submit applications using our criminal justice data collections. Your submission will be featured on <em>ICJIA Research Hub</em>\'s "App" page with a proper attribution after going through an internal review process.'
+            '. You can also submit applications using our criminal justice data collections. Your submission will be featured on <em>ICJIA Research Hub</em>\'s "App" page with a proper attribution after going through an internal review process.',
+          p3:
+            'Visit ' +
+            this.hyperlink(
+              this.hrefDocs,
+              'the <em>ICJIA Research Hub</em> Documentation page'
+            ) +
+            ' to learn more about contribution and making submissions to <em>ICJIA Research Hub</em>.'
         }
       }
     },
