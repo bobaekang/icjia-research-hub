@@ -11,6 +11,8 @@
             <v-container py-0>
               <v-layout row wrap justify-center>
                 <v-flex xs12 sm10 xl8>
+                  <slot></slot>
+
                   <div v-if="subNum" class="mb-3">
                     <template v-for="sub in subNum">
                       <h2 :key="`subtitle${sub}`" class="mb-3 light">
@@ -22,8 +24,6 @@
                       </p>
                     </template>
                   </div>
-
-                  <slot></slot>
                 </v-flex>
               </v-layout>
             </v-container>
