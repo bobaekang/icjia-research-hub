@@ -6,17 +6,17 @@ const client = axios.create({
   baseURL: api.BASE_URL
 })
 
-axios({
-  method: 'post',
-  url: api.AUTH_URL,
-  data: {
-    identifier: api.IDENTIFIER,
-    password: api.PASSWORD
-  }
-}).then(res => {
-  const token = res.data.jwt
-  client.defaults.headers.common['Authorization'] = `Bearer ${token}`
-})
+// axios({
+//   method: 'post',
+//   url: api.AUTH_URL,
+//   data: {
+//     identifier: api.IDENTIFIER,
+//     password: api.PASSWORD
+//   }
+// }).then(res => {
+//   const token = res.data.jwt
+//   client.defaults.headers.common['Authorization'] = `Bearer ${token}`
+// })
 
 client.interceptors.request.use(config => {
   NProgress.start()
