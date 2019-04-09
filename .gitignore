@@ -3,6 +3,8 @@ node_modules
 /dist
 /sandbox
 /prep/files
+/docs/.vuepress/dist
+/public/docs
 
 # local env files
 .env.local
