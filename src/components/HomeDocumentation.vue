@@ -37,19 +37,19 @@ export default {
           title: 'User Guide',
           body:
             'New to the Research Hub? Read to find out more about navigating the Research Hub like a pro.',
-          url: 'https://'
+          url: this.url + 'guide/'
         },
         {
-          title: 'API Documentation',
+          title: 'API Reference',
           body:
             'Learn how to use the Research Hub API to obtain data, analyze them, and develop awesome applications.',
-          url: 'https://'
+          url: this.url + 'dev-guide/api.html'
         },
         {
           title: 'Contributing Guidelines',
           body:
             'Need help! Find out how to make contributions to the Research Hub and have your work recognized.',
-          url: 'https://'
+          url: this.url + 'dev-guide/contributing.html'
         }
       ]
     }
