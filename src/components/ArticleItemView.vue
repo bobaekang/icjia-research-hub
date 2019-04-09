@@ -95,7 +95,7 @@
               <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
             </div>
 
-            <template v-if="article.apps.length || article.datasets.length">
+            <template v-if="hasRelated">
               <v-divider></v-divider>
 
               <v-container>
@@ -184,6 +184,12 @@ export default {
   computed: {
     article() {
       return this.item
+    },
+    hasRelated() {
+      return (
+        (this.item.apps && this.item.apps.length) ||
+        (this.item.datasets && this.item.datasets.length)
+      )
     },
     isMedium() {
       return this.$vuetify.breakpoint.name === 'md'

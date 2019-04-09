@@ -87,7 +87,7 @@
       </v-container>
     </template>
 
-    <template v-if="dataset.apps.length || dataset.articles.length">
+    <template v-if="hasRelated">
       <v-divider></v-divider>
 
       <v-container>
@@ -131,6 +131,12 @@ export default {
   computed: {
     dataset() {
       return this.item
+    },
+    hasRelated() {
+      return (
+        (this.item.apps && this.item.apps.length) ||
+        (this.item.articles && this.item.articles.length)
+      )
     },
     isDataCsv() {
       return this.item.datafilename && this.item.datafilename !== ''

@@ -80,7 +80,7 @@
           </BaseItemPropDisplay>
         </v-container>
 
-        <template v-if="app.articles.length || app.datasets.length">
+        <template v-if="hasRelated">
           <v-divider></v-divider>
 
           <v-container>
@@ -124,6 +124,12 @@ export default {
   computed: {
     app() {
       return this.item
+    },
+    hasRelated() {
+      return (
+        (this.item.articles && this.item.articles.length) ||
+        (this.item.datasets && this.item.datasets.length)
+      )
     }
   }
 }
