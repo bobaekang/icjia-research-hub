@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# Contributing guildelines
+# Contributing Guildelines
 
 First of all, we appreciate your interest in contributing to _ICJIA Research Hub_! :+1::heart_eyes:
 
@@ -16,11 +16,15 @@ This project and everyon participating in it is governed by ... By participating
 
 ## Contributing to codebase
 
-Please see [here](/docs/dev-guide/stack.html) to understand the project's technology stack.
+Please see [here](architecture.md) for details on the project architecture.
+
+### Pull Request Process
+
+1.
 
 ## Contributing contents
 
-Please see [here](/docs/dev-guide//schema.html) to understand the project's data schema.
+Please see [here](schema.md) to understand the project's data schema.
 
 ### Apps
 

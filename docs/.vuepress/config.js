@@ -24,7 +24,7 @@ module.exports = {
             link: '/dev-guide/contributing.md'
           },
           { text: 'Data Schema', link: '/dev-guide/schema.md' },
-          { text: 'Technology Stack', link: '/dev-guide/stack.md' }
+          { text: 'Project Architecture', link: '/dev-guide/architecture.md' }
         ]
       },
       { text: 'Research Hub', link: 'http://localhost:8080' }
