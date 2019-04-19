@@ -20,7 +20,7 @@
       <v-flex xs12 sm10 xl8>
         <v-layout row wrap justify-center>
           <v-flex xs12 xl6 v-for="(item, i) in filterItems(items)" :key="i">
-            <DatasetItem :item="item" />
+            <RHDatasetCard :item="item" />
           </v-flex>
         </v-layout>
       </v-flex>
@@ -30,13 +30,11 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import DatasetItem from '@/components/DatasetItem'
 import SearchBar from '@/components/SearchBar'
 import SearchInfoExtra from '@/components/SearchInfoExtra'
 
 export default {
   components: {
-    DatasetItem,
     SearchBar,
     SearchInfoExtra
   },

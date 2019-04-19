@@ -18,7 +18,7 @@
       </v-flex>
 
       <v-flex xs12 sm10 xl8 v-for="(item, i) in filterItems(items)" :key="i">
-        <ArticleItem :item="item" />
+        <RHArticleCard :item="item" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -26,13 +26,11 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import ArticleItem from '@/components/ArticleItem'
 import SearchBar from '@/components/SearchBar'
 import SearchInfoExtra from '@/components/SearchInfoExtra'
 
 export default {
   components: {
-    ArticleItem,
     SearchBar,
     SearchInfoExtra
   },

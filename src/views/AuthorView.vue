@@ -8,20 +8,17 @@
         v-for="(item, i) in view($route.params.slug)"
         :key="i"
       >
-        <AuthorItemView :item="item" />
+        <RHAuthorView :item="item" :getArticleInfo="getArticleInfo" />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import client from '@/services/client'
 import { mapState } from 'vuex'
-import AuthorItemView from '@/components/AuthorItemView'
 
 export default {
-  components: {
-    AuthorItemView
-  },
   computed: {
     ...mapState('authors', {
       items: 'data'
@@ -33,6 +30,9 @@ export default {
     }
   },
   methods: {
+    async getArticleInfo(id) {
+      return await client.getArticleInfo(id)
+    },
     view(slug) {
       return this.items.filter(item => {
         return item.slug === slug

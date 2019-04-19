@@ -20,7 +20,7 @@
       <v-flex xs12 sm10 xl8>
         <v-layout row wrap justify-center>
           <v-flex xs12 sm6 lg4 v-for="(item, i) in filterItems(items)" :key="i">
-            <AppItem :item="item" />
+            <RHAppCard :item="item" />
           </v-flex>
         </v-layout>
       </v-flex>
@@ -30,13 +30,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppItem from '@/components/AppItem'
 import SearchBar from '@/components/SearchBar'
 import SearchInfoExtra from '@/components/SearchInfoExtra'
 
 export default {
   components: {
-    AppItem,
     SearchBar,
     SearchInfoExtra
   },

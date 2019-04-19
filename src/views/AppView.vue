@@ -2,7 +2,7 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
-        <AppItemView v-if="item" :item="item" />
+        <RHAppView v-if="item" :item="item" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -10,12 +10,8 @@
 
 <script>
 import client from '@/services/client'
-import AppItemView from '@/components/AppItemView'
 
 export default {
-  components: {
-    AppItemView
-  },
   data() {
     return {
       item: null

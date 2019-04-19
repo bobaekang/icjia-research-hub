@@ -2,18 +2,16 @@
   <div>
     <TheProgessBar />
 
-    <ArticleItemView v-if="item" :item="item" />
+    <RHArticleView v-if="item" :item="item" />
   </div>
 </template>
 
 <script>
 import client from '@/services/client'
-import ArticleItemView from '@/components/ArticleItemView'
 import TheProgessBar from '@/components/TheProgressBar'
 
 export default {
   components: {
-    ArticleItemView,
     TheProgessBar
   },
   data() {
