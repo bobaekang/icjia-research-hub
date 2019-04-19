@@ -18,6 +18,8 @@ And there is a Research Hub Stack [GitHub repository](https://github.com/ICJIA/r
 
 Read [the Using Docker section](#using-docker) below for more on the use of Docker in _ICJIA Research Hub_.
 
+Finally, Research Hub UI and Research Hub Studio depend on a custom Vue component library, Research Hub Lib ([GitHub](https://github.com/ICJIA/research-hub-lib)), for the common components.
+
 ## Environments
 
 _ICJIA Research Hub_ is developed on ...
@@ -60,3 +62,7 @@ Research Hub Studio is powered by the following key technologies:
 _ICJIA Research Hub_ takes advantage of the modern containerization technology provided by Docker.
 
 Each key _ICJIA Research Hub_ service is made into a Docker image and is available on [Docker Hub](https://hub.docker.com/). And the `docker-compose.yml` file, available on the Research Hub Stack [GitHub repository](https://github.com/ICJIA/research-hub-stack), defines and coordinates services as well as their dependencies that comprise the _ICJIA Research Hub_ application.
+
+## Custom Vue component library
+
+Two key _ICJIA Research Hub_ services, namely Research Hub UI and Research Hub Studio, depend on a custom Vue component library, Research Hub Lib ([GitHub](https://github.com/ICJIA/research-hub-lib)).
