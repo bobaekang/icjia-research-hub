@@ -42,7 +42,7 @@ All content pages (Apps, Articles, and Datasets) share the same overall structur
 
 Each content type has a distinct look for its item card and full content view. Tags for any content type item will always be shown in grey pills.
 
-::: warning NOTE
+::: tip
 Each content item has an item card and a full content view.
 :::
 
@@ -52,7 +52,7 @@ An App is a web application, typically one that allows users to explore some dat
 
 #### Searching Apps
 
-You can use any of the following information on App, and any combination thereof, for a search term:
+You can use any of the following information on App for a search term:
 
 - Title
 - Contributors
@@ -73,11 +73,11 @@ Click on each contributor's name to go to a webpage with more information on the
 
 The full content view for an App item has the following information
 
-1. Title of the current App item
-2. "Launch" button to start the App on a new tab
-3. "Back" button to return to the Apps page
+1. Title of the current App item.
+2. "Launch" button to start the App on a new tab.
+3. "Back" button to return to the Apps page.
 4. Metadata of the current Dataset item
-5. Related contents (Articles and Datasets) if any
+5. Related contents
 
 #### Submitting Apps
 
@@ -89,7 +89,7 @@ An Article is a writing piece, typically a report on a research project conducte
 
 #### Searching Articles
 
-You can use any of the following information on Article, and any combination thereof, for a search term:
+You can use any of the following information on Article for a search term:
 
 - Title
 - Date (Updated)
@@ -109,19 +109,14 @@ Click on each author's name to view more information on the author as well as mo
 
 ![Sample Article content view]()
 
-1. Types, categories and tags for the current Article item
-2. "Back" button to return to the Articles page
-3. Table of contents
-4. Buttons to download the Article's attachements if any
-5. Title of the current Article item
-6. Article abstract
-7. Authors, date, and print button
-8. Related contents (Apps and Datasets) if any
-9. Article body
-
-::: tip
-A typical Article attachment includes a PDF file of the full research report.
-:::
+1. Types, categories and tags for the current Article item.
+2. "Back" button to return to the Articles page.
+3. Table of contents and buttons to download the Article PDF files if any.
+4. Title of the current Article item.
+5. Article abstract.
+6. Authors, date, and print button.
+7. Related contents if any.
+8. Article body.
 
 #### Submitting Articles
 
@@ -133,7 +128,7 @@ A Dataset is a data file in a machine-friendly format (e.g. comma seperated valu
 
 #### Searching Datasets
 
-You can use any of the following information on Dataset, and any combination thereof, for a search term:
+You can use any of the following information on Dataset for a search term:
 
 - Title
 - Date (Updated)
@@ -158,11 +153,7 @@ Click on each source's name to go to a webpage with more information on the sour
 3. "Back" button to return to the Datasets page
 4. Metadata of the current Dataset item
 5. Details on the variables
-6. Related contents (Apps and Articles)
-
-::: warning NOTE
-When you click the "Download" button, you will see a dialog window asking you to read and understand the metadata before using the dataset. Indeed, it is critical to have a good grasp of the context of any dataset you use and analyze.
-:::
+6. Related contents
 
 #### Submitting Datasets
 
