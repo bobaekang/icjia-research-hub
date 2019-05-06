@@ -27,7 +27,8 @@ module.exports = {
           { text: 'Project Architecture', link: '/dev-guide/architecture.md' }
         ]
       },
-      { text: 'Research Hub', link: 'http://localhost:8080' }
+      { text: 'Research Hub', link: 'http://localhost:8080' },
+      { text: 'GitHub', link: 'https://github.com/' }
     ]
   }
 }

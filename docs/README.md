@@ -1,8 +1,10 @@
 # Documentation
 
-::: warning NOTE
+::: warning FUNDING ACKNOWLEDGMENT
 This project was supported by State Justice Statistics (SJS) Program Grant #2018-BJ-CX-XXXX, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs' Bureau of Justice Statistics.
 :::
+
+<Vuepress />
 
 ## Welcome :tada:
 

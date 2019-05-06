@@ -40,10 +40,10 @@ This page also offers short descriptions for the Illinois Criminal Justice Infor
 
 All content pages (Apps, Articles, and Datasets) share the same overall structure: a search bar located on the top and a number of content item cards displaying key information on each item. You can click the item title or the "More" button on the bottom right to view its full content.
 
-Each content type has a distinct look for its item card and full content view. Tags for any content type item will always be shown in grey pills.
+Each content type has a distinct look for its card for key information and view for the full content. Tags for any content type item will always be shown in grey pills.
 
 ::: warning NOTE
-Each content item has an item card and a full content view.
+Each content item has a card and a view.
 :::
 
 ### Apps
@@ -59,29 +59,25 @@ You can use any of the following information on App, and any combination thereof
 - Categories
 - Tags
 
-#### App item card
+#### App card
 
-![Sample App item card]()
+![Sample App card]()
 
 ::: tip
 Click on each contributor's name to go to a webpage with more information on the contributor.
 :::
 
-#### App content view
+#### App view
 
-![Sample App content view]()
+![Sample App view]()
 
-The full content view for an App item has the following information
+The full view for an App item has the following information:
 
 1. Title of the current App item
 2. "Launch" button to start the App on a new tab
 3. "Back" button to return to the Apps page
 4. Metadata of the current Dataset item
 5. Related contents (Articles and Datasets) if any
-
-#### Submitting Apps
-
-See [Contributing contents section on the Contributing Guidelines page](../dev-guide/contributing.md#contributing-contents) for more information on submitting your Apps.
 
 ### Articles
 
@@ -97,17 +93,19 @@ You can use any of the following information on Article, and any combination the
 - Categories
 - Tags
 
-#### Article item card
+#### Article card
 
-![Sample App item card]()
+![Sample App card]()
 
 ::: tip
 Click on each author's name to view more information on the author as well as more articles by the author.
 :::
 
-#### Article content view
+#### Article view
 
-![Sample Article content view]()
+![Sample Article view]()
+
+The full view for an Article item has the following information:
 
 1. Types, categories and tags for the current Article item
 2. "Back" button to return to the Articles page
@@ -123,10 +121,6 @@ Click on each author's name to view more information on the author as well as mo
 A typical Article attachment includes a PDF file of the full research report.
 :::
 
-#### Submitting Articles
-
-ICJIA Research Hub is currently not accepting article submissions.
-
 ### Datasets
 
 A Dataset is a data file in a machine-friendly format (e.g. comma seperated value, or CSV). A Dataset item is typically prepared by the ICJIA R&A staff to provide key criminal justice statistics in a convenient format.
@@ -141,17 +135,19 @@ You can use any of the following information on Dataset, and any combination the
 - Categories
 - Tags
 
-#### Dataset item card
+#### Dataset card
 
-![Sample Dataset item card]()
+![Sample Dataset card]()
 
 ::: tip
 Click on each source's name to go to a webpage with more information on the source.
 :::
 
-#### Dataset content view
+#### Dataset view
 
-![Sample Dataset content view]()
+![Sample Dataset view]()
+
+The full view for an Dataset item has the following information:
 
 1. Title of the current Dataset item
 2. "Download" button
@@ -164,9 +160,11 @@ Click on each source's name to go to a webpage with more information on the sour
 When you click the "Download" button, you will see a dialog window asking you to read and understand the metadata before using the dataset. Indeed, it is critical to have a good grasp of the context of any dataset you use and analyze.
 :::
 
-#### Submitting Datasets
+### Contributing contents
 
-ICJIA Research Hub is currently not accepting dataset submissions.
+In order to serve as a true platform ("Hub") for research on criminal justice in Illinois, _ICJIA Research Hub_ accepts external contributions. Please consider making contributions to _ICJIA Research Hub_ to enrich this public platform for criminal justice reseasrch as well as to find a broader audience for your own research. Your contributions will go through an internal review process and be published as a new entry for the relevant content type on _ICJIA Research Hub_.
+
+Please see [Contributing contents section on the Contributing Guidelines page](../dev-guide/contributing.md#contributing-contents) to learn more on contributing contents to _ICJIA Research Hub_.
 
 ## FAQs
 
@@ -186,6 +184,6 @@ In short, a software product is open-source if its source code is released under
 
 #### How can I get involved in _ICJIA Research Hub_?
 
-It's wonderful that you are interested in getting involved in this project! Your contribution can range from reporting a bug to asking for a new feature to submitting relevant contents to be featured to improving this documentation to contributing to the project's codebase.
+It's wonderful that you are interested in getting involved in this project! Your contribution can range from reporting a bug to suggesting a new feature to submitting relevant contents to improving this documentation to contributing to the project's codebase.
 
 Please see [the Contributing Guidelines page](../dev-guide/contributing.md) for more information.
