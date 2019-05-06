@@ -36,6 +36,7 @@ export default {
         query: `{
         apps (where: { slug: "${slug}" }) {
           title
+          external
           slug
           date
           categories
@@ -44,6 +45,8 @@ export default {
           contributors
           description
           url
+          citation
+          funding
           articles (sort: "date:desc", where: { status: "published" }) {
             title
             slug
@@ -65,6 +68,7 @@ export default {
         query: `{
         apps (sort: "date:desc", where: { status: "published" }) {
           title
+          external
           slug
           date
           categories
@@ -113,9 +117,12 @@ export default {
           categories
           tags
           splash
-          summary
+          abstract
           images
           markdown
+          citation
+          doi
+          funding
           reportpdf {
             url
           }
@@ -152,8 +159,8 @@ export default {
           type
           categories
           tags
-          splash
-          summary
+          thumbnail
+          abstract
           authors {
             title
             slug
@@ -176,8 +183,8 @@ export default {
           type
           categories
           tags
-          splash
-          summary
+          thumbnail
+          abstract
           authors {
             title
             slug
@@ -248,6 +255,8 @@ export default {
           variables
           description
           notes
+          citation
+          funding
           datafilename
           apps (sort: "date:desc", where: { status: "published" }) {
             title
