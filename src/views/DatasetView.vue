@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import client from '@/services/client'
+import { datasetGetters } from '@/services/client'
 import FileSaver from 'file-saver'
 import { searchMixin } from '@/mixins/contentMixin'
 
@@ -26,22 +26,20 @@ export default {
     }
   },
   async created() {
-    const res = await client.getDatasetBySlug(this.$route.params.slug)
-    this.item = res.data.data.datasets[0]
+    this.item = await datasetGetters.getSingle(this.$route.params.slug)
   },
   methods: {
     async downloadData(id, isDataCsv) {
-      const res = await client.getDataById(id, isDataCsv)
-      const dataset = res.data.data.dataset
+      const res = await datasetGetters.getData(id, isDataCsv)
 
       if (isDataCsv) {
-        const blob = new Blob([dataset.datacsv], {
+        const blob = new Blob([res.datacsv], {
           type: 'text/csv;charset=utf-8'
         })
-        FileSaver.saveAs(blob, `${dataset.datafilename}.csv`)
+        FileSaver.saveAs(blob, `${res.datafilename}.csv`)
       } else {
-        const url = `${this.$store.state.api_url}/${dataset.datafile.url}`
-        FileSaver.saveAs(url, dataset.datafile.name)
+        const url = `${this.$store.state.api_url}/${res.datafile.url}`
+        FileSaver.saveAs(url, res.datafile.name)
       }
     }
   }

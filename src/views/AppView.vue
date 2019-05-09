@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import client from '@/services/client'
+import { appGetters } from '@/services/client'
 import { searchMixin } from '@/mixins/contentMixin'
 
 export default {
@@ -24,8 +24,7 @@ export default {
     }
   },
   async created() {
-    const res = await client.getAppBySlug(this.$route.params.slug)
-    this.item = res.data.data.apps[0]
+    this.item = await appGetters.getSingle(this.$route.params.slug)
   }
 }
 </script>

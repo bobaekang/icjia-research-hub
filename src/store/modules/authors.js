@@ -1,4 +1,4 @@
-import client from '@/services/client.js'
+import { authorGetters } from '@/services/client.js'
 
 export const namespaced = true
 
@@ -8,12 +8,12 @@ export const state = {
 
 export const mutations = {
   FETCH_DATA(state, payload) {
-    state.data = payload.data.data.authors
+    state.data = payload
   }
 }
 
 export const actions = {
   async fetchData({ commit }) {
-    commit('FETCH_DATA', await client.getAuthors())
+    commit('FETCH_DATA', await authorGetters.getList())
   }
 }

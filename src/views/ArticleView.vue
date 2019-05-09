@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import client from '@/services/client'
+import { articleGetters } from '@/services/client'
 import { searchMixin } from '@/mixins/contentMixin'
 import TheProgessBar from '@/components/TheProgressBar'
 
@@ -26,8 +26,7 @@ export default {
     }
   },
   async created() {
-    const res = await client.getArticleBySlug(this.$route.params.slug)
-    this.item = res.data.data.articles[0]
+    this.item = await articleGetters.getSingle(this.$route.params.slug)
   }
 }
 </script>

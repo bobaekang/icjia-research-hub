@@ -1,4 +1,4 @@
-import client from '@/services/client.js'
+import { datasetGetters } from '@/services/client.js'
 
 export const namespaced = true
 
@@ -9,7 +9,7 @@ export const state = {
 
 export const mutations = {
   FETCH_INFO(state, payload) {
-    state.info = payload.data.data.datasets.map(el => {
+    state.info = payload.map(el => {
       el.date = el.date.slice(0, 10)
       return el
     })
@@ -18,6 +18,6 @@ export const mutations = {
 
 export const actions = {
   async fetchInfo({ commit }) {
-    commit('FETCH_INFO', await client.getDatasetsInfo())
+    commit('FETCH_INFO', await datasetGetters.getList())
   }
 }

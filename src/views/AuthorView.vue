@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import client from '@/services/client'
+import { articleGetters } from '@/services/client'
 import { mapState } from 'vuex'
 
 export default {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async getArticleInfo(id) {
-      return await client.getArticleInfo(id)
+      return await articleGetters.getSingleCard(id)
     },
     view(slug) {
       return this.items.filter(item => {

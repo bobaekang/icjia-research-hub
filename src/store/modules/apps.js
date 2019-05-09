@@ -1,4 +1,4 @@
-import client from '@/services/client.js'
+import { appGetters } from '@/services/client.js'
 
 export const namespaced = true
 
@@ -9,7 +9,7 @@ export const state = {
 
 export const mutations = {
   FETCH_INFO(state, payload) {
-    state.data = payload.data.data.apps.map(el => {
+    state.data = payload.map(el => {
       el.date = el.date.slice(0, 10)
       return el
     })
@@ -18,7 +18,7 @@ export const mutations = {
 
 export const actions = {
   async fetchInfo({ commit }) {
-    commit('FETCH_INFO', await client.getAppsInfo())
+    commit('FETCH_INFO', await appGetters.getList())
   }
 }
 
