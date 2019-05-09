@@ -1,7 +1,7 @@
 const fse = require('fs-extra')
 
 fse
-  .ensureDir('./public/docs')
+  .emptydir('./public/docs')
   .then(() => {
     fse.copy('./docs/.vuepress/dist/', './public/docs/')
   })
