@@ -53,7 +53,7 @@ import AboutSection from '@/components/AboutSection'
 import BaseViewTitle from '@/components/BaseViewTitle'
 
 export default {
-  name: 'about',
+  name: 'About',
   components: {
     AboutSection,
     BaseViewTitle

@@ -36,8 +36,8 @@ export default {
         query: `{
         apps (where: { slug: "${slug}" }) {
           title
-          external
           slug
+          external
           date
           categories
           tags
@@ -68,13 +68,31 @@ export default {
         query: `{
         apps (sort: "date:desc", where: { status: "published" }) {
           title
-          external
           slug
+          external
           date
           categories
           tags
           image
           contributors
+        }
+      }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  async getAppsSearchInfo() {
+    return await client
+      .post('/graphql', {
+        query: `{
+        apps (sort: "date:desc", where: { status: "published" }) {
+          title
+          slug
+          external
+          date
+          categories
+          tags
         }
       }`
       })
@@ -112,6 +130,7 @@ export default {
         articles (where: { slug: "${slug}" }) {
           title
           slug
+          external
           date
           type
           categories
@@ -155,6 +174,7 @@ export default {
         article (id: "${id}") {
           title
           slug
+          external
           date
           type
           categories
@@ -180,6 +200,7 @@ export default {
           title
           slug
           date
+          external
           type
           categories
           tags
@@ -200,10 +221,28 @@ export default {
     return await client
       .post('/graphql', {
         query: `{
-        articles (sort: "date:desc", where: { status: "published" }, limit: 5) {
+        articles (sort: "date:desc", where: { status: "published", external: false }, limit: 5) {
           title,
           slug,
           splash
+        }
+      }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  async getArticlesSearchInfo() {
+    return await client
+      .post('/graphql', {
+        query: `{
+        articles (sort: "date:desc", where: { status: "published" }) {
+          title
+          slug
+          external
+          date
+          categories
+          tags
         }
       }`
       })
@@ -245,6 +284,7 @@ export default {
           _id
           title
           slug
+          external
           date
           categories
           tags
@@ -281,11 +321,30 @@ export default {
           _id
           title
           slug
+          external
           date
           categories
           tags
           sources
           agegroup
+        }
+      }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  async getDatasetsSearchInfo() {
+    return await client
+      .post('/graphql', {
+        query: `{
+        datasets (sort: "date:desc", where: { status: "published" }) {
+          title
+          slug
+          external
+          date
+          categories
+          tags
         }
       }`
       })

@@ -16,7 +16,7 @@
 import BaseViewTitle from '@/components/BaseViewTitle'
 
 export default {
-  name: 'apps',
+  name: 'Apps',
   components: {
     BaseViewTitle
   },

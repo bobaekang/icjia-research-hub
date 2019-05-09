@@ -2,25 +2,37 @@
   <v-container class="pb-5">
     <v-layout row wrap justify-center>
       <v-flex xs12 sm8 lg6>
-        <SearchBar
-          ref="searchBar"
-          label="Search for datasets (by title, date, sources, categories, tags)"
-          :search.sync="search"
-        />
+        <v-layout row wrap>
+          <v-flex xs12 :class="hasExternal ? 'sm10' : ''">
+            <SearchBar
+              ref="searchBar"
+              label="Search for datasets (by title, date, sources, categories, tags)"
+              :search.sync="localSearch"
+            />
+          </v-flex>
+
+          <v-flex v-if="hasExternal" xs12 sm2>
+            <v-switch
+              v-model="icjiaOnly"
+              label="ICJIA only"
+              class="ml-4 font-lato"
+            />
+          </v-flex>
+        </v-layout>
 
         <SearchInfoExtra
           :contentType="contentType"
           :items="items"
-          :filteredItems="filterItems(items)"
+          :filteredItems="filteredItems"
           :suggestions="suggestions"
-          @useSuggestion="useSuggestion($event)"
+          @search-suggestion="useLocalSearchTerm($event)"
         />
       </v-flex>
 
       <v-flex xs12 sm10 xl8>
         <v-layout row wrap justify-center>
-          <v-flex xs12 xl6 v-for="(item, i) in filterItems(items)" :key="i">
-            <RHDatasetCard :item="item" />
+          <v-flex xs12 xl6 v-for="(item, i) in filteredItems" :key="i">
+            <RHDatasetCard :item="item" @tag-click="useSearchTerm($event)" />
           </v-flex>
         </v-layout>
       </v-flex>
@@ -29,7 +41,12 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
+import {
+  filterMixin,
+  localSearchMixin,
+  searchMixin
+} from '@/mixins/contentMixin'
 import SearchBar from '@/components/SearchBar'
 import SearchInfoExtra from '@/components/SearchInfoExtra'
 
@@ -38,9 +55,7 @@ export default {
     SearchBar,
     SearchInfoExtra
   },
-  props: {
-    search: String
-  },
+  mixins: [filterMixin, localSearchMixin, searchMixin],
   data() {
     return {
       contentType: 'dataset'
@@ -51,20 +66,8 @@ export default {
       items: 'info',
       suggestions: 'suggestions'
     }),
-    ...mapGetters('datasets', {
-      filters: 'filters'
-    })
-  },
-  mounted() {
-    if (this.$store.state.datasets.info.length === 0) {
-      this.$store.dispatch('datasets/fetchInfo')
-    }
-  },
-  methods: {
-    filterItems(items) {
-      const s = this.search.toUpperCase()
-
-      return items.filter(item => {
+    filteredItems() {
+      return this.filterItems(this.items, this.localSearch, (item, s) => {
         return (
           item.title.toUpperCase().match(s) ||
           item.date.match(s) ||
@@ -83,10 +86,11 @@ export default {
             .match(s)
         )
       })
-    },
-    useSuggestion(suggestion) {
-      this.search = suggestion
-      this.$refs.searchBar.searchInput = suggestion
+    }
+  },
+  mounted() {
+    if (this.$store.state.datasets.info.length === 0) {
+      this.$store.dispatch('datasets/fetchInfo')
     }
   }
 }

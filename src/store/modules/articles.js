@@ -1,5 +1,4 @@
 import client from '@/services/client.js'
-import { pick, reduceObjArr, unwrapObj } from '@/services/utils.js'
 
 export const namespaced = true
 
@@ -27,14 +26,5 @@ export const actions = {
   },
   async fetchCarouselInfo({ commit }) {
     commit('FETCH_CAROUSEL_INFO', await client.getArticlesCarouselInfo())
-  }
-}
-
-export const getters = {
-  filters: state => {
-    const filters = ['type', 'categories'].sort()
-    const filtersObjArr = state.info.map(el => pick(el, filters))
-
-    return unwrapObj(reduceObjArr(filters, filtersObjArr))
   }
 }

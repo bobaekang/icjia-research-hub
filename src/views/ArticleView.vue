@@ -2,18 +2,24 @@
   <div>
     <TheProgessBar />
 
-    <RHArticleView v-if="item" :item="item" />
+    <RHArticleView
+      v-if="item"
+      :item="item"
+      @tag-click="useSearchTerm($event)"
+    />
   </div>
 </template>
 
 <script>
 import client from '@/services/client'
+import { searchMixin } from '@/mixins/contentMixin'
 import TheProgessBar from '@/components/TheProgressBar'
 
 export default {
   components: {
     TheProgessBar
   },
+  mixins: [searchMixin],
   data() {
     return {
       item: null

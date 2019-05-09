@@ -5,7 +5,7 @@
     :value="searchInput"
     :label="searchLabel"
     :clearable="true"
-    append-outer-icon="search"
+    prepend-inner-icon="search"
     solo
   />
 </template>

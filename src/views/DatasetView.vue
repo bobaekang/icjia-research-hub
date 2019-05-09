@@ -2,7 +2,12 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
-        <RHDatasetView v-if="item" :item="item" :downloadData="downloadData" />
+        <RHDatasetView
+          v-if="item"
+          :item="item"
+          :downloadData="downloadData"
+          @tag-click="useSearchTerm($event)"
+        />
       </v-flex>
     </v-layout>
   </v-container>
@@ -11,8 +16,10 @@
 <script>
 import client from '@/services/client'
 import FileSaver from 'file-saver'
+import { searchMixin } from '@/mixins/contentMixin'
 
 export default {
+  mixins: [searchMixin],
   data() {
     return {
       item: null

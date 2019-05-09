@@ -21,9 +21,7 @@ const router = new Router({
       children: [
         {
           path: '',
-          name: 'appSearch',
-          component: () => import('@/views/AppSearch.vue'),
-          props: true
+          component: () => import('@/views/AppSearch.vue')
         },
         {
           path: ':slug',
@@ -37,9 +35,7 @@ const router = new Router({
       children: [
         {
           path: '',
-          name: 'articleSearch',
-          component: () => import('@/views/ArticleSearch.vue'),
-          props: true
+          component: () => import('@/views/ArticleSearch.vue')
         },
         {
           path: ':slug',
@@ -67,15 +63,19 @@ const router = new Router({
       children: [
         {
           path: '',
-          name: 'datasetSearch',
-          component: () => import('@/views/DatasetSearch.vue'),
-          props: true
+          component: () => import('@/views/DatasetSearch.vue')
         },
         {
           path: ':slug',
           component: () => import('@/views/DatasetView.vue')
         }
       ]
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('@/views/Search.vue'),
+      props: true
     },
     {
       path: '*',

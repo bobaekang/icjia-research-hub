@@ -13,7 +13,7 @@
             flat
             class="ma-1"
             style="text-transform: none;"
-            @click="useSuggestion(suggestion)"
+            @click="$emit('search-suggestion', suggestion)"
           >
             <template>{{ suggestion }}</template>
           </v-btn>
@@ -30,11 +30,6 @@ export default {
     items: Array,
     filteredItems: Array,
     suggestions: Array
-  },
-  methods: {
-    useSuggestion(suggestion) {
-      this.$emit('useSuggestion', suggestion)
-    }
   }
 }
 </script>
