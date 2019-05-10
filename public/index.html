@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+      onload="this.rel='stylesheet'"
     />
-    <link href="/dist/vue-social-sharing.min.js" />
+    <link rel="preload" href="/dist/vue-social-sharing.min.js" />
     <title>ICJIA Research Hub-prototype</title>
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css?family=Material+Icons"
+      onload="this.rel='stylesheet'"
     />
   </head>
   <body>
