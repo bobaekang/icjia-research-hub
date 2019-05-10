@@ -61,10 +61,10 @@
 </template>
 
 <script>
-import BaseViewTitle from '@/components/BaseViewTitle'
-import SearchBar from '@/components/SearchBar'
-import SearchInfoExtra from '@/components/SearchInfoExtra'
-import SearchResultList from '@/components/SearchResultList'
+const BaseViewTitle = () => import('@/components/BaseViewTitle')
+const SearchBar = () => import('@/components/SearchBar')
+const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
+const SearchResultList = () => import('@/components/SearchResultList')
 
 export default {
   name: 'search',

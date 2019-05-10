@@ -43,8 +43,8 @@ import {
   localSearchMixin,
   searchMixin
 } from '@/mixins/contentMixin'
-import SearchBar from '@/components/SearchBar'
-import SearchInfoExtra from '@/components/SearchInfoExtra'
+const SearchBar = () => import('@/components/SearchBar')
+const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
 
 export default {
   components: {

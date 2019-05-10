@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import BaseViewTitle from '@/components/BaseViewTitle'
-import HomeAppHighlights from '@/components/HomeAppHighlights'
-import HomeDocumentation from '@/components/HomeDocumentation'
-import HomeLatestArticles from '@/components/HomeLatestArticles'
-import HomeSearch from '@/components/HomeSearch'
+const BaseViewTitle = () => import('@/components/BaseViewTitle')
+const HomeAppHighlights = () => import('@/components/HomeAppHighlights')
+const HomeDocumentation = () => import('@/components/HomeDocumentation')
+const HomeLatestArticles = () => import('@/components/HomeLatestArticles')
+const HomeSearch = () => import('@/components/HomeSearch')
 
 export default {
   components: {

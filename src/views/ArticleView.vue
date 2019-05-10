@@ -19,8 +19,8 @@
 <script>
 import { articleGetters } from '@/services/client'
 import { searchMixin } from '@/mixins/contentMixin'
-import ArticleSocialSharing from '@/components/ArticleSocialSharing'
-import TheProgessBar from '@/components/TheProgressBar'
+const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
+const TheProgessBar = () => import('@/components/TheProgressBar')
 
 export default {
   name: 'ArticleView',

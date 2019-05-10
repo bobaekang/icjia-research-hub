@@ -12,12 +12,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import AppItem from '@/components/AppItem'
-import BaseSection from '@/components/BaseSection'
+const BaseSection = () => import('@/components/BaseSection')
 
 export default {
   components: {
-    // AppItem,
     BaseSection
   },
   data() {

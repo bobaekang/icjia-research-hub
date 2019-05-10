@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BaseViewTitle from '@/components/BaseViewTitle'
+const BaseViewTitle = () => import('@/components/BaseViewTitle')
 
 export default {
   name: 'authors',

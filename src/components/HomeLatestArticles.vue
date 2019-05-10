@@ -29,7 +29,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import BaseSection from '@/components/BaseSection'
+const BaseSection = () => import('@/components/BaseSection')
 
 export default {
   components: {
