@@ -6,12 +6,12 @@ module.exports = {
       'link',
       {
         rel: 'icon',
-        href: 'http://www.icjia.state.il.us/assets/img/icjia-default.jpg'
+        href: '/assets/img/icjia-default.jpg'
       }
     ]
   ],
   themeConfig: {
-    logo: 'http://www.icjia.state.il.us/assets/img/icjia-default.jpg',
+    logo: '/assets/img/icjia-default.jpg',
     nav: [
       { text: 'User Guide', link: '/guide/' },
       {
