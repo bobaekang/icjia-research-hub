@@ -1,5 +1,5 @@
 <template>
-  <BaseSection :title="title" :to="to">
+  <BaseSection v-if="articles" :title="title" :to="to">
     <v-carousel>
       <router-link
         v-for="(article, i) in articles"

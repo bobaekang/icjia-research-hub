@@ -1,5 +1,5 @@
 <template>
-  <BaseSection :title="title" :href="url">
+  <BaseSection v-if="url" :title="title" :href="url">
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
         <v-layout row wrap>

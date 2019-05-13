@@ -1,9 +1,9 @@
 <template>
-  <BaseSection :title="title" :home="true" :to="to">
+  <BaseSection v-if="apps" :title="title" :home="true" :to="to">
     <v-container pt-0>
       <v-layout row wrap justify-center>
-        <v-flex xs12 sm6 md4 lg3 v-for="(item, i) in items" :key="i">
-          <RHAppCard :item="item" />
+        <v-flex xs12 sm6 md4 lg3 v-for="(app, i) in apps" :key="i">
+          <RHAppCard v-if="app" :item="app" />
         </v-flex>
       </v-layout>
     </v-container>
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters('apps', {
-      items: 'highlights'
+      apps: 'highlights'
     })
   },
   created() {
