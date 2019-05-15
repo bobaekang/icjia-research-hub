@@ -1,25 +1,37 @@
-// var path = require('path')
-// const PrerenderSPAPlugin = require('prerender-spa-plugin')
-// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
+const BrotliPlugin = require('brotli-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
+const zopfli = require('@gfx/zopfli')
+
+let plugins = [new BundleAnalyzerPlugin()]
+
+if (process.env.NODE_ENV === 'production') {
+  const compressionTest = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
+  plugins.push(
+    ...[
+      new CompressionPlugin({
+        algorithm(input, compressionOptions, callback) {
+          return zopfli.gzip(input, compressionOptions, callback)
+        },
+        compressionOptions: {
+          numiterations: 15
+        },
+        minRatio: 0.99,
+        test: compressionTest
+      }),
+      new BrotliPlugin({
+        test: compressionTest,
+        minRatio: 0.99
+      })
+    ]
+  )
+}
 
 module.exports = {
-  // baseUrl:
-  //   process.env.NODE_ENV === 'production'
-  //     ? '/icjia-data-portal-proto-dist/'
-  //     : '/',
-  // configureWebpack: config => {
-  //   if (process.env.NODE_ENV === 'production') {
-  //     config.plugins = [
-  //       new PrerenderSPAPlugin({
-  //         staticDir: path.join(__dirname, 'dist'),
-  //         routes: ['/', '/about'],
-  //         renderer: new Renderer({
-  //           renderAfterElementExists: '#app',
-  //           renderAfterTime: 5000,
-  //           headless: true
-  //         })
-  //       })
-  //     ]
-  //   }
-  // }
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === `production`) {
+      config.plugins.push(...plugins)
+    }
+  }
 }
