@@ -30,7 +30,9 @@
       </v-flex>
 
       <v-flex xs12 sm10 xl8 v-for="(item, i) in filteredItems" :key="i">
-        <RHArticleCard :item="item" @tag-click="useSearchTerm($event)" />
+        <keep-alive>
+          <RHArticleCard :item="item" @tag-click="useSearchTerm($event)" />
+        </keep-alive>
       </v-flex>
     </v-layout>
   </v-container>
