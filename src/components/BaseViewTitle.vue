@@ -13,7 +13,6 @@
 <script>
 export default {
   props: {
-    title: String,
     home: Boolean
   }
 }
