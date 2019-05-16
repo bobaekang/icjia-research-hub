@@ -47,13 +47,18 @@ import {
   localSearchMixin,
   searchMixin
 } from '@/mixins/contentMixin'
+const RHDatasetCard = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.DatasetCard
+  )
 const SearchBar = () => import('@/components/SearchBar')
 const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
 
 export default {
   components: {
     SearchBar,
-    SearchInfoExtra
+    SearchInfoExtra,
+    RHDatasetCard
   },
   mixins: [filterMixin, localSearchMixin, searchMixin],
   data() {

@@ -17,8 +17,15 @@
 import { datasetGetters } from '@/services/client'
 import FileSaver from 'file-saver'
 import { searchMixin } from '@/mixins/contentMixin'
+const RHDatasetView = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.DatasetView
+  )
 
 export default {
+  components: {
+    RHDatasetView
+  },
   mixins: [searchMixin],
   data() {
     return {

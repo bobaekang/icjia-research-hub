@@ -22,8 +22,15 @@
 
 <script>
 import { mapState } from 'vuex'
+const RHBaseToolbar = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.BaseToolbar
+  )
 
 export default {
+  components: {
+    RHBaseToolbar
+  },
   data() {
     return {
       views: ['about', 'apps', 'articles', 'datasets']

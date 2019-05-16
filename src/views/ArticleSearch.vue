@@ -43,11 +43,16 @@ import {
   localSearchMixin,
   searchMixin
 } from '@/mixins/contentMixin'
+const RHArticleCard = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.ArticleCard
+  )
 const SearchBar = () => import('@/components/SearchBar')
 const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
 
 export default {
   components: {
+    RHArticleCard,
     SearchBar,
     SearchInfoExtra
   },

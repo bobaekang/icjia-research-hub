@@ -15,8 +15,15 @@
 <script>
 import { appGetters } from '@/services/client'
 import { searchMixin } from '@/mixins/contentMixin'
+const RHAppView = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.AppView
+  )
 
 export default {
+  components: {
+    RHAppView
+  },
   mixins: [searchMixin],
   data() {
     return {

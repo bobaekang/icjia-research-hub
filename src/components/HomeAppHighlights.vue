@@ -13,10 +13,15 @@
 <script>
 import { mapGetters } from 'vuex'
 const BaseSection = () => import('@/components/BaseSection')
+const RHAppCard = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.AppCard
+  )
 
 export default {
   components: {
-    BaseSection
+    BaseSection,
+    RHAppCard
   },
   data() {
     return {

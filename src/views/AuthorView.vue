@@ -17,8 +17,15 @@
 <script>
 import { articleGetters } from '@/services/client'
 import { mapState } from 'vuex'
+const RHAuthorView = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.AuthorView
+  )
 
 export default {
+  components: {
+    RHAuthorView
+  },
   computed: {
     ...mapState('authors', {
       items: 'data'

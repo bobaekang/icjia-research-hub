@@ -20,12 +20,17 @@
 import { articleGetters } from '@/services/client'
 import { searchMixin } from '@/mixins/contentMixin'
 const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
+const RHArticleView = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.ArticleView
+  )
 const TheProgessBar = () => import('@/components/TheProgressBar')
 
 export default {
   name: 'ArticleView',
   components: {
     ArticleSocialSharing,
+    RHArticleView,
     TheProgessBar
   },
   mixins: [searchMixin],

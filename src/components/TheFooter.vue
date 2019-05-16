@@ -3,7 +3,15 @@
 </template>
 
 <script>
+const RHFooter = () =>
+  import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
+    lib => lib.Footer
+  )
+
 export default {
+  components: {
+    RHFooter
+  },
   data() {
     return {
       agency: {
