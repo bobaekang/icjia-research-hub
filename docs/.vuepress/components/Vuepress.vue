@@ -1,6 +1,6 @@
 <template>
   <p class="vuepress">
-    <a href="https://vuepress.vuejs.org/" target="_blank">
+    <a href="https://vuepress.vuejs.org/" target="_blank" rel="noreferrer">
       <span>This documentation is powered by</span>
       <img alt="vuepress" src="https://vuepress.vuejs.org/hero.png" />
       <span style="color:rgba(0,0,0,.87)">VuePress</span>
