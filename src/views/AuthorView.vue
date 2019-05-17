@@ -1,13 +1,7 @@
 <template>
   <v-container>
     <v-layout justify-center>
-      <v-flex
-        xs12
-        sm10
-        md8
-        v-for="(item, i) in view($route.params.slug)"
-        :key="i"
-      >
+      <v-flex xs12 sm10 md8>
         <RHAuthorView :item="item" :getArticleInfo="getArticleInfo" />
       </v-flex>
     </v-layout>
@@ -16,7 +10,6 @@
 
 <script>
 import { articleGetters } from '@/services/client'
-import { mapState } from 'vuex'
 const RHAuthorView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.AuthorView
@@ -26,24 +19,25 @@ export default {
   components: {
     RHAuthorView
   },
-  computed: {
-    ...mapState('authors', {
-      items: 'data'
-    })
+  data() {
+    return {
+      item: null
+    }
   },
-  mounted() {
+  created() {
     if (this.$store.state.authors.data.length === 0) {
       this.$store.dispatch('authors/fetchData')
     }
+    const slug = this.$route.params.slug
+    const item = this.$store.state.authors.data.filter(item => {
+      return item.slug === slug
+    })
+
+    this.item = item[0]
   },
   methods: {
     async getArticleInfo(id) {
       return await articleGetters.getSingleCard(id)
-    },
-    view(slug) {
-      return this.items.filter(item => {
-        return item.slug === slug
-      })
     }
   }
 }
