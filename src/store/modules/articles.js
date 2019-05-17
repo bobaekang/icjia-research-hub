@@ -1,4 +1,4 @@
-import { articleGetters } from '@/services/client.js'
+import client from '@/services/client.articles'
 
 export const namespaced = true
 
@@ -22,9 +22,9 @@ export const mutations = {
 
 export const actions = {
   async fetchInfo({ commit }) {
-    commit('FETCH_INFO', await articleGetters.getList())
+    commit('FETCH_INFO', await client.getList())
   },
   async fetchCarouselInfo({ commit }) {
-    commit('FETCH_CAROUSEL_INFO', await articleGetters.getListCarousel())
+    commit('FETCH_CAROUSEL_INFO', await client.getListCarousel())
   }
 }

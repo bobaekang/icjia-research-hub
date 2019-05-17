@@ -2,14 +2,18 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
-        <RHAuthorView :item="item" :getArticleInfo="getArticleInfo" />
+        <RHAuthorView
+          v-if="item"
+          :item="item"
+          :getArticleInfo="getArticleInfo"
+        />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import { articleGetters } from '@/services/client'
+import client from '@/services/client.articles'
 const RHAuthorView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.AuthorView
@@ -58,7 +62,7 @@ export default {
   },
   methods: {
     async getArticleInfo(id) {
-      return await articleGetters.getSingleCard(id)
+      return await client.getSingleCard(id)
     }
   }
 }

@@ -1,4 +1,4 @@
-import { appGetters } from '@/services/client.js'
+import client from '@/services/client.apps'
 
 export const namespaced = true
 
@@ -18,7 +18,7 @@ export const mutations = {
 
 export const actions = {
   async fetchInfo({ commit }) {
-    commit('FETCH_INFO', await appGetters.getList())
+    commit('FETCH_INFO', await client.getList())
   }
 }
 

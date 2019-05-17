@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { appGetters } from '@/services/client'
+import client from '@/services/client.apps'
 import { searchMixin } from '@/mixins/contentMixin'
 const RHAppView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
@@ -49,7 +49,7 @@ export default {
     }
   },
   async created() {
-    const item = await appGetters.getSingle(this.$route.params.slug)
+    const item = await client.getSingle(this.$route.params.slug)
     this.item = item
     this.meta.title = item.title
     this.meta.description = item.description

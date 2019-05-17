@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { articleGetters } from '@/services/client'
+import client from '@/services/client.articles'
 import { searchMixin } from '@/mixins/contentMixin'
 const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
 const RHArticleView = () =>
@@ -59,7 +59,7 @@ export default {
     }
   },
   async created() {
-    const item = await articleGetters.getSingle(this.$route.params.slug)
+    const item = await client.getSingle(this.$route.params.slug)
     this.baseUrl = await window.location.origin
     this.item = item
     this.meta.title = item.title

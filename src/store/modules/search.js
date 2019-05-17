@@ -1,8 +1,6 @@
-import {
-  appGetters,
-  articleGetters,
-  datasetGetters
-} from '@/services/client.js'
+import clientApps from '@/services/client.apps.js'
+import clientArticles from '@/services/client.articles.js'
+import clientDatasets from '@/services/client.datasets.js'
 
 export const namespaced = true
 
@@ -28,15 +26,15 @@ export const mutations = {
 export const actions = {
   async fetchSearchInfo({ commit, state }) {
     if (state.apps.length === 0) {
-      commit('FETCH_SEARCH_INFO_APPS', await appGetters.getListSearch())
+      commit('FETCH_SEARCH_INFO_APPS', await clientApps.getListSearch())
     }
 
     if (state.articles.length === 0) {
-      commit('FETCH_SEARCH_INFO_ARTICLES', await articleGetters.getListSearch())
+      commit('FETCH_SEARCH_INFO_ARTICLES', await clientArticles.getListSearch())
     }
 
     if (state.datasets.length === 0) {
-      commit('FETCH_SEARCH_INFO_DATASETS', await datasetGetters.getListSearch())
+      commit('FETCH_SEARCH_INFO_DATASETS', await clientDatasets.getListSearch())
     }
   }
 }

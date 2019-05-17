@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { datasetGetters } from '@/services/client'
 import FileSaver from 'file-saver'
+import client from '@/services/client.datasets'
 import { searchMixin } from '@/mixins/contentMixin'
 const RHDatasetView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
@@ -52,14 +52,14 @@ export default {
     }
   },
   async created() {
-    const item = await datasetGetters.getSingle(this.$route.params.slug)
+    const item = await client.getSingle(this.$route.params.slug)
     this.item = item
     this.meta.title = item.title
     this.meta.description = item.description
   },
   methods: {
     async downloadData(id, isDataCsv) {
-      const res = await datasetGetters.getData(id, isDataCsv)
+      const res = await client.getData(id, isDataCsv)
 
       if (isDataCsv) {
         const blob = new Blob([res.datacsv], {
