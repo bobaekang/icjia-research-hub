@@ -57,6 +57,7 @@ const SearchBar = () => import('@/components/SearchBar')
 const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
 
 export default {
+  name: 'AppSearch',
   components: {
     RHAppCard,
     SearchBar,

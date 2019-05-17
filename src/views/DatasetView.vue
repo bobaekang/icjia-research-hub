@@ -23,17 +23,39 @@ const RHDatasetView = () =>
   )
 
 export default {
+  name: 'DatasetView',
   components: {
     RHDatasetView
   },
   mixins: [searchMixin],
   data() {
     return {
-      item: null
+      item: null,
+      meta: {
+        title: 'Datasets',
+        description: ''
+      }
+    }
+  },
+  metaInfo() {
+    const title = this.meta.title
+    const description = this.meta.description
+    return {
+      titleTemplate: `${title} | %s`,
+      meta: [
+        {
+          vmid: 'desc-datasets',
+          name: 'description',
+          content: `${description}`
+        }
+      ]
     }
   },
   async created() {
-    this.item = await datasetGetters.getSingle(this.$route.params.slug)
+    const item = await datasetGetters.getSingle(this.$route.params.slug)
+    this.item = item
+    this.meta.title = item.title
+    this.meta.description = item.description
   },
   methods: {
     async downloadData(id, isDataCsv) {

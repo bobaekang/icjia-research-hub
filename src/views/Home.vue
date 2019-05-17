@@ -32,6 +32,10 @@ const HomeLatestArticles = () => import('@/components/HomeLatestArticles')
 const HomeSearch = () => import('@/components/HomeSearch')
 
 export default {
+  name: 'Home',
+  metaInfo: {
+    titleTemplate: 'Home | %s'
+  },
   components: {
     BaseViewTitle,
     HomeAppHighlights,

@@ -10,7 +10,7 @@
 
     <ArticleSocialSharing
       v-if="item && baseUrl"
-      :url="baseUrl + item.slug"
+      :url="baseUrl + '/' + item.slug"
       :title="item.title"
     />
   </div>
@@ -37,12 +37,33 @@ export default {
   data() {
     return {
       item: null,
-      baseUrl: ''
+      baseUrl: '',
+      meta: {
+        title: 'Articles',
+        description: ''
+      }
+    }
+  },
+  metaInfo() {
+    const title = this.meta.title
+    const description = this.meta.description
+    return {
+      titleTemplate: `${title} | %s`,
+      meta: [
+        {
+          vmid: 'desc-articles',
+          name: 'description',
+          content: `${description}`
+        }
+      ]
     }
   },
   async created() {
-    this.item = await articleGetters.getSingle(this.$route.params.slug)
+    const item = await articleGetters.getSingle(this.$route.params.slug)
     this.baseUrl = await window.location.origin
+    this.item = item
+    this.meta.title = item.title
+    this.meta.description = item.abstract
   }
 }
 </script>

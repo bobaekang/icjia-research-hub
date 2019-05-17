@@ -17,6 +17,16 @@ const BaseViewTitle = () => import('@/components/BaseViewTitle')
 
 export default {
   name: 'Apps',
+  metaInfo: {
+    titleTemplate: 'Apps | %s',
+    meta: [
+      {
+        vmid: 'desc-apps',
+        name: 'description',
+        content: 'Applications on Illinois criminal justice'
+      }
+    ]
+  },
   components: {
     BaseViewTitle
   },

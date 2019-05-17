@@ -10,7 +10,13 @@
               <template>{{ 'see more' }}</template>
             </router-link>
 
-            <a v-if="href" :href="href" target="_blank" class="font-lato small">
+            <a
+              v-if="href"
+              :href="href"
+              target="_blank"
+              class="font-lato small"
+              rel="noreferrer"
+            >
               <template>{{ 'see more' }}</template>
             </a>
           </v-layout>

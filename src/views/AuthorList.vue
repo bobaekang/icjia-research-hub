@@ -23,6 +23,7 @@
 import { mapState } from 'vuex'
 
 export default {
+  name: 'AuthorList',
   data() {
     return {
       listHeader: 'ICJIA Research Hub Article authors'

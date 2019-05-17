@@ -54,6 +54,9 @@ const BaseViewTitle = () => import('@/components/BaseViewTitle')
 
 export default {
   name: 'About',
+  metaInfo: {
+    titleTemplate: 'About | %s'
+  },
   components: {
     AboutSection,
     BaseViewTitle
@@ -176,7 +179,8 @@ export default {
   },
   methods: {
     hyperlink(href, text) {
-      return `<a href="${href}" target="_blank">${text}${this.linkIconHtml}</a>`
+      const icon = this.linkIconHtml
+      return `<a href="${href}" target="_blank" rel="noreferrer">${text}${icon}</a>`
     }
   }
 }

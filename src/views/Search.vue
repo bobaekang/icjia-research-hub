@@ -67,7 +67,10 @@ const SearchInfoExtra = () => import('@/components/SearchInfoExtra')
 const SearchResultList = () => import('@/components/SearchResultList')
 
 export default {
-  name: 'search',
+  name: 'Search',
+  metaInfo: {
+    titleTemplate: 'Search | %s'
+  },
   components: {
     BaseViewTitle,
     SearchBar,

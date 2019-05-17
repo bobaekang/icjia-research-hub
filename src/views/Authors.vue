@@ -16,7 +16,17 @@
 const BaseViewTitle = () => import('@/components/BaseViewTitle')
 
 export default {
-  name: 'authors',
+  name: 'Authors',
+  metaInfo: {
+    titleTemplate: 'Authors | %s',
+    meta: [
+      {
+        vmid: 'desc-authors',
+        name: 'description',
+        content: 'Authors contributed to research publications.'
+      }
+    ]
+  },
   components: {
     BaseViewTitle
   },

@@ -27,11 +27,32 @@ export default {
   mixins: [searchMixin],
   data() {
     return {
-      item: null
+      item: null,
+      meta: {
+        title: 'Apps',
+        description: ''
+      }
+    }
+  },
+  metaInfo() {
+    const title = this.meta.title
+    const description = this.meta.description
+    return {
+      titleTemplate: `${title} | %s`,
+      meta: [
+        {
+          vmid: 'desc-apps',
+          name: 'description',
+          content: description
+        }
+      ]
     }
   },
   async created() {
-    this.item = await appGetters.getSingle(this.$route.params.slug)
+    const item = await appGetters.getSingle(this.$route.params.slug)
+    this.item = item
+    this.meta.title = item.title
+    this.meta.description = item.description
   }
 }
 </script>
