@@ -5,6 +5,7 @@
     <RHArticleView
       v-if="item"
       :item="item"
+      :downloader="downloadPDF"
       @tag-click="useSearchTerm($event)"
     />
 
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import FileSaver from 'file-saver'
 import client from '@/services/client.articles'
 import { searchMixin } from '@/mixins/contentMixin'
 const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
@@ -64,6 +66,21 @@ export default {
     this.item = item
     this.meta.title = item.title
     this.meta.description = item.abstract
+  },
+  methods: {
+    async downloadPDF(id, type) {
+      const res = await client.getPDF(id, type)
+      let pdf
+
+      if (type === 'report') {
+        pdf = res.reportpdf
+      } else if (type === 'slides') {
+        pdf = res.slidsepdf
+      }
+
+      const url = `${this.$store.state.api_url}/${pdf.url}`
+      FileSaver.saveAs(url, decodeURI(pdf.name))
+    }
   }
 }
 </script>

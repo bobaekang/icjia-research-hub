@@ -1,11 +1,33 @@
 import client from './client'
 
 export default {
+  async getPDF(id, type) {
+    const pdf = `
+      ${type}pdf {
+        name
+        url
+      }`
+
+    const res = await client
+      .post('graphql', {
+        query: `{
+          article (id: "${id}" ) {
+            ${pdf}
+          }
+        }`
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+    return res.data.data.article
+  },
   async getSingle(slug) {
     const res = await client
       .post('/graphql', {
         query: `{
         articles (where: { slug: "${slug}" }) {
+          _id
           title
           slug
           external
