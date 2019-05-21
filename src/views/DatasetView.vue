@@ -5,7 +5,7 @@
         <RHDatasetView
           v-if="item"
           :item="item"
-          :downloadData="downloadData"
+          :downloader="downloadData"
           @tag-click="useSearchTerm($event)"
         />
       </v-flex>
@@ -68,7 +68,7 @@ export default {
         FileSaver.saveAs(blob, `${res.datafilename}.csv`)
       } else {
         const url = `${this.$store.state.api_url}/${res.datafile.url}`
-        FileSaver.saveAs(url, res.datafile.name)
+        FileSaver.saveAs(url, decodeURI(res.datafile.name))
       }
     }
   }
