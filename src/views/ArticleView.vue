@@ -21,6 +21,7 @@
 import FileSaver from 'file-saver'
 import client from '@/services/client.articles'
 import { searchMixin } from '@/mixins/contentMixin'
+import prerenderMixin from '@/mixins/prerenderMixin'
 const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
 const RHArticleView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
@@ -35,7 +36,7 @@ export default {
     RHArticleView,
     TheProgessBar
   },
-  mixins: [searchMixin],
+  mixins: [prerenderMixin, searchMixin],
   data() {
     return {
       item: null,

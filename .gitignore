@@ -5,6 +5,7 @@ node_modules
 /prep/files
 /docs/.vuepress/dist
 /public/docs
+routes.json
 
 # local env files
 .env.local

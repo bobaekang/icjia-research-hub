@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import prerenderMixin from '@/mixins/prerenderMixin'
 const AboutSection = () => import('@/components/AboutSection')
 const BaseViewTitle = () => import('@/components/BaseViewTitle')
 
@@ -61,6 +62,7 @@ export default {
     AboutSection,
     BaseViewTitle
   },
+  mixins: [prerenderMixin],
   data() {
     return {
       title: 'About',

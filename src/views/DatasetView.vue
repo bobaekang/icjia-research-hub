@@ -17,6 +17,7 @@
 import FileSaver from 'file-saver'
 import client from '@/services/client.datasets'
 import { searchMixin } from '@/mixins/contentMixin'
+import prerenderMixin from '@/mixins/prerenderMixin'
 const RHDatasetView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.DatasetView
@@ -27,7 +28,7 @@ export default {
   components: {
     RHDatasetView
   },
-  mixins: [searchMixin],
+  mixins: [prerenderMixin, searchMixin],
   data() {
     return {
       item: null,

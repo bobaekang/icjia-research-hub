@@ -15,6 +15,7 @@
 <script>
 import client from '@/services/client.apps'
 import { searchMixin } from '@/mixins/contentMixin'
+import prerenderMixin from '@/mixins/prerenderMixin'
 const RHAppView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.AppView
@@ -24,7 +25,7 @@ export default {
   components: {
     RHAppView
   },
-  mixins: [searchMixin],
+  mixins: [prerenderMixin, searchMixin],
   data() {
     return {
       item: null,
