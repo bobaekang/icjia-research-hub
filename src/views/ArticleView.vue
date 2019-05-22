@@ -6,7 +6,7 @@
       v-if="item"
       :item="item"
       :downloader="downloadPDF"
-      @tag-click="useSearchTerm($event)"
+      @tag-click="searchGlobal($event)"
     />
 
     <ArticleSocialSharing
@@ -20,7 +20,7 @@
 <script>
 import FileSaver from 'file-saver'
 import client from '@/services/client.articles'
-import { searchMixin } from '@/mixins/contentMixin'
+import { searchGlobalMixin } from '@/mixins/searchMixin'
 import prerenderMixin from '@/mixins/prerenderMixin'
 const ArticleSocialSharing = () => import('@/components/ArticleSocialSharing')
 const RHArticleView = () =>
@@ -36,7 +36,7 @@ export default {
     RHArticleView,
     TheProgessBar
   },
-  mixins: [prerenderMixin, searchMixin],
+  mixins: [prerenderMixin, searchGlobalMixin],
   data() {
     return {
       item: null,

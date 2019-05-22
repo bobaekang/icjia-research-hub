@@ -25,13 +25,13 @@
           :items="items"
           :filteredItems="filteredItems"
           :suggestions="suggestions"
-          @search-suggestion="useLocalSearchTerm($event)"
+          @search-suggestion="searchLocal($event)"
         />
       </v-flex>
 
       <v-flex xs12 sm10 xl8 v-for="(item, i) in filteredItems" :key="i">
         <keep-alive>
-          <RHArticleCard :item="item" @tag-click="useSearchTerm($event)" />
+          <RHArticleCard :item="item" @tag-click="searchGlobal($event)" />
         </keep-alive>
       </v-flex>
     </v-layout>
@@ -40,11 +40,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import {
-  filterMixin,
-  localSearchMixin,
-  searchMixin
-} from '@/mixins/contentMixin'
+import filterMixin from '@/mixins/filterMixin'
+import { searchGlobalMixin, searchLocalMixin } from '@/mixins/searchMixin'
 const RHArticleCard = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.ArticleCard
@@ -59,7 +56,7 @@ export default {
     SearchBar,
     SearchInfoExtra
   },
-  mixins: [filterMixin, localSearchMixin, searchMixin],
+  mixins: [filterMixin, searchGlobalMixin, searchLocalMixin],
   data() {
     return {
       contentType: 'article'

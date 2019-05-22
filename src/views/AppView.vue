@@ -2,11 +2,7 @@
   <v-container>
     <v-layout justify-center>
       <v-flex xs12 sm10 md8>
-        <RHAppView
-          v-if="item"
-          :item="item"
-          @tag-click="useSearchTerm($event)"
-        />
+        <RHAppView v-if="item" :item="item" @tag-click="searchGlobal($event)" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -14,8 +10,8 @@
 
 <script>
 import client from '@/services/client.apps'
-import { searchMixin } from '@/mixins/contentMixin'
 import prerenderMixin from '@/mixins/prerenderMixin'
+import { searchGlobalMixin } from '@/mixins/searchMixin'
 const RHAppView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.AppView
@@ -25,7 +21,7 @@ export default {
   components: {
     RHAppView
   },
-  mixins: [prerenderMixin, searchMixin],
+  mixins: [prerenderMixin, searchGlobalMixin],
   data() {
     return {
       item: null,

@@ -7,7 +7,7 @@
       </v-flex>
 
       <v-flex xs12 md9 xl6>
-        <v-form @submit.prevent="useSearchTerm(search)">
+        <v-form @submit.prevent="searchGlobal(search)">
           <v-text-field
             @keyup.enter="submit"
             v-model="search"
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import { searchMixin } from '@/mixins/contentMixin'
+import { searchGlobalMixin } from '@/mixins/searchMixin'
 
 export default {
-  mixins: [searchMixin],
+  mixins: [searchGlobalMixin],
   data() {
     return {
       title: 'Get started & explore this Research Hub',

@@ -25,7 +25,7 @@
           :items="items"
           :filteredItems="filteredItems"
           :suggestions="suggestions"
-          @search-suggestion="useLocalSearchTerm($event)"
+          @search-suggestion="searchLocal($event)"
         />
       </v-flex>
 
@@ -33,7 +33,7 @@
         <v-layout row wrap justify-center>
           <v-flex xs12 xl6 v-for="(item, i) in filteredItems" :key="i">
             <keep-alive>
-              <RHDatasetCard :item="item" @tag-click="useSearchTerm($event)" />
+              <RHDatasetCard :item="item" @tag-click="searchGlobal($event)" />
             </keep-alive>
           </v-flex>
         </v-layout>
@@ -44,11 +44,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import {
-  filterMixin,
-  localSearchMixin,
-  searchMixin
-} from '@/mixins/contentMixin'
+import filterMixin from '@/mixins/filterMixin'
+import { searchGlobalMixin, searchLocalMixin } from '@/mixins/searchMixin'
 const RHDatasetCard = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.DatasetCard
@@ -63,7 +60,7 @@ export default {
     SearchInfoExtra,
     RHDatasetCard
   },
-  mixins: [filterMixin, localSearchMixin, searchMixin],
+  mixins: [filterMixin, searchGlobalMixin, searchLocalMixin],
   data() {
     return {
       contentType: 'dataset'

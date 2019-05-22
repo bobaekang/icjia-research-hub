@@ -1,32 +1,4 @@
-export const searchMixin = {
-  methods: {
-    useSearchTerm(x) {
-      this.$router.push({
-        name: 'search',
-        params: {
-          search: x
-        }
-      })
-    }
-  }
-}
-
-export const localSearchMixin = {
-  data() {
-    return {
-      localSearch: ''
-    }
-  },
-  methods: {
-    useLocalSearchTerm(x) {
-      this.$vuetify.goTo(0)
-      this.localSearch = x
-      this.$refs.searchBar.searchInput = x
-    }
-  }
-}
-
-export const filterMixin = {
+export default {
   data() {
     return {
       icjiaOnly: false

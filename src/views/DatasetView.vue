@@ -6,7 +6,7 @@
           v-if="item"
           :item="item"
           :downloader="downloadData"
-          @tag-click="useSearchTerm($event)"
+          @tag-click="searchGlobal($event)"
         />
       </v-flex>
     </v-layout>
@@ -16,8 +16,8 @@
 <script>
 import FileSaver from 'file-saver'
 import client from '@/services/client.datasets'
-import { searchMixin } from '@/mixins/contentMixin'
 import prerenderMixin from '@/mixins/prerenderMixin'
+import { searchGlobalMixin } from '@/mixins/searchMixin'
 const RHDatasetView = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
     lib => lib.DatasetView
@@ -28,7 +28,7 @@ export default {
   components: {
     RHDatasetView
   },
-  mixins: [prerenderMixin, searchMixin],
+  mixins: [prerenderMixin, searchGlobalMixin],
   data() {
     return {
       item: null,

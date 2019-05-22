@@ -154,7 +154,6 @@ export default {
   },
   methods: {
     useSearchTerm(x) {
-      // console.log(x)
       this.$vuetify.goTo(0)
       this.searchLocal = x
       this.$refs.searchBar.searchInput = x
