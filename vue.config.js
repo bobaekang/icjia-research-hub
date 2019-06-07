@@ -43,7 +43,7 @@ const preprenderPlugins = [
       return renderedRoute
     },
     renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
-      maxConcurrentRoutes: 16,
+      maxConcurrentRoutes: 4,
       renderAfterDocumentEvent: 'render-event'
     })
   })
