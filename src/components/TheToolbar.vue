@@ -1,5 +1,5 @@
 <template>
-  <RHBaseToolbar>
+  <RHBaseToolbar :menu="true">
     <template v-slot:toolbarItems>
       <v-btn v-for="view in views" :key="view" :to="`/${view}`" flat>
         <template>{{ view }}</template>
