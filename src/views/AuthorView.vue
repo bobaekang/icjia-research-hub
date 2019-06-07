@@ -51,8 +51,8 @@ export default {
     if (this.$store.state.authors.data.length === 0) {
       this.$store.dispatch('authors/fetchData')
     }
-    const slug = await this.$route.params.slug
-    const item = await this.$store.state.authors.data.filter(item => {
+    const slug = this.$route.params.slug
+    const item = this.$store.state.authors.data.filter(item => {
       return item.slug === slug
     })
 
