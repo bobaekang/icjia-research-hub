@@ -45,6 +45,7 @@
 <script>
 import { mapState } from 'vuex'
 import filterMixin from '@/mixins/filterMixin'
+import prerenderMixin from '@/mixins/prerenderMixin'
 import { searchGlobalMixin, searchLocalMixin } from '@/mixins/searchMixin'
 const RHDatasetCard = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
@@ -60,7 +61,7 @@ export default {
     SearchInfoExtra,
     RHDatasetCard
   },
-  mixins: [filterMixin, searchGlobalMixin, searchLocalMixin],
+  mixins: [filterMixin, prerenderMixin, searchGlobalMixin, searchLocalMixin],
   data() {
     return {
       contentType: 'dataset'
@@ -93,7 +94,7 @@ export default {
       })
     }
   },
-  mounted() {
+  created() {
     if (this.$store.state.datasets.info.length === 0) {
       this.$store.dispatch('datasets/fetchInfo')
     }

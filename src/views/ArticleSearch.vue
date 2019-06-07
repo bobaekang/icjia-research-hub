@@ -41,6 +41,7 @@
 <script>
 import { mapState } from 'vuex'
 import filterMixin from '@/mixins/filterMixin'
+import prerenderMixin from '@/mixins/prerenderMixin'
 import { searchGlobalMixin, searchLocalMixin } from '@/mixins/searchMixin'
 const RHArticleCard = () =>
   import('icjia-research-hub-lib/packages/icjia-research-hub-lib').then(
@@ -56,7 +57,7 @@ export default {
     SearchBar,
     SearchInfoExtra
   },
-  mixins: [filterMixin, searchGlobalMixin, searchLocalMixin],
+  mixins: [filterMixin, prerenderMixin, searchGlobalMixin, searchLocalMixin],
   data() {
     return {
       contentType: 'article'
@@ -89,7 +90,7 @@ export default {
       })
     }
   },
-  mounted() {
+  created() {
     if (this.$store.state.articles.info.length === 0) {
       this.$store.dispatch('articles/fetchInfo')
     }
