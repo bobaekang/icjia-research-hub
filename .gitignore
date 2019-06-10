@@ -2,7 +2,7 @@
 node_modules
 /dist
 /sandbox
-/prep/files
+/prep
 /docs/.vuepress/dist
 /public/docs
 routes.json
